@@ -27,10 +27,10 @@ public class AndroidLauncher extends AndroidApplication {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.new_game:
+            case R.id.option1:
                 Toast.makeText(getApplicationContext(), "Sample Text1", Toast.LENGTH_LONG).show();
                 return true;
-            case R.id.help:
+            case R.id.option2:
                 Toast.makeText(getApplicationContext(), "Sample Text2", Toast.LENGTH_LONG).show();
                 return true;
             default:
