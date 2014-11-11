@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class MyGdxGame extends ApplicationAdapter {
 	SpriteBatch batch;
-    SpriteBatch square1Batch;
 	Texture img;
     Texture square1Img;
 	
@@ -16,7 +15,6 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-        square1Batch = new SpriteBatch();
         square1Img = new Texture("Square1.png");
 	}
 
@@ -26,7 +24,10 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(img, 0, 0);
+
         batch.draw(square1Img, 0, 0);
+        batch.draw(square1Img, square1Img.getHeight(), 0);
+
 		batch.end();
 
 
