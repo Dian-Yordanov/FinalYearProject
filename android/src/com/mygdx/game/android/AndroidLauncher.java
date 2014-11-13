@@ -45,15 +45,7 @@ public class AndroidLauncher extends AndroidApplication {
                 Log.v("taggg", "!" + Gdx.files.getLocalStoragePath());
                 Log.v("taggg", "!" + Gdx.files.getExternalStoragePath());
 
-                File f = new File(c.getFilesDir().getPath());
-                File[] files11 = f.listFiles();
-                for (File inFile : files11) {
-                    if (inFile.isDirectory()) {
-                        Log.v("dfsdf","dsfsd");
-                    }
-                }
-
-                String path = Environment.getExternalStorageDirectory().toString()+"/Android";
+                String path = Environment.getExternalStorageDirectory().toString()+"/Pictures";
                 Log.d("Files", "Path: " + path);
                 File ff = new File(path);
                 File file[] = ff.listFiles();
@@ -65,17 +57,7 @@ public class AndroidLauncher extends AndroidApplication {
 
 
 
-                FileHandle[] files1 = Gdx.files.internal("/").list();
-                for(FileHandle file2: files1) {
-                    if(file2.name().equals("assets")){
-                        Log.v("taggg", "4 " +  file2.name() );
-                        Log.v(file2.name(), "4 " +  Gdx.files.internal(file2.path()).isDirectory());
-                        FileHandle[] files3 = Gdx.files.internal(file2.name()).list();
-                        for(FileHandle file4: files3) {
-                            Log.v("taggg", "5 " +  file4.name() );
-                        }
-                    }
-                }
+
 
                 return true;
             case R.id.option2:
