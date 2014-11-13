@@ -41,7 +41,7 @@ public class MyGdxGame extends ApplicationAdapter {
             }
 
         }
-
+//hello laptop
         batch.end();
 	}
 }
