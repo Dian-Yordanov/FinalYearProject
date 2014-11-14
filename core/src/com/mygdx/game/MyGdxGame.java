@@ -1,50 +1,41 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.io.File;
 
 public class MyGdxGame extends ApplicationAdapter {
 	public static SpriteBatch batch;
-	//Texture img;
+	Texture img;
     public static Texture square1Img;
+    Sprite sprite;
 	
 	@Override
 	public void create () {
         com.mygdx.game.MyGdxGame.batch = new SpriteBatch();
-
         AssetManager manager = new AssetManager();
-        //Texture tex = manager.get("data/mytexture.png", Texture.class);
-       // BitmapFont font = manager.get("data/myfont.fnt", BitmapFont.class);
-
-        String path = Gdx.files.getExternalStoragePath()+"Pictures";
-        File ff = new File(path);
-        File file[] = ff.listFiles();
-
-       // Gdx.app.log("AssetPath", "!"+file[0].exists());
 
 
+       // Gdx.files.external(file[i]).moveTo(Gdx.files.local("/data/"));
 
-        assert file != null;
-        Gdx.app.log("AssetPath", "!" +Gdx.files.internal(file[0].getPath()));
-      //  manager.load(path+"/"+Gdx.files.internal(file[0].getName()), Texture.class);
-        manager.load(Gdx.files.internal(file[1].getPath()).toString().substring(1,Gdx.files.internal(file[1].getPath()).toString().length()), Texture.class);
-                //Gdx.files.internal(file[1].getPath()).toString(),Texture.class);
+        manager.load("data/" + "Square1.png", Texture.class);
         manager.finishLoading();
-        com.mygdx.game.MyGdxGame.square1Img = manager.get(Gdx.files.internal(file[1].getPath()).toString().substring(1,Gdx.files.internal(file[1].getPath()).toString().length()), Texture.class);
-                //Gdx.files.internal(file[1].getPath()).toString(),Texture.class);
-                //new Texture("data/Square1.png");
-                //manager.get("data/Square1.png",Texture.class);
-                //manager.get(Gdx.files.internal("data/Square1.png").path(), Texture.class);
-                //new Texture(path+"/"+Gdx.files.internal(file[0].getName()));
-        //path+"/"+Gdx.files.internal(file[0].getName()).path()
+        com.mygdx.game.MyGdxGame.square1Img = manager.get("data/" + "Square1.png", Texture.class);
+
+       // com.mygdx.game.MyGdxGame.square1Img = new Texture("data/" + file[1].getName());
+
+
 
 	}
 
@@ -53,10 +44,17 @@ public class MyGdxGame extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         com.mygdx.game.MyGdxGame.batch.begin();
+
+
+       // sprite.draw(batch);
+
+
         for(int i=0;i<100;i++) {
-            for (int ii = 0; ii < 100; ii++) {
+
+//
+           for (int ii = 0; ii < 100; ii++) {
                 com.mygdx.game.MyGdxGame.batch.draw(com.mygdx.game.MyGdxGame.square1Img,
-                        (com.mygdx.game.MyGdxGame.square1Img.getWidth() + 5 )* i,  (com.mygdx.game.MyGdxGame.square1Img.getHeight() +5)* ii);
+                      (com.mygdx.game.MyGdxGame.square1Img.getWidth() + 5 )* i,  (com.mygdx.game.MyGdxGame.square1Img.getHeight() +5)* ii);
             }
 
         }
