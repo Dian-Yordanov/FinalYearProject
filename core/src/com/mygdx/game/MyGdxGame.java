@@ -24,19 +24,22 @@ public class MyGdxGame extends ApplicationAdapter {
         //Texture tex = manager.get("data/mytexture.png", Texture.class);
        // BitmapFont font = manager.get("data/myfont.fnt", BitmapFont.class);
 
-        String path = Gdx.files.getExternalStoragePath()+"assets";
+        String path = Gdx.files.getExternalStoragePath()+"Pictures";
         File ff = new File(path);
         File file[] = ff.listFiles();
 
        // Gdx.app.log("AssetPath", "!"+file[0].exists());
-        Gdx.app.log("AssetPath", "!"+file[0].getName());
+
 
 
         assert file != null;
+        Gdx.app.log("AssetPath", "!" +Gdx.files.internal(file[0].getPath()));
       //  manager.load(path+"/"+Gdx.files.internal(file[0].getName()), Texture.class);
-        manager.load("data/Square1.png",Texture.class);
+        manager.load(Gdx.files.internal(file[1].getPath()).toString().substring(1,Gdx.files.internal(file[1].getPath()).toString().length()), Texture.class);
+                //Gdx.files.internal(file[1].getPath()).toString(),Texture.class);
         manager.finishLoading();
-        com.mygdx.game.MyGdxGame.square1Img = manager.get("data/Square1.png",Texture.class);
+        com.mygdx.game.MyGdxGame.square1Img = manager.get(Gdx.files.internal(file[1].getPath()).toString().substring(1,Gdx.files.internal(file[1].getPath()).toString().length()), Texture.class);
+                //Gdx.files.internal(file[1].getPath()).toString(),Texture.class);
                 //new Texture("data/Square1.png");
                 //manager.get("data/Square1.png",Texture.class);
                 //manager.get(Gdx.files.internal("data/Square1.png").path(), Texture.class);
