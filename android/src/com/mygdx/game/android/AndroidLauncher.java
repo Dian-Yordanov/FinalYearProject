@@ -2,6 +2,7 @@ package com.mygdx.game.android;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
 
+import com.activities.activity1;
 import java.io.File;
 import java.io.IOException;
 
@@ -84,6 +86,9 @@ public class AndroidLauncher extends AndroidApplication {
                 return true;
             case R.id.option2:
                 Toast.makeText(getApplicationContext(), "Sample Text2", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(AndroidLauncher.this,
+                        activity1.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
