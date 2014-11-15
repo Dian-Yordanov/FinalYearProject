@@ -29,9 +29,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
        // Gdx.files.external(file[i]).moveTo(Gdx.files.local("/data/"));
 
-        manager.load("data/" + "Square1.png", Texture.class);
+        String pictureAddress = "data/" + "Square4.png";
+        manager.load(pictureAddress, Texture.class);
         manager.finishLoading();
-        com.mygdx.game.MyGdxGame.square1Img = manager.get("data/" + "Square1.png", Texture.class);
+        com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
 
        // com.mygdx.game.MyGdxGame.square1Img = new Texture("data/" + file[1].getName());
 
@@ -41,7 +42,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         com.mygdx.game.MyGdxGame.batch.begin();
 
