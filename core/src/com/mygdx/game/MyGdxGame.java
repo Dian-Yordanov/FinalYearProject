@@ -47,15 +47,15 @@ public class MyGdxGame extends ApplicationAdapter {
         com.mygdx.game.MyGdxGame.batch.begin();
 
 
-       // sprite.draw(batch);
+        // sprite.draw(batch);
 
 
         for(int i=0;i<100;i++) {
 
 //
-           for (int ii = 0; ii < 100; ii++) {
+            for (int ii = 0; ii < 100; ii++) {
                 com.mygdx.game.MyGdxGame.batch.draw(com.mygdx.game.MyGdxGame.square1Img,
-                      (com.mygdx.game.MyGdxGame.square1Img.getWidth() + 5 )* i,  (com.mygdx.game.MyGdxGame.square1Img.getHeight() +5)* ii);
+                        (com.mygdx.game.MyGdxGame.square1Img.getWidth() + 5 )* i,  (com.mygdx.game.MyGdxGame.square1Img.getHeight() +5)* ii);
             }
 
         }
