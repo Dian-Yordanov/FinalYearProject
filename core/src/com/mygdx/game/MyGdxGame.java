@@ -19,12 +19,13 @@ public class MyGdxGame extends ApplicationAdapter {
 	public static SpriteBatch batch;
 	Texture img;
     public static Texture square1Img;
+    public static AssetManager manager;
     Sprite sprite;
 	
 	@Override
 	public void create () {
         com.mygdx.game.MyGdxGame.batch = new SpriteBatch();
-        AssetManager manager = new AssetManager();
+        manager = new AssetManager();
 
 
        // Gdx.files.external(file[i]).moveTo(Gdx.files.local("/data/"));

@@ -30,6 +30,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Created by XelnectPC on 11/15/2014.
@@ -95,6 +96,7 @@ public class activity1 extends Activity{
                 }
             }
         }
+        saveBitmapToFile(bMap);
         useImage(method2(bMap));
     }
 
@@ -134,5 +136,30 @@ public class activity1 extends Activity{
             e.printStackTrace();
         }
         return tex;
+    }
+    public void saveBitmapToFile(Bitmap bmp1) {
+        String path = Environment.getExternalStorageDirectory().toString();
+        OutputStream fOut = null;
+        File file = new File(path, "data/" + "Square4" + ".png"); // the File to save to
+        try {
+            fOut = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        bmp1.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+        try {
+            fOut.flush();
+            fOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // do not forget to close the stream
+
+        try {
+            MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
