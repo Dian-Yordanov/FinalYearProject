@@ -17,11 +17,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.android.R;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,6 +41,7 @@ public class activity1 extends Activity{
     Button button;
     public static boolean finished=false;
     public static Bitmap bMap;
+    static Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,7 @@ public class activity1 extends Activity{
 
             @Override
             public void onClick(View arg0) {
-                Intent intent = new Intent();
+                intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -91,7 +95,7 @@ public class activity1 extends Activity{
                 }
             }
         }
-        useImage(convertBitmapToTexture(bMap));
+        useImage(method2(bMap));
     }
 
 
@@ -111,8 +115,24 @@ public class activity1 extends Activity{
         bitmap.recycle();
         return tex;
     }
-    public static void useImage(Texture tex){
-        com.mygdx.game.MyGdxGame.square1Img=tex;
+    public static void useImage(Texture tex1){
+        com.mygdx.game.MyGdxGame.square1Img=tex1;
 
+    }
+    public static Texture method2(Bitmap bmp){
+        Texture tex=null;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        try {
+            Pixmap pmap=new Pixmap(byteArray, 0, byteArray.length);
+            tex=new Texture(pmap);
+            Sprite face=new Sprite(tex);
+            // game.setScreen(new GameScreen(game, batcher, face));
+        } catch(Exception e) {
+            Gdx.app.log("KS", e.toString());
+            e.printStackTrace();
+        }
+        return tex;
     }
 }
