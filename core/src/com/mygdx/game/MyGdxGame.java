@@ -13,7 +13,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.GdxNativesLoader;
+
 import java.io.File;
+
 
 public class MyGdxGame extends ApplicationAdapter {
 	public static SpriteBatch batch;
@@ -26,15 +29,17 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void create () {
         com.mygdx.game.MyGdxGame.batch = new SpriteBatch();
         manager = new AssetManager();
-
+        GdxNativesLoader.load();
 
        // Gdx.files.external(file[i]).moveTo(Gdx.files.local("/data/"));
+        /*
 
         String pictureAddress = "data/" + "Square4.png";
         manager.load(pictureAddress, Texture.class);
         manager.finishLoading();
         com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
 
+        */
        // com.mygdx.game.MyGdxGame.square1Img = new Texture("data/" + file[1].getName());
 
 

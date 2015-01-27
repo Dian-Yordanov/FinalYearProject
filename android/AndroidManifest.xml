@@ -14,19 +14,25 @@
         android:label="@string/app_name"
         android:theme="@style/GdxTheme" >
         <activity
-            android:name="com.mygdx.game.android.AndroidLauncher"
-            android:label="@string/app_name" 
-            android:screenOrientation="unspecified"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+            android:name="com.activities.StartingActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name="com.mygdx.game.android.AndroidLauncher"
+            android:label="@string/app_name"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+
+        </activity>
+        <activity
             android:name="com.activities.activity1"
             android:label="@string/app_name" >
         </activity>
+
     </application>
 
 </manifest>
