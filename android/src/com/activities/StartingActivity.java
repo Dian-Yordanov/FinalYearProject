@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -62,6 +63,7 @@ public class StartingActivity extends Activity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intent, SELECT_PICTURE);
+
             }
         });
     }
@@ -69,13 +71,13 @@ public class StartingActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE)
-            {
-                Uri selectedImageUri = data.getData();
-                selectedImagePath = getPath(selectedImageUri);
+            Uri selectedImageUri = data.getData();
+            selectedImagePath = getPath(selectedImageUri);
+            if (requestCode == SELECT_PICTURE) {
+
 
                 //useSelectedImage(selectedImagePath);
-
+Log.v("fff","FFF"+selectedImagePath);
                 try {
                     FileInputStream fileis=new FileInputStream(selectedImagePath);
                     BufferedInputStream bufferedstream=new BufferedInputStream(fileis);
@@ -99,12 +101,16 @@ public class StartingActivity extends Activity {
                 }
             }
         }
-        //method2(bMap);
-        //useImage(convertBitmapToTexture(bMap));
-        //useSelectedImage(selectedImagePath);
-        //saveBitmapToFile(bMap);
 
-        goToRenderingActivity();
+                //method2(bMap);
+                //useImage(convertBitmapToTexture(bMap));
+                //useSelectedImage(selectedImagePath);
+                //saveBitmapToFile(bMap);
+                useSelectedImage(selectedImagePath);
+                goToRenderingActivity();
+
+
+
     }
     public String getPath(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
@@ -175,16 +181,17 @@ public class StartingActivity extends Activity {
                 AndroidLauncher.class);
         startActivity(i);
     }
-    public static void useSelectedImage(String selectedImagePath1){
-        //MyGdxGame.manager = new AssetManager();
+    public void useSelectedImage(String selectedImagePath1){
+        /*
+        MyGdxGame.manager = new AssetManager(new ExternalFileHandleResolver());
         String pictureAddress = selectedImagePath1;
 
-        Log.v("ff", pictureAddress);
+        Log.v("ff", "ff" + selectedImagePath1);
         //tex =
-        //MyGdxGame.manager.load(pictureAddress, Texture.class);
-        //MyGdxGame.manager.finishLoading();
-        com.mygdx.game.MyGdxGame.square1Img = new Texture(Gdx.files.absolute(pictureAddress));
-                //MyGdxGame.manager.get(pictureAddress, Texture.class);
-
+        MyGdxGame.manager.load(pictureAddress, Texture.class);
+        MyGdxGame.manager.finishLoading();
+        //com.mygdx.game.MyGdxGame.square1Img = new Texture(Gdx.files.absolute(pictureAddress));
+        MyGdxGame.manager.get(pictureAddress, Texture.class);
+*/
     }
 }

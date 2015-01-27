@@ -98,6 +98,7 @@ public class activity1 extends Activity{
         }
         saveBitmapToFile(bMap);
         useImage(method2(bMap));
+
     }
 
 

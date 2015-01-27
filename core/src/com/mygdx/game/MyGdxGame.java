@@ -22,25 +22,32 @@ public class MyGdxGame extends ApplicationAdapter {
 	public static SpriteBatch batch;
 	Texture img;
     public static Texture square1Img;
-    public static AssetManager manager;
+    //public static AssetManager manager;
+    public static boolean usedOnlyOnce=true;
+    public static String pictureAddress;
     Sprite sprite;
 	
 	@Override
 	public void create () {
-        com.mygdx.game.MyGdxGame.batch = new SpriteBatch();
-        manager = new AssetManager();
-        GdxNativesLoader.load();
+        MyGdxGame.batch = new SpriteBatch();
+
+        //manager = new AssetManager();
+       // GdxNativesLoader.load();
 
        // Gdx.files.external(file[i]).moveTo(Gdx.files.local("/data/"));
 
+        //manager = new AssetManager();
 
-        String pictureAddress = "data/" + "Square4.png";
-        manager.load(pictureAddress, Texture.class);
-        manager.finishLoading();
-        com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
+        createContent();
+
+        //String pictureAddress = "data/" + "Square4.png";
+        //manager.load(pictureAddress, Texture.class);
+        //manager = new AssetManager();
+        //manager.finishLoading();
+       // com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
 
 
-       // com.mygdx.game.MyGdxGame.square1Img = new Texture("data/" + file[1].getName());
+        //com.mygdx.game.MyGdxGame.square1Img = new Texture(pictureAddress);
 
 
 
@@ -50,22 +57,22 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        com.mygdx.game.MyGdxGame.batch.begin();
 
-
+        MyGdxGame.batch.begin();
         // sprite.draw(batch);
-
-
         for(int i=0;i<100;i++) {
-
-//
             for (int ii = 0; ii < 100; ii++) {
-                com.mygdx.game.MyGdxGame.batch.draw(com.mygdx.game.MyGdxGame.square1Img,
-                        (com.mygdx.game.MyGdxGame.square1Img.getWidth() + 5 )* i,  (com.mygdx.game.MyGdxGame.square1Img.getHeight() +5)* ii);
+                MyGdxGame.batch.draw(MyGdxGame.square1Img,
+                        (MyGdxGame.square1Img.getWidth() + 5 )* i,  (MyGdxGame.square1Img.getHeight() +5)* ii);
             }
-
         }
-        com.mygdx.game.MyGdxGame.batch.end();
-
+        MyGdxGame.batch.end();
+    }
+    public static void createContent(){
+        AssetManager manager;
+        manager = new AssetManager(new ExternalFileHandleResolver());
+        manager.load(pictureAddress, Texture.class);
+        manager.finishLoading();
+        com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
     }
 }
