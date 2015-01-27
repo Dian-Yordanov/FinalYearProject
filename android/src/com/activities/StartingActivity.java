@@ -11,11 +11,13 @@ import android.opengl.GLUtils;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -43,7 +45,7 @@ public class StartingActivity extends Activity {
     public static Button choosePicture;
     static Intent intent;
     private static final int SELECT_PICTURE = 1;
-    private String  selectedImagePath;
+    public static String  selectedImagePath;
     public static Bitmap bMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,9 @@ public class StartingActivity extends Activity {
             {
                 Uri selectedImageUri = data.getData();
                 selectedImagePath = getPath(selectedImageUri);
+
+                //useSelectedImage(selectedImagePath);
+
                 try {
                     FileInputStream fileis=new FileInputStream(selectedImagePath);
                     BufferedInputStream bufferedstream=new BufferedInputStream(fileis);
@@ -95,7 +100,10 @@ public class StartingActivity extends Activity {
             }
         }
         //method2(bMap);
-        useImage(convertBitmapToTexture(bMap));
+        //useImage(convertBitmapToTexture(bMap));
+        //useSelectedImage(selectedImagePath);
+        //saveBitmapToFile(bMap);
+
         goToRenderingActivity();
     }
     public String getPath(Uri uri) {
@@ -111,6 +119,9 @@ public class StartingActivity extends Activity {
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, tex.getTextureObjectHandle());
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
+
+        //region = new TextureRegion(texture, 20, 20, 50, 50);
+        //sprite = new Sprite(texture, 20, 20, 50, 50);
         bitmap.recycle();
         return tex;
     }
@@ -163,5 +174,17 @@ public class StartingActivity extends Activity {
         Intent i = new Intent(StartingActivity.this,
                 AndroidLauncher.class);
         startActivity(i);
+    }
+    public static void useSelectedImage(String selectedImagePath1){
+        //MyGdxGame.manager = new AssetManager();
+        String pictureAddress = selectedImagePath1;
+
+        Log.v("ff", pictureAddress);
+        //tex =
+        //MyGdxGame.manager.load(pictureAddress, Texture.class);
+        //MyGdxGame.manager.finishLoading();
+        com.mygdx.game.MyGdxGame.square1Img = new Texture(Gdx.files.absolute(pictureAddress));
+                //MyGdxGame.manager.get(pictureAddress, Texture.class);
+
     }
 }

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.activities.StartingActivity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -34,7 +35,7 @@ public class AndroidLauncher extends AndroidApplication {
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 
         setContentView(R.layout.activity_main);
-
+        //StartingActivity.useSelectedImage(StartingActivity.selectedImagePath);
         initialize(new MyGdxGame(), config);
 	}
     @Override
