@@ -10,13 +10,10 @@ import android.opengl.GLUtils;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.activities.activity1;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -63,10 +60,9 @@ public class AndroidLauncher extends AndroidApplication {
                 runTheGalleryChoosingMethods();
                 return true;
             case R.id.option2:
-                Toast.makeText(getApplicationContext(), "Sample Text2", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(AndroidLauncher.this,activity1.class);
-                startActivity(i);
+
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -162,9 +158,6 @@ public class AndroidLauncher extends AndroidApplication {
         }
     }
     public void goToRenderingActivity(){
-        //Intent i = new Intent(AndroidLauncher.this,activity1.class);
-        //startActivity(i);
-
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         initialize(new MyGdxGame(), config);
     }
