@@ -64,8 +64,7 @@ public class AndroidLauncher extends AndroidApplication {
                 return true;
             case R.id.option2:
                 Toast.makeText(getApplicationContext(), "Sample Text2", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(AndroidLauncher.this,
-                        activity1.class);
+                Intent i = new Intent(AndroidLauncher.this,activity1.class);
                 startActivity(i);
                 return true;
             default:

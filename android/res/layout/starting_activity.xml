@@ -6,6 +6,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose a Picture"
-        android:id="@+id/choosePictureButton" />
+        android:text="Choose a Option 1"
+        android:id="@+id/chooseOption1" />
 </LinearLayout>
