@@ -1,7 +1,5 @@
 package com.mygdx.game.android;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -16,23 +14,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.activities.StartingActivity;
+import com.activities.activity1;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MyGdxGame;
-
-import com.activities.activity1;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -47,19 +38,16 @@ public class AndroidLauncher extends AndroidApplication {
     static Intent intent;
     public static Bitmap bMap;
     private static final int SELECT_PICTURE = 1;
-    public static String  selectedImagePath;
+    public static String selectedImagePath;
+    public static String imageNameToBeSaved = "data/Square4.png";
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-        MyGdxGame.pictureAddress = "data/" + "Square4.png";
-        //MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
-
+        MyGdxGame.pictureAddress = imageNameToBeSaved;
 
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-
         setContentView(R.layout.activity_main);
-        //StartingActivity.useSelectedImage(StartingActivity.selectedImagePath);
         initialize(new MyGdxGame(), config);
 	}
     @Override
@@ -70,15 +58,9 @@ public class AndroidLauncher extends AndroidApplication {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
             case R.id.option1:
-
-                intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                startActivityForResult(intent, SELECT_PICTURE);
+                runTheGalleryChoosingMethods();
                 return true;
             case R.id.option2:
                 Toast.makeText(getApplicationContext(), "Sample Text2", Toast.LENGTH_LONG).show();
@@ -90,7 +72,6 @@ public class AndroidLauncher extends AndroidApplication {
                 return super.onOptionsItemSelected(item);
         }
     }
-    public static void haha(){}
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -98,24 +79,16 @@ public class AndroidLauncher extends AndroidApplication {
             Uri selectedImageUri = data.getData();
             selectedImagePath = getPath(selectedImageUri);
             if (requestCode == SELECT_PICTURE) {
-
-
-                //useSelectedImage(selectedImagePath);
-                Log.v("fff","FFF"+selectedImagePath);
                 try {
                     FileInputStream fileis=new FileInputStream(selectedImagePath);
                     BufferedInputStream bufferedstream=new BufferedInputStream(fileis);
                     byte[] bMapArray= new byte[bufferedstream.available()];
                     bufferedstream.read(bMapArray);
                     bMap = BitmapFactory.decodeByteArray(bMapArray, 0, bMapArray.length);
-                    //Here you can set this /Bitmap image to the button background image
-
-                    if (fileis != null)
-                    {
+                    if (fileis != null){
                         fileis.close();
                     }
-                    if (bufferedstream != null)
-                    {
+                    if (bufferedstream != null){
                         bufferedstream.close();
                     }
                 } catch (FileNotFoundException e) {
@@ -125,19 +98,10 @@ public class AndroidLauncher extends AndroidApplication {
                 }
             }
         }
-
-        //method2(bMap);
-        //useImage(convertBitmapToTexture(bMap));
-        //useSelectedImage(selectedImagePath);
-        //saveBitmapToFile(bMap);
         useSelectedImage(selectedImagePath);
-        //AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        //initialize(new MyGdxGame());
         saveBitmapToFile(bMap);
         useImage(method2(bMap));
         goToRenderingActivity();
-
-
     }
     public String getPath(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
@@ -147,14 +111,11 @@ public class AndroidLauncher extends AndroidApplication {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
-    public static Texture convertBitmapToTexture(Bitmap bitmap){
+    public static Texture Deprecated__convertBitmapToTexture(Bitmap bitmap){
         Texture tex = new Texture(bitmap.getWidth(), bitmap.getHeight(), Pixmap.Format.RGBA8888);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, tex.getTextureObjectHandle());
         GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
-
-        //region = new TextureRegion(texture, 20, 20, 50, 50);
-        //sprite = new Sprite(texture, 20, 20, 50, 50);
         bitmap.recycle();
         return tex;
     }
@@ -171,7 +132,6 @@ public class AndroidLauncher extends AndroidApplication {
             Pixmap pmap=new Pixmap(byteArray, 0, byteArray.length);
             tex=new Texture(pmap);
             Sprite face=new Sprite(tex);
-            // game.setScreen(new GameScreen(game, batcher, face));
         } catch(Exception e) {
             Gdx.app.log("KS", e.toString());
             e.printStackTrace();
@@ -181,7 +141,7 @@ public class AndroidLauncher extends AndroidApplication {
     public void saveBitmapToFile(Bitmap bmp1) {
         String path = Environment.getExternalStorageDirectory().toString();
         OutputStream fOut = null;
-        File file = new File(path, "data/" + "Square4" + ".png"); // the File to save to
+        File file = new File(path, imageNameToBeSaved); // the File to save to
         try {
             fOut = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
@@ -195,7 +155,6 @@ public class AndroidLauncher extends AndroidApplication {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // do not forget to close the stream
 
         try {
             MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
@@ -211,20 +170,13 @@ public class AndroidLauncher extends AndroidApplication {
         initialize(new MyGdxGame(), config);
     }
     public void useSelectedImage(String selectedImagePath1){
-        //MyGdxGame.manager = new AssetManager(new ExternalFileHandleResolver());
-        //String pictureAddress = selectedImagePath1;
-
-        Log.v("ff", "ff" + selectedImagePath1);
-        //tex =
-        //MyGdxGame.manager.load(pictureAddress, Texture.class);
-        //MyGdxGame.manager.finishLoading();
-
-        //MyGdxGame.pictureAddress = selectedImagePath1;
-
         MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
-
-        //MyGdxGame.manager.get(pictureAddress, Texture.class);
-
-
+    }
+    public void runTheGalleryChoosingMethods(){
+        intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, SELECT_PICTURE);
     }
 }
