@@ -36,7 +36,7 @@ public class AndroidLauncher extends AndroidApplication {
     public static Bitmap bMap;
     private static final int SELECT_PICTURE = 1;
     public static String selectedImagePath;
-    public static String imageNameToBeSaved = "data/Square4.png";
+    public static String imageNameToBeSaved = "data/initialization_image.png";
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
