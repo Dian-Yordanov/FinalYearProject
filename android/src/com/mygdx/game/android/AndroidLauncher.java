@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -35,7 +36,7 @@ public class AndroidLauncher extends AndroidApplication {
     private static Intent intent;
     private static Bitmap bMap;
     private static final int SELECT_PICTURE = 1;
-    private static String selectedImagePath;
+    public static String selectedImagePath;
     public static String imageNameToBeSaved = "data/initialization_image.png";
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class AndroidLauncher extends AndroidApplication {
         switch (item.getItemId()) {
             case R.id.option1:
                 runTheGalleryChoosingMethods();
+
                 return true;
             case R.id.option2:
 

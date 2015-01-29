@@ -3,19 +3,25 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.io.File;
+
 public class MyGdxGame extends ApplicationAdapter {
 
 	public static SpriteBatch batch;
     public static Texture square1Img;
     public static String pictureAddress;
+    private static String imageNameToBeSavedMGG = "data/initialization_image.png";
 
 	@Override
 	public void create () {
         MyGdxGame.batch = new SpriteBatch();
+        checkIfFileExists();
         createContent();
     }
 
@@ -40,4 +46,10 @@ public class MyGdxGame extends ApplicationAdapter {
         manager.finishLoading();
         com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
     }
+    public void checkIfFileExists(){
+            if (!Gdx.files.external(imageNameToBeSavedMGG).exists()) {
+                FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG);
+                from.copyTo(Gdx.files.external(imageNameToBeSavedMGG));
+            }
+        }
 }
