@@ -78,7 +78,6 @@ public class AndroidLauncher extends AndroidApplication {
             selectedImagePath = getPath(selectedImageUri);
             if (requestCode == SELECT_PICTURE) {
                 try {
-                    Log.v("fff", "fs " + selectedImagePath);
                     FileInputStream fileis=new FileInputStream(selectedImagePath);
                     BufferedInputStream bufferedstream=new BufferedInputStream(fileis);
                     byte[] bMapArray= new byte[bufferedstream.available()];
