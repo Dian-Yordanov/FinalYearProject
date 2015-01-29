@@ -10,6 +10,7 @@ import android.opengl.GLUtils;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -77,6 +78,7 @@ public class AndroidLauncher extends AndroidApplication {
             selectedImagePath = getPath(selectedImageUri);
             if (requestCode == SELECT_PICTURE) {
                 try {
+                    Log.v("fff", "fs " + selectedImagePath);
                     FileInputStream fileis=new FileInputStream(selectedImagePath);
                     BufferedInputStream bufferedstream=new BufferedInputStream(fileis);
                     byte[] bMapArray= new byte[bufferedstream.available()];
