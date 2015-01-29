@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -90,6 +91,7 @@ public class StartingActivity extends Activity {
                 }
             }
         }
+        copyTheImage();
         useSelectedImage(selectedImagePath);
         saveBitmapToFile(bMap);
         useImage(method2(bMap));
@@ -148,6 +150,7 @@ public class StartingActivity extends Activity {
     }
     public void useSelectedImage(String selectedImagePath1){
         MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
+
     }
     public void runTheGalleryChoosingMethods(){
         intent = new Intent();
@@ -159,6 +162,10 @@ public class StartingActivity extends Activity {
     public void goToTheClass(){
         Intent i = new Intent(StartingActivity.this,AndroidLauncher.class);
         startActivity(i);
+    }
+    public void copyTheImage(){
+        FileHandle from = Gdx.files.local("data/initialization_image.png");
+        from.copyTo(Gdx.files.absolute(AndroidLauncher.imageNameToBeSaved));
     }
 
 }
