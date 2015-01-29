@@ -32,10 +32,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class AndroidLauncher extends AndroidApplication {
-    static Intent intent;
-    public static Bitmap bMap;
+    private static Intent intent;
+    private static Bitmap bMap;
     private static final int SELECT_PICTURE = 1;
-    public static String selectedImagePath;
+    private static String selectedImagePath;
     public static String imageNameToBeSaved = "data/initialization_image.png";
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
