@@ -17,6 +17,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Texture square1Img;
     public static String pictureAddress;
     private static String imageNameToBeSavedMGG = "data/initialization_image.png";
+    //public static String imagePathToBeDeleted ="";
 
 	@Override
 	public void create () {
@@ -51,5 +52,5 @@ public class MyGdxGame extends ApplicationAdapter {
                 FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG);
                 from.copyTo(Gdx.files.external(imageNameToBeSavedMGG));
             }
-        }
+    }
 }

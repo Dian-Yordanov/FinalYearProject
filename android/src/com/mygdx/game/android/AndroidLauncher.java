@@ -99,7 +99,13 @@ public class AndroidLauncher extends AndroidApplication {
         useSelectedImage(selectedImagePath);
         saveBitmapToFile(bMap);
         useImage(method2(bMap));
+        //deleteUsedImage(selectedImagePath);
         goToRenderingActivity();
+    }
+    public void deleteUsedImage(String selectedFilePath){
+        File file = new File(selectedFilePath);
+        boolean deleted = file.delete();
+        //selectedImagePath ="";
     }
     public String getPath(Uri uri) {
         String[] projection = { MediaStore.Images.Media.DATA };
@@ -118,8 +124,10 @@ public class AndroidLauncher extends AndroidApplication {
         return tex;
     }
     public static void useImage(Texture tex1){
-        com.mygdx.game.MyGdxGame.square1Img=tex1;
-
+        MyGdxGame.square1Img=tex1;
+    }
+    public void useSelectedImage(String selectedImagePath1){
+        MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
     }
     public static Texture method2(Bitmap bmp){
         Texture tex=null;
@@ -163,9 +171,6 @@ public class AndroidLauncher extends AndroidApplication {
     public void goToRenderingActivity(){
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         initialize(new MyGdxGame(), config);
-    }
-    public void useSelectedImage(String selectedImagePath1){
-        MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
     }
     public void runTheGalleryChoosingMethods(){
         intent = new Intent();
