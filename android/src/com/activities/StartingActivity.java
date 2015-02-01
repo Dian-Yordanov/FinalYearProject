@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.dian.androidclasses.LogicalClassForRenderCallingActivites;
+import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.android.HexagonalTillingLauncher;
 import com.mygdx.game.android.SquareTillingLauncher;
 import com.mygdx.game.android.R;
@@ -48,6 +50,8 @@ public class StartingActivity extends Activity {
         SquareTillingLauncherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                LogicalClassForRenderCallingActivites.setupPatternStyle("SquareTillingLauncher");
+                MyGdxGame.imageNameToBeSavedMGG="data/ii_square_tilling.png";
                 Intent i = new Intent(StartingActivity.this,SquareTillingLauncher.class);
                 startActivity(i);
             }
@@ -55,6 +59,8 @@ public class StartingActivity extends Activity {
         HexagonalTillingLauncherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                LogicalClassForRenderCallingActivites.setupPatternStyle("HexagonalTillingLauncher");
+                MyGdxGame.imageNameToBeSavedMGG="data/ii_hexagonal_tilling.png";
                 Intent i = new Intent(StartingActivity.this,HexagonalTillingLauncher.class);
                 startActivity(i);
             }

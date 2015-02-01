@@ -38,7 +38,7 @@ public class SquareTillingLauncher extends AndroidApplication {
     private static Intent intent;
     private static Bitmap bMap;
     public static String selectedImagePath;
-    public static String imageNameToBeSaved = "data/initialization_image.png";
+    public static String imageNameToBeSaved = "data/ii_square_tilling.png";
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -97,7 +97,7 @@ public class SquareTillingLauncher extends AndroidApplication {
             }
         }
 
-        LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
+        //LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
         LogicalClassForRenderCallingActivites.useSelectedImage(selectedImagePath);
         saveBitmapToFile(bMap);
         LogicalClassForRenderCallingActivites.useImage(LogicalClassForRenderCallingActivites.method2(bMap));
