@@ -97,7 +97,7 @@ public class SquareTillingLauncher extends AndroidApplication {
             }
         }
 
-        LogicalClassForRenderCallingActivites.setupPatternStyle("SquareTillingLauncher");
+        LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
         LogicalClassForRenderCallingActivites.useSelectedImage(selectedImagePath);
         saveBitmapToFile(bMap);
         LogicalClassForRenderCallingActivites.useImage(LogicalClassForRenderCallingActivites.method2(bMap));
@@ -146,5 +146,9 @@ public class SquareTillingLauncher extends AndroidApplication {
                 .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
+    }
+    public String getCurrentClassName() {
+        String className = this.getClass().getSimpleName();
+        return(className);
     }
 }
