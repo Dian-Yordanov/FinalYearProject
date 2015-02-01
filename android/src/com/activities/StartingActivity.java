@@ -21,7 +21,7 @@ public class StartingActivity extends Activity {
         SquareTillingLauncherButton = (Button) findViewById(R.id.SquareTillingLauncher);
         HexagonalTillingLauncherButton = (Button) findViewById(R.id.HexagonalTillingLauncher);
 
-        dosomeDesignEnhancements();
+        //dosomeDesignEnhancements();
         callTheClickListeners();
     }
 

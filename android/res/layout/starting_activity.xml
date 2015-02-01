@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="—————Periodic tilling—————"
+        android:text="————— Periodic tilling —————"
         android:textSize="18dp"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
@@ -19,13 +19,13 @@
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Square tiling"
         android:id="@+id/SquareTillingLauncher"
         android:layout_gravity="center_horizontal" />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Hexagonal tiling"
         android:id="@+id/HexagonalTillingLauncher"
