@@ -22,6 +22,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.dian.androidclasses.LogicalClassForRenderCallingActivites;
 import com.mygdx.game.MyGdxGame;
 
 import java.io.BufferedInputStream;
@@ -36,7 +37,6 @@ import java.io.OutputStream;
 public class SquareTillingLauncher extends AndroidApplication {
     private static Intent intent;
     private static Bitmap bMap;
-    private static final int SELECT_PICTURE = 1;
     public static String selectedImagePath;
     public static String imageNameToBeSaved = "data/initialization_image.png";
 	@Override
@@ -76,7 +76,7 @@ public class SquareTillingLauncher extends AndroidApplication {
         if (resultCode == RESULT_OK) {
             Uri selectedImageUri = data.getData();
             selectedImagePath = getPath(selectedImageUri);
-            if (requestCode == SELECT_PICTURE) {
+            if (requestCode == 1) {
                 try {
                     FileInputStream fileis=new FileInputStream(selectedImagePath);
                     BufferedInputStream bufferedstream=new BufferedInputStream(fileis);
@@ -96,57 +96,13 @@ public class SquareTillingLauncher extends AndroidApplication {
                 }
             }
         }
-        setupPatternStyle();
-        useSelectedImage(selectedImagePath);
+
+        LogicalClassForRenderCallingActivites.setupPatternStyle("SquareTillingLauncher");
+        LogicalClassForRenderCallingActivites.useSelectedImage(selectedImagePath);
         saveBitmapToFile(bMap);
-        useImage(method2(bMap));
+        LogicalClassForRenderCallingActivites.useImage(LogicalClassForRenderCallingActivites.method2(bMap));
         //deleteUsedImage(selectedImagePath);
         goToRenderingActivity();
-    }
-    public void setupPatternStyle(){
-        MyGdxGame.patternStyle="SquareTillingLauncher";
-    }
-    public void deleteUsedImage(String selectedFilePath){
-        File file = new File(selectedFilePath);
-        boolean deleted = file.delete();
-        //selectedImagePath ="";
-    }
-    public String getPath(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor
-                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
-    }
-    public static Texture Deprecated__convertBitmapToTexture(Bitmap bitmap){
-        Texture tex = new Texture(bitmap.getWidth(), bitmap.getHeight(), Pixmap.Format.RGBA8888);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, tex.getTextureObjectHandle());
-        GLUtils.texImage2D(GLES20.GL_TEXTURE_2D, 0, bitmap, 0);
-        GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, 0);
-        bitmap.recycle();
-        return tex;
-    }
-    public static void useImage(Texture tex1){
-        MyGdxGame.square1Img=tex1;
-    }
-    public void useSelectedImage(String selectedImagePath1){
-        MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
-    }
-    public static Texture method2(Bitmap bmp){
-        Texture tex=null;
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        try {
-            Pixmap pmap=new Pixmap(byteArray, 0, byteArray.length);
-            tex=new Texture(pmap);
-            Sprite face=new Sprite(tex);
-        } catch(Exception e) {
-            Gdx.app.log("KS", e.toString());
-            e.printStackTrace();
-        }
-        return tex;
     }
     public void saveBitmapToFile(Bitmap bmp1) {
         String path = Environment.getExternalStorageDirectory().toString();
@@ -181,6 +137,14 @@ public class SquareTillingLauncher extends AndroidApplication {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        startActivityForResult(intent, SELECT_PICTURE);
+        startActivityForResult(intent, 1);
+    }
+    public String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 }
