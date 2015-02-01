@@ -22,11 +22,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mygdx.game.android.AndroidLauncher"
+            android:name=".SquareTillingLauncher"
             android:label="@string/app_name"
             android:screenOrientation="unspecified"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
-
+        </activity>
+        <activity
+            android:name=".HexagonalTillingLauncher"
+            android:label="@string/app_name"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
         </activity>
 
     </application>

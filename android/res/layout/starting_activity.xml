@@ -22,7 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Square tiling"
-        android:id="@+id/chooseOption1"
+        android:id="@+id/SquareTillingLauncher"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hexagonal tiling"
+        android:id="@+id/HexagonalTillingLauncher"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

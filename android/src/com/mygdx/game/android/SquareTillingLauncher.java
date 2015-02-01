@@ -33,7 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class AndroidLauncher extends AndroidApplication {
+public class SquareTillingLauncher extends AndroidApplication {
     private static Intent intent;
     private static Bitmap bMap;
     private static final int SELECT_PICTURE = 1;
@@ -96,11 +96,15 @@ public class AndroidLauncher extends AndroidApplication {
                 }
             }
         }
+        setupPatternStyle();
         useSelectedImage(selectedImagePath);
         saveBitmapToFile(bMap);
         useImage(method2(bMap));
         //deleteUsedImage(selectedImagePath);
         goToRenderingActivity();
+    }
+    public void setupPatternStyle(){
+        MyGdxGame.patternStyle="SquareTillingLauncher";
     }
     public void deleteUsedImage(String selectedFilePath){
         File file = new File(selectedFilePath);

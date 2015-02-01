@@ -2,56 +2,63 @@ package com.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.opengl.GLES20;
-import android.opengl.GLUtils;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.android.AndroidLauncher;
+import com.mygdx.game.android.HexagonalTillingLauncher;
+import com.mygdx.game.android.SquareTillingLauncher;
 import com.mygdx.game.android.R;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-
 public class StartingActivity extends Activity {
-    public static Button option1Button;
+    public static Button SquareTillingLauncherButton;
+    public static Button HexagonalTillingLauncherButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_activity);
-        option1Button = (Button) findViewById(R.id.chooseOption1);
-        option1Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-                public void onClick(View arg0) {
-                goToTheClass();
-            }
-        });
+        SquareTillingLauncherButton = (Button) findViewById(R.id.SquareTillingLauncher);
+        HexagonalTillingLauncherButton = (Button) findViewById(R.id.HexagonalTillingLauncher);
+
+        dosomeDesignEnhancements();
+        callTheClickListeners();
     }
 
-    public void goToTheClass(){
-        Intent i = new Intent(StartingActivity.this,AndroidLauncher.class);
-        startActivity(i);
+    public void goToTheClass(String className){
+        Log.v("sssss", className);
+        className.replaceAll("^.className","");
+        Log.v("ssss", className);
+        //SquareTillingLauncher.class
+        Class<?> c = null;
+        if(className != null) {
+            try {
+                c = Class.forName(className );
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+    }
+    public void dosomeDesignEnhancements(){
+        SquareTillingLauncherButton.setMinimumWidth(HexagonalTillingLauncherButton.getWidth());
+    }
+    public void callTheClickListeners(){
+        SquareTillingLauncherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent(StartingActivity.this,SquareTillingLauncher.class);
+                startActivity(i);
+            }
+        });
+        HexagonalTillingLauncherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Intent i = new Intent(StartingActivity.this,HexagonalTillingLauncher.class);
+                startActivity(i);
+            }
+        });
     }
 
 
