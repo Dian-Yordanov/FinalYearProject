@@ -22,26 +22,16 @@ public class MyGdxGame extends ApplicationAdapter {
     public static String pictureAddress;
     public static String patternStyle = "";
     public static String imageNameToBeSavedMGG = "";
-    Texture foreground;
-    Texture background;
-
+    static Texture foreground;
+    //Texture background;
     //public static String imagePathToBeDeleted ="";
 
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
 
-        Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
-        mask.setBlending(Pixmap.Blending.None);
-        mask.setColor(new Color(0f, 0f, 0f, 0f));
-        mask.fillRectangle(0, 0, 32, 32);
-        Pixmap fg = new Pixmap(Gdx.files.internal("data/ii_hexagonal_tilling.png"));
-        fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
-        mask.setBlending(Pixmap.Blending.SourceOver);
-        foreground = new Texture(fg);
-        background = new Texture("data/ii_square_tilling.png");
-
         checkIfFileExists();
+
         createContent();
     }
 
@@ -55,12 +45,35 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
     }
 
-    public static void createContent() {
+    public void createContent() {
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
-        manager.load(pictureAddress, Texture.class);
+        if (patternStyle.equals("SquareTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
+        if (patternStyle.equals("HexagonalTillingLauncher")) {manager.load(pictureAddress, Pixmap.class); }
+        //manager.load(pictureAddress, Pixmap.class);
         manager.finishLoading();
-        com.mygdx.game.MyGdxGame.square1Img = manager.get(pictureAddress, Texture.class);
+        if (patternStyle.equals("SquareTillingLauncher")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+        }
+        if (patternStyle.equals("HexagonalTillingLauncher")) {
+
+            Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
+            mask.setBlending(Pixmap.Blending.None);
+            mask.setColor(new Color(0f, 0f, 0f, 0f));
+            mask.fillRectangle(0, 0, 32, 32);
+
+            //Pixmap fg = new Pixmap(Gdx.files.internal(pictureAddress));
+            Pixmap fg = manager.get(pictureAddress, Pixmap.class);
+                    //new Pixmap(Gdx.files.external(pictureAddress));
+
+            //Pixmap fg = manager.get(pictureAddress, Pixmap.class);
+            fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+            mask.setBlending(Pixmap.Blending.SourceOver);
+            foreground = new Texture(fg);
+            //background = new Texture("data/ii_square_tilling.png");
+
+            //createSpriteForTransperancyRendering();
+        }
     }
 
     public void checkIfFileExists() {
@@ -82,23 +95,38 @@ public class MyGdxGame extends ApplicationAdapter {
 
         batch.begin();
         batch.enableBlending();
-        sprite = new Sprite(square1Img);
+        sprite = new Sprite(foreground);
         sprite.setColor(1, 0, 0, 1);
         //sprite.draw(batch);
         //batch.enableBlending();
-        batch.draw(foreground,0,0);
-        batch.draw(background,0,0);
+        //batch.draw(foreground,0,0);
+        //batch.draw(background,0,0);
         //batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
 
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
-                batch.draw(foreground,(square1Img.getWidth() + 5) * i,(square1Img.getHeight() + 5) * ii);
+                batch.draw(foreground,(foreground.getWidth() + 5) * i,(foreground.getHeight() + 5) * ii);
                 // batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
             }
         }
         batch.disableBlending();
         batch.end();
         //batch.disableBlending();
+    }
+    public void createSpriteForTransperancyRendering(){
+        Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
+        mask.setBlending(Pixmap.Blending.None);
+        mask.setColor(new Color(0f, 0f, 0f, 0f));
+        mask.fillRectangle(0, 0, 32, 32);
+
+        //Pixmap fg = new Pixmap(Gdx.files.internal(pictureAddress));
+        Pixmap fg = new Pixmap(Gdx.files.external(pictureAddress));
+
+        //Pixmap fg = manager.get(pictureAddress, Pixmap.class);
+        fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+        mask.setBlending(Pixmap.Blending.SourceOver);
+        foreground = new Texture(fg);
+        //background = new Texture("data/ii_square_tilling.png");
     }
 
 }
