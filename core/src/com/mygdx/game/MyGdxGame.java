@@ -63,18 +63,18 @@ public class MyGdxGame extends ApplicationAdapter {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
         if (patternStyle.equals("HexagonalTillingLauncher")) {
-            createSpriteForTransperancyRendering(pictureAddress, manager);
+            square1Img = createSpriteForTransperancyRendering(pictureAddress, manager);
         }
         if (patternStyle.equals("TriangullarTillingLauncher")) {
-            createSpriteForTransperancyRendering(pictureAddress, manager);
-            createSpriteForTransperancyRendering(pictureAddress2, manager);
+            square1Img = createSpriteForTransperancyRendering(pictureAddress, manager);
+            square2Img = createSpriteForTransperancyRendering(pictureAddress2, manager);
         }
     }
 
-    public void checkIfFileExists(String imageNameToBeSavedMGG) {
-        if (!Gdx.files.external(imageNameToBeSavedMGG).exists()) {
-            FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG);
-            from.copyTo(Gdx.files.external(imageNameToBeSavedMGG));
+    public void checkIfFileExists(String imageNameToBeSavedMGG1) {
+        if (!Gdx.files.external(imageNameToBeSavedMGG1).exists()) {
+            FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG1);
+            from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
     public void SquareRendering(){
@@ -121,7 +121,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.disableBlending();
         batch.end();
     }
-    public void createSpriteForTransperancyRendering(String addressOfPicture, AssetManager manager){
+    public Texture createSpriteForTransperancyRendering(String addressOfPicture, AssetManager manager){
         mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
         mask.setBlending(Pixmap.Blending.None);
         mask.setColor(new Color(0f, 0f, 0f, 0f));
@@ -131,7 +131,9 @@ public class MyGdxGame extends ApplicationAdapter {
         fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
 
         mask.setBlending(Pixmap.Blending.SourceOver);
-        square1Img = new Texture(fg);
+        Texture textureToBeReturned = new Texture(fg);
+        return textureToBeReturned;
+
     }
 
 }

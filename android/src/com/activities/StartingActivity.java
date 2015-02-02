@@ -53,6 +53,7 @@ public class StartingActivity extends Activity {
             public void onClick(View arg0) {
                 LogicalClassForRenderCallingActivites.setupPatternStyle("TriangullarTillingLauncher");
                 MyGdxGame.imageNameToBeSavedMGG="data/ii_triangular_tilling.png";
+                MyGdxGame.imageNameToBeSavedMGG2="data/ii_triangular_tilling_2.png";
                 Intent i = new Intent(StartingActivity.this,TriangullarTillingLauncher.class);
                 startActivity(i);
             }
