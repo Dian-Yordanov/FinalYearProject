@@ -56,8 +56,7 @@ public class TriangullarTillingLauncher extends AndroidApplication {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        MenuItem menuItem3 = menu.findItem(R.id.option3);
-        menuItem3.setTitle("");
+
         switch (item.getItemId()) {
             case R.id.option1:
                 runTheGalleryChoosingMethods();
@@ -70,6 +69,13 @@ public class TriangullarTillingLauncher extends AndroidApplication {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public boolean onPrepareOptionsMenu(Menu menu){
+        MenuItem menuItem3 = menu.findItem(R.id.option3);
+        menuItem3.setTitle("");
+        menuItem3.setVisible(false);
+        return true;
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
