@@ -22,8 +22,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public static String pictureAddress;
     public static String patternStyle = "";
     public static String imageNameToBeSavedMGG = "";
-    static Texture foreground;
-    //Texture background;
+    Texture foreground;
+    Texture background;
+    Pixmap fg;
+    Pixmap mask;
     //public static String imagePathToBeDeleted ="";
 
     @Override
@@ -57,6 +59,33 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         if (patternStyle.equals("HexagonalTillingLauncher")) {
 
+
+            // Initially, the mask should have an alpha of 1
+
+            //Pixmap fg = new Pixmap(Gdx.files.internal(pictureAddress));
+
+
+            mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
+
+            // Cut a rectangle of alpha value 0
+            //Pixmap.setBlending(Pixmap.Blending.None);
+            mask.setBlending(Pixmap.Blending.None);
+            mask.setColor(new Color(0f, 0f, 0f, 0f));
+            mask.fillRectangle(0, 0, 32, 32);
+            //square1Img =
+
+            fg = new Pixmap(Gdx.files.external(pictureAddress));//manager.get(pictureAddress, Pixmap.class);
+            fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+
+            mask.setBlending(Pixmap.Blending.SourceOver);
+            //Pixmap.setBlending(Pixmap.Blending.SourceOver);
+
+            foreground = new Texture(fg);
+
+            background = new Texture(Gdx.files.internal(pictureAddress));//new Texture(pictureAddress);
+
+            /*
+
             Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
             mask.setBlending(Pixmap.Blending.None);
             mask.setColor(new Color(0f, 0f, 0f, 0f));
@@ -73,6 +102,8 @@ public class MyGdxGame extends ApplicationAdapter {
             //background = new Texture("data/ii_square_tilling.png");
 
             //createSpriteForTransperancyRendering();
+
+            */
         }
     }
 
@@ -95,22 +126,35 @@ public class MyGdxGame extends ApplicationAdapter {
 
         batch.begin();
         batch.enableBlending();
-        sprite = new Sprite(foreground);
+
+        Sprite sprite11 = new Sprite(foreground);
+        sprite = new Sprite(background);
         sprite.setColor(1, 0, 0, 1);
+
         //sprite.draw(batch);
         //batch.enableBlending();
-        //batch.draw(foreground,0,0);
+
+        batch.draw(foreground,0,0);
+        batch.draw(sprite, 50, 50);
+        batch.draw(background,100,100);
+        batch.draw(sprite11,150,150);
+
+        //batch.draw(fg,100,100);
         //batch.draw(background,0,0);
         //batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
 
+        /*
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
                 batch.draw(foreground,(foreground.getWidth() + 5) * i,(foreground.getHeight() + 5) * ii);
                 // batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
             }
         }
+        */
         batch.disableBlending();
         batch.end();
+
+
         //batch.disableBlending();
     }
     public void createSpriteForTransperancyRendering(){

@@ -123,6 +123,8 @@ public class HexagonalTillingLauncher extends AndroidApplication {
         }
 
         try {
+            //FileHandle from = Gdx.files.absolute(imageNameToBeSaved);
+            //from.copyTo(Gdx.files.internal(imageNameToBeSaved));
             MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
