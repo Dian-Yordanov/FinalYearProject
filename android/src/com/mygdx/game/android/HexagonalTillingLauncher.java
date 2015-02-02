@@ -122,6 +122,8 @@ public class HexagonalTillingLauncher extends AndroidApplication {
             e.printStackTrace();
         }
 
+        //removing that because it just bloats the phones memory
+        /*
         try {
             //FileHandle from = Gdx.files.absolute(imageNameToBeSaved);
             //from.copyTo(Gdx.files.internal(imageNameToBeSaved));
@@ -129,6 +131,7 @@ public class HexagonalTillingLauncher extends AndroidApplication {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        */
     }
     public void goToRenderingActivity(){
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
