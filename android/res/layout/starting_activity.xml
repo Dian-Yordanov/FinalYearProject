@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="————— Periodic tilling —————"
+        android:text="————— Periodic tillings —————"
         android:textSize="18dp"
         android:id="@+id/textView"
         android:layout_gravity="center_horizontal" />
