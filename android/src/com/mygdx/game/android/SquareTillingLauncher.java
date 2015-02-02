@@ -107,9 +107,10 @@ public class SquareTillingLauncher extends AndroidApplication {
         }
 
         //LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
-        LogicalClassForRenderCallingActivites.useSelectedImage(selectedImagePath);
+        LogicalClassForRenderCallingActivites.useSelectedImage(MyGdxGame.square1Img, selectedImagePath);
         saveBitmapToFile(bMap);
-        LogicalClassForRenderCallingActivites.useImage(LogicalClassForRenderCallingActivites.method2(bMap));
+        LogicalClassForRenderCallingActivites.useImage(
+                MyGdxGame.square1Img,LogicalClassForRenderCallingActivites.method2(bMap));
         //deleteUsedImage(selectedImagePath);
         goToRenderingActivity();
     }

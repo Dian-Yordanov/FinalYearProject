@@ -34,6 +34,7 @@ public class TriangullarTillingLauncher extends AndroidApplication {
     private static Intent intent;
     private static Bitmap bMap;
     public static String selectedImagePath;
+    public static String nameOfChosenOption="";
     public static String imageNameToBeSaved = "data/ii_triangular_tilling.png";
     public static String imageNameToBeSaved2 = "data/ii_triangular_tilling_2.png";
     @Override
@@ -59,13 +60,13 @@ public class TriangullarTillingLauncher extends AndroidApplication {
 
         switch (item.getItemId()) {
             case R.id.option1:
+                nameOfChosenOption="option1";
                 runTheGalleryChoosingMethods();
-
                 return true;
             case R.id.option2:
-
+                nameOfChosenOption="option2";
+                runTheGalleryChoosingMethods();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -105,9 +106,24 @@ public class TriangullarTillingLauncher extends AndroidApplication {
         }
 
         //LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
-        LogicalClassForRenderCallingActivites.useSelectedImage(selectedImagePath);
+
+        if(nameOfChosenOption.equals("option1"))
+            LogicalClassForRenderCallingActivites.useImage(
+                    MyGdxGame.square1Img,LogicalClassForRenderCallingActivites.method2(bMap));
+        if(nameOfChosenOption.equals("option2"))
+            LogicalClassForRenderCallingActivites.useImage(
+                    MyGdxGame.square2Img,LogicalClassForRenderCallingActivites.method2(bMap));
+
         saveBitmapToFile(bMap);
-        LogicalClassForRenderCallingActivites.useImage(LogicalClassForRenderCallingActivites.method2(bMap));
+
+
+        if(nameOfChosenOption.equals("option1")){
+        LogicalClassForRenderCallingActivites.useImage(
+                MyGdxGame.square1Img, LogicalClassForRenderCallingActivites.method2(bMap));}
+        if(nameOfChosenOption.equals("option2")){
+        LogicalClassForRenderCallingActivites.useImage(
+                MyGdxGame.square2Img, LogicalClassForRenderCallingActivites.method2(bMap));}
+
         //deleteUsedImage(selectedImagePath);
         goToRenderingActivity();
     }
@@ -129,16 +145,6 @@ public class TriangullarTillingLauncher extends AndroidApplication {
             e.printStackTrace();
         }
 
-        //removing that because it just bloats the phones memory
-        /*
-        try {
-            //FileHandle from = Gdx.files.absolute(imageNameToBeSaved);
-            //from.copyTo(Gdx.files.internal(imageNameToBeSaved));
-            MediaStore.Images.Media.insertImage(getContentResolver(), file.getAbsolutePath(), file.getName(), file.getName());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        */
     }
     public void goToRenderingActivity(){
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();

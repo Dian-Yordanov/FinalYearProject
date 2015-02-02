@@ -47,12 +47,12 @@ public class LogicalClassForRenderCallingActivites extends AndroidApplication {
         return tex;
     }
 
-    public static void useImage(Texture tex1) {
-        MyGdxGame.square1Img = tex1;
+    public static void useImage(Texture nameOfImginMyGdXGame,Texture selectedImagePath1) {
+        nameOfImginMyGdXGame = selectedImagePath1;
     }
 
-    public static void useSelectedImage(String selectedImagePath1) {
-        MyGdxGame.square1Img = new Texture(Gdx.files.absolute(selectedImagePath1));
+    public static void useSelectedImage(Texture nameOfImginMyGdXGame,String selectedImagePath1) {
+        nameOfImginMyGdXGame = new Texture(Gdx.files.absolute(selectedImagePath1));
     }
 
     public static Texture method2(Bitmap bmp) {

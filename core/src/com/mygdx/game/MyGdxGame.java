@@ -17,8 +17,10 @@ import java.io.File;
 public class MyGdxGame extends ApplicationAdapter {
 
     public static SpriteBatch batch;
-    public static Texture square1Img;
     public static String patternStyle = "";
+
+    public static Texture square1Img;
+    public static Texture square2Img;
 
     public static String pictureAddress;
     public static String pictureAddress2;
@@ -54,16 +56,18 @@ public class MyGdxGame extends ApplicationAdapter {
         manager = new AssetManager(new ExternalFileHandleResolver());
         if (patternStyle.equals("SquareTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
         if (patternStyle.equals("HexagonalTillingLauncher")) {manager.load(pictureAddress, Pixmap.class); }
-        if (patternStyle.equals("TriangullarTillingLauncher")) {manager.load(pictureAddress, Pixmap.class); }
+        if (patternStyle.equals("TriangullarTillingLauncher")) {manager.load(pictureAddress, Pixmap.class);
+                                                                manager.load(pictureAddress2, Pixmap.class);}
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
         if (patternStyle.equals("HexagonalTillingLauncher")) {
-            createSpriteForTransperancyRendering(manager);
+            createSpriteForTransperancyRendering(pictureAddress, manager);
         }
         if (patternStyle.equals("TriangullarTillingLauncher")) {
-            createSpriteForTransperancyRendering(manager);
+            createSpriteForTransperancyRendering(pictureAddress, manager);
+            createSpriteForTransperancyRendering(pictureAddress2, manager);
         }
     }
 
@@ -109,19 +113,21 @@ public class MyGdxGame extends ApplicationAdapter {
                 if(ii%2!=0) batch.draw(square1Img,
                         ((square1Img.getWidth() * i) - square1Img.getWidth()/2),
                         ((square1Img.getHeight()) * ii));
+
+                batch.draw(square2Img, (square2Img.getWidth() + 5) * i, (square2Img.getHeight() + 5) * ii);
             }
         }
 
         batch.disableBlending();
         batch.end();
     }
-    public void createSpriteForTransperancyRendering(AssetManager manager){
+    public void createSpriteForTransperancyRendering(String addressOfPicture, AssetManager manager){
         mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
         mask.setBlending(Pixmap.Blending.None);
         mask.setColor(new Color(0f, 0f, 0f, 0f));
         mask.fillRectangle(0, 0, 32, 32);
 
-        fg = manager.get(pictureAddress, Pixmap.class);
+        fg = manager.get(addressOfPicture, Pixmap.class);
         fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
 
         mask.setBlending(Pixmap.Blending.SourceOver);
