@@ -32,16 +32,12 @@ public class MyGdxGame extends ApplicationAdapter {
         MyGdxGame.batch = new SpriteBatch();
 
         Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
-
-// Cut a rectangle of alpha value 0
         mask.setBlending(Pixmap.Blending.None);
         mask.setColor(new Color(0f, 0f, 0f, 0f));
         mask.fillRectangle(0, 0, 32, 32);
-
         Pixmap fg = new Pixmap(Gdx.files.internal("data/ii_hexagonal_tilling.png"));
         fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
         mask.setBlending(Pixmap.Blending.SourceOver);
-
         foreground = new Texture(fg);
         background = new Texture("data/ii_square_tilling.png");
 
@@ -53,45 +49,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //Gdx.gl10.glEnable(GL10.GL_BLEND);
-        //Gdx.gl10.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
 
-        if (patternStyle.equals("SquareTillingLauncher")) {
-            batch.begin();
-            for (int i = 0; i < 100; i++) {
-                for (int ii = 0; ii < 100; ii++) {
-                    batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
-                }
-            }
-            batch.end();
-        }
-
-
-
-        if (patternStyle.equals("HexagonalTillingLauncher")) {
-
-
-            batch.begin();
-            batch.enableBlending();
-            sprite = new Sprite(square1Img);
-            sprite.setColor(1, 0, 0, 1);
-            //sprite.draw(batch);
-            //batch.enableBlending();
-            batch.draw(foreground,0,0);
-            batch.draw(background,0,0);
-            //batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
-
-            for (int i = 0; i < 10; i++) {
-                for (int ii = 0; ii < 10; ii++) {
-                   // batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
-                }
-            }
-            batch.disableBlending();
-            batch.end();
-            //batch.disableBlending();
-
-        }
+        if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
+        if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
     }
 
     public static void createContent() {
@@ -107,6 +68,37 @@ public class MyGdxGame extends ApplicationAdapter {
             FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG);
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG));
         }
+    }
+    public void SquareRendering(){
+            batch.begin();
+            for (int i = 0; i < 100; i++) {
+                for (int ii = 0; ii < 100; ii++) {
+                    batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
+                }
+            }
+            batch.end();
+    }
+    public void HexagonalRendering(){
+
+        batch.begin();
+        batch.enableBlending();
+        sprite = new Sprite(square1Img);
+        sprite.setColor(1, 0, 0, 1);
+        //sprite.draw(batch);
+        //batch.enableBlending();
+        batch.draw(foreground,0,0);
+        batch.draw(background,0,0);
+        //batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
+
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
+                batch.draw(foreground,(square1Img.getWidth() + 5) * i,(square1Img.getHeight() + 5) * ii);
+                // batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
+            }
+        }
+        batch.disableBlending();
+        batch.end();
+        //batch.disableBlending();
     }
 
 }
