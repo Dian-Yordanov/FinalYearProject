@@ -18,9 +18,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public static SpriteBatch batch;
     public static Texture square1Img;
-    public static String pictureAddress;
     public static String patternStyle = "";
+
+    public static String pictureAddress;
+    public static String pictureAddress2;
+
     public static String imageNameToBeSavedMGG = "";
+    public static String imageNameToBeSavedMGG2 = "";
+
     Pixmap fg;
     Pixmap mask;
 
@@ -28,7 +33,8 @@ public class MyGdxGame extends ApplicationAdapter {
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
 
-        checkIfFileExists();
+        checkIfFileExists(imageNameToBeSavedMGG);
+        if (patternStyle.equals("TriangullarTillingLauncher")) {checkIfFileExists(imageNameToBeSavedMGG2);}
         createContent();
     }
 
@@ -61,7 +67,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
 
-    public void checkIfFileExists() {
+    public void checkIfFileExists(String imageNameToBeSavedMGG) {
         if (!Gdx.files.external(imageNameToBeSavedMGG).exists()) {
             FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG);
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG));

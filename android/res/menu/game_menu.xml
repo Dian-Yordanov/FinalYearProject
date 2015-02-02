@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/option1"
-        android:title="Choose local pattern"/>
+        android:title="Choose tile style 1"/>
     <item android:id="@+id/option2"
-        android:title="Choose pattern from internet" />
+        android:title="Choose tile style 2" />
+    <item android:id="@+id/option3"
+        android:title="Choose tile style 3" />
 </menu>

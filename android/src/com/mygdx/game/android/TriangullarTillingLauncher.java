@@ -29,15 +29,19 @@ import java.io.OutputStream;
  * Created by XelnectMobileUser on 2/2/2015.
  */
 public class TriangullarTillingLauncher extends AndroidApplication {
+
+    private static Menu menu;
     private static Intent intent;
     private static Bitmap bMap;
     public static String selectedImagePath;
     public static String imageNameToBeSaved = "data/ii_triangular_tilling.png";
+    public static String imageNameToBeSaved2 = "data/ii_triangular_tilling_2.png";
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         MyGdxGame.pictureAddress = imageNameToBeSaved;
+        MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
 
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         setContentView(R.layout.activity_main);
@@ -46,11 +50,14 @@ public class TriangullarTillingLauncher extends AndroidApplication {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
+        this.menu = menu;
         inflater.inflate(R.menu.game_menu, menu);
         return true;
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        MenuItem menuItem3 = menu.findItem(R.id.option3);
+        menuItem3.setTitle("");
         switch (item.getItemId()) {
             case R.id.option1:
                 runTheGalleryChoosingMethods();
