@@ -77,10 +77,10 @@ public class MyGdxGame extends ApplicationAdapter {
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
                 if(i%2==0){ batch.draw(square1Img,
-                        ((square1Img.getWidth()+5)*3/4)*i
+                        (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
                         ,(square1Img.getHeight()+5)*ii);}
                 if(i%2!=0){ batch.draw(square1Img,
-                        ((square1Img.getWidth()+5)*3/4)*i
+                        (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
                         ,(((square1Img.getHeight()+5)*ii)-square1Img.getHeight()/2)-2);}
             }
         }
