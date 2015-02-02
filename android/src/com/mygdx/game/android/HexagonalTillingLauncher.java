@@ -49,6 +49,15 @@ public class HexagonalTillingLauncher extends AndroidApplication {
         setContentView(R.layout.activity_main);
         initialize(new MyGdxGame(), config);
     }
+    public boolean onPrepareOptionsMenu(Menu menu){
+        MenuItem menuItem2 = menu.findItem(R.id.option2);
+        menuItem2.setTitle("");
+        menuItem2.setVisible(false);
+        MenuItem menuItem3 = menu.findItem(R.id.option3);
+        menuItem3.setTitle("");
+        menuItem3.setVisible(false);
+        return true;
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
