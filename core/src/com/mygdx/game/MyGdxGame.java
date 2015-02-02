@@ -97,14 +97,15 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.enableBlending();
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
-                if(i%2==0){ batch.draw(square1Img,
-                        (((square1Img.getWidth()+5))*i)-((square1Img.getWidth()+5))/2
-                        ,(square1Img.getHeight()+5)*ii);}
-                if(i%2!=0){ batch.draw(square1Img,
-                        (((square1Img.getWidth()+5))*i)-((square1Img.getWidth()+5))/2
-                        ,(((square1Img.getHeight()+5)*ii)-square1Img.getHeight()/2)-2);}
+                if(ii%2==0) batch.draw(square1Img,
+                        (square1Img.getWidth()) * i,
+                        (square1Img.getHeight()) * ii);
+                if(ii%2!=0) batch.draw(square1Img,
+                        ((square1Img.getWidth() * i) - square1Img.getWidth()/2),
+                        ((square1Img.getHeight()) * ii));
             }
         }
+
         batch.disableBlending();
         batch.end();
     }
