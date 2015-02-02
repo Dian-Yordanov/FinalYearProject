@@ -114,7 +114,7 @@ public class HexagonalTillingLauncher extends AndroidApplication {
             e.printStackTrace();
         }
 
-        bmp1.compress(Bitmap.CompressFormat.JPEG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
+        bmp1.compress(Bitmap.CompressFormat.PNG, 85, fOut); // saving the Bitmap to a file compressed as a JPEG with 85% compression rate
         try {
             fOut.flush();
             fOut.close();
