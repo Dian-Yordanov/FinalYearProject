@@ -12,40 +12,23 @@ import com.mygdx.game.MyGdxGame;
 import com.mygdx.game.android.HexagonalTillingLauncher;
 import com.mygdx.game.android.SquareTillingLauncher;
 import com.mygdx.game.android.R;
+import com.mygdx.game.android.TriangullarTillingLauncher;
 
 public class StartingActivity extends Activity {
     public static Button SquareTillingLauncherButton;
     public static Button HexagonalTillingLauncherButton;
+    public static Button TriangullarTillingLauncherButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_activity);
         SquareTillingLauncherButton = (Button) findViewById(R.id.SquareTillingLauncher);
         HexagonalTillingLauncherButton = (Button) findViewById(R.id.HexagonalTillingLauncher);
+        TriangullarTillingLauncherButton = (Button) findViewById(R.id.TriangullarTillingLauncher);
 
-        //dosomeDesignEnhancements();
         callTheClickListeners();
     }
 
-    public void goToTheClass(String className){
-        Log.v("sssss", className);
-        className.replaceAll("^.className","");
-        Log.v("ssss", className);
-        //SquareTillingLauncher.class
-        Class<?> c = null;
-        if(className != null) {
-            try {
-                c = Class.forName(className );
-            } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-
-    }
-    public void dosomeDesignEnhancements(){
-        SquareTillingLauncherButton.setMinimumWidth(HexagonalTillingLauncherButton.getWidth());
-    }
     public void callTheClickListeners(){
         SquareTillingLauncherButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +45,15 @@ public class StartingActivity extends Activity {
                 LogicalClassForRenderCallingActivites.setupPatternStyle("HexagonalTillingLauncher");
                 MyGdxGame.imageNameToBeSavedMGG="data/ii_hexagonal_tilling.png";
                 Intent i = new Intent(StartingActivity.this,HexagonalTillingLauncher.class);
+                startActivity(i);
+            }
+        });
+        TriangullarTillingLauncherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                LogicalClassForRenderCallingActivites.setupPatternStyle("TriangullarTillingLauncher");
+                MyGdxGame.imageNameToBeSavedMGG="data/ii_triangular_tilling.png";
+                Intent i = new Intent(StartingActivity.this,TriangullarTillingLauncher.class);
                 startActivity(i);
             }
         });

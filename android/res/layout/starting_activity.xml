@@ -30,5 +30,11 @@
         android:text="Hexagonal tiling"
         android:id="@+id/HexagonalTillingLauncher"
         android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Triangullar tiling"
+        android:id="@+id/TriangullarTillingLauncher"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

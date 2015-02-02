@@ -33,6 +33,12 @@
             android:screenOrientation="unspecified"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
         </activity>
+        <activity
+            android:name=".TriangullarTillingLauncher"
+            android:label="@string/app_name"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+        </activity>
 
     </application>
 

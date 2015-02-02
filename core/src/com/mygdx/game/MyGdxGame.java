@@ -40,6 +40,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
         if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
+        if (patternStyle.equals("TriangullarTillingLauncher")) {TriangullargleRendering();}
     }
 
     public void createContent() {
@@ -47,11 +48,15 @@ public class MyGdxGame extends ApplicationAdapter {
         manager = new AssetManager(new ExternalFileHandleResolver());
         if (patternStyle.equals("SquareTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
         if (patternStyle.equals("HexagonalTillingLauncher")) {manager.load(pictureAddress, Pixmap.class); }
+        if (patternStyle.equals("TriangullarTillingLauncher")) {manager.load(pictureAddress, Pixmap.class); }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
         if (patternStyle.equals("HexagonalTillingLauncher")) {
+            createSpriteForTransperancyRendering(manager);
+        }
+        if (patternStyle.equals("TriangullarTillingLauncher")) {
             createSpriteForTransperancyRendering(manager);
         }
     }
@@ -81,6 +86,22 @@ public class MyGdxGame extends ApplicationAdapter {
                         ,(square1Img.getHeight()+5)*ii);}
                 if(i%2!=0){ batch.draw(square1Img,
                         (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
+                        ,(((square1Img.getHeight()+5)*ii)-square1Img.getHeight()/2)-2);}
+            }
+        }
+        batch.disableBlending();
+        batch.end();
+    }
+    public void TriangullargleRendering(){
+        batch.begin();
+        batch.enableBlending();
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
+                if(i%2==0){ batch.draw(square1Img,
+                        (((square1Img.getWidth()+5))*i)-((square1Img.getWidth()+5))/2
+                        ,(square1Img.getHeight()+5)*ii);}
+                if(i%2!=0){ batch.draw(square1Img,
+                        (((square1Img.getWidth()+5))*i)-((square1Img.getWidth()+5))/2
                         ,(((square1Img.getHeight()+5)*ii)-square1Img.getHeight()/2)-2);}
             }
         }
