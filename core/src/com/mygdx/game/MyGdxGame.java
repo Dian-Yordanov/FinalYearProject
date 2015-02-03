@@ -29,6 +29,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static String imageNameToBeSavedMGG = "";
     public static String imageNameToBeSavedMGG2 = "";
 
+    Sprite sprite;
     Pixmap fg;
     Pixmap mask;
 
@@ -70,9 +71,8 @@ public class MyGdxGame extends ApplicationAdapter {
             square1Img = createSpriteForTransperancyRendering(pictureAddress, manager);
             square2Img = createSpriteForTransperancyRendering(pictureAddress2, manager);
 
-            //sprite = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-            //sprite.setOrigin(square2Img.getWidth()/2, square2Img.getHeight()/2);
-            //sprite.setRotation(90);
+            sprite = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+
         }
     }
 
@@ -111,9 +111,6 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
 
-
-
-
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
                 if(ii%2==0) batch.draw(square1Img,
@@ -123,7 +120,10 @@ public class MyGdxGame extends ApplicationAdapter {
                         ((square1Img.getWidth() * i) - square1Img.getWidth()/2),
                         ((square1Img.getHeight()) * ii));
 
-                        batch.draw(square2Img, (square2Img.getWidth() + 5) * i, (square2Img.getHeight() + 5) * ii);
+                //batch.draw(sprite, (sprite.getWidth() + 5) * i, (sprite.getHeight() + 5) * ii);
+                sprite.rotate(180f);
+                sprite.setPosition((sprite.getWidth() + 5) * i, (sprite.getHeight() + 5) * ii);
+                sprite.draw(batch);
                 //SpriteBatch.draw(textureRegion, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
 
                        // ,square2Img.getWidth(),square2Img.getWidth(),0,0
