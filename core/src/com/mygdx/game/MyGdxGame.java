@@ -121,8 +121,10 @@ public class MyGdxGame extends ApplicationAdapter {
                         ((square1Img.getHeight()) * ii));
 
                 //batch.draw(sprite, (sprite.getWidth() + 5) * i, (sprite.getHeight() + 5) * ii);
-                sprite.rotate(180f);
-                sprite.setPosition((sprite.getWidth() + 5) * i, (sprite.getHeight() + 5) * ii);
+                sprite.setRotation(180f);
+
+                if(ii%2==0)sprite.setPosition((sprite.getWidth()) * i - square1Img.getWidth()/2, (sprite.getHeight()) * ii);
+                if(ii%2!=0)sprite.setPosition((sprite.getWidth()) * i - square1Img.getWidth(),(sprite.getHeight()) * ii);
                 sprite.draw(batch);
                 //SpriteBatch.draw(textureRegion, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
 
