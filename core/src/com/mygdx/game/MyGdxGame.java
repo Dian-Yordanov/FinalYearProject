@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.io.File;
 
@@ -68,6 +69,10 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("TriangullarTillingLauncher")) {
             square1Img = createSpriteForTransperancyRendering(pictureAddress, manager);
             square2Img = createSpriteForTransperancyRendering(pictureAddress2, manager);
+
+            //sprite = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+            //sprite.setOrigin(square2Img.getWidth()/2, square2Img.getHeight()/2);
+            //sprite.setRotation(90);
         }
     }
 
@@ -105,6 +110,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public void TriangullargleRendering(){
         batch.begin();
         batch.enableBlending();
+
+
+
+
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
                 if(ii%2==0) batch.draw(square1Img,
@@ -114,9 +123,15 @@ public class MyGdxGame extends ApplicationAdapter {
                         ((square1Img.getWidth() * i) - square1Img.getWidth()/2),
                         ((square1Img.getHeight()) * ii));
 
-                batch.draw(square2Img, (square2Img.getWidth() + 5) * i, (square2Img.getHeight() + 5) * ii);
+                        batch.draw(square2Img, (square2Img.getWidth() + 5) * i, (square2Img.getHeight() + 5) * ii);
+                //SpriteBatch.draw(textureRegion, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
+
+                       // ,square2Img.getWidth(),square2Img.getWidth(),0,0
+                //batch.draw(square2Img, (square2Img.getWidth() + 5) * i, (square2Img.getHeight() + 5) * ii);
+                        //        textureWidth, textureHeight, 1, 1, 90f, false);
             }
         }
+
 
         batch.disableBlending();
         batch.end();
@@ -127,12 +142,41 @@ public class MyGdxGame extends ApplicationAdapter {
         mask.setColor(new Color(0f, 0f, 0f, 0f));
         mask.fillRectangle(0, 0, 32, 32);
 
+        //rotatePixmap(mask,180f);
+
         fg = manager.get(addressOfPicture, Pixmap.class);
         fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+
+
+        //rotatePixmap(fg,180f);
 
         mask.setBlending(Pixmap.Blending.SourceOver);
         Texture textureToBeReturned = new Texture(fg);
         return textureToBeReturned;
+
+    }
+    public Pixmap rotatePixmap (Pixmap src, float angle){
+        final int width = src.getWidth();
+        final int height = src.getHeight();
+        Pixmap rotated = new Pixmap(width, height, src.getFormat());
+
+        final double radians = Math.toRadians(angle), cos = Math.cos(radians), sin = Math.sin(radians);
+
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                final int
+                        centerx = width/2, centery = height / 2,
+                        m = x - centerx,
+                        n = y - centery,
+                        j = ((int) (m * cos + n * sin)) + centerx,
+                        k = ((int) (n * cos - m * sin)) + centery;
+                if (j >= 0 && j < width && k >= 0 && k < height){
+                    rotated.drawPixel(x, y, src.getPixel(k, j));
+                }
+            }
+        }
+        return rotated;
 
     }
 

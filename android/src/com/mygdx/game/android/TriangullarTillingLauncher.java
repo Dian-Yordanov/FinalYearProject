@@ -33,6 +33,7 @@ public class TriangullarTillingLauncher extends AndroidApplication {
     private static Menu menu;
     private static Intent intent;
     private static Bitmap bMap;
+    private static Bitmap bMap2;
     public static String selectedImagePath;
     public static String nameOfChosenOption="";
     public static String imageNameToBeSaved = "data/ii_triangular_tilling.png";
@@ -91,6 +92,7 @@ public class TriangullarTillingLauncher extends AndroidApplication {
                     byte[] bMapArray= new byte[bufferedstream.available()];
                     bufferedstream.read(bMapArray);
                     bMap = BitmapFactory.decodeByteArray(bMapArray, 0, bMapArray.length);
+                    bMap2 = BitmapFactory.decodeByteArray(bMapArray, 0, bMapArray.length);
                     if (fileis != null){
                         fileis.close();
                     }
@@ -108,29 +110,29 @@ public class TriangullarTillingLauncher extends AndroidApplication {
         //LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
 
         if(nameOfChosenOption.equals("option1"))
-            LogicalClassForRenderCallingActivites.useImage(
-                    MyGdxGame.square1Img,LogicalClassForRenderCallingActivites.method2(bMap));
+            LogicalClassForRenderCallingActivites.useSelectedImage(
+                    MyGdxGame.square1Img, selectedImagePath);
         if(nameOfChosenOption.equals("option2"))
-            LogicalClassForRenderCallingActivites.useImage(
-                    MyGdxGame.square2Img,LogicalClassForRenderCallingActivites.method2(bMap));
+            LogicalClassForRenderCallingActivites.useSelectedImage(
+                    MyGdxGame.square2Img, selectedImagePath);
 
-        saveBitmapToFile(bMap);
-
+        if(nameOfChosenOption.equals("option1"))saveBitmapToFile(bMap,imageNameToBeSaved);
+        if(nameOfChosenOption.equals("option2"))saveBitmapToFile(bMap2,imageNameToBeSaved2);
 
         if(nameOfChosenOption.equals("option1")){
         LogicalClassForRenderCallingActivites.useImage(
                 MyGdxGame.square1Img, LogicalClassForRenderCallingActivites.method2(bMap));}
         if(nameOfChosenOption.equals("option2")){
         LogicalClassForRenderCallingActivites.useImage(
-                MyGdxGame.square2Img, LogicalClassForRenderCallingActivites.method2(bMap));}
+                MyGdxGame.square2Img, LogicalClassForRenderCallingActivites.method2(bMap2));}
 
         //deleteUsedImage(selectedImagePath);
         goToRenderingActivity();
     }
-    public void saveBitmapToFile(Bitmap bmp1) {
+    public void saveBitmapToFile(Bitmap bmp1, String image) {
         String path = Environment.getExternalStorageDirectory().toString();
         OutputStream fOut = null;
-        File file = new File(path, imageNameToBeSaved); // the File to save to
+        File file = new File(path, image); // the File to save to
         try {
             fOut = new FileOutputStream(file);
         } catch (FileNotFoundException e) {
