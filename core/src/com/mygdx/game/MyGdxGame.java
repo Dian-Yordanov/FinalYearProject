@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -33,6 +34,8 @@ public class MyGdxGame extends ApplicationAdapter {
     Pixmap fg;
     Pixmap mask;
 
+    private OrthographicCamera camera;
+
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
@@ -40,6 +43,10 @@ public class MyGdxGame extends ApplicationAdapter {
         checkIfFileExists(imageNameToBeSavedMGG);
         if (patternStyle.equals("TriangullarTillingLauncher")) {checkIfFileExists(imageNameToBeSavedMGG2);}
         createContent();
+
+        camera = new OrthographicCamera(30, 30 * (50 / 50));
+        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera.update();
     }
 
     @Override
@@ -47,6 +54,9 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
+
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
 
         if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
         if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
@@ -180,6 +190,12 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         return rotated;
 
+    }
+    @Override
+    public void resize(int width, int height) {
+        camera.viewportWidth = 30f;
+        camera.viewportHeight = 30f * height/width;
+        camera.update();
     }
 
 }
