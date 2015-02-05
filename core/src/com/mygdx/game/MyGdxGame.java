@@ -193,8 +193,8 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     @Override
     public void resize(int width, int height) {
-        camera.viewportWidth = 30f;
-        camera.viewportHeight = 30f * height/width;
+        camera.viewportWidth = Gdx.graphics.getWidth();
+        camera.viewportHeight = Gdx.graphics.getHeight() * height/width;
         camera.update();
     }
 
