@@ -129,18 +129,10 @@ public class MyGdxGame extends ApplicationAdapter {
                 if(ii%2!=0) batch.draw(square1Img,
                         ((square1Img.getWidth() * i) - square1Img.getWidth()/2),
                         ((square1Img.getHeight()) * ii));
-
-                //batch.draw(sprite, (sprite.getWidth() + 5) * i, (sprite.getHeight() + 5) * ii);
                 sprite.setRotation(180f);
-
                 if(ii%2==0)sprite.setPosition((sprite.getWidth()) * i - square1Img.getWidth()/2, (sprite.getHeight()) * ii);
                 if(ii%2!=0)sprite.setPosition((sprite.getWidth()) * i - square1Img.getWidth(),(sprite.getHeight()) * ii);
                 sprite.draw(batch);
-                //SpriteBatch.draw(textureRegion, x, y, originX, originY, width, height, scaleX, scaleY, rotation);
-
-                       // ,square2Img.getWidth(),square2Img.getWidth(),0,0
-                //batch.draw(square2Img, (square2Img.getWidth() + 5) * i, (square2Img.getHeight() + 5) * ii);
-                        //        textureWidth, textureHeight, 1, 1, 90f, false);
             }
         }
 
@@ -167,30 +159,7 @@ public class MyGdxGame extends ApplicationAdapter {
         return textureToBeReturned;
 
     }
-    public Pixmap rotatePixmap (Pixmap src, float angle){
-        final int width = src.getWidth();
-        final int height = src.getHeight();
-        Pixmap rotated = new Pixmap(width, height, src.getFormat());
 
-        final double radians = Math.toRadians(angle), cos = Math.cos(radians), sin = Math.sin(radians);
-
-
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                final int
-                        centerx = width/2, centery = height / 2,
-                        m = x - centerx,
-                        n = y - centery,
-                        j = ((int) (m * cos + n * sin)) + centerx,
-                        k = ((int) (n * cos - m * sin)) + centery;
-                if (j >= 0 && j < width && k >= 0 && k < height){
-                    rotated.drawPixel(x, y, src.getPixel(k, j));
-                }
-            }
-        }
-        return rotated;
-
-    }
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
