@@ -22,7 +22,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Square tiling"
-        android:id="@+id/SquareTillingLauncher"
+        android:id="@+id/squareTillingLauncher"
         android:layout_gravity="center_horizontal" />
     <Button
         android:layout_width="200dp"

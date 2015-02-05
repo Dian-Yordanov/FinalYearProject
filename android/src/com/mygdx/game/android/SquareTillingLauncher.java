@@ -35,11 +35,24 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class SquareTillingLauncher extends AndroidApplication {
+
     private static Intent intent;
     private static Bitmap bMap;
     public static String selectedImagePath;
     public static String imageNameToBeSaved = "data/ii_square_tilling.png";
-	@Override
+
+/*
+    public SquareTillingLauncher(Intent intent, Bitmap bMap, String selectedImagePath, String imageNameToBeSaved,
+    Bundle savedInstanceState, Menu menu, MenuItem item,
+    int requestCode, int resultCode, Intent data){
+        this.onActivityResult(requestCode,resultCode, data);
+    }
+    public SquareTillingLauncher(int requestCode, int resultCode, Intent data){
+        this.onActivityResult(requestCode,resultCode, data);
+    }
+
+*/
+    @Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -166,4 +179,46 @@ public class SquareTillingLauncher extends AndroidApplication {
         String className = this.getClass().getSimpleName();
         return(className);
     }
+/*
+
+    @Override
+    public Intent getIntent() {
+        return intent;
+    }
+
+    @Override
+    public void setIntent(Intent intent) {
+        SquareTillingLauncher.intent = intent;
+    }
+
+
+    public static Bitmap getbMap() {
+        return bMap;
+    }
+
+    public static void setbMap(Bitmap bMap) {
+        SquareTillingLauncher.bMap = bMap;
+    }
+
+
+    public static String getSelectedImagePath() {
+        return selectedImagePath;
+    }
+
+    public static void setSelectedImagePath(String selectedImagePath) {
+        SquareTillingLauncher.selectedImagePath = selectedImagePath;
+    }
+
+
+
+    public static String getImageNameToBeSaved() {
+        return imageNameToBeSaved;
+    }
+
+    public static void setImageNameToBeSaved(String imageNameToBeSaved) {
+        SquareTillingLauncher.imageNameToBeSaved = imageNameToBeSaved;
+    }
+
+
+*/
 }
