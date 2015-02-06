@@ -68,10 +68,13 @@ public class MyGdxGame extends ApplicationAdapter {
         target.scl(speed);
         cameraPosition.add(target);
 
+        /*
         float lerp = 0.1f;
         Vector3 position = camera.position;
         position.x += (x1 - position.x) * lerp;
         position.y += (y1-position.y ) * lerp;
+        */
+
 
         camera.position.set(cameraPosition);
 
@@ -98,7 +101,7 @@ public class MyGdxGame extends ApplicationAdapter {
         camera.update();
 
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
+        //camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
         //input = new Vector3(x1, y1, 0);
         camera.update();
 
@@ -136,7 +139,8 @@ public class MyGdxGame extends ApplicationAdapter {
             batch.begin();
             for (int i = 0; i < 100; i++) {
                 for (int ii = 0; ii < 100; ii++) {
-                    batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
+                    batch.draw(square1Img, ((square1Img.getWidth() + 5) * i)-Gdx.graphics.getWidth()
+                            , ((square1Img.getHeight() + 5) * ii)-Gdx.graphics.getHeight());
                 }
             }
             batch.end();
@@ -160,7 +164,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public void TriangullargleRendering(){
         batch.begin();
         batch.enableBlending();
-//the + and - 3 are because of the white lines
+        //the + and - 3 are because of the white lines
         for (int i = 0; i < 15; i++) {
             for (int ii = 0; ii < 15; ii++) {
                 if(ii%2==0) batch.draw(square1Img,
