@@ -44,8 +44,8 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("TriangullarTillingLauncher")) {checkIfFileExists(imageNameToBeSavedMGG2);}
         createContent();
 
-        camera = new OrthographicCamera(30, 30 * (50 / 50));
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+        camera = new OrthographicCamera(0, 0);
+        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
         camera.update();
     }
 
@@ -62,24 +62,30 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
         if (patternStyle.equals("TriangullarTillingLauncher")) {TriangullargleRendering();}
     }
+    @Override
+    public void resize(int width, int height) {
+        camera.viewportWidth = Gdx.graphics.getWidth();
+        camera.viewportHeight = Gdx.graphics.getHeight() * height/width;
+        camera.update();
+    }
 
     public void createContent() {
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
         if (patternStyle.equals("SquareTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
-        if (patternStyle.equals("HexagonalTillingLauncher")) {manager.load(pictureAddress, Pixmap.class); }
-        if (patternStyle.equals("TriangullarTillingLauncher")) {manager.load(pictureAddress, Pixmap.class);
-                                                                manager.load(pictureAddress2, Pixmap.class);}
+        if (patternStyle.equals("HexagonalTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
+        if (patternStyle.equals("TriangullarTillingLauncher")) {manager.load(pictureAddress, Texture.class);
+                                                                manager.load(pictureAddress2, Texture.class);}
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
         if (patternStyle.equals("HexagonalTillingLauncher")) {
-            square1Img = createSpriteForTransperancyRendering(pictureAddress, manager);
+            square1Img = manager.get(pictureAddress, Texture.class);
         }
         if (patternStyle.equals("TriangullarTillingLauncher")) {
-            square1Img = createSpriteForTransperancyRendering(pictureAddress, manager);
-            square2Img = createSpriteForTransperancyRendering(pictureAddress2, manager);
+            square1Img = manager.get(pictureAddress, Texture.class);
+            square2Img = manager.get(pictureAddress2, Texture.class);
 
             sprite = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
 
@@ -140,31 +146,4 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.disableBlending();
         batch.end();
     }
-    public Texture createSpriteForTransperancyRendering(String addressOfPicture, AssetManager manager){
-        mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
-        mask.setBlending(Pixmap.Blending.None);
-        mask.setColor(new Color(0f, 0f, 0f, 0f));
-        mask.fillRectangle(0, 0, 32, 32);
-
-        //rotatePixmap(mask,180f);
-
-        fg = manager.get(addressOfPicture, Pixmap.class);
-        fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
-
-
-        //rotatePixmap(fg,180f);
-
-        mask.setBlending(Pixmap.Blending.SourceOver);
-        Texture textureToBeReturned = new Texture(fg);
-        return textureToBeReturned;
-
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        camera.viewportWidth = Gdx.graphics.getWidth();
-        camera.viewportHeight = Gdx.graphics.getHeight() * height/width;
-        camera.update();
-    }
-
 }
