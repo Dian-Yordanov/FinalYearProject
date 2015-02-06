@@ -59,10 +59,12 @@ public class MyGdxGame extends ApplicationAdapter {
         y1 = Gdx.input.getY();
 
         final float speed=0.1f,ispeed=1.0f-speed;
+        //float speed =0;
+        //float ispeed = 0.5f;
         //The result is roughly: old_position*0.9 + target * 0.1
         Vector3 cameraPosition = camera.position;
-        cameraPosition.scl(ispeed);
         Vector3 target = new Vector3(x1,y1,0);
+        cameraPosition.scl(ispeed);
         target.scl(speed);
         cameraPosition.add(target);
 
@@ -97,7 +99,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        input = new Vector3(x1, y1, 0);
+        //input = new Vector3(x1, y1, 0);
         camera.update();
 
     }
@@ -132,8 +134,8 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void SquareRendering(){
             batch.begin();
-            for (int i = 0; i < 10; i++) {
-                for (int ii = 0; ii < 10; ii++) {
+            for (int i = 0; i < 100; i++) {
+                for (int ii = 0; ii < 100; ii++) {
                     batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
                 }
             }
@@ -142,8 +144,8 @@ public class MyGdxGame extends ApplicationAdapter {
     public void HexagonalRendering(){
         batch.begin();
         batch.enableBlending();
-        for (int i = 0; i < 10; i++) {
-            for (int ii = 0; ii < 10; ii++) {
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
                 if(i%2==0){ batch.draw(square1Img,
                         (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
                         ,(square1Img.getHeight()+5)*ii);}
@@ -159,8 +161,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
 //the + and - 3 are because of the white lines
-        for (int i = 0; i < 10; i++) {
-            for (int ii = 0; ii < 10; ii++) {
+        for (int i = 0; i < 15; i++) {
+            for (int ii = 0; ii < 15; ii++) {
                 if(ii%2==0) batch.draw(square1Img,
                         ((square1Img.getWidth()) * i)+3,
                         (square1Img.getHeight()) * ii);
