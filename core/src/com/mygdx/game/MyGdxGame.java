@@ -57,9 +57,26 @@ public class MyGdxGame extends ApplicationAdapter {
 
         x1 = Gdx.input.getX();
         y1 = Gdx.input.getY();
-        camera.position.set(camera.viewportWidth+x1, camera.viewportHeight+y1, 0);
+
+        final float speed=0.1f,ispeed=1.0f-speed;
+        //The result is roughly: old_position*0.9 + target * 0.1
+        Vector3 cameraPosition = camera.position;
+        cameraPosition.scl(ispeed);
+        Vector3 target = new Vector3(x1,y1,0);
+        target.scl(speed);
+        cameraPosition.add(target);
+
+        float lerp = 0.1f;
+        Vector3 position = camera.position;
+        position.x += (x1 - position.x) * lerp;
+        position.y += (y1-position.y ) * lerp;
+
+        camera.position.set(cameraPosition);
+
+        //camera.position.set(x1,y1, 0);
+        //camera.position.set(input);
         Gdx.app.log("MyTag","" + x1 + " "+y1);
-        camera.unproject(input);
+        //camera.unproject(input);
         camera.update();
 
         if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
@@ -78,7 +95,7 @@ public class MyGdxGame extends ApplicationAdapter {
         camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
         camera.update();
 
-
+        camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         input = new Vector3(x1, y1, 0);
         camera.update();
@@ -115,8 +132,8 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void SquareRendering(){
             batch.begin();
-            for (int i = 0; i < 100; i++) {
-                for (int ii = 0; ii < 100; ii++) {
+            for (int i = 0; i < 10; i++) {
+                for (int ii = 0; ii < 10; ii++) {
                     batch.draw(square1Img, (square1Img.getWidth() + 5) * i, (square1Img.getHeight() + 5) * ii);
                 }
             }
@@ -125,8 +142,8 @@ public class MyGdxGame extends ApplicationAdapter {
     public void HexagonalRendering(){
         batch.begin();
         batch.enableBlending();
-        for (int i = 0; i < 100; i++) {
-            for (int ii = 0; ii < 100; ii++) {
+        for (int i = 0; i < 10; i++) {
+            for (int ii = 0; ii < 10; ii++) {
                 if(i%2==0){ batch.draw(square1Img,
                         (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
                         ,(square1Img.getHeight()+5)*ii);}
@@ -142,8 +159,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
 //the + and - 3 are because of the white lines
-        for (int i = 0; i < 100; i++) {
-            for (int ii = 0; ii < 100; ii++) {
+        for (int i = 0; i < 10; i++) {
+            for (int ii = 0; ii < 10; ii++) {
                 if(ii%2==0) batch.draw(square1Img,
                         ((square1Img.getWidth()) * i)+3,
                         (square1Img.getHeight()) * ii);
