@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 
 import java.io.File;
 
@@ -33,6 +34,9 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite sprite;
 
     private OrthographicCamera camera;
+    int x1;
+    int y1;
+    Vector3 input;
 
     @Override
     public void create() {
@@ -51,6 +55,13 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
         batch.setProjectionMatrix(camera.combined);
 
+        x1 = Gdx.input.getX();
+        y1 = Gdx.input.getY();
+        camera.position.set(camera.viewportWidth+x1, camera.viewportHeight+y1, 0);
+        Gdx.app.log("MyTag","" + x1 + " "+y1);
+        camera.unproject(input);
+        camera.update();
+
         if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
         if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
         if (patternStyle.equals("TriangullarTillingLauncher")) {TriangullargleRendering();}
@@ -66,6 +77,12 @@ public class MyGdxGame extends ApplicationAdapter {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
         camera.update();
+
+
+
+        input = new Vector3(x1, y1, 0);
+        camera.update();
+
     }
     public void createContent() {
         AssetManager manager;
@@ -124,24 +141,23 @@ public class MyGdxGame extends ApplicationAdapter {
     public void TriangullargleRendering(){
         batch.begin();
         batch.enableBlending();
-
+//the + and - 3 are because of the white lines
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
                 if(ii%2==0) batch.draw(square1Img,
-                        (square1Img.getWidth()) * i,
+                        ((square1Img.getWidth()) * i)+3,
                         (square1Img.getHeight()) * ii);
                 if(ii%2!=0) batch.draw(square1Img,
-                        ((square1Img.getWidth() * i) - square1Img.getWidth()/2),
+                        (((square1Img.getWidth() * i) - square1Img.getWidth()/2))+3,
                         ((square1Img.getHeight()) * ii));
                 sprite.setRotation(180f);
-                if(ii%2==0)sprite.setPosition((sprite.getWidth()) * i - square1Img.getWidth()/2, (sprite.getHeight()) * ii);
-                if(ii%2!=0)sprite.setPosition((sprite.getWidth()) * i - square1Img.getWidth(),(sprite.getHeight()) * ii);
+                if(ii%2==0)sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()/2) -3, (sprite.getHeight()) * ii);
+                if(ii%2!=0)sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()) -3,(sprite.getHeight()) * ii);
                 sprite.draw(batch);
             }
         }
-
-
         batch.disableBlending();
         batch.end();
     }
+
 }
