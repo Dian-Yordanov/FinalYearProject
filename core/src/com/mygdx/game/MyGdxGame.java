@@ -30,9 +30,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static String imageNameToBeSavedMGG = "";
     public static String imageNameToBeSavedMGG2 = "";
 
-    Sprite sprite;
-    Pixmap fg;
-    Pixmap mask;
+    public static Sprite sprite;
 
     private OrthographicCamera camera;
 
@@ -43,10 +41,7 @@ public class MyGdxGame extends ApplicationAdapter {
         checkIfFileExists(imageNameToBeSavedMGG);
         if (patternStyle.equals("TriangullarTillingLauncher")) {checkIfFileExists(imageNameToBeSavedMGG2);}
         createContent();
-
-        camera = new OrthographicCamera(0, 0);
-        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
-        camera.update();
+        createCamera();
     }
 
     @Override
@@ -54,8 +49,6 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
-
-        camera.update();
         batch.setProjectionMatrix(camera.combined);
 
         if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
@@ -65,10 +58,15 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
-        camera.viewportHeight = Gdx.graphics.getHeight() * height/width;
+        camera.viewportHeight = Gdx.graphics.getHeight();
+                //* height/width;
         camera.update();
     }
-
+    public void createCamera(){
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
+        camera.update();
+    }
     public void createContent() {
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
