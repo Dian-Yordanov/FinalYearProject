@@ -2,23 +2,16 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-
-import java.io.File;
-import com.mygdx.game.MapInputProcessor;
 
 public class MyGdxGame extends ApplicationAdapter {
 
@@ -39,9 +32,7 @@ public class MyGdxGame extends ApplicationAdapter {
     private OrthographicCamera camera;
     int x1,oldx;
     int y1,oldy;
-    Vector3 input;
     Vector2 dragOld, dragNew;
-    boolean doneOnce=false;
 
     @Override
     public void create() {
@@ -60,78 +51,7 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
         batch.setProjectionMatrix(camera.combined);
 
-        //x1 = Gdx.input.getX();
-        //y1 = Gdx.input.getY();
-
-        //if(Gdx.input.justTouched()){doneOnce=true;
-
-        //    Gdx.app.log("MyTag11",""+ doneOnce);}
-        //Gdx.input.isTouched();
-
-        //if(Gdx.input.justTouched()){doneOnce=true;
-        //    if(x1<Gdx.graphics.getWidth()/2){x1=oldx-x1;}
-        //    if(x1>Gdx.graphics.getWidth()/2){x1=oldx+x1;}
-        //    if(y1<Gdx.graphics.getHeight()/2){y1=oldy-y1;}
-        //    if(y1>Gdx.graphics.getHeight()/2){y1=oldy+y1;}
-        //   }
-
-        oldx=x1;
-        oldy=y1;
-
-        //if(x1<oldx && Gdx.input.isTouched()){x1=oldx-x1;}
-        //if(x1>oldx && Gdx.input.isTouched()){x1=oldx+x1;}
-        //if(y1<oldy && Gdx.input.isTouched()){y1=oldy-y1;}
-        //if(y1>oldy && Gdx.input.isTouched()){y1=oldy+y1;}
-
-        //final float speed=0.1f,ispeed=1.0f-speed;
-        //float speed =0;
-        //float ispeed = 0.5f;
-        //The result is roughly: old_position*0.9 + target * 0.1
-        //Vector3 cameraPosition = camera.position;
-        //Vector3 target = new Vector3(x1,y1,0);
-        //cameraPosition.scl(ispeed);
-        //target.scl(speed);
-        //cameraPosition.add(target);
-
-        if (Gdx.input.justTouched())
-        {
-            dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            dragOld = dragNew;
-        }
-
-        if (Gdx.input.isTouched())
-        {
-            dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            if (!dragNew.equals(dragOld))
-            {
-                camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y); //Translate by subtracting the vectors
-                camera.update();
-                dragOld = dragNew; //Drag old becomes drag new.
-            }
-        }
-
-
-        //float lerp = 0.1f;
-        //Vector3 position = camera.position;
-
-        //position.x += (x1 - position.x) * lerp;
-        //position.y += (y1-position.y ) * lerp;
-
-        //float smoothing = 0.1f; // lower the smoother
-        //camera.position.lerp(position, smoothing);
-
-        //camera.position.lerp(camera.position, 0.1f);
-
-        //MapInputProcessor.moveCamera(x1,y1,camera);
-        //camera.position.set(MapInputProcessor.getNewCameraPosition(x1,y1,camera));
-        //camera.position.set(cameraPosition);
-
-        //camera.position.set(x1,y1, 0);
-        //camera.position.set(input);
-        Gdx.app.log("MyTag","" + x1 + " "+y1+" "+oldx+" "+oldy+" "+doneOnce);
-        //camera.unproject(input);c
-        camera.update();
-        doneOnce=false;
+        cameraMovingMethod();
 
         if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
         if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
@@ -230,6 +150,30 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         batch.disableBlending();
         batch.end();
+    }
+    public void cameraMovingMethod(){
+        oldx=x1;
+        oldy=y1;
+
+
+        if (Gdx.input.justTouched())
+        {
+            dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            dragOld = dragNew;
+        }
+
+        if (Gdx.input.isTouched())
+        {
+            dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            if (!dragNew.equals(dragOld))
+            {
+                camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
+                //Translate by subtracting the vectors
+                camera.update();
+                dragOld = dragNew; //Drag old becomes drag new.
+            }
+        }
+        camera.update();
     }
 
 }
