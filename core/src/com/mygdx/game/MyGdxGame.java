@@ -30,8 +30,8 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite sprite;
 
     private OrthographicCamera camera;
-    int x1;
-    int y1;
+    int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
+            , cameraBoundaryY1 = 8000, cameraBoundaryY2 =0;
     Vector2 dragOld, dragNew;
 
     @Override
@@ -198,30 +198,30 @@ public class MyGdxGame extends ApplicationAdapter {
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
 
-                if (camera.position.x > -1600 && camera.position.y < 8000 &&
-                        camera.position.x < 3200 && camera.position.y > 0) {//&& camera.position.x < 3200 && camera.position.y > 0
+                if (camera.position.x > cameraBoundaryX1 && camera.position.y < cameraBoundaryY1 &&
+                        camera.position.x < cameraBoundaryX2 && camera.position.y > cameraBoundaryY2) {//&& camera.position.x < 3200 && camera.position.y > 0
                     camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
                     camera.update();
                 } else {
-                    if (camera.position.x > 3200) {
-                        if (x11 < 0) {//&& camera.position.x < -1600
-                            camera.translate(dragOld.x - dragNew.x, 0);
-                            camera.update();
-                        }
-                    }
-                    if (camera.position.x < -1600 ) {
+                    if (camera.position.x < cameraBoundaryX1 ) {
                         if (x11 > 0) {//&& camera.position.x < -1600
                             camera.translate(dragOld.x - dragNew.x, 0);
                             camera.update();
                         }
                     }
-                    if (camera.position.y > 8000) {
+                    if (camera.position.x > cameraBoundaryX2) {
+                        if (x11 < 0) {//&& camera.position.x < -1600
+                            camera.translate(dragOld.x - dragNew.x, 0);
+                            camera.update();
+                        }
+                    }
+                    if (camera.position.y > cameraBoundaryY1) {
                         if (y11 > 0) {//&& camera.position.x < -1600
                             camera.translate(0, dragNew.y - dragOld.y);
                             camera.update();
                         }
                     }
-                    if (camera.position.y < 0 ) {
+                    if (camera.position.y < cameraBoundaryY2 ) {
                         if (y11 < 0) {//&& camera.position.x < -1600
                             camera.translate(0, dragNew.y - dragOld.y);
                             camera.update();
