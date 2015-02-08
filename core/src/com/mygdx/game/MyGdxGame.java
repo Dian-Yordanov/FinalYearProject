@@ -164,8 +164,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
-        for (int i = 0; i < 15; i++) {
-            for (int ii = 0; ii < 15; ii++) {
+        for (int i = 0; i < 25; i++) {
+            for (int ii = 0; ii < 25; ii++) {
                 if (ii % 2 == 0) batch.draw(square1Img,
                         ((square1Img.getWidth()) * i) + 3,
                         (square1Img.getHeight()) * ii);
