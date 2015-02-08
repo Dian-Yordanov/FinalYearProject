@@ -30,8 +30,8 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite sprite;
 
     private OrthographicCamera camera;
-    int x1,oldx;
-    int y1,oldy;
+    int x1;
+    int y1;
     Vector2 dragOld, dragNew;
 
     @Override
@@ -152,9 +152,6 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.end();
     }
     public void cameraMovingMethod(){
-        oldx=x1;
-        oldy=y1;
-
 
         if (Gdx.input.justTouched())
         {
@@ -162,18 +159,35 @@ public class MyGdxGame extends ApplicationAdapter {
             dragOld = dragNew;
         }
 
-        if (Gdx.input.isTouched())
-        {
+        if (Gdx.input.isTouched()) {
+            //Gdx.app.log("somelog", " "+ " " + camera.position.x + " " +  camera.position.y + " " +
+            //        Gdx.input.getX() + " " + Gdx.input.getY());
+
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-            if (!dragNew.equals(dragOld))
-            {
-                camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
+            if (!dragNew.equals(dragOld)) {
+                float x11 = dragOld.x - dragNew.x;
+                float y11 = dragOld.y - dragNew.y;
+
+
+                Gdx.app.log("somelog11", " " + Gdx.input.getX() +" " +  Gdx.input.getY()+" " + x11 + " " +  y11);
+                if (camera.position.x > -1600 && camera.position.x < 3200 && camera.position.y > 0 && camera.position.y < 8000) {
+                    camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);camera.update();
+                }
+                else{
+                    if(x11>0 && y11>0) {
+                        camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);camera.update();
+                    }
+                }
+
+
+                //if()
                 //Translate by subtracting the vectors
-                camera.update();
+
                 dragOld = dragNew; //Drag old becomes drag new.
+
+
             }
         }
-        camera.update();
     }
 
 }
