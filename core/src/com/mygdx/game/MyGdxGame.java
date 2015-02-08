@@ -42,6 +42,12 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("TriangullarTillingLauncher")) {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
+
+        cameraBoundaryX1= -400;
+        cameraBoundaryX2= 3 * Gdx.graphics.getWidth();
+        cameraBoundaryY1= 2 * Gdx.graphics.getHeight();
+        cameraBoundaryY2= 0;
+
         createContent();
         createCamera();
     }
