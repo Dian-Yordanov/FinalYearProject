@@ -43,11 +43,6 @@ public class MyGdxGame extends ApplicationAdapter {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
-        cameraBoundaryX1= -400;
-        cameraBoundaryX2= 3 * Gdx.graphics.getWidth();
-        cameraBoundaryY1= 2 * Gdx.graphics.getHeight();
-        cameraBoundaryY2= 0;
-
         createContent();
         createCamera();
     }
@@ -82,8 +77,13 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
+        camera.position.set(1.5f * camera.viewportWidth, 1.5f * camera.viewportHeight, 0);
         camera.update();
+
+        cameraBoundaryX1= Gdx.graphics.getWidth();
+        cameraBoundaryX2= (int) (2f * Gdx.graphics.getWidth());
+        cameraBoundaryY1= (int) (2f * Gdx.graphics.getHeight());
+        cameraBoundaryY2= Gdx.graphics.getHeight();
 
         //camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
@@ -164,19 +164,19 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
-        for (int i = 0; i < 25; i++) {
-            for (int ii = 0; ii < 25; ii++) {
+        for (int i = 0; i < 15; i++) {
+            for (int ii = 0; ii < 27; ii++) {
                 if (ii % 2 == 0) batch.draw(square1Img,
-                        ((square1Img.getWidth()) * i) + 3,
+                        ((square1Img.getWidth()) * i),
                         (square1Img.getHeight()) * ii);
                 if (ii % 2 != 0) batch.draw(square1Img,
-                        (((square1Img.getWidth() * i) - square1Img.getWidth() / 2)) + 3,
+                        (((square1Img.getWidth() * i) - square1Img.getWidth() / 2)),
                         ((square1Img.getHeight()) * ii));
                 sprite.setRotation(180f);
                 if (ii % 2 == 0)
-                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth() / 2) - 3, (sprite.getHeight()) * ii);
+                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth() / 2), (sprite.getHeight()) * ii);
                 if (ii % 2 != 0)
-                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()) - 3, (sprite.getHeight()) * ii);
+                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()), (sprite.getHeight()) * ii);
                 sprite.draw(batch);
             }
         }
