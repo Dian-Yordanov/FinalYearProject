@@ -34,6 +34,7 @@ public class MyGdxGame extends ApplicationAdapter {
             , cameraBoundaryY1 = 8000, cameraBoundaryY2 =0;
     Vector2 dragOld, dragNew;
     public static boolean evolvingTilling;
+    public static boolean optionSelected=false;
 
     @Override
     public void create() {
@@ -56,6 +57,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.setProjectionMatrix(camera.combined);
 
         cameraMovingMethod();
+        if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
             if (patternStyle.equals("SquareTillingLauncher")) {
                 SquareRendering();
@@ -66,6 +68,8 @@ public class MyGdxGame extends ApplicationAdapter {
             if (patternStyle.equals("TriangullarTillingLauncher")) {
                 TriangullargleRendering();
             }
+            optionSelected=false;
+            evolvingTilling=false;
         }
     }
 

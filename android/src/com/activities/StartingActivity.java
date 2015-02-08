@@ -37,7 +37,7 @@ public class StartingActivity extends Activity {
                 ,"TriangullarTillingLauncher", "com.mygdx.game.android.TriangullarTillingLauncher"
                 ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
         callClassTillingLauncher(EvolvingSquareTillingLauncherButton, R.id.evolvingSquaretiling
-                ,"EvolvingSquareTillingLauncher", "com.mygdx.game.android.EvolvingSquareTillingLauncher"
+                ,"SquareTillingLauncher", "com.mygdx.game.android.EvolvingSquareTillingLauncher"
                 ,"data/ii_square_tilling.png");
 
     }

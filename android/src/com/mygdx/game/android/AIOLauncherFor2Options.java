@@ -35,6 +35,7 @@ public class AIOLauncherFor2Options extends AndroidApplication {
     private static Bitmap bMap;
     private static Bitmap bMap2;
     public static String selectedImagePath;
+    public static boolean optionSelected;
     public static String nameOfChosenOption = "";
     public static String imageNameToBeSaved = "data/ii_triangular_tilling.png";
     public static String imageNameToBeSaved2 = "data/ii_triangular_tilling_2.png";
@@ -64,12 +65,12 @@ public class AIOLauncherFor2Options extends AndroidApplication {
 
         switch (item.getItemId()) {
             case R.id.option1:
-                MyGdxGame.evolvingTilling = false;
+
                 nameOfChosenOption = "option1";
                 runTheGalleryChoosingMethods();
                 return true;
             case R.id.option2:
-                MyGdxGame.evolvingTilling = false;
+
                 nameOfChosenOption = "option2";
                 runTheGalleryChoosingMethods();
                 return true;
@@ -111,6 +112,7 @@ public class AIOLauncherFor2Options extends AndroidApplication {
                 }
             }
         }
+        MyGdxGame.optionSelected = true;
         if (nameOfChosenOption.equals("option1"))
             LogicalClassForRenderCallingActivites.useSelectedImage(
                     MyGdxGame.square1Img, selectedImagePath);

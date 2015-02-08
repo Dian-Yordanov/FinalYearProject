@@ -66,7 +66,8 @@ public class AIOLauncher extends AndroidApplication {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.option1:
-                MyGdxGame.evolvingTilling = false;
+                //MyGdxGame.evolvingTilling = false;
+
                 runTheGalleryChoosingMethods();
                 return true;
             case R.id.option2:
@@ -101,7 +102,7 @@ public class AIOLauncher extends AndroidApplication {
                 }
             }
         }
-
+        MyGdxGame.optionSelected = true;
         //LogicalClassForRenderCallingActivites.setupPatternStyle(getCurrentClassName());
         LogicalClassForRenderCallingActivites.useSelectedImage(MyGdxGame.square1Img, selectedImagePath);
         saveBitmapToFile(bMap);
