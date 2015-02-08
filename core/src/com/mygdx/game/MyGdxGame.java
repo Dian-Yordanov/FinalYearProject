@@ -39,7 +39,9 @@ public class MyGdxGame extends ApplicationAdapter {
         MyGdxGame.batch = new SpriteBatch();
 
         checkIfFileExists(imageNameToBeSavedMGG);
-        if (patternStyle.equals("TriangullarTillingLauncher")) {checkIfFileExists(imageNameToBeSavedMGG2);}
+        if (patternStyle.equals("TriangullarTillingLauncher")) {
+            checkIfFileExists(imageNameToBeSavedMGG2);
+        }
         createContent();
         createCamera();
     }
@@ -53,18 +55,26 @@ public class MyGdxGame extends ApplicationAdapter {
 
         cameraMovingMethod();
 
-        if (patternStyle.equals("SquareTillingLauncher")) {SquareRendering();}
-        if (patternStyle.equals("HexagonalTillingLauncher")) {HexagonalRendering();}
-        if (patternStyle.equals("TriangullarTillingLauncher")) {TriangullargleRendering();}
+        if (patternStyle.equals("SquareTillingLauncher")) {
+            SquareRendering();
+        }
+        if (patternStyle.equals("HexagonalTillingLauncher")) {
+            HexagonalRendering();
+        }
+        if (patternStyle.equals("TriangullarTillingLauncher")) {
+            TriangullargleRendering();
+        }
     }
+
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
         camera.viewportHeight = Gdx.graphics.getHeight();
-                //* height/width;
+        //* height/width;
         camera.update();
     }
-    public void createCamera(){
+
+    public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
         camera.update();
@@ -75,13 +85,20 @@ public class MyGdxGame extends ApplicationAdapter {
         camera.update();
 
     }
+
     public void createContent() {
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
-        if (patternStyle.equals("SquareTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
-        if (patternStyle.equals("HexagonalTillingLauncher")) {manager.load(pictureAddress, Texture.class); }
-        if (patternStyle.equals("TriangullarTillingLauncher")) {manager.load(pictureAddress, Texture.class);
-                                                                manager.load(pictureAddress2, Texture.class);}
+        if (patternStyle.equals("SquareTillingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+        }
+        if (patternStyle.equals("HexagonalTillingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+        }
+        if (patternStyle.equals("TriangullarTillingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+            manager.load(pictureAddress2, Texture.class);
+        }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
@@ -104,57 +121,66 @@ public class MyGdxGame extends ApplicationAdapter {
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
-    public void SquareRendering(){
-            batch.begin();
-            for (int i = 0; i < 100; i++) {
-                for (int ii = 0; ii < 100; ii++) {
-                    batch.draw(square1Img, ((square1Img.getWidth() + 5) * i)-Gdx.graphics.getWidth()
-                            , ((square1Img.getHeight() + 5) * ii)-Gdx.graphics.getHeight());
-                }
+
+    public void SquareRendering() {
+        batch.begin();
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
+                batch.draw(square1Img, ((square1Img.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                        , ((square1Img.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
             }
-            batch.end();
+        }
+        batch.end();
     }
-    public void HexagonalRendering(){
+
+    public void HexagonalRendering() {
         batch.begin();
         batch.enableBlending();
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
-                if(i%2==0){ batch.draw(square1Img,
-                        (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
-                        ,(square1Img.getHeight()+5)*ii);}
-                if(i%2!=0){ batch.draw(square1Img,
-                        (((square1Img.getWidth()+5)*3/4)*i)-((square1Img.getWidth()+5)*3/4)/2
-                        ,(((square1Img.getHeight()+5)*ii)-square1Img.getHeight()/2)-2);}
+                if (i % 2 == 0) {
+                    batch.draw(square1Img,
+                            (((square1Img.getWidth() + 5) * 3 / 4) * i) - ((square1Img.getWidth() + 5) * 3 / 4) / 2
+                            , (square1Img.getHeight() + 5) * ii);
+                }
+                if (i % 2 != 0) {
+                    batch.draw(square1Img,
+                            (((square1Img.getWidth() + 5) * 3 / 4) * i) - ((square1Img.getWidth() + 5) * 3 / 4) / 2
+                            , (((square1Img.getHeight() + 5) * ii) - square1Img.getHeight() / 2) - 2);
+                }
             }
         }
         batch.disableBlending();
         batch.end();
     }
-    public void TriangullargleRendering(){
+
+    public void TriangullargleRendering() {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
         for (int i = 0; i < 15; i++) {
             for (int ii = 0; ii < 15; ii++) {
-                if(ii%2==0) batch.draw(square1Img,
-                        ((square1Img.getWidth()) * i)+3,
+                if (ii % 2 == 0) batch.draw(square1Img,
+                        ((square1Img.getWidth()) * i) + 3,
                         (square1Img.getHeight()) * ii);
-                if(ii%2!=0) batch.draw(square1Img,
-                        (((square1Img.getWidth() * i) - square1Img.getWidth()/2))+3,
+                if (ii % 2 != 0) batch.draw(square1Img,
+                        (((square1Img.getWidth() * i) - square1Img.getWidth() / 2)) + 3,
                         ((square1Img.getHeight()) * ii));
                 sprite.setRotation(180f);
-                if(ii%2==0)sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()/2) -3, (sprite.getHeight()) * ii);
-                if(ii%2!=0)sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()) -3,(sprite.getHeight()) * ii);
+                if (ii % 2 == 0)
+                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth() / 2) - 3, (sprite.getHeight()) * ii);
+                if (ii % 2 != 0)
+                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()) - 3, (sprite.getHeight()) * ii);
                 sprite.draw(batch);
             }
         }
         batch.disableBlending();
         batch.end();
     }
-    public void cameraMovingMethod(){
 
-        if (Gdx.input.justTouched())
-        {
+    public void cameraMovingMethod() {
+
+        if (Gdx.input.justTouched()) {
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             dragOld = dragNew;
         }
@@ -169,14 +195,41 @@ public class MyGdxGame extends ApplicationAdapter {
                 float y11 = dragOld.y - dragNew.y;
 
 
-                Gdx.app.log("somelog11", " " + Gdx.input.getX() +" " +  Gdx.input.getY()+" " + x11 + " " +  y11);
-                if (camera.position.x > -1600 && camera.position.x < 3200 && camera.position.y > 0 && camera.position.y < 8000) {
-                    camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);camera.update();
-                }
-                else{
-                    if(x11>0 && y11>0) {
-                        camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);camera.update();
+                Gdx.app.log("somelog11", " " + x11 + " " + y11);
+
+
+                if (camera.position.x > -1600 && camera.position.y < 8000 &&
+                        camera.position.x < 3200 && camera.position.y > 0) {//&& camera.position.x < 3200 && camera.position.y > 0
+                    camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
+                    camera.update();
+                } else {
+                    if (camera.position.x > 3200) {
+                        if (x11 < 0) {//&& camera.position.x < -1600
+                            camera.translate(dragOld.x - dragNew.x, 0);
+                            camera.update();
+                        }
                     }
+                    if (camera.position.x < -1600 ) {
+                        if (x11 > 0) {//&& camera.position.x < -1600
+                            camera.translate(dragOld.x - dragNew.x, 0);
+                            camera.update();
+                        }
+                    }
+                    if (camera.position.y > 8000) {
+                        if (y11 > 0) {//&& camera.position.x < -1600
+                            camera.translate(0, dragNew.y - dragOld.y);
+                            camera.update();
+                        }
+                    }
+                    if (camera.position.y < 0 ) {
+                        if (y11 < 0) {//&& camera.position.x < -1600
+                            camera.translate(0, dragNew.y - dragOld.y);
+                            camera.update();
+                        }
+                    }
+
+
+
                 }
 
 
