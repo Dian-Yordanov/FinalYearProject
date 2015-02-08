@@ -66,6 +66,7 @@ public class AIOLauncher extends AndroidApplication {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.option1:
+                MyGdxGame.evolvingTilling = false;
                 runTheGalleryChoosingMethods();
                 return true;
             case R.id.option2:

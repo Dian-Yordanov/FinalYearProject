@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.dian.androidclasses.LogicalClassForRenderCallingActivites;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.android.EvolvingSquareTillingLauncher;
 import com.mygdx.game.android.HexagonalTillingLauncher;
 import com.mygdx.game.android.SquareTillingLauncher;
 import com.mygdx.game.android.R;
@@ -18,25 +19,30 @@ public class StartingActivity extends Activity {
     public static Button SquareTillingLauncherButton;
     public static Button HexagonalTillingLauncherButton;
     public static Button TriangullarTillingLauncherButton;
+    public static Button EvolvingSquareTillingLauncherButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_activity);
 
-        callClassSquareTillingLauncher(SquareTillingLauncherButton, R.id.squareTillingLauncher
+        callClassTillingLauncher(SquareTillingLauncherButton, R.id.squareTillingLauncher
                 ,"SquareTillingLauncher", "com.mygdx.game.android.SquareTillingLauncher"
                 ,"data/ii_square_tilling.png");
-        callClassSquareTillingLauncher(HexagonalTillingLauncherButton, R.id.hexagonalTillingLauncher
+        callClassTillingLauncher(HexagonalTillingLauncherButton, R.id.hexagonalTillingLauncher
                 ,"HexagonalTillingLauncher", "com.mygdx.game.android.HexagonalTillingLauncher"
                 ,"data/ii_hexagonal_tilling.png");
-        callClassSquareTillingLauncher(TriangullarTillingLauncherButton, R.id.triangullarTillingLauncher
+        callClassTillingLauncher(TriangullarTillingLauncherButton, R.id.triangullarTillingLauncher
                 ,"TriangullarTillingLauncher", "com.mygdx.game.android.TriangullarTillingLauncher"
                 ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
+        callClassTillingLauncher(EvolvingSquareTillingLauncherButton, R.id.evolvingSquaretiling
+                ,"EvolvingSquareTillingLauncher", "com.mygdx.game.android.EvolvingSquareTillingLauncher"
+                ,"data/ii_square_tilling.png");
 
     }
 
-    public void callClassSquareTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
+    public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
                                                 final String nameOfThisLauncher, final String nameOfclassToLaunch
             ,final String image1Name ){
         //TriangullarTillingLauncher = (Button) findViewById(R.id.TriangullarTillingLauncher);
@@ -56,7 +62,7 @@ public class StartingActivity extends Activity {
             }
         });
     }
-    public void callClassSquareTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
+    public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
                                                final String nameOfThisLauncher, final String nameOfclassToLaunch
             ,final String image1Name,final String image2Name ){
         //TriangullarTillingLauncher = (Button) findViewById(R.id.TriangullarTillingLauncher);

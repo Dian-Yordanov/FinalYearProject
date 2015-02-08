@@ -1,7 +1,10 @@
 package com.mygdx.game.android;
 
-/**
- * Created by XelnectMobileUser on 2/8/2015.
- */
-public class EvolvingSquareTillingLauncher {
+import com.mygdx.game.MyGdxGame;
+
+public class EvolvingSquareTillingLauncher extends AIOLauncher {
+    public EvolvingSquareTillingLauncher(){
+        AIOLauncher.imageNameToBeSaved = "data/ii_square_tilling.png";
+        MyGdxGame.evolvingTilling = true;
+    }
 }

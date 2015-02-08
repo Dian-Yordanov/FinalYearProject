@@ -64,10 +64,12 @@ public class AIOLauncherFor2Options extends AndroidApplication {
 
         switch (item.getItemId()) {
             case R.id.option1:
+                MyGdxGame.evolvingTilling = false;
                 nameOfChosenOption = "option1";
                 runTheGalleryChoosingMethods();
                 return true;
             case R.id.option2:
+                MyGdxGame.evolvingTilling = false;
                 nameOfChosenOption = "option2";
                 runTheGalleryChoosingMethods();
                 return true;
