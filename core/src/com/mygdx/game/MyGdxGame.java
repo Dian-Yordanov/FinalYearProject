@@ -407,12 +407,14 @@ public class MyGdxGame extends ApplicationAdapter {
         PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
                 new float[] {      // Four vertices
                         0, 0,            // Vertex 0         3--2
-                        1000, 0,          // Vertex 1         | /|
-                        1000, 1000,        // Vertex 2         |/ |
-                        0, 1000           // Vertex 3         0--1
+                        256, 0,          // Vertex 1         | /|
+                        256, 256,        // Vertex 2         |/ |
+                        0, 256 ,
+                        (float)(-128 * Math.sqrt(3)), 128// Vertex 3         0--1
                 }, new short[] {
                 0, 1, 2,         // Two triangles using vertex indices.
-                0, 2, 3          // Take care of the counter-clockwise direction.
+                0, 2, 3,
+                          0,3,4// Take care of the counter-clockwise direction.
         });
         poly = new PolygonSprite(polyReg);
         poly.setOrigin(0, 0);
