@@ -5,12 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
@@ -37,9 +41,14 @@ public class MyGdxGame extends ApplicationAdapter {
     public static boolean evolvingTilling;
     public static boolean optionSelected=false;
 
+    ShapeRenderer shapeRenderer;
+    public static Texture texture;
+    private Pixmap pixmap;
+
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
+        //shapeRenderer = new ShapeRenderer();
 
         checkIfFileExists(imageNameToBeSavedMGG);
         if (patternStyle.equals("TriangullarTillingLauncher")) {
@@ -53,13 +62,19 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
-        batch.setProjectionMatrix(camera.combined);
 
+        batch.setProjectionMatrix(camera.combined);
+        //shapeRenderer.setProjectionMatrix(camera.combined);
+        camera.update();
 
 
         cameraMovingMethod();
+
+
+
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
             if (patternStyle.equals("SquareTillingLauncher")) {
@@ -74,11 +89,14 @@ public class MyGdxGame extends ApplicationAdapter {
             optionSelected=false;
             evolvingTilling=false;
         }
-        else if(evolvingTilling){
+
+        if(evolvingTilling){
             if (patternStyle.equals("SquareTillingLauncher")) {
-                drawRectangles();
+                shapeRendererDrawRectangles();
             }
         }
+
+
     }
 
     @Override
@@ -88,7 +106,6 @@ public class MyGdxGame extends ApplicationAdapter {
         //* height/width;
         camera.update();
     }
-
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(1.5f * camera.viewportWidth, 1.5f * camera.viewportHeight, 0);
@@ -102,10 +119,10 @@ public class MyGdxGame extends ApplicationAdapter {
         //camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
         //input = new Vector3(x1, y1, 0);
+
         camera.update();
 
     }
-
     public void createContent() {
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
@@ -134,14 +151,12 @@ public class MyGdxGame extends ApplicationAdapter {
 
         }
     }
-
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
         if (!Gdx.files.external(imageNameToBeSavedMGG1).exists()) {
             FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG1);
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
-
     public void SquareRendering() {
         batch.begin();
         for (int i = 0; i < 100; i++) {
@@ -152,7 +167,6 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         batch.end();
     }
-
     public void HexagonalRendering() {
         batch.begin();
         batch.enableBlending();
@@ -173,7 +187,6 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.disableBlending();
         batch.end();
     }
-
     public void TriangullargleRendering() {
         batch.begin();
         batch.enableBlending();
@@ -197,7 +210,6 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.disableBlending();
         batch.end();
     }
-
     public void cameraMovingMethod() {
 
         if (Gdx.input.justTouched()) {
@@ -210,7 +222,9 @@ public class MyGdxGame extends ApplicationAdapter {
             //        Gdx.input.getX() + " " + Gdx.input.getY());
 
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+
             if (!dragNew.equals(dragOld)) {
+                Gdx.app.log("somelog1122", " " + dragOld.x  + " " + dragNew.x + " ");
                 float x11 = dragOld.x - dragNew.x;
                 float y11 = dragOld.y - dragNew.y;
 
@@ -251,58 +265,75 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
                 }
-
-
-                //if()
-                //Translate by subtracting the vectors
-
-                dragOld = dragNew; //Drag old becomes drag new.
-
-
+                dragOld = dragNew;
             }
         }
     }
+    public void shapeRendererDrawRectangles() {
 
-    public void drawRectangles() {
-        ShapeRenderer shapeRenderer = new ShapeRenderer();
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(1, 1, 0, 1);
-        //shapeRenderer.line(x, y, x2, y2);
-        shapeRenderer.rect(50, 50, 1000, 1000);
-        shapeRenderer.circle(50, 50, 150);
-        shapeRenderer.end();
-        //camera.update();
-        shapeRenderer.setProjectionMatrix(camera.combined);
-        camera.update();
-    }
-/*
-        shapeRenderer.begin(ShapeType.Line);
-        shapeRenderer.setColor(1, 1, 0, 1);
-        shapeRenderer.line(x, y, x2, y2);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.circle(x, y, radius);
-        shapeRenderer.end();
+        //rect = new TextureRegion();
+        //sprite = new Sprite(rect,100,100,100,100);
+        //shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        //batch .begin();
 
-        shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.setColor(0, 1, 0, 1);
-        shapeRenderer.rect(x, y, width, height);
-        shapeRenderer.circle(x, y, radius);
-        shapeRenderer.end();
+        //sprite.draw(batch);
+
+
+        //shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        //shapeRenderer.identity();
+        //shapeRenderer.setColor(1, 1, 0, 1);
+        //shapeRenderer.rect(0, 0, 1000, 1000);
+        //shapeRenderer.end();
+
+
+
+        //batch.end();
+        //shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+
+        //shapeRenderer.begin(ShapeType.Filled);
+        //shapeRenderer.setColor(Color.RED);
+        //shapeRenderer.rect(0, 0, 500, 500);
+        //shapeRenderer.end();
+        //batch.begin();
+
+        // A Pixmap is basically a raw image in memory as repesented by pixels
+        // We create one 256 wide, 128 height using 8 bytes for Red, Green, Blue and Alpha channels
+        pixmap = new Pixmap(1000,1000, Pixmap.Format.RGBA8888);
+
+        //Fill it red
+        pixmap.setColor(Color.RED);
+        pixmap.fill();
+
+        //Draw two lines forming an X
+        pixmap.setColor(Color.BLACK);
+        pixmap.drawLine(0, 0, pixmap.getWidth()-1, pixmap.getHeight()-1);
+        pixmap.drawLine(0, pixmap.getHeight()-1, pixmap.getWidth()-1, 0);
+
+        //Draw a circle about the middle
+        pixmap.setColor(Color.YELLOW);
+        pixmap.drawCircle(pixmap.getWidth()/2, pixmap.getHeight()/2, pixmap.getHeight()/2 - 1);
+
+
+        texture = new Texture(pixmap);
+
+        //It's the textures responsibility now... get rid of the pixmap
+        pixmap.dispose();
+
+        sprite = new Sprite(texture);
+
+        batch.begin();
+        sprite.setPosition(0, 0);
+        sprite.draw(batch);
+        sprite.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+        sprite.draw(batch);
+        batch.end();
     }
 
-    void drawRect(int x, int y, int width, int height, int thickness) {
-        batch.draw(rect, x, y, width, thickness);
-        batch.draw(rect, x, y, thickness, height);
-        batch.draw(rect, x, y+height-thickness, width, thickness);
-        batch.draw(rect, x+width-thickness, y, thickness, height);
+    @Override
+    public void dispose () {
+        batch.dispose();
+       // shapeRenderer.dispose();
     }
 
-    void drawLine(int x1, int y1, int x2, int y2, int thickness) {
-        int dx = x2-x1;
-        int dy = y2-y1;
-        float dist = (float)Math.sqrt(dx*dx + dy*dy);
-        float rad = (float)Math.atan2(dy, dx);
-        batch.draw(rect, x1, y1, dist, thickness, 0, 0, rad);
-    }
-     */
+
 }
