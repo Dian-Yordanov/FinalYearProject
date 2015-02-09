@@ -7,12 +7,19 @@ import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.VertexAttribute;
+import com.badlogic.gdx.graphics.VertexAttributes;
+import com.badlogic.gdx.graphics.g2d.PolygonRegion;
+import com.badlogic.gdx.graphics.g2d.PolygonSprite;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -57,6 +64,9 @@ public class MyGdxGame extends ApplicationAdapter {
 
     int random;
 
+    private Mesh mesh;
+    ShaderProgram shader;
+
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
@@ -68,6 +78,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
 
+        createPixmapHexagon();
         createPixmap();
         createContent();
         createCamera();
@@ -81,6 +92,7 @@ public class MyGdxGame extends ApplicationAdapter {
         //Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
 
         batch.setProjectionMatrix(camera.combined);
+
         //shapeRenderer.setProjectionMatrix(camera.combined);
         //camera.update();
 
@@ -116,7 +128,7 @@ public class MyGdxGame extends ApplicationAdapter {
             }
             if(evolvingTilling) {
                 if (patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
-
+                  PixmapDrawHexagons();
                 }
             }
         }
@@ -309,6 +321,14 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         batch.end();
     }
+    public void PixmapDrawHexagons() {
+        shader.begin();
+
+        shader.setUniformi("u_texture", 0);
+        mesh.render(shader, GL20.GL_TRIANGLES);
+        shader.end();
+
+    }
     public void PixmapDrawRectangles2() {
         batch.begin();
         for (int i = 0; i < 30; i++) {
@@ -372,7 +392,30 @@ public class MyGdxGame extends ApplicationAdapter {
         spriteForDynamicDrawing = dinamicallyChangeColor();
         spriteForDynamicDrawing2 = dinamicallyChangeColor();
     }
-    public void createPixmapHexagon(){}
+    public void createPixmapHexagon(){
+        String vertexShader = "attribute vec4 a_position;    \n" + "attribute vec4 a_color;\n" + "attribute vec2 a_texCoord0;\n"
+                + "uniform mat4 u_worldView;\n" + "varying vec4 v_color;" + "varying vec2 v_texCoords;"
+                + "void main()                  \n" + "{                            \n" + "   v_color = vec4(1, 1, 1, 1); \n"
+                + "   v_texCoords = a_texCoord0; \n" + "   gl_Position =  u_worldView * a_position;  \n"
+                + "}                            \n";
+        String fragmentShader = "#ifdef GL_ES\n" + "precision mediump float;\n" + "#endif\n" + "varying vec4 v_color;\n"
+                + "varying vec2 v_texCoords;\n" + "uniform sampler2D u_texture;\n" + "void main()                                  \n"
+                + "{                                            \n" + "  gl_FragColor = v_color * texture2D(u_texture, v_texCoords);\n"
+                + "}";
+
+        shader = new ShaderProgram(vertexShader, fragmentShader);
+        if (mesh == null) {
+            mesh = new Mesh(true, 3, 3,
+                    new VertexAttribute(VertexAttributes.Usage.Position, 3, "a_position"));
+
+            mesh.setVertices(new float[] { -0.5f, -0.5f, 0,
+                    0.5f, -0.5f, 0,
+                    0, 0.5f, 0 });
+
+            mesh.setIndices(new short[] { 0, 1, 2 });
+        }
+
+    }
     @Override
     public void dispose () {
         batch.dispose();
