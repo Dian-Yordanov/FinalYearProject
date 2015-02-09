@@ -33,6 +33,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static String imageNameToBeSavedMGG2 = "";
 
     public static Sprite sprite;
+    public static Sprite spriteForDynamicDrawing;
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -43,7 +44,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     //ShapeRenderer shapeRenderer;
     public static Texture texture;
-    private Pixmap pixmap;
+    public static  Pixmap pixmap;
 
     @Override
     public void create() {
@@ -55,12 +56,8 @@ public class MyGdxGame extends ApplicationAdapter {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
-        if(evolvingTilling){
-            if (patternStyle.equals("SquareTillingLauncher")) {
-                createPixmap();
-            }
-        }
-
+        
+        createPixmap();
         createContent();
         createCamera();
     }
@@ -234,6 +231,11 @@ public class MyGdxGame extends ApplicationAdapter {
                 float x11 = dragOld.x - dragNew.x;
                 float y11 = dragOld.y - dragNew.y;
 
+                pixmap.setColor(Color.GREEN);
+                pixmap.fill();
+                texture = new Texture(pixmap);
+                //pixmap.dispose();
+                spriteForDynamicDrawing = new Sprite(texture);
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -277,72 +279,27 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void PixmapDrawRectangles() {
 
-        //rect = new TextureRegion();
-        //sprite = new Sprite(rect,100,100,100,100);
-        //shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        //batch .begin();
-
-        //sprite.draw(batch);
-
-
-        //shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        //shapeRenderer.identity();
-        //shapeRenderer.setColor(1, 1, 0, 1);
-        //shapeRenderer.rect(0, 0, 1000, 1000);
-        //shapeRenderer.end();
-
-
-
-        //batch.end();
-        //shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-
-        //shapeRenderer.begin(ShapeType.Filled);
-        //shapeRenderer.setColor(Color.RED);
-        //shapeRenderer.rect(0, 0, 500, 500);
-        //shapeRenderer.end();
-        //batch.begin();
-
-        // A Pixmap is basically a raw image in memory as repesented by pixels
-        // We create one 256 wide, 128 height using 8 bytes for Red, Green, Blue and Alpha channels
-
         batch.begin();
-        //sprite.setPosition(0, 0);
-        sprite.draw(batch);
-        sprite.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        sprite.draw(batch);
+        spriteForDynamicDrawing.draw(batch);
+        spriteForDynamicDrawing.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        spriteForDynamicDrawing.draw(batch);
         batch.end();
     }
     public void createPixmap(){
         pixmap = new Pixmap(1024,1024, Pixmap.Format.RGBA8888);
 
-        //Fill it red
         pixmap.setColor(Color.RED);
         pixmap.fill();
 
-        //Draw two lines forming an X
-        //pixmap.setColor(Color.BLACK);
-        //pixmap.drawLine(0, 0, pixmap.getWidth()-1, pixmap.getHeight()-1);
-        //pixmap.drawLine(0, pixmap.getHeight()-1, pixmap.getWidth()-1, 0);
-
-        //Draw a circle about the middle
-        pixmap.setColor(Color.YELLOW);
-        pixmap.drawCircle(pixmap.getWidth()/2, pixmap.getHeight()/2, pixmap.getHeight()/2 - 1);
-
-
         texture = new Texture(pixmap);
-
-        //It's the textures responsibility now... get rid of the pixmap
-        pixmap.dispose();
-
-        sprite = new Sprite(texture);
+        //pixmap.dispose();
+        spriteForDynamicDrawing = new Sprite(texture);
 
     }
 
     @Override
     public void dispose () {
         batch.dispose();
-        pixmap.dispose();
-       // shapeRenderer.dispose();
     }
 
 
