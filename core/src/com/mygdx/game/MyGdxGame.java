@@ -400,10 +400,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public void createPixmapHexagon(){
 
         //polyBatch.setProjectionMatrix(camera.combined);
-        Pixmap pix = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pix.setColor(0xDEADBEFF); // DE is red, AD is green and BE is blue.
-        pix.fill();
-        textureSolid = new Texture(pix);
+        pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.GREEN); // DE is red, AD is green and BE is blue.
+        pixmap.fill();
+        textureSolid = new Texture(pixmap);
         PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
                 new float[] {      // Four vertices
                         50, -87,            // Vertex 0         3--2
@@ -419,7 +419,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 1,3,2
                          // Take care of the counter-clockwise direction.
         });
-        poly = new PolygonSprite(polyReg);
+        //poly = new PolygonSprite(polyReg);
+
+        poly = dinamicallyChangeColorPoly();
         poly.setOrigin(0, 0);
         //polyBatch = new PolygonSpriteBatch();
       // polyBatch.setProjectionMatrix(camera.combined);
@@ -445,6 +447,35 @@ public class MyGdxGame extends ApplicationAdapter {
         textureSmall = new Texture(pixmapSmall);
         //pixmap.dispose();
         return new Sprite(texture);
+    }
+    public PolygonSprite dinamicallyChangeColorPoly(){
+        //pixmap.setColor(Color.GREEN);
+        Random r = new Random();
+        int Low = 0;
+        int High = 15;
+        random = r.nextInt(High-Low) + Low;
+        Color[] randomElement ={Color.BLUE,Color.GREEN,Color.RED,Color.CYAN,Color.BLACK,Color.DARK_GRAY,
+                Color.GRAY,Color.MAGENTA,Color.MAROON,Color.NAVY,Color.OLIVE,Color.ORANGE,Color.PINK,Color.PURPLE,
+                Color.TEAL,Color.YELLOW};
+        pixmap.setColor(randomElement[random]);
+        pixmap.fill();
+        textureSolid = new Texture(pixmap);
+        PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
+                new float[] {      // Four vertices
+                        50, -87,            // Vertex 0         3--2
+                        -50, -87,          // Vertex 1         | /|
+                        -100, 0,        // Vertex 2         |/ |
+                        -50, 87 ,
+                        50, 87,
+                        100,0// Vertex 3         0--1
+                }, new short[] {
+                0,5,4,
+                1, 0, 4,         // Two triangles using vertex indices.
+                1, 4, 3,
+                1,3,2
+                // Take care of the counter-clockwise direction.
+        });
+        return new PolygonSprite(polyReg);
     }
 
 }
