@@ -18,6 +18,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import java.util.Random;
+
 public class MyGdxGame extends ApplicationAdapter {
 
     public static SpriteBatch batch;
@@ -45,6 +47,7 @@ public class MyGdxGame extends ApplicationAdapter {
     //ShapeRenderer shapeRenderer;
     public static Texture texture;
     public static  Pixmap pixmap;
+    int random;
 
     @Override
     public void create() {
@@ -56,7 +59,7 @@ public class MyGdxGame extends ApplicationAdapter {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
-        
+
         createPixmap();
         createContent();
         createCamera();
@@ -231,12 +234,8 @@ public class MyGdxGame extends ApplicationAdapter {
                 float x11 = dragOld.x - dragNew.x;
                 float y11 = dragOld.y - dragNew.y;
 
-                pixmap.setColor(Color.GREEN);
-                pixmap.fill();
-                texture = new Texture(pixmap);
-                //pixmap.dispose();
-                spriteForDynamicDrawing = new Sprite(texture);
 
+                dinamicallyChangeColor();
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
 
@@ -302,5 +301,18 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.dispose();
     }
 
+    public void dinamicallyChangeColor(){
+        //pixmap.setColor(Color.GREEN);
+        Random r = new Random();
+        int Low = 0;
+        int High = 4;
+        random = r.nextInt(High-Low) + Low;
+        Color[] randomElement ={Color.BLUE,Color.GREEN,Color.RED,Color.CYAN};
+        pixmap.setColor(randomElement[random]);
+        pixmap.fill();
+        texture = new Texture(pixmap);
+        //pixmap.dispose();
+        spriteForDynamicDrawing = new Sprite(texture);
+    }
 
 }
