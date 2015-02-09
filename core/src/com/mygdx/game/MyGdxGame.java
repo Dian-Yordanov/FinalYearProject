@@ -65,6 +65,7 @@ public class MyGdxGame extends ApplicationAdapter {
     PolygonSprite poly;
     PolygonSpriteBatch polyBatch; // To assign at the beginning
     Texture textureSolid;
+    PolygonRegion polyReg;
 
     int random;
 
@@ -85,6 +86,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         createPixmapHexagon();
         createPixmap();
+        poly = dinamicallyChangeColorPoly();
         createContent();
         createCamera();
     }
@@ -328,10 +330,23 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.end();
     }
     public void PixmapDrawHexagons() {
+        //poly = dinamicallyChangeColorPoly();
         polyBatch.begin();
-
-        poly.draw(polyBatch);
-        poly.setPosition(2000,2000);
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
+                if (i % 2 == 0) {
+                    poly.draw(polyBatch);
+                    poly.setPosition((((poly.getWidth() + 1) * 3 / 4) * i)
+                            - ((poly.getWidth() + 1) * 3 / 4) / 2
+                            , (poly.getHeight() + 1) * ii);
+                }
+                if (i % 2 != 0) {
+                    poly.draw(polyBatch);
+                    poly.setPosition((((poly.getWidth() + 1) * 3 / 4) * i) - ((poly.getWidth() + 1) * 3 / 4) / 2
+                            , (((poly.getHeight() + 1) * ii) - poly.getHeight() / 2) - 2);
+                }
+            }
+        }
         polyBatch.end();
 
     }
@@ -405,7 +420,7 @@ public class MyGdxGame extends ApplicationAdapter {
         pixmap.setColor(Color.GREEN); // DE is red, AD is green and BE is blue.
         pixmap.fill();
         textureSolid = new Texture(pixmap);
-        PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
+        polyReg = new PolygonRegion(new TextureRegion(textureSolid),
                 new float[] {      // Four vertices
                         50, -87,            // Vertex 0         3--2
                         -50, -87,          // Vertex 1         | /|
@@ -420,10 +435,10 @@ public class MyGdxGame extends ApplicationAdapter {
                 1,3,2
                          // Take care of the counter-clockwise direction.
         });
-        //poly = new PolygonSprite(polyReg);
+        poly = new PolygonSprite(polyReg);
 
-        poly = dinamicallyChangeColorPoly();
-        poly.setOrigin(0, 0);
+        //poly = dinamicallyChangeColorPoly();
+        //poly.setOrigin(0, 0);
         //polyBatch = new PolygonSpriteBatch();
       // polyBatch.setProjectionMatrix(camera.combined);
     }
