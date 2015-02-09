@@ -113,6 +113,11 @@ public class MyGdxGame extends ApplicationAdapter {
             if (patternStyle.equals("SquareTillingLauncher3")) {
                 PixmapDrawRectangles3();
             }
+            if(evolvingTilling) {
+                if (patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
+
+                }
+            }
         }
 
 

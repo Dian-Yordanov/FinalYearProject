@@ -46,6 +46,12 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
         </activity>
         <activity
+            android:name=".EvolvingHexagonalTillingLauncher"
+            android:label="@string/app_name"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
             android:name=".HexagonalTillingLauncher"
             android:label="@string/app_name"
             android:screenOrientation="unspecified"

@@ -16,12 +16,14 @@ import com.mygdx.game.android.R;
 import com.mygdx.game.android.TriangullarTillingLauncher;
 
 public class StartingActivity extends Activity {
+
     public static Button SquareTillingLauncherButton;
     public static Button HexagonalTillingLauncherButton;
     public static Button TriangullarTillingLauncherButton;
     public static Button EvolvingSquareTillingLauncherButton;
     public static Button EvolvingSquareTillingLauncherButton2;
     public static Button EvolvingSquareTillingLauncherButton3;
+    public static Button EvolvingHexagonalTillingLauncherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,9 @@ public class StartingActivity extends Activity {
         callClassTillingLauncher(EvolvingSquareTillingLauncherButton3, R.id.evolvingSquaretiling3
                 ,"SquareTillingLauncher3", "com.mygdx.game.android.EvolvingSquareTillingLauncher3"
                 ,"data/ii_square_tilling.png");
+        callClassTillingLauncher(EvolvingHexagonalTillingLauncherButton, R.id.evolvingHexagonalTilling
+                ,"EvolvingHexagonalTillingLauncher", "com.mygdx.game.android.EvolvingHexagonalTillingLauncher"
+                ,"data/ii_hexagonal_tilling.png");
     }
 
     public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
