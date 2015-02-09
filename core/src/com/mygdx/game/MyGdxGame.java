@@ -334,16 +334,30 @@ public class MyGdxGame extends ApplicationAdapter {
         polyBatch.begin();
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
+                /*
                 if (i % 2 == 0) {
                     poly.draw(polyBatch);
-                    poly.setPosition((((poly.getWidth() + 1) * 3 / 4) * i)
-                            - ((poly.getWidth() + 1) * 3 / 4) / 2
-                            , (poly.getHeight() + 1) * ii);
+                    poly.setPosition((((poly.getWidth()) * 3 / 4) * i)
+                            - ((poly.getWidth()) * 3 / 4) / 2
+                            , (poly.getHeight()) * ii);
                 }
                 if (i % 2 != 0) {
                     poly.draw(polyBatch);
-                    poly.setPosition((((poly.getWidth() + 1) * 3 / 4) * i) - ((poly.getWidth() + 1) * 3 / 4) / 2
-                            , (((poly.getHeight() + 1) * ii) - poly.getHeight() / 2) - 2);
+                    poly.setPosition((((poly.getWidth()) * 3 / 4) * i) - ((poly.getWidth() + 1) * 3 / 4) / 2
+                            , (((poly.getHeight()) * ii) - poly.getHeight() / 2) - 2);
+                }
+                */
+
+                if (i % 2 == 0) {
+                    poly.draw(polyBatch);
+                    poly.setPosition((((poly.getWidth() + 5) * 3 / 4) * i)
+                            - ((poly.getWidth() + 5) * 3 / 4) / 2
+                            , (poly.getHeight() + 5) * ii);
+                }
+                if (i % 2 != 0) {
+                    poly.draw(polyBatch);
+                    poly.setPosition((((poly.getWidth() + 5) * 3 / 4) * i) - ((poly.getWidth()  + 5) * 3 / 4) / 2
+                            , (((poly.getHeight() + 5) * ii) - poly.getHeight() / 2) - 2);
                 }
             }
         }
@@ -420,20 +434,20 @@ public class MyGdxGame extends ApplicationAdapter {
         pixmap.setColor(Color.GREEN); // DE is red, AD is green and BE is blue.
         pixmap.fill();
         textureSolid = new Texture(pixmap);
-        polyReg = new PolygonRegion(new TextureRegion(textureSolid),
+        PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
                 new float[] {      // Four vertices
-                        50, -87,            // Vertex 0         3--2
-                        -50, -87,          // Vertex 1         | /|
-                        -100, 0,        // Vertex 2         |/ |
-                        -50, 87 ,
-                        50, 87,
-                        100,0// Vertex 3         0--1
+                        62, -108,            // Vertex 0         3--2
+                        -63, -108,          // Vertex 1         | /|
+                        -125, 0,        // Vertex 2         |/ |
+                        -62, 108 ,
+                        62, 108,
+                        125,0// Vertex 3         0--1
                 }, new short[] {
                 0,5,4,
                 1, 0, 4,         // Two triangles using vertex indices.
                 1, 4, 3,
                 1,3,2
-                         // Take care of the counter-clockwise direction.
+                // Take care of the counter-clockwise direction.
         });
         poly = new PolygonSprite(polyReg);
 
@@ -478,12 +492,12 @@ public class MyGdxGame extends ApplicationAdapter {
         textureSolid = new Texture(pixmap);
         PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
                 new float[] {      // Four vertices
-                        50, -87,            // Vertex 0         3--2
-                        -50, -87,          // Vertex 1         | /|
-                        -100, 0,        // Vertex 2         |/ |
-                        -50, 87 ,
-                        50, 87,
-                        100,0// Vertex 3         0--1
+                        62, -108,            // Vertex 0         3--2
+                        -63, -108,          // Vertex 1         | /|
+                        -125, 0,        // Vertex 2         |/ |
+                        -62, 108 ,
+                        62, 108,
+                        125,0// Vertex 3         0--1
                 }, new short[] {
                 0,5,4,
                 1, 0, 4,         // Two triangles using vertex indices.
