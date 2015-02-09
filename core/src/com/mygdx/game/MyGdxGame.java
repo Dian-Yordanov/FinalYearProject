@@ -62,10 +62,15 @@ public class MyGdxGame extends ApplicationAdapter {
     public static  Pixmap pixmap;
     public static  Pixmap pixmapSmall;
 
+    public static  Pixmap pixmapTrianglle;
+    Texture textureSolidTrinaglle;
+    PolygonSprite polyTrinaglle;
+    PolygonSpriteBatch polyBatch2;
+
     PolygonSprite poly;
     PolygonSpriteBatch polyBatch; // To assign at the beginning
     Texture textureSolid;
-    PolygonRegion polyReg;
+   // PolygonRegion polyReg;
 
     int random;
 
@@ -76,6 +81,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
         polyBatch = new PolygonSpriteBatch();
+        polyBatch2 = new PolygonSpriteBatch();
         //shapeRenderer = new ShapeRenderer();
 
         checkIfFileExists(imageNameToBeSavedMGG);
@@ -87,6 +93,11 @@ public class MyGdxGame extends ApplicationAdapter {
         createPixmapHexagon();
         createPixmap();
         poly = dinamicallyChangeColorPoly();
+
+        createPixmapTrianglle();
+        //poly = dinamicallyChangeColorTrianglle();
+        //polyTrinaglle = dinamicallyChangeColorTrianglle();
+
         createContent();
         createCamera();
     }
@@ -97,6 +108,7 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         //Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
         polyBatch.setProjectionMatrix(camera.combined);
+        polyBatch2.setProjectionMatrix(camera.combined);
         batch.setProjectionMatrix(camera.combined);
 
         //shapeRenderer.setProjectionMatrix(camera.combined);
@@ -132,11 +144,17 @@ public class MyGdxGame extends ApplicationAdapter {
             if (patternStyle.equals("SquareTillingLauncher3")) {
                 PixmapDrawRectangles3();
             }
-            if(evolvingTilling) {
+            //if(evolvingTilling) {
                 if (patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
                   PixmapDrawHexagons();
                 }
-            }
+            //}
+            //if(evolvingTilling) {
+                if (patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
+                    PixmapDrawTrianglles();
+                    //PixmapDrawHexagons();
+                }
+            //}
         }
 
 
@@ -279,6 +297,8 @@ public class MyGdxGame extends ApplicationAdapter {
                 spriteForDynamicDrawing2 = dinamicallyChangeColor();
                 spriteForDynamicDrawing3 = dinamicallyChangeColor();
                 poly = dinamicallyChangeColorPoly();
+                polyTrinaglle = dinamicallyChangeColorTrianglle();
+                
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -336,20 +356,6 @@ public class MyGdxGame extends ApplicationAdapter {
         polyBatch.begin();
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
-                /*
-                if (i % 2 == 0) {
-                    poly.draw(polyBatch);
-                    poly.setPosition((((poly.getWidth()) * 3 / 4) * i)
-                            - ((poly.getWidth()) * 3 / 4) / 2
-                            , (poly.getHeight()) * ii);
-                }
-                if (i % 2 != 0) {
-                    poly.draw(polyBatch);
-                    poly.setPosition((((poly.getWidth()) * 3 / 4) * i) - ((poly.getWidth() + 1) * 3 / 4) / 2
-                            , (((poly.getHeight()) * ii) - poly.getHeight() / 2) - 2);
-                }
-                */
-
                 if (i % 2 == 0) {
                     poly.draw(polyBatch);
                     poly.setPosition((((poly.getWidth() + 5) * 3 / 4) * i) - ((poly.getWidth() + 5) * 3 / 4) / 2
@@ -363,6 +369,27 @@ public class MyGdxGame extends ApplicationAdapter {
             }
         }
         polyBatch.end();
+    }
+    public void PixmapDrawTrianglles(){
+
+
+        polyBatch2.begin();
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
+                if (ii % 2 == 0) {
+                    polyTrinaglle.draw(polyBatch2);
+                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()+ 5) * i),
+                            (polyTrinaglle.getHeight()+ 5) * ii);
+                }
+                if (ii % 2 != 0) {
+                    polyTrinaglle.draw(polyBatch2);
+                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()+ 5 * i) - polyTrinaglle.getWidth()+ 5 / 2),
+                            ((polyTrinaglle.getHeight())+ 5 * ii));
+                }
+            }
+        }
+        polyBatch2.end();
+        Gdx.app.log("11111","22222222");
 
     }
     public void PixmapDrawRectangles2() {
@@ -456,6 +483,30 @@ public class MyGdxGame extends ApplicationAdapter {
         //polyBatch = new PolygonSpriteBatch();
       // polyBatch.setProjectionMatrix(camera.combined);
     }
+    public void createPixmapTrianglle(){
+
+
+        //polyBatch.setProjectionMatrix(camera.combined);
+        pixmapTrianglle = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmapTrianglle.setColor(Color.GREEN); // DE is red, AD is green and BE is blue.
+        pixmapTrianglle.fill();
+        textureSolidTrinaglle = new Texture(pixmapTrianglle);
+        PolygonRegion polyReg2 = new PolygonRegion(new TextureRegion(textureSolidTrinaglle),
+                new float[] {
+                        0, 100,            // Vertex 0         3--2
+                        87, -50,          // Vertex 1         | /|
+                        -87, -50       // Vertex 2         |/ |
+                }, new short[] {
+                0,2,1
+                // Take care of the counter-clockwise direction.
+        });
+        polyTrinaglle = new PolygonSprite(polyReg2);
+
+        //poly = dinamicallyChangeColorPoly();
+        //poly.setOrigin(0, 0);
+        //polyBatch = new PolygonSpriteBatch();
+        // polyBatch.setProjectionMatrix(camera.combined);
+    }
     public Sprite dinamicallyChangeColor(){
         //pixmap.setColor(Color.GREEN);
         Random r = new Random();
@@ -502,6 +553,30 @@ public class MyGdxGame extends ApplicationAdapter {
                 // Take care of the counter-clockwise direction.
         });
         return new PolygonSprite(polyReg);
+    }
+    public PolygonSprite dinamicallyChangeColorTrianglle(){
+        //pixmap.setColor(Color.GREEN);
+
+        Random r = new Random();
+        int Low = 0;
+        int High = 15;
+        random = r.nextInt(High-Low) + Low;
+        Color[] randomElement ={Color.BLUE,Color.GREEN,Color.RED,Color.CYAN,Color.BLACK,Color.DARK_GRAY,
+                Color.GRAY,Color.MAGENTA,Color.MAROON,Color.NAVY,Color.OLIVE,Color.ORANGE,Color.PINK,Color.PURPLE,
+                Color.TEAL,Color.YELLOW};
+        pixmapTrianglle.setColor(randomElement[random]);
+        pixmapTrianglle.fill();
+        textureSolidTrinaglle = new Texture(pixmapTrianglle);
+        PolygonRegion polyReg2 = new PolygonRegion(new TextureRegion(textureSolidTrinaglle),
+                new float[] {
+                        0, 100,            // Vertex 0         3--2
+                        87, -50,          // Vertex 1         | /|
+                        -87, -50       // Vertex 2         |/ |
+                }, new short[] {
+                0,2,1
+                // Take care of the counter-clockwise direction.
+        });
+        return new PolygonSprite(polyReg2);
     }
 
 }
