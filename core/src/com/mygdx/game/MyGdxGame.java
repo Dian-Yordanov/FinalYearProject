@@ -90,7 +90,6 @@ public class MyGdxGame extends ApplicationAdapter {
         createContent();
         createCamera();
     }
-
     @Override
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -142,13 +141,16 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
     }
-
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
         camera.viewportHeight = Gdx.graphics.getHeight();
         //* height/width;
         camera.update();
+    }
+    @Override
+    public void dispose () {
+        batch.dispose();
     }
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -453,10 +455,6 @@ public class MyGdxGame extends ApplicationAdapter {
         //poly.setOrigin(0, 0);
         //polyBatch = new PolygonSpriteBatch();
       // polyBatch.setProjectionMatrix(camera.combined);
-    }
-    @Override
-    public void dispose () {
-        batch.dispose();
     }
     public Sprite dinamicallyChangeColor(){
         //pixmap.setColor(Color.GREEN);
