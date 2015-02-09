@@ -38,6 +38,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite spriteForDynamicDrawing;
     public static Sprite spriteForDynamicDrawing2;
     public static Sprite spriteForDynamicDrawing3;
+    public static Sprite spriteForDynamicDrawingHexagon;
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -371,6 +372,7 @@ public class MyGdxGame extends ApplicationAdapter {
         spriteForDynamicDrawing = dinamicallyChangeColor();
         spriteForDynamicDrawing2 = dinamicallyChangeColor();
     }
+    public void createPixmapHexagon(){}
     @Override
     public void dispose () {
         batch.dispose();
