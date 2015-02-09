@@ -274,6 +274,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 spriteForDynamicDrawing = dinamicallyChangeColor();
                 spriteForDynamicDrawing2 = dinamicallyChangeColor();
                 spriteForDynamicDrawing3 = dinamicallyChangeColor();
+                poly = dinamicallyChangeColorPoly();
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
