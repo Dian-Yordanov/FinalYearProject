@@ -279,13 +279,19 @@ public class MyGdxGame extends ApplicationAdapter {
     public void PixmapDrawRectangles() {
 
         batch.begin();
-        spriteForDynamicDrawing.draw(batch);
-        spriteForDynamicDrawing.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        spriteForDynamicDrawing.draw(batch);
+
+        for (int i = 0; i < 50; i++) {
+            for (int ii = 0; ii < 50; ii++) {
+                spriteForDynamicDrawing.draw(batch);
+                spriteForDynamicDrawing.setPosition((spriteForDynamicDrawing.getWidth() + 5) * i
+                        ,(spriteForDynamicDrawing.getHeight() + 5) * ii);
+            }
+        }
+
         batch.end();
     }
     public void createPixmap(){
-        pixmap = new Pixmap(1024,1024, Pixmap.Format.RGBA8888);
+        pixmap = new Pixmap(256,256, Pixmap.Format.RGBA8888);
 
         pixmap.setColor(Color.RED);
         pixmap.fill();
@@ -295,12 +301,10 @@ public class MyGdxGame extends ApplicationAdapter {
         spriteForDynamicDrawing = new Sprite(texture);
 
     }
-
     @Override
     public void dispose () {
         batch.dispose();
     }
-
     public void dinamicallyChangeColor(){
         //pixmap.setColor(Color.GREEN);
         Random r = new Random();
