@@ -37,6 +37,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite sprite;
     public static Sprite spriteForDynamicDrawing;
     public static Sprite spriteForDynamicDrawing2;
+    public static Sprite spriteForDynamicDrawing3;
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -46,8 +47,13 @@ public class MyGdxGame extends ApplicationAdapter {
     public static boolean optionSelected=false;
 
     //ShapeRenderer shapeRenderer;
+
     public static Texture texture;
+    public static Texture textureSmall;
+
     public static  Pixmap pixmap;
+    public static  Pixmap pixmapSmall;
+
     int random;
 
     @Override
@@ -103,6 +109,9 @@ public class MyGdxGame extends ApplicationAdapter {
             }
             if (patternStyle.equals("SquareTillingLauncher2")) {
                 PixmapDrawRectangles2();
+            }
+            if (patternStyle.equals("SquareTillingLauncher3")) {
+                PixmapDrawRectangles3();
             }
         }
 
@@ -241,6 +250,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
                 spriteForDynamicDrawing = dinamicallyChangeColor();
                 spriteForDynamicDrawing2 = dinamicallyChangeColor();
+                spriteForDynamicDrawing3 = dinamicallyChangeColor();
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -309,16 +319,52 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         batch.end();
     }
+    public void PixmapDrawRectangles3(){
+        batch.begin();
+        for (int i = 0; i < 30; i++) {
+            for (int ii = 0; ii < 30; ii++) {
+
+
+                if (ii % 2 == 0 && i % 2 ==0) spriteForDynamicDrawing.draw(batch);
+                spriteForDynamicDrawing.setPosition((spriteForDynamicDrawing.getWidth()) * i
+                        ,(spriteForDynamicDrawing.getHeight()) * ii);
+                if (ii % 2 != 0 && i % 2 !=0)spriteForDynamicDrawing2.draw(batch);
+                spriteForDynamicDrawing2.setPosition((spriteForDynamicDrawing2.getWidth()) * i
+                        ,(spriteForDynamicDrawing2.getHeight()) * ii);
+                /*
+                if (ii % 2 == 0 && i % 2 !=0) spriteForDynamicDrawing3.draw(batch);
+                spriteForDynamicDrawing3.setPosition((spriteForDynamicDrawing3.getWidth()) * i
+                        ,(spriteForDynamicDrawing3.getHeight()) * ii);
+                if (ii % 2 != 0 && i % 2 ==0) spriteForDynamicDrawing3.draw(batch);
+                spriteForDynamicDrawing3.setPosition((spriteForDynamicDrawing3.getWidth()) * i
+                        ,(spriteForDynamicDrawing3.getHeight()) * ii);
+                */
+                spriteForDynamicDrawing3.draw(batch);
+                spriteForDynamicDrawing3.setPosition((spriteForDynamicDrawing3.getWidth() + 64) * i
+                        ,(spriteForDynamicDrawing3.getHeight() + 64) * ii);
+            }
+        }
+        batch.end();
+    }
     public void createPixmap(){
         pixmap = new Pixmap(256,256, Pixmap.Format.RGBA8888);
+        pixmapSmall = new Pixmap(128,128, Pixmap.Format.RGBA8888);
 
         pixmap.setColor(Color.RED);
         pixmap.fill();
 
+        pixmapSmall.setColor(Color.PURPLE);
+        pixmapSmall.fill();
+
         texture = new Texture(pixmap);
+        textureSmall = new Texture(pixmapSmall);
         //pixmap.dispose();
         spriteForDynamicDrawing = new Sprite(texture);
         spriteForDynamicDrawing2 = new Sprite(texture);
+        spriteForDynamicDrawing3 = new Sprite(textureSmall);
+
+        spriteForDynamicDrawing = dinamicallyChangeColor();
+        spriteForDynamicDrawing2 = dinamicallyChangeColor();
     }
     @Override
     public void dispose () {
@@ -335,7 +381,10 @@ public class MyGdxGame extends ApplicationAdapter {
         Color.TEAL,Color.YELLOW};
         pixmap.setColor(randomElement[random]);
         pixmap.fill();
+        pixmapSmall.setColor(randomElement[random]);
+        pixmapSmall.fill();
         texture = new Texture(pixmap);
+        textureSmall = new Texture(pixmapSmall);
         //pixmap.dispose();
         return new Sprite(texture);
     }
