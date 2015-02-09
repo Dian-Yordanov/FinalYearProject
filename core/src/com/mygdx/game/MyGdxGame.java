@@ -64,7 +64,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public static  Pixmap pixmapTrianglle;
     Texture textureSolidTrinaglle;
+
     PolygonSprite polyTrinaglle;
+    PolygonSprite polyTrinaglle2;
+
     PolygonSpriteBatch polyBatch2;
 
     PolygonSprite poly;
@@ -97,6 +100,7 @@ public class MyGdxGame extends ApplicationAdapter {
         createPixmapTrianglle();
         //poly = dinamicallyChangeColorTrianglle();
         polyTrinaglle = dinamicallyChangeColorTrianglle();
+        polyTrinaglle2 = dinamicallyChangeColorTrianglle();
 
         createContent();
         createCamera();
@@ -298,7 +302,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 spriteForDynamicDrawing3 = dinamicallyChangeColor();
                 poly = dinamicallyChangeColorPoly();
                 polyTrinaglle = dinamicallyChangeColorTrianglle();
-
+                polyTrinaglle2 = dinamicallyChangeColorTrianglle();
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -374,22 +378,28 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         polyBatch2.begin();
-        for (int i = 0; i < 100; i++) {
-            for (int ii = 0; ii < 100; ii++) {
+        for (int i = 0; i < 25; i++) {
+            for (int ii = 0; ii < 25; ii++) {
                 if (ii % 2 == 0) {
                     polyTrinaglle.draw(polyBatch2);
-                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()+ 5) * i),
-                            (polyTrinaglle.getHeight()+ 5) * ii);
+                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()) * i),
+                            (polyTrinaglle.getHeight()) * ii);
                 }
                 if (ii % 2 != 0) {
                     polyTrinaglle.draw(polyBatch2);
-                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()+ 5 * i) - polyTrinaglle.getWidth()+ 5 / 2),
-                            ((polyTrinaglle.getHeight())+ 5 * ii));
+                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()* i) - polyTrinaglle.getWidth() / 2),
+                            ((polyTrinaglle.getHeight()) * ii));
                 }
+                polyTrinaglle2.setRotation(180f);
+                if (ii % 2 == 0){polyTrinaglle2.draw(polyBatch2);
+                    polyTrinaglle2.setPosition(((polyTrinaglle2.getWidth()) * i - polyTrinaglle2.getWidth() / 2), (polyTrinaglle2.getHeight()) * ii);}
+                if (ii % 2 != 0){polyTrinaglle2.draw(polyBatch2);
+                    polyTrinaglle2.setPosition(((polyTrinaglle2.getWidth()) * i - polyTrinaglle2.getWidth()), (polyTrinaglle2.getHeight()) * ii);}
+
             }
         }
         polyBatch2.end();
-        Gdx.app.log("11111","22222222");
+        //Gdx.app.log("11111","22222222");
 
     }
     public void PixmapDrawRectangles2() {
@@ -501,7 +511,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 // Take care of the counter-clockwise direction.
         });
         polyTrinaglle = new PolygonSprite(polyReg2);
-
+        polyTrinaglle2  = new PolygonSprite(polyReg2);
         //poly = dinamicallyChangeColorPoly();
         //poly.setOrigin(0, 0);
         //polyBatch = new PolygonSpriteBatch();
