@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
@@ -56,6 +57,8 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
         batch.setProjectionMatrix(camera.combined);
 
+
+
         cameraMovingMethod();
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
@@ -70,6 +73,11 @@ public class MyGdxGame extends ApplicationAdapter {
             }
             optionSelected=false;
             evolvingTilling=false;
+        }
+        else if(evolvingTilling){
+            if (patternStyle.equals("SquareTillingLauncher")) {
+                drawRectangles();
+            }
         }
     }
 
@@ -255,4 +263,46 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
 
+    public void drawRectangles() {
+        ShapeRenderer shapeRenderer = new ShapeRenderer();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(1, 1, 0, 1);
+        //shapeRenderer.line(x, y, x2, y2);
+        shapeRenderer.rect(50, 50, 1000, 1000);
+        shapeRenderer.circle(50, 50, 150);
+        shapeRenderer.end();
+        //camera.update();
+        shapeRenderer.setProjectionMatrix(camera.combined);
+        camera.update();
+    }
+/*
+        shapeRenderer.begin(ShapeType.Line);
+        shapeRenderer.setColor(1, 1, 0, 1);
+        shapeRenderer.line(x, y, x2, y2);
+        shapeRenderer.rect(x, y, width, height);
+        shapeRenderer.circle(x, y, radius);
+        shapeRenderer.end();
+
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.setColor(0, 1, 0, 1);
+        shapeRenderer.rect(x, y, width, height);
+        shapeRenderer.circle(x, y, radius);
+        shapeRenderer.end();
+    }
+
+    void drawRect(int x, int y, int width, int height, int thickness) {
+        batch.draw(rect, x, y, width, thickness);
+        batch.draw(rect, x, y, thickness, height);
+        batch.draw(rect, x, y+height-thickness, width, thickness);
+        batch.draw(rect, x+width-thickness, y, thickness, height);
+    }
+
+    void drawLine(int x1, int y1, int x2, int y2, int thickness) {
+        int dx = x2-x1;
+        int dy = y2-y1;
+        float dist = (float)Math.sqrt(dx*dx + dy*dy);
+        float rad = (float)Math.atan2(dy, dx);
+        batch.draw(rect, x1, y1, dist, thickness, 0, 0, rad);
+    }
+     */
 }
