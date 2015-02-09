@@ -62,6 +62,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public static  Pixmap pixmap;
     public static  Pixmap pixmapSmall;
 
+    PolygonSprite poly;
+    PolygonSpriteBatch polyBatch; // To assign at the beginning
+    Texture textureSolid;
+
     int random;
 
     private Mesh mesh;
@@ -70,6 +74,7 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
+        polyBatch = new PolygonSpriteBatch();
         //shapeRenderer = new ShapeRenderer();
 
         checkIfFileExists(imageNameToBeSavedMGG);
@@ -90,7 +95,7 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         //Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
-
+        polyBatch.setProjectionMatrix(camera.combined);
         batch.setProjectionMatrix(camera.combined);
 
         //shapeRenderer.setProjectionMatrix(camera.combined);
@@ -322,11 +327,11 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.end();
     }
     public void PixmapDrawHexagons() {
-        shader.begin();
+        polyBatch.begin();
 
-        shader.setUniformi("u_texture", 0);
-        mesh.render(shader, GL20.GL_TRIANGLES);
-        shader.end();
+        poly.draw(polyBatch);
+        poly.setPosition(1000,1000);
+        polyBatch.end();
 
     }
     public void PixmapDrawRectangles2() {
@@ -393,28 +398,26 @@ public class MyGdxGame extends ApplicationAdapter {
         spriteForDynamicDrawing2 = dinamicallyChangeColor();
     }
     public void createPixmapHexagon(){
-        String vertexShader = "attribute vec4 a_position;    \n" + "attribute vec4 a_color;\n" + "attribute vec2 a_texCoord0;\n"
-                + "uniform mat4 u_worldView;\n" + "varying vec4 v_color;" + "varying vec2 v_texCoords;"
-                + "void main()                  \n" + "{                            \n" + "   v_color = vec4(1, 1, 1, 1); \n"
-                + "   v_texCoords = a_texCoord0; \n" + "   gl_Position =  u_worldView * a_position;  \n"
-                + "}                            \n";
-        String fragmentShader = "#ifdef GL_ES\n" + "precision mediump float;\n" + "#endif\n" + "varying vec4 v_color;\n"
-                + "varying vec2 v_texCoords;\n" + "uniform sampler2D u_texture;\n" + "void main()                                  \n"
-                + "{                                            \n" + "  gl_FragColor = v_color * texture2D(u_texture, v_texCoords);\n"
-                + "}";
 
-        shader = new ShaderProgram(vertexShader, fragmentShader);
-        if (mesh == null) {
-            mesh = new Mesh(true, 3, 3,
-                    new VertexAttribute(VertexAttributes.Usage.Position, 3, "a_position"));
-
-            mesh.setVertices(new float[] { -0.5f, -0.5f, 0,
-                    0.5f, -0.5f, 0,
-                    0, 0.5f, 0 });
-
-            mesh.setIndices(new short[] { 0, 1, 2 });
-        }
-
+        //polyBatch.setProjectionMatrix(camera.combined);
+        Pixmap pix = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pix.setColor(0xDEADBEFF); // DE is red, AD is green and BE is blue.
+        pix.fill();
+        textureSolid = new Texture(pix);
+        PolygonRegion polyReg = new PolygonRegion(new TextureRegion(textureSolid),
+                new float[] {      // Four vertices
+                        0, 0,            // Vertex 0         3--2
+                        1000, 0,          // Vertex 1         | /|
+                        1000, 1000,        // Vertex 2         |/ |
+                        0, 1000           // Vertex 3         0--1
+                }, new short[] {
+                0, 1, 2,         // Two triangles using vertex indices.
+                0, 2, 3          // Take care of the counter-clockwise direction.
+        });
+        poly = new PolygonSprite(polyReg);
+        poly.setOrigin(0, 0);
+        //polyBatch = new PolygonSpriteBatch();
+      // polyBatch.setProjectionMatrix(camera.combined);
     }
     @Override
     public void dispose () {
