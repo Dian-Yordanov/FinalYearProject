@@ -36,6 +36,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public static Sprite sprite;
     public static Sprite spriteForDynamicDrawing;
+    public static Sprite spriteForDynamicDrawing2;
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -99,6 +100,9 @@ public class MyGdxGame extends ApplicationAdapter {
         if(evolvingTilling){
             if (patternStyle.equals("SquareTillingLauncher")) {
                 PixmapDrawRectangles();
+            }
+            if (patternStyle.equals("SquareTillingLauncher2")) {
+                PixmapDrawRectangles2();
             }
         }
 
@@ -235,7 +239,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 float y11 = dragOld.y - dragNew.y;
 
 
-                dinamicallyChangeColor();
+                spriteForDynamicDrawing = dinamicallyChangeColor();
+                spriteForDynamicDrawing2 = dinamicallyChangeColor();
+
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
 
@@ -277,9 +283,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
     public void PixmapDrawRectangles() {
-
         batch.begin();
-
         for (int i = 0; i < 50; i++) {
             for (int ii = 0; ii < 50; ii++) {
                 spriteForDynamicDrawing.draw(batch);
@@ -287,7 +291,22 @@ public class MyGdxGame extends ApplicationAdapter {
                         ,(spriteForDynamicDrawing.getHeight() + 5) * ii);
             }
         }
+        batch.end();
+    }
+    public void PixmapDrawRectangles2() {
+        batch.begin();
+        for (int i = 0; i < 30; i++) {
+            for (int ii = 0; ii < 30; ii++) {
 
+
+                if (ii % 2 == 0) spriteForDynamicDrawing.draw(batch);
+                spriteForDynamicDrawing.setPosition((spriteForDynamicDrawing.getWidth() + 5) * i
+                        ,(spriteForDynamicDrawing.getHeight() + 5) * ii);
+                if (ii % 2 != 0)spriteForDynamicDrawing2.draw(batch);
+                spriteForDynamicDrawing2.setPosition((spriteForDynamicDrawing2.getWidth() + 5) * i
+                        ,(spriteForDynamicDrawing2.getHeight() + 5) * ii);
+            }
+        }
         batch.end();
     }
     public void createPixmap(){
@@ -299,13 +318,13 @@ public class MyGdxGame extends ApplicationAdapter {
         texture = new Texture(pixmap);
         //pixmap.dispose();
         spriteForDynamicDrawing = new Sprite(texture);
-
+        spriteForDynamicDrawing2 = new Sprite(texture);
     }
     @Override
     public void dispose () {
         batch.dispose();
     }
-    public void dinamicallyChangeColor(){
+    public Sprite dinamicallyChangeColor(){
         //pixmap.setColor(Color.GREEN);
         Random r = new Random();
         int Low = 0;
@@ -318,7 +337,7 @@ public class MyGdxGame extends ApplicationAdapter {
         pixmap.fill();
         texture = new Texture(pixmap);
         //pixmap.dispose();
-        spriteForDynamicDrawing = new Sprite(texture);
+        return new Sprite(texture);
     }
 
 }
