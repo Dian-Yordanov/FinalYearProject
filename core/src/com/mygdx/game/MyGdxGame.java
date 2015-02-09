@@ -96,7 +96,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         createPixmapTrianglle();
         //poly = dinamicallyChangeColorTrianglle();
-        //polyTrinaglle = dinamicallyChangeColorTrianglle();
+        polyTrinaglle = dinamicallyChangeColorTrianglle();
 
         createContent();
         createCamera();
@@ -298,7 +298,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 spriteForDynamicDrawing3 = dinamicallyChangeColor();
                 poly = dinamicallyChangeColorPoly();
                 polyTrinaglle = dinamicallyChangeColorTrianglle();
-                
+
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -487,7 +487,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         //polyBatch.setProjectionMatrix(camera.combined);
-        pixmapTrianglle = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmapTrianglle = new Pixmap(256,256, Pixmap.Format.RGBA8888);
         pixmapTrianglle.setColor(Color.GREEN); // DE is red, AD is green and BE is blue.
         pixmapTrianglle.fill();
         textureSolidTrinaglle = new Texture(pixmapTrianglle);
