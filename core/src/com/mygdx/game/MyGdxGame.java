@@ -41,7 +41,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static boolean evolvingTilling;
     public static boolean optionSelected=false;
 
-    ShapeRenderer shapeRenderer;
+    //ShapeRenderer shapeRenderer;
     public static Texture texture;
     private Pixmap pixmap;
 
@@ -55,6 +55,12 @@ public class MyGdxGame extends ApplicationAdapter {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
+        if(evolvingTilling){
+            if (patternStyle.equals("SquareTillingLauncher")) {
+                createPixmap();
+            }
+        }
+
         createContent();
         createCamera();
     }
@@ -62,13 +68,13 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-        Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
+        //Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
 
         batch.setProjectionMatrix(camera.combined);
         //shapeRenderer.setProjectionMatrix(camera.combined);
-        camera.update();
+        //camera.update();
 
 
         cameraMovingMethod();
@@ -92,7 +98,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
         if(evolvingTilling){
             if (patternStyle.equals("SquareTillingLauncher")) {
-                shapeRendererDrawRectangles();
+                PixmapDrawRectangles();
             }
         }
 
@@ -269,7 +275,7 @@ public class MyGdxGame extends ApplicationAdapter {
             }
         }
     }
-    public void shapeRendererDrawRectangles() {
+    public void PixmapDrawRectangles() {
 
         //rect = new TextureRegion();
         //sprite = new Sprite(rect,100,100,100,100);
@@ -298,16 +304,25 @@ public class MyGdxGame extends ApplicationAdapter {
 
         // A Pixmap is basically a raw image in memory as repesented by pixels
         // We create one 256 wide, 128 height using 8 bytes for Red, Green, Blue and Alpha channels
-        pixmap = new Pixmap(1000,1000, Pixmap.Format.RGBA8888);
+
+        batch.begin();
+        //sprite.setPosition(0, 0);
+        sprite.draw(batch);
+        sprite.setPosition(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        sprite.draw(batch);
+        batch.end();
+    }
+    public void createPixmap(){
+        pixmap = new Pixmap(1024,1024, Pixmap.Format.RGBA8888);
 
         //Fill it red
         pixmap.setColor(Color.RED);
         pixmap.fill();
 
         //Draw two lines forming an X
-        pixmap.setColor(Color.BLACK);
-        pixmap.drawLine(0, 0, pixmap.getWidth()-1, pixmap.getHeight()-1);
-        pixmap.drawLine(0, pixmap.getHeight()-1, pixmap.getWidth()-1, 0);
+        //pixmap.setColor(Color.BLACK);
+        //pixmap.drawLine(0, 0, pixmap.getWidth()-1, pixmap.getHeight()-1);
+        //pixmap.drawLine(0, pixmap.getHeight()-1, pixmap.getWidth()-1, 0);
 
         //Draw a circle about the middle
         pixmap.setColor(Color.YELLOW);
@@ -321,17 +336,12 @@ public class MyGdxGame extends ApplicationAdapter {
 
         sprite = new Sprite(texture);
 
-        batch.begin();
-        sprite.setPosition(0, 0);
-        sprite.draw(batch);
-        sprite.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
-        sprite.draw(batch);
-        batch.end();
     }
 
     @Override
     public void dispose () {
         batch.dispose();
+        pixmap.dispose();
        // shapeRenderer.dispose();
     }
 
