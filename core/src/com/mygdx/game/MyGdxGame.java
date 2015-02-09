@@ -309,9 +309,11 @@ public class MyGdxGame extends ApplicationAdapter {
         //pixmap.setColor(Color.GREEN);
         Random r = new Random();
         int Low = 0;
-        int High = 4;
+        int High = 15;
         random = r.nextInt(High-Low) + Low;
-        Color[] randomElement ={Color.BLUE,Color.GREEN,Color.RED,Color.CYAN};
+        Color[] randomElement ={Color.BLUE,Color.GREEN,Color.RED,Color.CYAN,Color.BLACK,Color.DARK_GRAY,
+        Color.GRAY,Color.MAGENTA,Color.MAROON,Color.NAVY,Color.OLIVE,Color.ORANGE,Color.PINK,Color.PURPLE,
+        Color.TEAL,Color.YELLOW};
         pixmap.setColor(randomElement[random]);
         pixmap.fill();
         texture = new Texture(pixmap);
