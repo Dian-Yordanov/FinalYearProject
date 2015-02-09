@@ -380,22 +380,26 @@ public class MyGdxGame extends ApplicationAdapter {
         polyBatch2.begin();
         for (int i = 0; i < 25; i++) {
             for (int ii = 0; ii < 25; ii++) {
+
+                polyTrinaglle2.setRotation(180f);
+                if (ii % 2 == 0){
+                    polyTrinaglle2.setPosition(((polyTrinaglle.getWidth()) * i - polyTrinaglle.getWidth() / 2), (polyTrinaglle.getHeight()) * ii - polyTrinaglle.getWidth() / 2 );
+                    polyTrinaglle2.draw(polyBatch2);}
+                if (ii % 2 != 0){
+                    polyTrinaglle2.setPosition(((polyTrinaglle.getWidth()) * i - polyTrinaglle.getWidth()), (polyTrinaglle.getHeight()) * ii - polyTrinaglle.getWidth() / 2 );
+                    polyTrinaglle2.draw(polyBatch2);}
                 if (ii % 2 == 0) {
-                    polyTrinaglle.draw(polyBatch2);
+
                     polyTrinaglle.setPosition(((polyTrinaglle.getWidth()) * i),
-                            (polyTrinaglle.getHeight()) * ii);
+                            (polyTrinaglle.getHeight()) * ii + 13);
+                    polyTrinaglle.draw(polyBatch2);
                 }
                 if (ii % 2 != 0) {
-                    polyTrinaglle.draw(polyBatch2);
-                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()* i) - polyTrinaglle.getWidth() / 2),
-                            ((polyTrinaglle.getHeight()) * ii));
-                }
-                polyTrinaglle2.setRotation(180f);
-                if (ii % 2 == 0){polyTrinaglle2.draw(polyBatch2);
-                    polyTrinaglle2.setPosition(((polyTrinaglle2.getWidth()) * i - polyTrinaglle2.getWidth() / 2), (polyTrinaglle2.getHeight()) * ii);}
-                if (ii % 2 != 0){polyTrinaglle2.draw(polyBatch2);
-                    polyTrinaglle2.setPosition(((polyTrinaglle2.getWidth()) * i - polyTrinaglle2.getWidth()), (polyTrinaglle2.getHeight()) * ii);}
 
+                    polyTrinaglle.setPosition(((polyTrinaglle.getWidth()* i) - polyTrinaglle.getWidth() / 2),
+                            ((polyTrinaglle.getHeight()) * ii) + 13);
+                    polyTrinaglle.draw(polyBatch2);
+                }
             }
         }
         polyBatch2.end();
@@ -503,9 +507,9 @@ public class MyGdxGame extends ApplicationAdapter {
         textureSolidTrinaglle = new Texture(pixmapTrianglle);
         PolygonRegion polyReg2 = new PolygonRegion(new TextureRegion(textureSolidTrinaglle),
                 new float[] {
-                        0, 100,            // Vertex 0         3--2
-                        87, -50,          // Vertex 1         | /|
-                        -87, -50       // Vertex 2         |/ |
+                        0, 150,            // Vertex 0         3--2
+                        130, -75,          // Vertex 1         | /|
+                        -130, -75       // Vertex 2         |/ |
                 }, new short[] {
                 0,2,1
                 // Take care of the counter-clockwise direction.
@@ -579,9 +583,9 @@ public class MyGdxGame extends ApplicationAdapter {
         textureSolidTrinaglle = new Texture(pixmapTrianglle);
         PolygonRegion polyReg2 = new PolygonRegion(new TextureRegion(textureSolidTrinaglle),
                 new float[] {
-                        0, 100,            // Vertex 0         3--2
-                        87, -50,          // Vertex 1         | /|
-                        -87, -50       // Vertex 2         |/ |
+                        0, 150,            // Vertex 0         3--2
+                        130, -75,          // Vertex 1         | /|
+                        -130, -75       // Vertex 2         |/ |
                 }, new short[] {
                 0,2,1
                 // Take care of the counter-clockwise direction.
