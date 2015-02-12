@@ -125,13 +125,17 @@ public class MyGdxGame extends ApplicationAdapter {
 
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
-            if (patternStyle.equals("SquareTillingLauncher")) {
+            if (patternStyle.equals("SquareTillingLauncher") ||
+                    patternStyle.equals("SquareTillingLauncher2") ||
+                    patternStyle.equals("SquareTillingLauncher3")) {
                 SquareRendering();
             }
-            if (patternStyle.equals("HexagonalTillingLauncher")) {
+            if (patternStyle.equals("HexagonalTillingLauncher")
+                    || patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
                 HexagonalRendering();
             }
-            if (patternStyle.equals("TriangullarTillingLauncher")) {
+            if (patternStyle.equals("TriangullarTillingLauncher")
+                    || patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
                 TriangullargleRendering();
             }
             optionSelected=false;
@@ -194,24 +198,32 @@ public class MyGdxGame extends ApplicationAdapter {
     public void createContent() {
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
-        if (patternStyle.equals("SquareTillingLauncher")) {
+        if (patternStyle.equals("SquareTillingLauncher")||
+                patternStyle.equals("SquareTillingLauncher2") ||
+                patternStyle.equals("SquareTillingLauncher3")) {
             manager.load(pictureAddress, Texture.class);
         }
-        if (patternStyle.equals("HexagonalTillingLauncher")) {
+        if (patternStyle.equals("HexagonalTillingLauncher") ||
+                patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
         }
-        if (patternStyle.equals("TriangullarTillingLauncher")) {
+        if (patternStyle.equals("TriangullarTillingLauncher") ||
+                patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
             manager.load(pictureAddress2, Texture.class);
         }
         manager.finishLoading();
-        if (patternStyle.equals("SquareTillingLauncher")) {
+        if (patternStyle.equals("SquareTillingLauncher")||
+                patternStyle.equals("SquareTillingLauncher2") ||
+                patternStyle.equals("SquareTillingLauncher3")) {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
-        if (patternStyle.equals("HexagonalTillingLauncher")) {
+        if (patternStyle.equals("HexagonalTillingLauncher") ||
+                patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
-        if (patternStyle.equals("TriangullarTillingLauncher")) {
+        if (patternStyle.equals("TriangullarTillingLauncher")||
+                patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             square2Img = manager.get(pictureAddress2, Texture.class);
 
