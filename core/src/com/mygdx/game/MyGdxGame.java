@@ -116,13 +116,7 @@ public class MyGdxGame extends ApplicationAdapter {
         polyBatch2.setProjectionMatrix(camera.combined);
         batch.setProjectionMatrix(camera.combined);
 
-        //shapeRenderer.setProjectionMatrix(camera.combined);
-        //camera.update();
-
-
         cameraMovingMethod();
-
-
 
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
@@ -399,9 +393,6 @@ public class MyGdxGame extends ApplicationAdapter {
                             camera.update();
                         }
                     }
-
-
-
                 }
                 dragOld = dragNew;
             }
@@ -497,14 +488,6 @@ public class MyGdxGame extends ApplicationAdapter {
                 if (ii % 2 != 0 && i % 2 !=0)spriteForDynamicDrawing2.draw(batch);
                 spriteForDynamicDrawing2.setPosition((spriteForDynamicDrawing2.getWidth()) * i
                         ,(spriteForDynamicDrawing2.getHeight()) * ii);
-                /*
-                if (ii % 2 == 0 && i % 2 !=0) spriteForDynamicDrawing3.draw(batch);
-                spriteForDynamicDrawing3.setPosition((spriteForDynamicDrawing3.getWidth()) * i
-                        ,(spriteForDynamicDrawing3.getHeight()) * ii);
-                if (ii % 2 != 0 && i % 2 ==0) spriteForDynamicDrawing3.draw(batch);
-                spriteForDynamicDrawing3.setPosition((spriteForDynamicDrawing3.getWidth()) * i
-                        ,(spriteForDynamicDrawing3.getHeight()) * ii);
-                */
                 spriteForDynamicDrawing3.draw(batch);
                 spriteForDynamicDrawing3.setPosition((spriteForDynamicDrawing3.getWidth() + 64) * i
                         ,(spriteForDynamicDrawing3.getHeight() + 64) * ii);
