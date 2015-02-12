@@ -49,11 +49,12 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite spriteForDynamicDrawing;
     public static Sprite spriteForDynamicDrawing2;
     public static Sprite spriteForDynamicDrawing3;
+
     public static Sprite spriteForDynamicDrawingHexagon;
     public static Sprite spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
     public static Sprite spriteSTTCornerTriangles;
-    public static Sprite groupSpriteSTT;
 
+    //public static Sprite groupSpriteSTT;
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -84,7 +85,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     static int random;
 
-
+    CompositeSprite CS;
 
     @Override
     public void create() {
@@ -194,7 +195,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     }
     public void createContent() {
-        PixmapDrawingClass PDC = new PixmapDrawingClass();
+        //PixmapDrawingClass PDC = new PixmapDrawingClass();
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
         if (patternStyle.equals("SquareTillingLauncher")||
@@ -242,9 +243,10 @@ public class MyGdxGame extends ApplicationAdapter {
             spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
 
-            groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
-                    ,spriteSTTCornerTriangles
-                    ,spriteForDynamicDrawingHexagon);
+            CS=new CompositeSprite();
+            //groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
+            //        ,spriteSTTCornerTriangles
+            //        ,spriteForDynamicDrawingHexagon);
 
             spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setRotation(180f);
             spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setColor(0, 0, 1, 1);
@@ -316,8 +318,11 @@ public class MyGdxGame extends ApplicationAdapter {
         //the + and - 3 are because of the white lines
         for (int i = 0; i < 15; i++) {//15
             for (int ii = 0; ii < 27; ii++) {//27
-               groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
-                groupSpriteSTT.draw(batch);
+            //even thought i am considering doing stuff in another way it is still to be noted that this gave me a texture with random color
+               //groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
+                //groupSpriteSTT.draw(batch);
+                CS.componentSprites.get(3).setPosition(CS.componentSprites.get(3).getWidth()*i,CS.componentSprites.get(3).getHeight()*ii);
+                CS.componentSprites.get(3).draw(batch);
                 /*
                 if (ii % 2 == 0) batch.draw(spriteSTTCornerTriangles,
                         ((spriteSTTCornerTriangles.getWidth()) * i),
@@ -404,13 +409,12 @@ public class MyGdxGame extends ApplicationAdapter {
             }
         }
     }
-
-
-
+    /*
     public Sprite SnubTrihexagonalTileSprite(Sprite midTriangleSprite,
                                              Sprite cornertriangleSprite, Sprite hexagonSprite) {
         Sprite combinedSprite;
         combinedSprite = cornertriangleSprite;
         return combinedSprite;
     }
+    */
 }
