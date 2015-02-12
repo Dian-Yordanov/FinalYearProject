@@ -25,6 +25,7 @@ public class StartingActivity extends Activity {
     public static Button EvolvingSquareTillingLauncherButton3;
     public static Button EvolvingHexagonalTillingLauncherButton;
     public static Button EvolvingTriangullarTillingLauncherButton;
+    public static Button SnubTrihexagonalTilingLauncherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,9 @@ public class StartingActivity extends Activity {
                 ,"data/ii_hexagonal_tilling.png");
         callClassTillingLauncher(EvolvingTriangullarTillingLauncherButton, R.id.evolvingTriangullarTillingLauncher
                 ,"EvolvingTriangullarTillingLauncher", "com.mygdx.game.android.EvolvingTriangullarTillingLauncher"
+                ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
+        callClassTillingLauncher(SnubTrihexagonalTilingLauncherButton, R.id.snubTrihexagonalTilingLauncher
+                ,"SnubTrihexagonalTilingLauncher", "com.mygdx.game.android.SnubTrihexagonalTilingLauncher"
                 ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
     }
 
