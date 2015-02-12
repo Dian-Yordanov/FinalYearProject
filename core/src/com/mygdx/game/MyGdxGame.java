@@ -86,6 +86,10 @@ public class MyGdxGame extends ApplicationAdapter {
     static int random;
 
     CompositeSprite CS;
+    Sprite sp0;
+    Sprite sp1;
+    Sprite sp2;
+    //Sprite sp3;
 
     @Override
     public void create() {
@@ -176,6 +180,7 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
     public void dispose () {
         batch.dispose();
+
     }
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -244,6 +249,12 @@ public class MyGdxGame extends ApplicationAdapter {
             spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
 
             CS=new CompositeSprite();
+
+            sp0 = CS.componentSprites.get(0);
+            sp1 = CS.componentSprites.get(1);
+            sp2 = CS.componentSprites.get(2);
+      //      sp3 = CS.componentSprites.get(3);
+
             //groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
             //        ,spriteSTTCornerTriangles
             //        ,spriteForDynamicDrawingHexagon);
@@ -321,8 +332,13 @@ public class MyGdxGame extends ApplicationAdapter {
             //even thought i am considering doing stuff in another way it is still to be noted that this gave me a texture with random color
                //groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
                 //groupSpriteSTT.draw(batch);
-                CS.componentSprites.get(3).setPosition(CS.componentSprites.get(3).getWidth()*i,CS.componentSprites.get(3).getHeight()*ii);
-                CS.componentSprites.get(3).draw(batch);
+                sp0.setPosition(sp0.getWidth()*i,sp0.getHeight()*ii);
+                sp0.draw(batch);
+                sp1.setPosition(sp1.getWidth()*i,sp1.getHeight()*ii);
+                sp1.draw(batch);
+                sp2.setPosition(sp2.getWidth()*i,sp2.getHeight()*ii);
+                sp2.draw(batch);
+
                 /*
                 if (ii % 2 == 0) batch.draw(spriteSTTCornerTriangles,
                         ((spriteSTTCornerTriangles.getWidth()) * i),
