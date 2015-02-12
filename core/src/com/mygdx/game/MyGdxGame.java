@@ -46,6 +46,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite spriteForDynamicDrawing2;
     public static Sprite spriteForDynamicDrawing3;
     public static Sprite spriteForDynamicDrawingHexagon;
+    public static Sprite spriteFortintingSnubTrihexagonalTillings;
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -231,8 +232,10 @@ public class MyGdxGame extends ApplicationAdapter {
             square1Img = manager.get(pictureAddress, Texture.class);
             square2Img = manager.get(pictureAddress2, Texture.class);
 
-            sprite = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-
+            spriteFortintingSnubTrihexagonalTillings = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+            spriteFortintingSnubTrihexagonalTillings.setRotation(180f);
+            spriteFortintingSnubTrihexagonalTillings.setColor(0, 0, 1, 1);
+            spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillings);
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -306,13 +309,13 @@ public class MyGdxGame extends ApplicationAdapter {
                 if (ii % 2 != 0) batch.draw(square1Img,
                         (((square1Img.getWidth() * i) - square1Img.getWidth() / 2)),
                         ((square1Img.getHeight()) * ii));
-                sprite.setRotation(180f);
-                sprite.setColor(0, 0, 1, 1);
+
                 if (ii % 2 == 0)
-                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth() / 2), (sprite.getHeight()) * ii);
+                    spriteFortintingSnubTrihexagonalTillings.setPosition(
+                            ((spriteFortintingSnubTrihexagonalTillings.getWidth()) * i - square1Img.getWidth() / 2), (spriteFortintingSnubTrihexagonalTillings.getHeight()) * ii);
                 if (ii % 2 != 0)
-                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()), (sprite.getHeight()) * ii);
-                sprite.draw(batch);
+                    spriteFortintingSnubTrihexagonalTillings.setPosition(((spriteFortintingSnubTrihexagonalTillings.getWidth()) * i - square1Img.getWidth()), (spriteFortintingSnubTrihexagonalTillings.getHeight()) * ii);
+                spriteFortintingSnubTrihexagonalTillings.draw(batch);
             }
         }
         batch.disableBlending();
@@ -343,6 +346,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 poly = dinamicallyChangeColorPoly();
                 polyTrinaglle = dinamicallyChangeColorTrianglle();
                 polyTrinaglle2 = dinamicallyChangeColorTrianglle();
+                spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillings);
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -632,5 +636,14 @@ public class MyGdxGame extends ApplicationAdapter {
         });
         return new PolygonSprite(polyReg2);
     }
-
+    public void spriteSetRandomColor(Sprite spriteToBeTinted){
+        Random r = new Random();
+        int Low = 0;
+        int High = 15;
+        random = r.nextInt(High-Low) + Low;
+        Color[] randomElement ={Color.BLUE,Color.GREEN,Color.RED,Color.CYAN,Color.BLACK,Color.DARK_GRAY,
+                Color.GRAY,Color.MAGENTA,Color.MAROON,Color.NAVY,Color.OLIVE,Color.ORANGE,Color.PINK,Color.PURPLE,
+                Color.TEAL,Color.YELLOW};
+        spriteToBeTinted.setColor(randomElement[random]);
+    }
 }
