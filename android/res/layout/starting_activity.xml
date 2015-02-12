@@ -1,91 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="————— Periodic tillings —————"
-        android:textSize="18dp"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20dp"
-        android:id="@+id/spaceView"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="————— Periodic tillings —————"
+            android:textSize="18dp"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:id="@+id/spaceView"
+            android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Square tiling"
-        android:id="@+id/squareTillingLauncher"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Hexagonal tiling"
-        android:id="@+id/hexagonalTillingLauncher"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Triangullar tiling"
-        android:id="@+id/triangullarTillingLauncher"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20dp"
-        android:id="@+id/spaceView2"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="————— Evolving tillings —————"
-        android:textSize="18dp"
-        android:id="@+id/textView1"
-        android:layout_gravity="center_horizontal" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20dp"
-        android:id="@+id/spaceView1"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Evolving Square tiling"
-        android:id="@+id/evolvingSquaretiling"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Evolving Square tiling 2"
-        android:id="@+id/evolvingSquaretiling2"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Evolving Square tiling 3"
-        android:id="@+id/evolvingSquaretiling3"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Evolving Hexagonal tiling"
-        android:id="@+id/evolvingHexagonalTilling"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="Evolving Triangullar tiling"
-        android:id="@+id/evolvingTriangullarTillingLauncher"
-        android:layout_gravity="center_horizontal" />
-
-</LinearLayout>
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Square tiling"
+            android:id="@+id/squareTillingLauncher"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Hexagonal tiling"
+            android:id="@+id/hexagonalTillingLauncher"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Triangullar tiling"
+            android:id="@+id/triangullarTillingLauncher"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:id="@+id/spaceView3"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="———— Archimedean tillings ————"
+            android:textSize="18dp"
+            android:id="@+id/textView2"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:id="@+id/spaceView4"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:id="@+id/spaceView2"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="————— Evolving tillings —————"
+            android:textSize="18dp"
+            android:id="@+id/textView1"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:id="@+id/spaceView1"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Evolving Square tiling"
+            android:id="@+id/evolvingSquaretiling"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Evolving Square tiling 2"
+            android:id="@+id/evolvingSquaretiling2"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Evolving Square tiling 3"
+            android:id="@+id/evolvingSquaretiling3"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Evolving Hexagonal tiling"
+            android:id="@+id/evolvingHexagonalTilling"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Evolving Triangullar tiling"
+            android:id="@+id/evolvingTriangullarTillingLauncher"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</ScrollView>
