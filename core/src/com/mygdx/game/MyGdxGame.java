@@ -46,7 +46,10 @@ public class MyGdxGame extends ApplicationAdapter {
     public static Sprite spriteForDynamicDrawing2;
     public static Sprite spriteForDynamicDrawing3;
     public static Sprite spriteForDynamicDrawingHexagon;
-    public static Sprite spriteFortintingSnubTrihexagonalTillings;
+    public static Sprite spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
+    public static Sprite spriteSTTCornerTriangles;
+    public static Sprite groupSpriteSTT;
+
 
     private OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
@@ -76,6 +79,8 @@ public class MyGdxGame extends ApplicationAdapter {
     Texture textureSolid;
 
     int random;
+
+
 
     @Override
     public void create() {
@@ -232,10 +237,18 @@ public class MyGdxGame extends ApplicationAdapter {
             square1Img = manager.get(pictureAddress, Texture.class);
             square2Img = manager.get(pictureAddress2, Texture.class);
 
-            spriteFortintingSnubTrihexagonalTillings = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-            spriteFortintingSnubTrihexagonalTillings.setRotation(180f);
-            spriteFortintingSnubTrihexagonalTillings.setColor(0, 0, 1, 1);
-            spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillings);
+
+            spriteForDynamicDrawingHexagon = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+            spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
+
+            groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
+                    ,spriteSTTCornerTriangles
+                    ,spriteForDynamicDrawingHexagon);
+
+            spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setRotation(180f);
+            spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setColor(0, 0, 1, 1);
+            spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -301,21 +314,27 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
-        for (int i = 0; i < 15; i++) {
-            for (int ii = 0; ii < 27; ii++) {
-                if (ii % 2 == 0) batch.draw(square1Img,
-                        ((square1Img.getWidth()) * i),
-                        (square1Img.getHeight()) * ii);
-                if (ii % 2 != 0) batch.draw(square1Img,
-                        (((square1Img.getWidth() * i) - square1Img.getWidth() / 2)),
-                        ((square1Img.getHeight()) * ii));
+        for (int i = 0; i < 15; i++) {//15
+            for (int ii = 0; ii < 27; ii++) {//27
+               groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
+                groupSpriteSTT.draw(batch);
+                /*
+                if (ii % 2 == 0) batch.draw(spriteSTTCornerTriangles,
+                        ((spriteSTTCornerTriangles.getWidth()) * i),
+                        (spriteSTTCornerTriangles.getHeight()) * ii);
+                if (ii % 2 != 0) batch.draw(spriteSTTCornerTriangles,
+                        (((spriteSTTCornerTriangles.getWidth() * i) - spriteSTTCornerTriangles.getWidth() / 2)),
+                        ((spriteSTTCornerTriangles.getHeight()) * ii));
 
                 if (ii % 2 == 0)
-                    spriteFortintingSnubTrihexagonalTillings.setPosition(
-                            ((spriteFortintingSnubTrihexagonalTillings.getWidth()) * i - square1Img.getWidth() / 2), (spriteFortintingSnubTrihexagonalTillings.getHeight()) * ii);
+                    spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setPosition(
+                            ((spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getWidth()) * i
+                            - spriteSTTCornerTriangles.getWidth() / 2), (spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getHeight()) * ii);
                 if (ii % 2 != 0)
-                    spriteFortintingSnubTrihexagonalTillings.setPosition(((spriteFortintingSnubTrihexagonalTillings.getWidth()) * i - square1Img.getWidth()), (spriteFortintingSnubTrihexagonalTillings.getHeight()) * ii);
-                spriteFortintingSnubTrihexagonalTillings.draw(batch);
+                    spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setPosition(((spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getWidth()) * i
+                            - spriteSTTCornerTriangles.getWidth()), (spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getHeight()) * ii);
+                spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.draw(batch);
+               */
             }
         }
         batch.disableBlending();
@@ -346,7 +365,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 poly = dinamicallyChangeColorPoly();
                 polyTrinaglle = dinamicallyChangeColorTrianglle();
                 polyTrinaglle2 = dinamicallyChangeColorTrianglle();
-                spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillings);
+                spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -645,5 +664,11 @@ public class MyGdxGame extends ApplicationAdapter {
                 Color.GRAY,Color.MAGENTA,Color.MAROON,Color.NAVY,Color.OLIVE,Color.ORANGE,Color.PINK,Color.PURPLE,
                 Color.TEAL,Color.YELLOW};
         spriteToBeTinted.setColor(randomElement[random]);
+    }
+    public Sprite SnubTrihexagonalTileSprite(Sprite midTriangleSprite,
+                                             Sprite cornertriangleSprite, Sprite hexagonSprite) {
+        Sprite combinedSprite;
+        combinedSprite = cornertriangleSprite;
+        return combinedSprite;
     }
 }
