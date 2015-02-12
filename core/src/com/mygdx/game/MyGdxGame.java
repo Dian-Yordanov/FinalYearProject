@@ -138,6 +138,9 @@ public class MyGdxGame extends ApplicationAdapter {
                     || patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
                 TriangullargleRendering();
             }
+            if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
+                TriangullargleRendering();
+            }
             optionSelected=false;
             evolvingTilling=false;
         }
@@ -152,17 +155,12 @@ public class MyGdxGame extends ApplicationAdapter {
             if (patternStyle.equals("SquareTillingLauncher3")) {
                 PixmapDrawRectangles3();
             }
-            //if(evolvingTilling) {
-                if (patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
-                  PixmapDrawHexagons();
-                }
-            //}
-            //if(evolvingTilling) {
-                if (patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
-                    PixmapDrawTrianglles();
-                    //PixmapDrawHexagons();
-                }
-            //}
+            if (patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
+                PixmapDrawHexagons();
+            }
+            if (patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
+                PixmapDrawTrianglles();
+            }
         }
 
 
@@ -212,6 +210,10 @@ public class MyGdxGame extends ApplicationAdapter {
             manager.load(pictureAddress, Texture.class);
             manager.load(pictureAddress2, Texture.class);
         }
+        if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+            manager.load(pictureAddress2, Texture.class);
+        }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")||
                 patternStyle.equals("SquareTillingLauncher2") ||
@@ -224,6 +226,13 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         if (patternStyle.equals("TriangullarTillingLauncher")||
                 patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+            square2Img = manager.get(pictureAddress2, Texture.class);
+
+            sprite = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+
+        }
+        if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             square2Img = manager.get(pictureAddress2, Texture.class);
 
