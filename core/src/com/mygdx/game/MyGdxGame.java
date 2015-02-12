@@ -71,24 +71,20 @@ public class MyGdxGame extends ApplicationAdapter {
     PolygonSpriteBatch polyBatch2;
 
     PolygonSprite poly;
-    PolygonSpriteBatch polyBatch; // To assign at the beginning
+    PolygonSpriteBatch polyBatch;
     Texture textureSolid;
-   // PolygonRegion polyReg;
 
     int random;
-
-    private Mesh mesh;
-    ShaderProgram shader;
 
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
         polyBatch = new PolygonSpriteBatch();
         polyBatch2 = new PolygonSpriteBatch();
-        //shapeRenderer = new ShapeRenderer();
 
         checkIfFileExists(imageNameToBeSavedMGG);
-        if (patternStyle.equals("TriangullarTillingLauncher")) {
+        if (patternStyle.equals("TriangullarTillingLauncher") ||
+                patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
@@ -98,7 +94,6 @@ public class MyGdxGame extends ApplicationAdapter {
         poly = dinamicallyChangeColorPoly();
 
         createPixmapTrianglle();
-        //poly = dinamicallyChangeColorTrianglle();
         polyTrinaglle = dinamicallyChangeColorTrianglle();
         polyTrinaglle2 = dinamicallyChangeColorTrianglle();
 
