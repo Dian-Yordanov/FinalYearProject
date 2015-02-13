@@ -33,7 +33,6 @@ import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorTrianglle;
 
 public class MyGdxGame extends ApplicationAdapter {
-
     //region Constructors
     public static SpriteBatch batch;
     public static String patternStyle = "";
@@ -92,7 +91,6 @@ public class MyGdxGame extends ApplicationAdapter {
     Sprite sp1;
     Sprite sp2;
     //endregion
-
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
@@ -246,36 +244,7 @@ public class MyGdxGame extends ApplicationAdapter {
             square1Img = manager.get(pictureAddress, Texture.class);
             square2Img = manager.get(pictureAddress2, Texture.class);
 
-
-            spriteForDynamicDrawingHexagon = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-            spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
-
-
-            CreateCompositeSprite();
-            sp0 = componentSprites.get(0);
-            sp1 = componentSprites.get(1);
-            sp2 = componentSprites.get(2);
-            //sp3 = componentSprites.get(3);
-
-            //sp0 = CS.componentSprites.get(0);
-            //sp1 = CS.componentSprites.get(1);
-            //sp2 = CS.componentSprites.get(2);
-      //      sp3 = CS.componentSprites.get(3);
-
-            //groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
-            //        ,spriteSTTCornerTriangles
-            //        ,spriteForDynamicDrawingHexagon);
-            //spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.scale(0.5f);
-
-            //spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.scale(sp0.getWidth()/2);
-            //spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.
-
-
-
-            spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setRotation(180f);
-            spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setColor(0, 0, 1, 1);
-            PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
+            setupCompositeSprites();
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -395,7 +364,22 @@ public class MyGdxGame extends ApplicationAdapter {
         // componentSprites.add(returnShapeforColoring(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle));
     }
     public void resize(){
-        componentSprites.get(2).setSize(componentSprites.get(0).getWidth()/2,componentSprites.get(0).getHeight()/2);
+        componentSprites.get(2).setSize(
+                componentSprites.get(0).getWidth()/2
+                ,componentSprites.get(0).getHeight()/2);
     }
+    public void setupCompositeSprites(){
+        spriteForDynamicDrawingHexagon = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
 
+        CreateCompositeSprite();
+        sp0 = componentSprites.get(0);
+        sp1 = componentSprites.get(1);
+        sp2 = componentSprites.get(2);
+
+        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setRotation(180f);
+        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setColor(0, 0, 1, 1);
+        PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
+    }
 }
