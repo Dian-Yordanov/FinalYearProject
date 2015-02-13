@@ -257,17 +257,15 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
-        for (int i = 0; i < 15; i++) {//15
-            for (int ii = 0; ii < 27; ii++) {//27
+        for (int i = 0; i < 1; i++) {//15
+            for (int ii = 0; ii < 1; ii++) {//27
             //even thought i am considering doing stuff in another way it is still to be noted that this gave me a texture with random color
                //groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
                 //groupSpriteSTT.draw(batch);
-                sp0.setPosition(sp0.getWidth()*i,sp0.getHeight()*ii);
-                sp0.draw(batch);
-                sp1.setPosition(sp1.getWidth()*i,sp1.getHeight()*ii);
-                sp1.draw(batch);
-                sp2.setPosition(sp2.getWidth()*i,sp2.getHeight()*ii);
-                sp2.draw(batch);
+
+                positionSpritesForDrawing(i,ii);
+
+
 
                 /*
                 if (ii % 2 == 0) batch.draw(spriteSTTCornerTriangles,
@@ -360,26 +358,31 @@ public class MyGdxGame extends ApplicationAdapter {
         componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
         componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
-        resize();
-        // componentSprites.add(returnShapeforColoring(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle));
-    }
-    public void resize(){
-        componentSprites.get(2).setSize(
-                componentSprites.get(0).getWidth()/2
-                ,componentSprites.get(0).getHeight()/2);
     }
     public void setupCompositeSprites(){
         spriteForDynamicDrawingHexagon = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
         spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-        spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
+        spriteSTTCornerTriangles = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
 
         CreateCompositeSprite();
         sp0 = componentSprites.get(0);
         sp1 = componentSprites.get(1);
         sp2 = componentSprites.get(2);
 
-        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setRotation(180f);
-        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setColor(0, 0, 1, 1);
-        PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
+        sp1.setRotation(180f);
+        sp1.setColor(0, 0, 1, 1);
+        PixmapDrawingClass.spriteSetRandomColor(sp1);
+       // resize(sp2,sp0);
+
+        sp2.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
+    }
+    public void positionSpritesForDrawing(int i, int ii){
+        int iii=2000;
+        sp0.setPosition(sp0.getWidth()*i+iii,sp0.getHeight()*ii+iii);
+        sp0.draw(batch);
+        sp1.setPosition(sp1.getWidth()*i+iii,sp1.getHeight()*ii+iii);
+        sp1.draw(batch);
+        sp2.setPosition(sp2.getWidth()*i+iii,sp2.getHeight()*i+iii);
+        sp2.draw(batch);
     }
 }
