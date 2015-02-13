@@ -34,6 +34,7 @@ import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorTrianglle;
 
 public class MyGdxGame extends ApplicationAdapter {
 
+    //region Constructors
     public static SpriteBatch batch;
     public static String patternStyle = "";
 
@@ -90,7 +91,7 @@ public class MyGdxGame extends ApplicationAdapter {
     Sprite sp0;
     Sprite sp1;
     Sprite sp2;
-    //Sprite sp3;
+    //endregion
 
     @Override
     public void create() {
@@ -283,7 +284,6 @@ public class MyGdxGame extends ApplicationAdapter {
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
-
     public void SnubTrihexagonaltillingLauncher() {
         batch.begin();
         batch.enableBlending();
@@ -386,15 +386,6 @@ public class MyGdxGame extends ApplicationAdapter {
             }
         }
     }
-    /*
-    public Sprite SnubTrihexagonalTileSprite(Sprite midTriangleSprite,
-                                             Sprite cornertriangleSprite, Sprite hexagonSprite) {
-        Sprite combinedSprite;
-        combinedSprite = cornertriangleSprite;
-        return combinedSprite;
-    }
-    */
-
     public void CreateCompositeSprite() {
         componentSprites = new Array<Sprite>();
         componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
