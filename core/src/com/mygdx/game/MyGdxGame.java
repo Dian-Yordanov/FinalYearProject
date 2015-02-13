@@ -24,6 +24,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.Array;
 
 import java.util.Random;
 
@@ -85,7 +86,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     static int random;
 
-    CompositeSprite CS;
+    Array<Sprite> componentSprites;
     Sprite sp0;
     Sprite sp1;
     Sprite sp2;
@@ -248,11 +249,16 @@ public class MyGdxGame extends ApplicationAdapter {
             spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             spriteSTTCornerTriangles=spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
 
-            CS=new CompositeSprite();
 
-            sp0 = CS.componentSprites.get(0);
-            sp1 = CS.componentSprites.get(1);
-            sp2 = CS.componentSprites.get(2);
+            CreateCompositeSprite();
+            sp0 = componentSprites.get(0);
+            sp1 = componentSprites.get(1);
+            sp2 = componentSprites.get(2);
+            //sp3 = componentSprites.get(3);
+
+            //sp0 = CS.componentSprites.get(0);
+            //sp1 = CS.componentSprites.get(1);
+            //sp2 = CS.componentSprites.get(2);
       //      sp3 = CS.componentSprites.get(3);
 
             //groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
@@ -439,4 +445,17 @@ public class MyGdxGame extends ApplicationAdapter {
         return combinedSprite;
     }
     */
+
+    public void CreateCompositeSprite() {
+        componentSprites = new Array<Sprite>();
+        componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
+        componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
+        componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
+        resize();
+        // componentSprites.add(returnShapeforColoring(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle));
+    }
+    public void resize(){
+        componentSprites.get(2).setSize(componentSprites.get(0).getWidth()/2,componentSprites.get(0).getHeight()/2);
+    }
+
 }
