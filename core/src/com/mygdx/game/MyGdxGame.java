@@ -258,6 +258,12 @@ public class MyGdxGame extends ApplicationAdapter {
             //groupSpriteSTT = SnubTrihexagonalTileSprite(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle
             //        ,spriteSTTCornerTriangles
             //        ,spriteForDynamicDrawingHexagon);
+            //spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.scale(0.5f);
+
+            //spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.scale(sp0.getWidth()/2);
+            //spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.
+
+
 
             spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setRotation(180f);
             spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setColor(0, 0, 1, 1);

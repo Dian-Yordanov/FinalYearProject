@@ -15,12 +15,16 @@ public class CompositeSprite {
         componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
         componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
+        resize();
        // componentSprites.add(returnShapeforColoring(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle));
     }
 
     public void addComponentSprite(Sprite sprite) {
         componentSprites.add(sprite);
 
+    }
+    public void resize(){
+        componentSprites.get(2).setSize(componentSprites.get(0).getWidth()/2,componentSprites.get(0).getHeight()/2);
     }
     //public Sprite returnShapeforColoring(Sprite cornertriangleSprite){
     //    Sprite combinedSprite;
