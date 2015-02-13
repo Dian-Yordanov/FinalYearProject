@@ -98,6 +98,7 @@ public class MyGdxGame extends ApplicationAdapter {
         polyBatch = new PolygonSpriteBatch();
         polyBatch2 = new PolygonSpriteBatch();
 
+        //PeriodicTillingsRendering PTR = new PeriodicTillingsRendering();
 
         checkIfFileExists(imageNameToBeSavedMGG);
         if (patternStyle.equals("TriangullarTillingLauncher") ||
@@ -134,15 +135,15 @@ public class MyGdxGame extends ApplicationAdapter {
             if (patternStyle.equals("SquareTillingLauncher") ||
                     patternStyle.equals("SquareTillingLauncher2") ||
                     patternStyle.equals("SquareTillingLauncher3")) {
-                SquareRendering();
+                PeriodicTillingsRendering.SquareRendering();
             }
             if (patternStyle.equals("HexagonalTillingLauncher")
                     || patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
-                HexagonalRendering();
+                PeriodicTillingsRendering.HexagonalRendering();
             }
             if (patternStyle.equals("TriangullarTillingLauncher")
                     || patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
-                TriangullargleRendering();
+                PeriodicTillingsRendering.TriangullargleRendering();
             }
             if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
                 SnubTrihexagonaltillingLauncher();
@@ -282,59 +283,7 @@ public class MyGdxGame extends ApplicationAdapter {
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
-    public void SquareRendering() {
-        batch.begin();
-        for (int i = 0; i < 100; i++) {
-            for (int ii = 0; ii < 100; ii++) {
-                batch.draw(square1Img, ((square1Img.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                        , ((square1Img.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
-            }
-        }
-        batch.end();
-    }
-    public void HexagonalRendering() {
-        batch.begin();
-        batch.enableBlending();
-        for (int i = 0; i < 100; i++) {
-            for (int ii = 0; ii < 100; ii++) {
-                if (i % 2 == 0) {
-                    batch.draw(square1Img,
-                            (((square1Img.getWidth() + 5) * 3 / 4) * i) - ((square1Img.getWidth() + 5) * 3 / 4) / 2
-                            , (square1Img.getHeight() + 5) * ii);
-                }
-                if (i % 2 != 0) {
-                    batch.draw(square1Img,
-                            (((square1Img.getWidth() + 5) * 3 / 4) * i) - ((square1Img.getWidth() + 5) * 3 / 4) / 2
-                            , (((square1Img.getHeight() + 5) * ii) - square1Img.getHeight() / 2) - 2);
-                }
-            }
-        }
-        batch.disableBlending();
-        batch.end();
-    }
-    public void TriangullargleRendering() {
-        batch.begin();
-        batch.enableBlending();
-        //the + and - 3 are because of the white lines
-        for (int i = 0; i < 15; i++) {
-            for (int ii = 0; ii < 27; ii++) {
-                if (ii % 2 == 0) batch.draw(square1Img,
-                        ((square1Img.getWidth()) * i),
-                        (square1Img.getHeight()) * ii);
-                if (ii % 2 != 0) batch.draw(square1Img,
-                        (((square1Img.getWidth() * i) - square1Img.getWidth() / 2)),
-                        ((square1Img.getHeight()) * ii));
-                sprite.setRotation(180f);
-                if (ii % 2 == 0)
-                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth() / 2), (sprite.getHeight()) * ii);
-                if (ii % 2 != 0)
-                    sprite.setPosition(((sprite.getWidth()) * i - square1Img.getWidth()), (sprite.getHeight()) * ii);
-                sprite.draw(batch);
-            }
-        }
-        batch.disableBlending();
-        batch.end();
-    }
+
     public void SnubTrihexagonaltillingLauncher() {
         batch.begin();
         batch.enableBlending();
