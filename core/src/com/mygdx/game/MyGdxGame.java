@@ -382,7 +382,7 @@ public class MyGdxGame extends ApplicationAdapter {
         sp0.draw(batch);
         sp1.setPosition(sp1.getWidth()*i+iii,sp1.getHeight()*ii+iii);
         sp1.draw(batch);
-        sp2.setPosition(sp2.getWidth()*i+iii,sp2.getHeight()*i+iii);
+        sp2.setPosition(sp0.getX()+sp0.getWidth()/2,sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
     }
 }
