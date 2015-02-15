@@ -384,8 +384,8 @@ public class MyGdxGame extends ApplicationAdapter {
         PixmapDrawingClass.spriteSetRandomColor(sp1);
        // resize(sp2,sp0);
 
-        sp2.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
-        sp3.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
+        sp2.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
+        sp3.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
 
         sp3.setOrigin(sp3.getWidth()/2, sp3.getHeight()/2);
         sp3.setRotation(180f);
@@ -396,12 +396,12 @@ public class MyGdxGame extends ApplicationAdapter {
         sp0.draw(batch);
         sp1.setPosition(sp1.getWidth()*i+iii+100,sp1.getHeight()*ii+iii+100);
         sp1.draw(batch);
-        sp2.setPosition(sp0.getX()+sp0.getWidth()*1/4,sp0.getY()+sp0.getHeight());
+        sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
 
 
 
-        sp3.setPosition(sp0.getX()+sp0.getWidth()*1/4,sp0.getY()-sp3.getHeight());
+        sp3.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()-sp3.getHeight());
         sp3.draw(batch);
 
     }
