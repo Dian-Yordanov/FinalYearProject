@@ -406,6 +406,14 @@ public class MyGdxGame extends ApplicationAdapter {
         sp5.setOrigin(sp5.getWidth()/2, sp5.getHeight()/2);
         sp5.setRotation(300f);
 
+        sp6.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        sp6.setOrigin(sp6.getWidth()/2, sp6.getHeight()/2);
+        sp6.setRotation(240);
+
+        sp7.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        sp7.setOrigin(sp7.getWidth()/2, sp7.getHeight()/2);
+        sp7.setRotation(300f);
+
     }
     public void positionSpritesForDrawing(int i, int ii){
         int iii=2000;
@@ -428,6 +436,11 @@ public class MyGdxGame extends ApplicationAdapter {
         sp5.setPosition((sp0.getX()+sp0.getWidth()*3/4)+7,sp0.getY()+15+sp0.getHeight()/2);
         sp5.draw(batch);
 
+        sp6.setPosition((sp0.getX()-sp0.getWidth()*1/4)+9,sp0.getY()-sp6.getHeight()-15+sp0.getHeight()/2);
+        sp6.draw(batch);
+
+        sp7.setPosition((sp0.getX()-sp0.getWidth()*1/4)+9,sp0.getY()+15+sp0.getHeight()/2);
+        sp7.draw(batch);
 
     }
 }
