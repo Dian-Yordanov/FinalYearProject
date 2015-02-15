@@ -90,6 +90,7 @@ public class MyGdxGame extends ApplicationAdapter {
     Sprite sp0;
     Sprite sp1;
     Sprite sp2;
+    Sprite sp3;
     //endregion
     @Override
     public void create() {
@@ -354,20 +355,28 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
     public void CreateCompositeSprite() {
+        sp0 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+        sp1 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp3 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+
         componentSprites = new Array<Sprite>();
         componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
         componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
+        componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
     }
     public void setupCompositeSprites(){
-        spriteForDynamicDrawingHexagon = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-        spriteSTTCornerTriangles = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+
+
+
 
         CreateCompositeSprite();
-        sp0 = componentSprites.get(0);
+        /*sp0 = componentSprites.get(0);
         sp1 = componentSprites.get(1);
-        sp2 = componentSprites.get(2);
+        sp2 = componentSprites.get(2);*/
+        //sp3 = componentSprites.get(3);
+        //componentSprites.get(3).equals(componentSprites.get(2));
 
         sp1.setRotation(180f);
         sp1.setColor(0, 0, 1, 1);
@@ -375,14 +384,23 @@ public class MyGdxGame extends ApplicationAdapter {
        // resize(sp2,sp0);
 
         sp2.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
+
+        sp3.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
+        sp3.setRotation(180f);
     }
     public void positionSpritesForDrawing(int i, int ii){
         int iii=2000;
         sp0.setPosition(sp0.getWidth()*i+iii,sp0.getHeight()*ii+iii);
         sp0.draw(batch);
-        sp1.setPosition(sp1.getWidth()*i+iii,sp1.getHeight()*ii+iii);
+        sp1.setPosition(sp1.getWidth()*i+iii+100,sp1.getHeight()*ii+iii+100);
         sp1.draw(batch);
-        sp2.setPosition(sp0.getX()+sp0.getWidth()/2,sp0.getY()+sp0.getHeight());
+        sp2.setPosition(sp0.getX()+sp0.getWidth()*1/4,sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
+
+
+
+        sp3.setPosition(sp0.getX()+sp0.getWidth()*1/4,sp0.getY());
+        sp3.draw(batch);
+
     }
 }
