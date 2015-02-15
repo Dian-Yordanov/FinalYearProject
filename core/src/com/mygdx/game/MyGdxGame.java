@@ -356,15 +356,16 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void CreateCompositeSprite() {
         sp0 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-        sp1 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         sp2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         sp3 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
 
         componentSprites = new Array<Sprite>();
-        componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
-        componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
-        componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
+        //componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
+
+        //componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
+        //componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
     }
     public void setupCompositeSprites(){
 
@@ -372,9 +373,9 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
         CreateCompositeSprite();
-        /*sp0 = componentSprites.get(0);
-        sp1 = componentSprites.get(1);
-        sp2 = componentSprites.get(2);*/
+        sp1 = componentSprites.get(0);
+        //sp1 = componentSprites.get(0);
+        //sp2 = componentSprites.get(2);
         //sp3 = componentSprites.get(3);
         //componentSprites.get(3).equals(componentSprites.get(2));
 
@@ -384,8 +385,9 @@ public class MyGdxGame extends ApplicationAdapter {
        // resize(sp2,sp0);
 
         sp2.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
-
         sp3.setSize(sp0.getWidth()/2,sp0.getHeight()/2);
+
+        sp3.setOrigin(sp3.getWidth()/2, sp3.getHeight()/2);
         sp3.setRotation(180f);
     }
     public void positionSpritesForDrawing(int i, int ii){
@@ -399,7 +401,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
 
-        sp3.setPosition(sp0.getX()+sp0.getWidth()*1/4,sp0.getY());
+        sp3.setPosition(sp0.getX()+sp0.getWidth()*1/4,sp0.getY()-sp3.getHeight());
         sp3.draw(batch);
 
     }
