@@ -91,6 +91,10 @@ public class MyGdxGame extends ApplicationAdapter {
     Sprite sp1;
     Sprite sp2;
     Sprite sp3;
+    Sprite sp4;
+    Sprite sp5;
+    Sprite sp6;
+    Sprite sp7;
     //endregion
     @Override
     public void create() {
@@ -359,6 +363,10 @@ public class MyGdxGame extends ApplicationAdapter {
         spriteFortintingSnubTrihexagonalTillingsMiddleTriangle = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         sp2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         sp3 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp4 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp5 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp6 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp7 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
 
         componentSprites = new Array<Sprite>();
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
@@ -369,9 +377,6 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void setupCompositeSprites(){
 
-
-
-
         CreateCompositeSprite();
         sp1 = componentSprites.get(0);
         //sp1 = componentSprites.get(0);
@@ -381,28 +386,48 @@ public class MyGdxGame extends ApplicationAdapter {
 
         sp1.setRotation(180f);
         sp1.setColor(0, 0, 1, 1);
-        PixmapDrawingClass.spriteSetRandomColor(sp1);
+
+        //this methods gives problems with memory
+        //PixmapDrawingClass.spriteSetRandomColor(sp1);
        // resize(sp2,sp0);
 
         sp2.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
-        sp3.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
 
+        sp3.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
         sp3.setOrigin(sp3.getWidth()/2, sp3.getHeight()/2);
         sp3.setRotation(180f);
+
+        //sp4.setColor(0, 0, 1, 1);
+        sp4.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        sp4.setOrigin(sp4.getWidth()/2, sp4.getHeight()/2);
+        sp4.setRotation(240f);
+
+        sp5.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        sp5.setOrigin(sp5.getWidth()/2, sp5.getHeight()/2);
+        sp5.setRotation(300f);
+
     }
     public void positionSpritesForDrawing(int i, int ii){
         int iii=2000;
+
         sp0.setPosition(sp0.getWidth()*i+iii,sp0.getHeight()*ii+iii);
         sp0.draw(batch);
-        sp1.setPosition(sp1.getWidth()*i+iii+100,sp1.getHeight()*ii+iii+100);
+
+        sp1.setPosition(sp0.getX()+100,sp0.getY()+100);
         sp1.draw(batch);
+
         sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
 
-
-
         sp3.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()-sp3.getHeight());
         sp3.draw(batch);
+
+        sp4.setPosition((sp0.getX()+sp0.getWidth()*3/4)+7,sp0.getY()-sp5.getHeight()-15+sp0.getHeight()/2);
+        sp4.draw(batch);
+
+        sp5.setPosition((sp0.getX()+sp0.getWidth()*3/4)+7,sp0.getY()+15+sp0.getHeight()/2);
+        sp5.draw(batch);
+
 
     }
 }
