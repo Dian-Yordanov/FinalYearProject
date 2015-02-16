@@ -277,19 +277,24 @@ public class MyGdxGame extends ApplicationAdapter {
                 //groupSpriteSTT.draw(batch);
 
 
-                if (i % 2 == 0) {
+                if (i % 2 == 0 && ii %2==0) {
                     positionSpritesForDrawing(i, ii, 0, 0);
+                }
+                if (i % 2 == 0 && ii %2!=0) {
+                    sp0lastX = sp0.getX() *2/3;
+                    //positionSpritesForDrawing(i, ii, 0, 0);
                 }
                 if (i % 2 != 0) {
                     positionSpritesForDrawing(i,ii,0,sp2.getHeight());
                 }
-                if (ii % 2 == 0) {
-                    sp0lastX = sp0.getX() / 2;
+               // if (ii % 2 == 0) {
+ //                   sp0lastX = sp0.getX() / 2;
+
                   // positionSpritesForDrawing(i,ii,0,0);
-                }
-                if (ii % 2 != 0) {
+                //}
+                //if (ii % 2 != 0) {
                   //  positionSpritesForDrawing(i,ii,0,0);
-                }
+                //}
 
             }
         }
