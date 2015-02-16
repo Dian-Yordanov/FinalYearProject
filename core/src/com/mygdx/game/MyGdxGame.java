@@ -262,8 +262,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
-        for (int i = 0; i < 2; i++) {//15
-            for (int ii = 0; ii < 2; ii++) {//27
+        for (int i = 0; i < 15; i++) {//15
+            for (int ii = 0; ii < 27; ii++) {//27
             //even thought i am considering doing stuff in another way it is still to be noted that this gave me a texture with random color
                //groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
                 //groupSpriteSTT.draw(batch);
@@ -418,11 +418,11 @@ public class MyGdxGame extends ApplicationAdapter {
     public void positionSpritesForDrawing(int i, int ii){
         int iii=2000;
 
-        sp0.setPosition((sp0.getWidth()*i)+iii,(sp0.getHeight()*ii)+iii);
+        sp0.setPosition((sp0.getWidth()+sp4.getWidth())*i,(sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii);
         sp0.draw(batch);
 
-        sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
-        sp1.draw(batch);
+        //sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
+        //sp1.draw(batch);
 
         sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
