@@ -100,6 +100,8 @@ public class MyGdxGame extends ApplicationAdapter {
     float sp0lastY=0;
     float lastXfloat=0;
     float lastYfloat=0;
+
+    boolean drawn=false;
     //endregion
     @Override
     public void create() {
@@ -267,6 +269,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         batch.enableBlending();
         //the + and - 3 are because of the white lines
+        //drawn=true;
         for (int i = 0; i < 15; i++) {//15
             for (int ii = 0; ii < 27; ii++) {//27
             //even thought i am considering doing stuff in another way it is still to be noted that this gave me a texture with random color
@@ -275,11 +278,19 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
                 if (i % 2 == 0) {
-                    positionSpritesForDrawing(i,ii,0,0);
+                    positionSpritesForDrawing(i, ii, 0, 0);
                 }
                 if (i % 2 != 0) {
                     positionSpritesForDrawing(i,ii,0,sp2.getHeight());
                 }
+                if (ii % 2 == 0) {
+                    sp0lastX = sp0.getX() / 2;
+                  // positionSpritesForDrawing(i,ii,0,0);
+                }
+                if (ii % 2 != 0) {
+                  //  positionSpritesForDrawing(i,ii,0,0);
+                }
+
             }
         }
         batch.disableBlending();
@@ -414,13 +425,13 @@ public class MyGdxGame extends ApplicationAdapter {
         lastXfloat=((sp0.getWidth()+sp4.getWidth())*i)  - xToBeTranslated - (sp4.getWidth()*i)/2;//; //- sp4.getWidth()/2; - sp4.getWidth()*i/4
         lastYfloat=((sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii) - yToBeTranslated;//  ;//- sp4.getHeight();
 
-        sp0.setPosition(lastXfloat,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
-                lastYfloat );
+        sp0.setPosition(lastXfloat - sp0lastX,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
+                lastYfloat - sp0lastY);//sp0lastY/10 // - sp0lastX/10
         sp0.draw(batch);
 
 //region Triangles
 
-        //sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
+        sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
         //sp1.draw(batch);
 
         sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4),sp0.getY()+sp0.getHeight());
@@ -442,9 +453,11 @@ public class MyGdxGame extends ApplicationAdapter {
         sp7.draw(batch);
 //endregion
 
-        sp0lastX = sp4.getWidth()/2;
-        sp0lastY = sp4.getHeight();
-
+        //if(drawn) {
+        //    sp0lastX = sp0.getX() / 2;
+        //    sp0lastY = sp0.getY();
+        //    drawn=false;
+        //}
 
     }
 }
