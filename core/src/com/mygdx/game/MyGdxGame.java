@@ -411,8 +411,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
         //Gdx.app.log("" + sp0lastX,"" + sp0lastY);
 
-        lastXfloat=(sp0.getWidth()+sp4.getWidth())*i - sp4.getWidth()/2*i*1/4;// - xToBeTranslated; //- sp4.getWidth()/2;
-        lastYfloat=(sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii;// - yToBeTranslated ;//- sp4.getHeight();
+        lastXfloat=((sp0.getWidth()+sp4.getWidth())*i)  - xToBeTranslated - (sp4.getWidth()*i)/2;//; //- sp4.getWidth()/2; - sp4.getWidth()*i/4
+        lastYfloat=((sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii) - yToBeTranslated;//  ;//- sp4.getHeight();
 
         sp0.setPosition(lastXfloat,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
                 lastYfloat );
