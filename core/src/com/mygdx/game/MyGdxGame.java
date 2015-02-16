@@ -281,11 +281,15 @@ public class MyGdxGame extends ApplicationAdapter {
                     positionSpritesForDrawing(i, ii, 0, 0);
                 }
                 if (i % 2 == 0 && ii %2!=0) {
-                    sp0lastX = sp0.getX() *2/3;
+                    sp0lastX = 2*sp3.getWidth() + sp0.getX() *2/3;
                     //positionSpritesForDrawing(i, ii, 0, 0);
                 }
                 if (i % 2 != 0  && ii %2!=0) {
                     positionSpritesForDrawing(i,ii,0,sp2.getHeight());
+                }
+                if (i % 2 != 0 && ii %2==0) {
+                    sp0lastX = sp0.getX() *2/3;
+                    //positionSpritesForDrawing(i, ii, 0, 0);
                 }
                // if (ii % 2 == 0) {
  //                   sp0lastX = sp0.getX() / 2;
