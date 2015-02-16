@@ -95,6 +95,11 @@ public class MyGdxGame extends ApplicationAdapter {
     Sprite sp5;
     Sprite sp6;
     Sprite sp7;
+
+    float sp0lastX=0;
+    float sp0lastY=0;
+    float lastXfloat=0;
+    float lastYfloat=0;
     //endregion
     @Override
     public void create() {
@@ -268,27 +273,13 @@ public class MyGdxGame extends ApplicationAdapter {
                //groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
                 //groupSpriteSTT.draw(batch);
 
-                positionSpritesForDrawing(i,ii);
 
-
-
-                /*
-                if (ii % 2 == 0) batch.draw(spriteSTTCornerTriangles,
-                        ((spriteSTTCornerTriangles.getWidth()) * i),
-                        (spriteSTTCornerTriangles.getHeight()) * ii);
-                if (ii % 2 != 0) batch.draw(spriteSTTCornerTriangles,
-                        (((spriteSTTCornerTriangles.getWidth() * i) - spriteSTTCornerTriangles.getWidth() / 2)),
-                        ((spriteSTTCornerTriangles.getHeight()) * ii));
-
-                if (ii % 2 == 0)
-                    spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setPosition(
-                            ((spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getWidth()) * i
-                            - spriteSTTCornerTriangles.getWidth() / 2), (spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getHeight()) * ii);
-                if (ii % 2 != 0)
-                    spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.setPosition(((spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getWidth()) * i
-                            - spriteSTTCornerTriangles.getWidth()), (spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.getHeight()) * ii);
-                spriteFortintingSnubTrihexagonalTillingsMiddleTriangle.draw(batch);
-               */
+                if (i % 2 == 0) {
+                    positionSpritesForDrawing(i,ii,0,0);
+                }
+                if (i % 2 != 0) {
+                    positionSpritesForDrawing(i,ii,0,sp2.getHeight());
+                }
             }
         }
         batch.disableBlending();
@@ -391,9 +382,9 @@ public class MyGdxGame extends ApplicationAdapter {
         //PixmapDrawingClass.spriteSetRandomColor(sp1);
        // resize(sp2,sp0);
 
-        sp2.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
+        sp2.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
 
-        sp3.setSize((sp0.getWidth()/2)+10,(sp0.getHeight()/2) + 10);
+        sp3.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
         sp3.setOrigin(sp3.getWidth()/2, sp3.getHeight()/2);
         sp3.setRotation(180f);
 
@@ -415,19 +406,27 @@ public class MyGdxGame extends ApplicationAdapter {
         sp7.setRotation(300f);
 
     }
-    public void positionSpritesForDrawing(int i, int ii){
-        int iii=2000;
+    public void positionSpritesForDrawing(int i, int ii, float xToBeTranslated, float yToBeTranslated){
+        //int iii=2000;
 
-        sp0.setPosition((sp0.getWidth()+sp4.getWidth())*i,(sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii);
+        //Gdx.app.log("" + sp0lastX,"" + sp0lastY);
+
+        lastXfloat=(sp0.getWidth()+sp4.getWidth())*i - sp4.getWidth()/2*i*1/4;// - xToBeTranslated; //- sp4.getWidth()/2;
+        lastYfloat=(sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii;// - yToBeTranslated ;//- sp4.getHeight();
+
+        sp0.setPosition(lastXfloat,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
+                lastYfloat );
         sp0.draw(batch);
+
+//region Triangles
 
         //sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
         //sp1.draw(batch);
 
-        sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()+sp0.getHeight());
+        sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4),sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
 
-        sp3.setPosition((sp0.getX()+sp0.getWidth()*1/4)-5,sp0.getY()-sp3.getHeight());
+        sp3.setPosition((sp0.getX()+sp0.getWidth()*1/4),sp0.getY()-sp3.getHeight());
         sp3.draw(batch);
 
         sp4.setPosition((sp0.getX()+sp0.getWidth()*3/4)+7,sp0.getY()-sp5.getHeight()-15+sp0.getHeight()/2);
@@ -441,6 +440,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
         sp7.setPosition((sp0.getX()-sp0.getWidth()*1/4)+9,sp0.getY()+15+sp0.getHeight()/2);
         sp7.draw(batch);
+//endregion
+
+        sp0lastX = sp4.getWidth()/2;
+        sp0lastY = sp4.getHeight();
+
 
     }
 }
