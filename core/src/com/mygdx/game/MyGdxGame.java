@@ -129,8 +129,6 @@ public class MyGdxGame extends ApplicationAdapter {
             e.printStackTrace();
         }
 
-
-
         cameraMovingMethod();
 
         if(optionSelected){evolvingTilling = false;}
@@ -150,6 +148,9 @@ public class MyGdxGame extends ApplicationAdapter {
             }
             if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
                 SnubTrihexagonalTillingRending.SnubTrihexagonaltillingLauncher();
+            }
+            if (patternStyle.equals("TruchetTillingLauncher")) {
+                TruchetTillingRendering();
             }
             optionSelected=false;
             evolvingTilling=false;
@@ -226,6 +227,9 @@ public class MyGdxGame extends ApplicationAdapter {
             manager.load(pictureAddress, Texture.class);
             manager.load(pictureAddress2, Texture.class);
         }
+        if (patternStyle.equals("TruchetTillingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+        }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")||
                 patternStyle.equals("SquareTillingLauncher2") ||
@@ -249,6 +253,9 @@ public class MyGdxGame extends ApplicationAdapter {
             square2Img = manager.get(pictureAddress2, Texture.class);
 
             SnubTrihexagonalTillingRending.setupCompositeSprites();
+        }
+        if (patternStyle.equals("TruchetTillingLauncher")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -321,5 +328,14 @@ public class MyGdxGame extends ApplicationAdapter {
             }
         }
     }
-
+    public void TruchetTillingRendering(){
+        batch.begin();
+        for (int i = 0; i < 100; i++) {
+            for (int ii = 0; ii < 100; ii++) {
+                batch.draw(square1Img, ((square1Img.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                        , ((square1Img.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+            }
+        }
+        batch.end();
+    }
 }
