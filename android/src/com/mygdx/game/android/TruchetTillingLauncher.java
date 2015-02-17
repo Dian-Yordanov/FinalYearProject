@@ -7,7 +7,7 @@ import com.mygdx.game.MyGdxGame;
  */
 public class TruchetTillingLauncher extends AIOLauncherNoOptions {
     public TruchetTillingLauncher(){
-        //AIOLauncher.imageNameToBeSaved = "data/ii_square_tilling.png";
+        AIOLauncherNoOptions.imageNameToBeSaved = "data/ii_square_tilling.png";
         //MyGdxGame.evolvingTilling = false;
     }
 }

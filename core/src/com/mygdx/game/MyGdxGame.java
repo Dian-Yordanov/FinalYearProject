@@ -119,9 +119,17 @@ public class MyGdxGame extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         //Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_SRC_ALPHA);
-        polyBatch.setProjectionMatrix(camera.combined);
-        polyBatch2.setProjectionMatrix(camera.combined);
-        batch.setProjectionMatrix(camera.combined);
+
+        try {
+            polyBatch.setProjectionMatrix(camera.combined);
+            polyBatch2.setProjectionMatrix(camera.combined);
+            batch.setProjectionMatrix(camera.combined);
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+
 
         cameraMovingMethod();
 

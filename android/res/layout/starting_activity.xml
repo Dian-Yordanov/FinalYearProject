@@ -88,6 +88,12 @@ android:layout_height="fill_parent">
             android:textSize="20dp"
             android:id="@+id/spaceView12"
             android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Truchet Tilling Launcher"
+            android:id="@+id/truchetTillingLauncher"
+            android:layout_gravity="center_horizontal" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
