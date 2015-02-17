@@ -279,8 +279,9 @@ public class MyGdxGame extends ApplicationAdapter {
 
                 //if (i % 2 == 0 && ii %2==0) {// && ii %2==0
 
-                    positionSpritesForDrawing(i, ii, sp0.getWidth(), 0);
 
+                     positionSpritesForDrawing(i, ii, 0, 0);
+                     positionSpritesForDrawing(i, ii, i*(sp0.getWidth()+sp4.getWidth()/2), -sp4.getHeight()*i);
                     //sp0lastX = sp0.getX() *2/3;
                 //}
                 //if (i % 3 == 0 && ii %2==0) {// && ii %2==0
@@ -288,20 +289,20 @@ public class MyGdxGame extends ApplicationAdapter {
                   //  positionSpritesForDrawing(i, ii, 0, 0);
                     //sp0lastX = sp0.getX() *2/3;
                 //}
-                if (i % 2 == 0 && ii %2!=0) {
+                //if (i % 2 == 0 && ii %2!=0) {
                     //positionSpritesForDrawing(i, ii, 0, -sp2.getHeight());
                     //positionSpritesForDrawing(i, ii, 0, 0);
-                }
+                //}
                 //if (i % 3 == 0 ) {// && ii %2!=0
 
                 //    positionSpritesForDrawing(i,ii,0,sp2.getHeight());
                 //    sp0lastX = sp0.getX() *2/3;
                 //}
-                if (i % 2 != 0 && ii %2==0) {
+                //if (i % 2 != 0 && ii %2==0) {
                     //positionSpritesForDrawing(i, ii, 0, 2*sp2.getHeight());
                     //sp0lastX = sp0.getX() *2/3;
                     //positionSpritesForDrawing(i, ii, 0, 0);
-                }
+                //}
                // if (ii % 2 == 0) {
  //                   sp0lastX = sp0.getX() / 2;
 
@@ -447,8 +448,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
         //sp0lastX = sp0.getX();
         //sp0lastY = sp0.getY();
-    sp0.setPosition((sp0.getWidth() * ii)+(i*sp0.getWidth()) ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
-                    sp0.getHeight() * ii+(i*sp0.getWidth()));//sp0lastY/10 // - sp0lastX/10
+    sp0.setPosition((sp0.getWidth() * ii)+xToBeTranslated ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
+                    (sp0.getHeight()* ii)+yToBeTranslated);//sp0lastY/10 // - sp0lastX/10
     sp0.draw(batch);
 //region Triangles
 
