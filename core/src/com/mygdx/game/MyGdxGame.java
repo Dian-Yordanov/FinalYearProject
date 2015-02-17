@@ -277,40 +277,8 @@ public class MyGdxGame extends ApplicationAdapter {
                 //groupSpriteSTT.draw(batch);
 
 
-                //if (i % 2 == 0 && ii %2==0) {// && ii %2==0
+                     positionSpritesForDrawing(ii, i*(sp0.getWidth()+sp4.getWidth()/2), -sp4.getHeight()*i);
 
-
-                     //positionSpritesForDrawing(i, ii, 0, 0);
-                     positionSpritesForDrawing(i, ii, i*(sp0.getWidth()+sp4.getWidth()/2), -sp4.getHeight()*i);
-                    //sp0lastX = sp0.getX() *2/3;
-                //}
-                //if (i % 3 == 0 && ii %2==0) {// && ii %2==0
-
-                  //  positionSpritesForDrawing(i, ii, 0, 0);
-                    //sp0lastX = sp0.getX() *2/3;
-                //}
-                //if (i % 2 == 0 && ii %2!=0) {
-                    //positionSpritesForDrawing(i, ii, 0, -sp2.getHeight());
-                    //positionSpritesForDrawing(i, ii, 0, 0);
-                //}
-                //if (i % 3 == 0 ) {// && ii %2!=0
-
-                //    positionSpritesForDrawing(i,ii,0,sp2.getHeight());
-                //    sp0lastX = sp0.getX() *2/3;
-                //}
-                //if (i % 2 != 0 && ii %2==0) {
-                    //positionSpritesForDrawing(i, ii, 0, 2*sp2.getHeight());
-                    //sp0lastX = sp0.getX() *2/3;
-                    //positionSpritesForDrawing(i, ii, 0, 0);
-                //}
-               // if (ii % 2 == 0) {
- //                   sp0lastX = sp0.getX() / 2;
-
-                  // positionSpritesForDrawing(i,ii,0,0);
-                //}
-                //if (ii % 2 != 0) {
-                  //  positionSpritesForDrawing(i,ii,0,0);
-                //}
 
             }
         }
@@ -393,26 +361,19 @@ public class MyGdxGame extends ApplicationAdapter {
 
         componentSprites = new Array<Sprite>();
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
-        //componentSprites.add(MyGdxGame.spriteForDynamicDrawingHexagon);
 
-        //componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
-        //componentSprites.add(MyGdxGame.spriteSTTCornerTriangles);
     }
     public void setupCompositeSprites(){
 
         CreateCompositeSprite();
         sp1 = componentSprites.get(0);
-        //sp1 = componentSprites.get(0);
-        //sp2 = componentSprites.get(2);
-        //sp3 = componentSprites.get(3);
-        //componentSprites.get(3).equals(componentSprites.get(2));
 
-        sp1.setRotation(180f);
+        //sp1.setRotation(180f);
         sp1.setColor(0, 0, 1, 1);
-
-        //this methods gives problems with memory
-        //PixmapDrawingClass.spriteSetRandomColor(sp1);
-       // resize(sp2,sp0);
+        sp1.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        //sp1.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        sp1.setOrigin(sp1.getWidth()/2, sp1.getHeight()/2);
+        sp1.setRotation(180f);
 
         sp2.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
 
@@ -438,23 +399,16 @@ public class MyGdxGame extends ApplicationAdapter {
         sp7.setRotation(300f);
 
     }
-    public void positionSpritesForDrawing(int i, int ii, float xToBeTranslated, float yToBeTranslated){
+    public void positionSpritesForDrawing(int ii, float xToBeTranslated, float yToBeTranslated){
         int iii=3000;
 
-        //Gdx.app.log("" + sp0lastX,"" + sp0lastY);
-
-        //lastXfloat=((sp0.getWidth()+sp4.getWidth())*i)  - xToBeTranslated - (sp4.getWidth()*i)/2;//; //- sp4.getWidth()/2; - sp4.getWidth()*i/4
-        //lastYfloat=((sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii) - yToBeTranslated;//  ;//- sp4.getHeight();
-
-        //sp0lastX = sp0.getX();
-        //sp0lastY = sp0.getY();
-    sp0.setPosition(((sp0.getWidth() * ii)+xToBeTranslated)-iii ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
+        sp0.setPosition(((sp0.getWidth() * ii)+xToBeTranslated)-iii ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
                     ((sp0.getHeight()* ii)+yToBeTranslated));//sp0lastY/10 // - sp0lastX/10
-    sp0.draw(batch);
+        sp0.draw(batch);
 //region Triangles
 
-        sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
-        //sp1.draw(batch);
+        sp1.setPosition((sp0.getX()+sp0.getWidth()*1/4)+sp2.getWidth()/2,sp0.getY()+sp0.getHeight());
+        sp1.draw(batch);
 
         sp2.setPosition((sp0.getX()+sp0.getWidth()*1/4),sp0.getY()+sp0.getHeight());
         sp2.draw(batch);
@@ -474,14 +428,6 @@ public class MyGdxGame extends ApplicationAdapter {
         sp7.setPosition((sp0.getX()-sp0.getWidth()*1/4)+9,sp0.getY()+15+sp0.getHeight()/2);
         sp7.draw(batch);
 //endregion
-        //Gdx.app.log("" + sp0lastX,"" + sp0lastY + " " + sp0.getWidth()*i + " " + sp0.getHeight()*ii + " " + sp0.getHeight()*i);
-        //sp0lastX = sp0.getX();
-        //sp0lastY = sp0.getY();
-        //if(drawn) {
-        //    sp0lastX = sp0.getX();
-        //    sp0lastY = sp0.getY();
-        //    drawn=false;
-        //}
 
     }
 }
