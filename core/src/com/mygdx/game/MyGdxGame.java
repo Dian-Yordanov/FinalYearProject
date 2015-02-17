@@ -95,6 +95,7 @@ public class MyGdxGame extends ApplicationAdapter {
     Sprite sp5;
     Sprite sp6;
     Sprite sp7;
+    Sprite sp8;
 
     float sp0lastX=0;
     float sp0lastY=0;
@@ -358,20 +359,22 @@ public class MyGdxGame extends ApplicationAdapter {
         sp5 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         sp6 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         sp7 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+        sp8 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
 
         componentSprites = new Array<Sprite>();
         componentSprites.add(MyGdxGame.spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
+
 
     }
     public void setupCompositeSprites(){
 
         CreateCompositeSprite();
         sp1 = componentSprites.get(0);
+        //sp8 = componentSprites.get(1);
 
         //sp1.setRotation(180f);
         sp1.setColor(0, 0, 1, 1);
         sp1.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
-        //sp1.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
         sp1.setOrigin(sp1.getWidth()/2, sp1.getHeight()/2);
         sp1.setRotation(180f);
 
@@ -397,6 +400,10 @@ public class MyGdxGame extends ApplicationAdapter {
         sp7.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
         sp7.setOrigin(sp7.getWidth()/2, sp7.getHeight()/2);
         sp7.setRotation(300f);
+
+        sp8.setColor(1, 0, 1, 1);
+        sp8.setSize((sp0.getWidth()/2),(sp0.getHeight()/2));
+        sp8.setOrigin(sp8.getWidth()/2, sp8.getHeight()/2);
 
     }
     public void positionSpritesForDrawing(int ii, float xToBeTranslated, float yToBeTranslated){
@@ -427,6 +434,9 @@ public class MyGdxGame extends ApplicationAdapter {
 
         sp7.setPosition((sp0.getX()-sp0.getWidth()*1/4)+9,sp0.getY()+15+sp0.getHeight()/2);
         sp7.draw(batch);
+
+        sp8.setPosition((sp0.getX()+sp0.getWidth()*1/4)-sp2.getWidth(),sp0.getY()+sp0.getHeight());
+        sp8.draw(batch);
 //endregion
 
     }
