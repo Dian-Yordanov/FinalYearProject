@@ -277,18 +277,29 @@ public class MyGdxGame extends ApplicationAdapter {
                 //groupSpriteSTT.draw(batch);
 
 
-                if (i % 2 == 0 && ii %2==0) {
-                    positionSpritesForDrawing(i, ii, 0, 0);
-                }
+                //if (i % 2 == 0 && ii %2==0) {// && ii %2==0
+
+                    positionSpritesForDrawing(i, ii, sp0.getWidth(), 0);
+
+                    //sp0lastX = sp0.getX() *2/3;
+                //}
+                //if (i % 3 == 0 && ii %2==0) {// && ii %2==0
+
+                  //  positionSpritesForDrawing(i, ii, 0, 0);
+                    //sp0lastX = sp0.getX() *2/3;
+                //}
                 if (i % 2 == 0 && ii %2!=0) {
-                    sp0lastX = 2*sp3.getWidth() + sp0.getX() *2/3;
+                    //positionSpritesForDrawing(i, ii, 0, -sp2.getHeight());
                     //positionSpritesForDrawing(i, ii, 0, 0);
                 }
-                if (i % 2 != 0  && ii %2!=0) {
-                    positionSpritesForDrawing(i,ii,0,sp2.getHeight());
-                }
+                //if (i % 3 == 0 ) {// && ii %2!=0
+
+                //    positionSpritesForDrawing(i,ii,0,sp2.getHeight());
+                //    sp0lastX = sp0.getX() *2/3;
+                //}
                 if (i % 2 != 0 && ii %2==0) {
-                    sp0lastX = sp0.getX() *2/3;
+                    //positionSpritesForDrawing(i, ii, 0, 2*sp2.getHeight());
+                    //sp0lastX = sp0.getX() *2/3;
                     //positionSpritesForDrawing(i, ii, 0, 0);
                 }
                // if (ii % 2 == 0) {
@@ -431,13 +442,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
         //Gdx.app.log("" + sp0lastX,"" + sp0lastY);
 
-        lastXfloat=((sp0.getWidth()+sp4.getWidth())*i)  - xToBeTranslated - (sp4.getWidth()*i)/2;//; //- sp4.getWidth()/2; - sp4.getWidth()*i/4
-        lastYfloat=((sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii) - yToBeTranslated;//  ;//- sp4.getHeight();
+        //lastXfloat=((sp0.getWidth()+sp4.getWidth())*i)  - xToBeTranslated - (sp4.getWidth()*i)/2;//; //- sp4.getWidth()/2; - sp4.getWidth()*i/4
+        //lastYfloat=((sp0.getHeight()+sp3.getHeight()+sp2.getHeight())*ii) - yToBeTranslated;//  ;//- sp4.getHeight();
 
-        sp0.setPosition(lastXfloat - sp0lastX,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
-                lastYfloat - sp0lastY);//sp0lastY/10 // - sp0lastX/10
-        sp0.draw(batch);
-
+        //sp0lastX = sp0.getX();
+        //sp0lastY = sp0.getY();
+    sp0.setPosition((sp0.getWidth() * ii)+(i*sp0.getWidth()) ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
+                    sp0.getHeight() * ii+(i*sp0.getWidth()));//sp0lastY/10 // - sp0lastX/10
+    sp0.draw(batch);
 //region Triangles
 
         sp1.setPosition(sp0.getX()-1000,sp0.getY()-1000);
@@ -461,9 +473,11 @@ public class MyGdxGame extends ApplicationAdapter {
         sp7.setPosition((sp0.getX()-sp0.getWidth()*1/4)+9,sp0.getY()+15+sp0.getHeight()/2);
         sp7.draw(batch);
 //endregion
-
+        //Gdx.app.log("" + sp0lastX,"" + sp0lastY + " " + sp0.getWidth()*i + " " + sp0.getHeight()*ii + " " + sp0.getHeight()*i);
+        //sp0lastX = sp0.getX();
+        //sp0lastY = sp0.getY();
         //if(drawn) {
-        //    sp0lastX = sp0.getX() / 2;
+        //    sp0lastX = sp0.getX();
         //    sp0lastY = sp0.getY();
         //    drawn=false;
         //}
