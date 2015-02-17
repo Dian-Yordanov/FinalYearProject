@@ -270,8 +270,8 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.enableBlending();
         //the + and - 3 are because of the white lines
         //drawn=true;
-        for (int i = 0; i < 15; i++) {//15
-            for (int ii = 0; ii < 27; ii++) {//27
+        for (int i = 0; i < 30; i++) {//15
+            for (int ii = 0; ii < 40; ii++) {//27
             //even thought i am considering doing stuff in another way it is still to be noted that this gave me a texture with random color
                //groupSpriteSTT.setPosition(groupSpriteSTT.getWidth()*i, groupSpriteSTT.getHeight()*ii);
                 //groupSpriteSTT.draw(batch);
@@ -280,7 +280,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 //if (i % 2 == 0 && ii %2==0) {// && ii %2==0
 
 
-                     positionSpritesForDrawing(i, ii, 0, 0);
+                     //positionSpritesForDrawing(i, ii, 0, 0);
                      positionSpritesForDrawing(i, ii, i*(sp0.getWidth()+sp4.getWidth()/2), -sp4.getHeight()*i);
                     //sp0lastX = sp0.getX() *2/3;
                 //}
@@ -439,7 +439,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
     }
     public void positionSpritesForDrawing(int i, int ii, float xToBeTranslated, float yToBeTranslated){
-        //int iii=2000;
+        int iii=3000;
 
         //Gdx.app.log("" + sp0lastX,"" + sp0lastY);
 
@@ -448,8 +448,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
         //sp0lastX = sp0.getX();
         //sp0lastY = sp0.getY();
-    sp0.setPosition((sp0.getWidth() * ii)+xToBeTranslated ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
-                    (sp0.getHeight()* ii)+yToBeTranslated);//sp0lastY/10 // - sp0lastX/10
+    sp0.setPosition(((sp0.getWidth() * ii)+xToBeTranslated)-iii ,// - sp0lastX*i //- sp0lastY*ii*1/4 //- sp0lastY*ii// - sp0lastX*i
+                    ((sp0.getHeight()* ii)+yToBeTranslated));//sp0lastY/10 // - sp0lastX/10
     sp0.draw(batch);
 //region Triangles
 
