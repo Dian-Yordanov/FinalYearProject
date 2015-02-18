@@ -392,6 +392,7 @@ public class MyGdxGame extends ApplicationAdapter {
                     doneOnce=true;intToBeReduced1--;intToBeReduced2--;
                     }
                     //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+
                     if(ii % 2 == 0 && i  % 2 == 0 ){
                         truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
                                 , ((truchetTileSquare.getHeight()) * ii));
