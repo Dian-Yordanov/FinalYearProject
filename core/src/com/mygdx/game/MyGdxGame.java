@@ -87,14 +87,21 @@ public class MyGdxGame extends ApplicationAdapter {
     static int random;
 
     Sprite truchetTileSquare;
-    Sprite truchetTileSquareTintedColor;
+    Sprite truchetTileSquare1;
+    Sprite truchetTileSquare2;
+    Sprite truchetTileSquare3;
 
+
+    int doRandomRotation;
+    boolean doneOnce;
     //endregion
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
         polyBatch = new PolygonSpriteBatch();
         polyBatch2 = new PolygonSpriteBatch();
+        doRandomRotation=0;
+        doneOnce=false;
 
         //PeriodicTillingsRendering PTR = new PeriodicTillingsRendering();
 
@@ -259,8 +266,19 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         if (patternStyle.equals("TruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
+
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquareTintedColor = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+
+
+
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -307,7 +325,10 @@ public class MyGdxGame extends ApplicationAdapter {
                     PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
                 }
                 if (patternStyle.equals("TruchetTillingLauncher")) {
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
                 }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
@@ -349,16 +370,57 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void TruchetTillingRendering(){
         batch.begin();
-        for (int i = 0; i < 100; i++) {
-            for (int ii = 0; ii < 100; ii++) {
+        for (int i = 0; i < 50; i++) {
+            for (int ii = 0; ii < 50; ii++) {
                 //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
                 //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
                 //truchetTileSquare.draw(batch);
-                truchetTileSquareTintedColor.setPosition(((truchetTileSquareTintedColor.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                        , ((truchetTileSquareTintedColor.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
-                truchetTileSquareTintedColor.draw(batch);
+
+                //createRandomTillingNumbering();
+                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
+                try {
+                    if (!doneOnce && i >1 && ii >1){
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                    doneOnce=true;
+                    }
+                    if(ii % 2 == 0 && i  % 2 == 0 ){
+                        truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
+                                , ((truchetTileSquare.getHeight()) * ii));
+                        truchetTileSquare.draw(batch);
+                    }
+                    if(ii % 2 != 0 && i  % 2 != 0 ){
+                        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
+                                , ((truchetTileSquare1.getHeight()) * ii));
+                        truchetTileSquare1.draw(batch);
+                    }
+                    if(ii % 2 != 0 && i  % 2 == 0 ){
+                        truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
+                                , ((truchetTileSquare2.getHeight()) * ii));
+                        truchetTileSquare2.draw(batch);
+                    }
+                    if(ii % 2 == 0 && i  % 2 != 0 ){
+                        truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
+                                , ((truchetTileSquare3.getHeight()) * ii));
+                        truchetTileSquare3.draw(batch);
+                    }
+
+                }
+                catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         }
         batch.end();
+    }
+    public void createRandomTillingNumbering(){
+        Random r = new Random();
+        int Low = 0;
+        int High = 4;
+        doRandomRotation = r.nextInt(High-Low) + Low;
     }
 }

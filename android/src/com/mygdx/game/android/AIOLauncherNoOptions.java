@@ -55,6 +55,7 @@ public class AIOLauncherNoOptions extends AndroidApplication {
         switch (item.getItemId()) {
             case R.id.option1:
                 //MyGdxGame.evolvingTilling = false;
+        //        MyGdxGame.pictureAddress = imageNameToBeSaved;
 
                 goToRenderingActivity();
                 return true;
