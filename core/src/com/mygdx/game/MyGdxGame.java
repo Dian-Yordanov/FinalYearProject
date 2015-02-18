@@ -86,6 +86,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
     static int random;
 
+    Sprite truchetTileSquare;
+
     //endregion
     @Override
     public void create() {
@@ -256,6 +258,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
         if (patternStyle.equals("TruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -282,14 +285,26 @@ public class MyGdxGame extends ApplicationAdapter {
                 float x11 = dragOld.x - dragNew.x;
                 float y11 = dragOld.y - dragNew.y;
 
+                if (patternStyle.equals("SquareTillingLauncher")||
+                        patternStyle.equals("SquareTillingLauncher2") ||
+                        patternStyle.equals("SquareTillingLauncher3")) {
+                    spriteForDynamicDrawing = dinamicallyChangeColor();
+                    spriteForDynamicDrawing2 = dinamicallyChangeColor();
+                    spriteForDynamicDrawing3 = dinamicallyChangeColor();
+                }
+                if (patternStyle.equals("HexagonalTillingLauncher") ||
+                        patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
+                    poly = dinamicallyChangeColorPoly();
+                }
+                if (patternStyle.equals("TriangullarTillingLauncher") ||
+                        patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
+                    polyTrinaglle = dinamicallyChangeColorTrianglle();
+                    polyTrinaglle2 = dinamicallyChangeColorTrianglle();
+                }
+                if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
+                    PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
+                }
 
-                spriteForDynamicDrawing = dinamicallyChangeColor();
-                spriteForDynamicDrawing2 = dinamicallyChangeColor();
-                spriteForDynamicDrawing3 = dinamicallyChangeColor();
-                poly = dinamicallyChangeColorPoly();
-                polyTrinaglle = dinamicallyChangeColorTrianglle();
-                polyTrinaglle2 = dinamicallyChangeColorTrianglle();
-                PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -332,8 +347,9 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
-                batch.draw(square1Img, ((square1Img.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                        , ((square1Img.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+                truchetTileSquare.draw(batch);
             }
         }
         batch.end();

@@ -62,7 +62,7 @@ public class StartingActivity extends Activity {
                 ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
         callClassTillingLauncher(TruchetTillingLauncherButton, R.id.truchetTillingLauncher
                 ,"TruchetTillingLauncher", "com.mygdx.game.android.TruchetTillingLauncher"
-                ,"data/ii_triangular_tilling.png");
+                ,"data/ii_truchet_tilling.png");
     }
 
     public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
