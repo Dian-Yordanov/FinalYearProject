@@ -272,10 +272,10 @@ public class PixmapDrawingClass extends MyGdxGame {
     public static void spriteSetRandomRotation(Sprite spriteToBeTinted){
         Random r = new Random();
         int Low = 0;
-        int High = 4;
-        int random1 = r.nextInt(High-Low) + Low;
-        float[] rotationDegree ={0f,90f,180f,270f,360f};
-        if(spriteToBeTinted != null)  spriteToBeTinted.rotate(rotationDegree[random1]);
+        int High = 3;
+        random = r.nextInt(High-Low) + Low;
+        float[] rotationDegree ={90f,180f,270f,360f};
+        if(spriteToBeTinted != null)  spriteToBeTinted.rotate(rotationDegree[random]);
         else
         {
             // do something else

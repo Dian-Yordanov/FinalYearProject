@@ -86,10 +86,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
     static int random;
 
-    Sprite truchetTileSquare;
-    Sprite truchetTileSquare1;
-    Sprite truchetTileSquare2;
-    Sprite truchetTileSquare3;
+    public static Sprite truchetTileSquare;
+    public static Sprite truchetTileSquare1;
+    public static Sprite truchetTileSquare2;
+    public static Sprite truchetTileSquare3;
 
 
     int doRandomRotation;
@@ -384,7 +384,7 @@ public class MyGdxGame extends ApplicationAdapter {
                 //createRandomTillingNumbering();
                 //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
                 try {
-                    if (!doneOnce && i >=intToBeReduced1 && ii >=intToBeReduced2){
+                    if (!doneOnce){
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);

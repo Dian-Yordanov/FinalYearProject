@@ -1,6 +1,7 @@
 package com.mygdx.game.android;
 
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PixmapDrawingClass;
 
 /**
  * Created by XelnectMobileUser on 2/17/2015.
@@ -11,6 +12,7 @@ public class TruchetTillingLauncher extends AIOLauncherNoOptions {
         MyGdxGame.intToBeReduced1=1;
         MyGdxGame.intToBeReduced2=1;
         MyGdxGame.doneOnce=false;
+
         //MyGdxGame.evolvingTilling = false;
     }
 }
