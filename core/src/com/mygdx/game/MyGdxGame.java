@@ -87,6 +87,7 @@ public class MyGdxGame extends ApplicationAdapter {
     static int random;
 
     Sprite truchetTileSquare;
+    Sprite truchetTileSquareTintedColor;
 
     //endregion
     @Override
@@ -259,6 +260,7 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("TruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquareTintedColor = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -304,7 +306,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 if (patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
                     PixmapDrawingClass.spriteSetRandomColor(spriteFortintingSnubTrihexagonalTillingsMiddleTriangle);
                 }
-
+                if (patternStyle.equals("TruchetTillingLauncher")) {
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor);
+                }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -347,9 +351,12 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         for (int i = 0; i < 100; i++) {
             for (int ii = 0; ii < 100; ii++) {
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
-                truchetTileSquare.draw(batch);
+                //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+                //truchetTileSquare.draw(batch);
+                truchetTileSquareTintedColor.setPosition(((truchetTileSquareTintedColor.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                        , ((truchetTileSquareTintedColor.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+                truchetTileSquareTintedColor.draw(batch);
             }
         }
         batch.end();
