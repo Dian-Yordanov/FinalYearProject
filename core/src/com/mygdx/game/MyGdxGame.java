@@ -93,15 +93,20 @@ public class MyGdxGame extends ApplicationAdapter {
 
 
     int doRandomRotation;
-    boolean doneOnce;
+    public static boolean doneOnce;
+    public static int intToBeReduced1;
+    public static int intToBeReduced2;
     //endregion
     @Override
     public void create() {
         MyGdxGame.batch = new SpriteBatch();
         polyBatch = new PolygonSpriteBatch();
         polyBatch2 = new PolygonSpriteBatch();
+
+        //intToBeReduced1=1;
+        //intToBeReduced2=1;
         doRandomRotation=0;
-        doneOnce=false;
+        //doneOnce=false;
 
         //PeriodicTillingsRendering PTR = new PeriodicTillingsRendering();
 
@@ -379,13 +384,14 @@ public class MyGdxGame extends ApplicationAdapter {
                 //createRandomTillingNumbering();
                 //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
                 try {
-                    if (!doneOnce && i >1 && ii >1){
+                    if (!doneOnce && i >=intToBeReduced1 && ii >=intToBeReduced2){
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                    doneOnce=true;
+                    doneOnce=true;intToBeReduced1--;intToBeReduced2--;
                     }
+                    //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
                     if(ii % 2 == 0 && i  % 2 == 0 ){
                         truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
                                 , ((truchetTileSquare.getHeight()) * ii));
