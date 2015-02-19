@@ -97,6 +97,9 @@ public class MyGdxGame extends ApplicationAdapter {
     public static int intToBeReduced1;
     public static int intToBeReduced2;
 
+    public static int recursivei;
+    public static int recursiveii;
+
     //endregion
     @Override
     public void create() {
@@ -354,6 +357,12 @@ public class MyGdxGame extends ApplicationAdapter {
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
                 }
+                if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -443,11 +452,14 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
-        recFunTruchet(0,0);
+        recursivei=0;recursiveii=0;
+        recFunTruchet(recursivei,recursiveii);
         batch.end();
     }
     public void recFunTruchet(int i, int ii){
-        if(i!=9 && ii!=9) {
+        i=recursivei;
+        ii=recursiveii;
+        //if(i>=9 && ii>=9) {return;}
             try {
                 if (!doneOnce) {
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
@@ -485,27 +497,25 @@ public class MyGdxGame extends ApplicationAdapter {
                 e.printStackTrace();
             }
 
-            Gdx.app.error("error1 " + i, " " + ii);
-            if (ii < 10) {
-                recFunTruchet(i, ii + 1);
+           // Gdx.app.error("error1 " + i, " " + ii);
+            if (recursiveii < 10) {
+                recursiveii++;
+                recFunTruchet(recursivei, recursiveii);
             }
 
-            Gdx.app.error("error2 " + i, " " + ii);
-            if (ii == 10) {
-                ii = 0;
-            }
 
-            Gdx.app.error("error2 " + i, " " + ii);
-            if (i < 10) {
-
-                recFunTruchet(i + 1, ii);
+           // Gdx.app.error("error2 " + i, " " + ii);
+            if (recursivei < 10) {
+                recursiveii = 0;
+                recursivei++;
+                recFunTruchet(recursivei, recursiveii);
             }
 
             //if(i>0){
             //ii=100;
             //recFunTruchet(i-1,ii);
             //}
-        }
+
     }
     public void createRandomTillingNumbering(){
         Random r = new Random();
