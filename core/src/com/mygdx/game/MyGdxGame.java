@@ -96,6 +96,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static boolean doneOnce;
     public static int intToBeReduced1;
     public static int intToBeReduced2;
+
     //endregion
     @Override
     public void create() {
@@ -442,52 +443,51 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
-        for (int i = 0; i < 50; i++) {
-            for (int ii = 0; ii < 50; ii++) {
-                //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
-                //truchetTileSquare.draw(batch);
-
-                //createRandomTillingNumbering();
-                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
+        recFunTruchet(100,100);
+        batch.end();
+    }
+    public void recFunTruchet(int i, int ii){
+        if(i>0) {
+            if (ii>0) {
                 try {
-                    if (!doneOnce){
+                    if (!doneOnce) {
                         PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
                         PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
                         PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                         PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                        doneOnce=true;intToBeReduced1--;intToBeReduced2--;
+                        doneOnce = true;
+                        intToBeReduced1--;
+                        intToBeReduced2--;
                     }
                     //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
-                    if(ii % 2 == 0 && i  % 2 == 0 ){
+                    if (ii % 2 == 0 && i % 2 == 0) {
                         truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
                                 , ((truchetTileSquare.getHeight()) * ii));
                         truchetTileSquare.draw(batch);
                     }
-                    if(ii % 2 != 0 && i  % 2 != 0 ){
+                    if (ii % 2 != 0 && i % 2 != 0) {
                         truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
                                 , ((truchetTileSquare1.getHeight()) * ii));
                         truchetTileSquare1.draw(batch);
                     }
-                    if(ii % 2 != 0 && i  % 2 == 0 ){
+                    if (ii % 2 != 0 && i % 2 == 0) {
                         truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
                                 , ((truchetTileSquare2.getHeight()) * ii));
                         truchetTileSquare2.draw(batch);
                     }
-                    if(ii % 2 == 0 && i  % 2 != 0 ){
+                    if (ii % 2 == 0 && i % 2 != 0) {
                         truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
                                 , ((truchetTileSquare3.getHeight()) * ii));
                         truchetTileSquare3.draw(batch);
                     }
 
-                }
-                catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
+                recFunTruchet(i - 1,ii-1);
             }
         }
-        batch.end();
     }
     public void createRandomTillingNumbering(){
         Random r = new Random();
