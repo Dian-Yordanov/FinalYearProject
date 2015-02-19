@@ -99,7 +99,11 @@ public class MyGdxGame extends ApplicationAdapter {
 
     public static int recursivei;
     public static int recursiveii;
+    public static int maxri;
+    public static int maxrii;
 
+    float oldrX;
+    float oldrY;
     //endregion
     @Override
     public void create() {
@@ -453,12 +457,19 @@ public class MyGdxGame extends ApplicationAdapter {
     public void RecursiveTruchetRendering(){
         batch.begin();
         recursivei=0;recursiveii=0;
+        maxri=20;maxrii=10;
+        oldrX=0;oldrY=0;
+
+        truchetTileSquare.setPosition(0,0);
+        truchetTileSquare.draw(batch);
+
         recFunTruchet(recursivei,recursiveii);
         batch.end();
     }
     public void recFunTruchet(int i, int ii){
         i=recursivei;
         ii=recursiveii;
+        //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
         //if(i>=9 && ii>=9) {return;}
             try {
                 if (!doneOnce) {
@@ -472,12 +483,15 @@ public class MyGdxGame extends ApplicationAdapter {
                 }
                 //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
-                if (ii % 2 == 0 && i % 2 == 0) {
-                    truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
-                            , ((truchetTileSquare.getHeight()) * ii));
-                    truchetTileSquare.draw(batch);
-                }
-                if (ii % 2 != 0 && i % 2 != 0) {
+              //  if (ii % 2 == 0 && i % 2 == 0) {
+                    truchetTileSquare1.setPosition(oldrX+truchetTileSquare.getWidth(), oldrY);
+                    truchetTileSquare1.draw(batch);
+                    truchetTileSquare2.setPosition(oldrX, oldrY+truchetTileSquare.getHeight());
+                    truchetTileSquare2.draw(batch);
+             //   }
+                oldrX=truchetTileSquare1.getX();
+                oldrY=truchetTileSquare2.getY();
+             /*   if (ii % 2 != 0 && i % 2 != 0) {
                     truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
                             , ((truchetTileSquare1.getHeight()) * ii));
                     truchetTileSquare1.draw(batch);
@@ -491,21 +505,21 @@ public class MyGdxGame extends ApplicationAdapter {
                     truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
                             , ((truchetTileSquare3.getHeight()) * ii));
                     truchetTileSquare3.draw(batch);
-                }
+                }*/
 
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
 
            // Gdx.app.error("error1 " + i, " " + ii);
-            if (recursiveii < 20) {
+            if (recursiveii < maxri) {
                 recursiveii++;
                 recFunTruchet(recursivei, recursiveii);
             }
 
 
            // Gdx.app.error("error2 " + i, " " + ii);
-            if (recursivei < 10) {
+            if (recursivei < maxrii) {
                 recursiveii = 0;
                 recursivei++;
                 recFunTruchet(recursivei, recursiveii);
