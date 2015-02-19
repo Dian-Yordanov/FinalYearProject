@@ -27,6 +27,7 @@ public class StartingActivity extends Activity {
     public static Button EvolvingTriangullarTillingLauncherButton;
     public static Button SnubTrihexagonalTilingLauncherButton;
     public static Button TruchetTillingLauncherButton;
+    public static Button RecursiveTruchetTillingLauncherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,9 @@ public class StartingActivity extends Activity {
                 ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
         callClassTillingLauncher(TruchetTillingLauncherButton, R.id.truchetTillingLauncher
                 ,"TruchetTillingLauncher", "com.mygdx.game.android.TruchetTillingLauncher"
+                ,"data/ii_truchet_tilling.png");
+        callClassTillingLauncher(RecursiveTruchetTillingLauncherButton, R.id.RecursiveTruchetTillingLauncher
+                ,"RecursiveTruchetTillingLauncher", "com.mygdx.game.android.RecursiveTruchetTillingLauncher"
                 ,"data/ii_truchet_tilling.png");
     }
 
