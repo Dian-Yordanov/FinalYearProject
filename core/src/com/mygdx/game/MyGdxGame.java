@@ -443,50 +443,68 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
-        recFunTruchet(100,100);
+        recFunTruchet(0,0);
         batch.end();
     }
     public void recFunTruchet(int i, int ii){
-        if(i>0) {
-            if (ii>0) {
-                try {
-                    if (!doneOnce) {
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                        doneOnce = true;
-                        intToBeReduced1--;
-                        intToBeReduced2--;
-                    }
-                    //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-
-                    if (ii % 2 == 0 && i % 2 == 0) {
-                        truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
-                                , ((truchetTileSquare.getHeight()) * ii));
-                        truchetTileSquare.draw(batch);
-                    }
-                    if (ii % 2 != 0 && i % 2 != 0) {
-                        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
-                                , ((truchetTileSquare1.getHeight()) * ii));
-                        truchetTileSquare1.draw(batch);
-                    }
-                    if (ii % 2 != 0 && i % 2 == 0) {
-                        truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
-                                , ((truchetTileSquare2.getHeight()) * ii));
-                        truchetTileSquare2.draw(batch);
-                    }
-                    if (ii % 2 == 0 && i % 2 != 0) {
-                        truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
-                                , ((truchetTileSquare3.getHeight()) * ii));
-                        truchetTileSquare3.draw(batch);
-                    }
-
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
+        if(i!=9 && ii!=9) {
+            try {
+                if (!doneOnce) {
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                    doneOnce = true;
+                    intToBeReduced1--;
+                    intToBeReduced2--;
                 }
-                recFunTruchet(i - 1,ii-1);
+                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+
+                if (ii % 2 == 0 && i % 2 == 0) {
+                    truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
+                            , ((truchetTileSquare.getHeight()) * ii));
+                    truchetTileSquare.draw(batch);
+                }
+                if (ii % 2 != 0 && i % 2 != 0) {
+                    truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
+                            , ((truchetTileSquare1.getHeight()) * ii));
+                    truchetTileSquare1.draw(batch);
+                }
+                if (ii % 2 != 0 && i % 2 == 0) {
+                    truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
+                            , ((truchetTileSquare2.getHeight()) * ii));
+                    truchetTileSquare2.draw(batch);
+                }
+                if (ii % 2 == 0 && i % 2 != 0) {
+                    truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
+                            , ((truchetTileSquare3.getHeight()) * ii));
+                    truchetTileSquare3.draw(batch);
+                }
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
             }
+
+            Gdx.app.error("error1 " + i, " " + ii);
+            if (ii < 10) {
+                recFunTruchet(i, ii + 1);
+            }
+
+            Gdx.app.error("error2 " + i, " " + ii);
+            if (ii == 10) {
+                ii = 0;
+            }
+
+            Gdx.app.error("error2 " + i, " " + ii);
+            if (i < 10) {
+
+                recFunTruchet(i + 1, ii);
+            }
+
+            //if(i>0){
+            //ii=100;
+            //recFunTruchet(i-1,ii);
+            //}
         }
     }
     public void createRandomTillingNumbering(){
