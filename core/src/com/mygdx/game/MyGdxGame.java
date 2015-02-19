@@ -167,6 +167,9 @@ public class MyGdxGame extends ApplicationAdapter {
             if (patternStyle.equals("TruchetTillingLauncher")) {
                 TruchetTillingRendering();
             }
+            if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
+                RecursiveTruchetRendering();
+            }
             optionSelected=false;
             evolvingTilling=false;
         }
@@ -245,6 +248,9 @@ public class MyGdxGame extends ApplicationAdapter {
         if (patternStyle.equals("TruchetTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
         }
+        if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+        }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher")||
                 patternStyle.equals("SquareTillingLauncher2") ||
@@ -277,7 +283,19 @@ public class MyGdxGame extends ApplicationAdapter {
             truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
 
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
 
+        }
+        if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
 
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
@@ -418,8 +436,55 @@ public class MyGdxGame extends ApplicationAdapter {
                 catch (NullPointerException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+        batch.end();
+    }
+    public void RecursiveTruchetRendering(){
+        batch.begin();
+        for (int i = 0; i < 50; i++) {
+            for (int ii = 0; ii < 50; ii++) {
+                //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+                //truchetTileSquare.draw(batch);
 
+                //createRandomTillingNumbering();
+                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
+                try {
+                    if (!doneOnce){
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                        doneOnce=true;intToBeReduced1--;intToBeReduced2--;
+                    }
+                    //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
+                    if(ii % 2 == 0 && i  % 2 == 0 ){
+                        truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
+                                , ((truchetTileSquare.getHeight()) * ii));
+                        truchetTileSquare.draw(batch);
+                    }
+                    if(ii % 2 != 0 && i  % 2 != 0 ){
+                        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
+                                , ((truchetTileSquare1.getHeight()) * ii));
+                        truchetTileSquare1.draw(batch);
+                    }
+                    if(ii % 2 != 0 && i  % 2 == 0 ){
+                        truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
+                                , ((truchetTileSquare2.getHeight()) * ii));
+                        truchetTileSquare2.draw(batch);
+                    }
+                    if(ii % 2 == 0 && i  % 2 != 0 ){
+                        truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
+                                , ((truchetTileSquare3.getHeight()) * ii));
+                        truchetTileSquare3.draw(batch);
+                    }
+
+                }
+                catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
         }
         batch.end();
