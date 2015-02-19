@@ -498,7 +498,7 @@ public class MyGdxGame extends ApplicationAdapter {
             }
 
            // Gdx.app.error("error1 " + i, " " + ii);
-            if (recursiveii < 10) {
+            if (recursiveii < 20) {
                 recursiveii++;
                 recFunTruchet(recursivei, recursiveii);
             }
