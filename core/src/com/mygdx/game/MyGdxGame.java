@@ -104,6 +104,10 @@ public class MyGdxGame extends ApplicationAdapter {
 
     float oldrX;
     float oldrY;
+    float oldtilePositionx;
+    float oldtilePositiony;
+    float posX;
+    float posY;
     //endregion
     @Override
     public void create() {
@@ -458,12 +462,13 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
         recursivei=0;recursiveii=0;
         maxri=20;maxrii=10;
-        oldrX=0;oldrY=0;
+        oldrX=1000;oldrY=1500;
 
-        truchetTileSquare.setPosition(0,0);
-        truchetTileSquare.draw(batch);
+        rcountdown();
+        //countdown(3);
 
-        recFunTruchet(recursivei,recursiveii);
+        //recFunTruchet(recursivei,recursiveii);
+        //drawGasket(1000, 1000, 243);
         batch.end();
     }
     public void recFunTruchet(int i, int ii){
@@ -484,9 +489,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
               //  if (ii % 2 == 0 && i % 2 == 0) {
-                    truchetTileSquare1.setPosition(oldrX+truchetTileSquare.getWidth(), oldrY);
+                    truchetTileSquare1.setPosition(oldrX+100, oldrY);
                     truchetTileSquare1.draw(batch);
-                    truchetTileSquare2.setPosition(oldrX, oldrY+truchetTileSquare.getHeight());
+                    truchetTileSquare2.setPosition(oldrX, oldrY+100);
                     truchetTileSquare2.draw(batch);
              //   }
                 oldrX=truchetTileSquare1.getX();
@@ -530,6 +535,141 @@ public class MyGdxGame extends ApplicationAdapter {
             //recFunTruchet(i-1,ii);
             //}
 
+    }
+    public void drawGasket(int x, int y, int side) {
+                  // draw single white square in middle
+                  int sub = side / 3; // length of sub-squares
+                  //GRect box = new GRect(x + sub, y + sub, sub - 1, sub - 1);
+                  //box.setFilled(true);
+                  //box.setColor(Color.WHITE);
+                  //add(box);
+
+                truchetTileSquare2.setPosition(x*recursivei+sub+truchetTileSquare.getX(), y*recursiveii+sub+truchetTileSquare.getY());
+                truchetTileSquare2.draw(batch);
+                recursivei++;recursiveii++;
+                  if(sub >= 5) {
+                          // now draw eight sub-gaskets around the white square
+                          drawGasket(x,           y, sub);
+                          drawGasket(x + sub,     y, sub);
+                          drawGasket(x + 2 * sub, y, sub);
+                          drawGasket(x,           y + sub, sub);
+                          drawGasket(x + 2 * sub, y + sub, sub);
+                          drawGasket(x,           y + 2 * sub, sub);
+                          drawGasket(x + sub,     y + 2 * sub, sub);
+                          drawGasket(x + 2 * sub, y + 2 * sub, sub);
+                      }
+    }
+    public void rcountdown(){
+
+        drawBasis();
+
+        //drX=truchetTileSquare.getX();
+        //drY=truchetTileSquare.getY();
+
+        //dtilePositionx = oldrX+truchetTileSquare.getWidth();
+        //dtilePositiony = oldrY+truchetTileSquare.getHeight();
+
+        //for(int i=0;i<3;i++){
+        //    for(int ii=0;ii<3;ii++) {
+                //    countdown1(3);
+                //    oldrX=1000;
+                //    oldrY=1500;
+
+        countdown(posX,posY,3);
+        //    }
+        //}
+    }
+    public void countdown (float posX, float posY, int n) {
+        if (n != 0) {
+            drawTillesToleftAndTop(posX,posY);
+            countdown (posX,posY,n-1);
+        }
+    }
+    public void countdown1 (int n) {
+        if (n == 0) {
+            System.out.println ("Blastoff!");
+        } else {
+            //truchetTileSquare.setPosition(oldrX+oldtilePositionx,oldrY);
+
+            //truchetTileSquare1.setPosition(truchetTileSquare1.getX()+truchetTileSquare1.getWidth(), truchetTileSquare1.getY());
+
+            truchetTileSquare1.setPosition(oldtilePositionx, oldrY);
+            //truchetTileSquare1.setPosition(truchetTileSquare1.getX()+truchetTileSquare1.getWidth(), truchetTileSquare1.getY());
+            truchetTileSquare2.setPosition(oldrX, oldtilePositiony);
+
+            //truchetTileSquare2.setPosition(oldtilePositionx+oldrX, oldrY+oldtilePositiony+truchetTileSquare.getHeight());
+            //truchetTileSquare1.setPosition(oldtilePositionx+oldrX+truchetTileSquare.getWidth(), oldrY+oldtilePositiony);
+
+            //truchetTileSquare2.setPosition(truchetTileSquare2.getX(), truchetTileSquare2.getY()+truchetTileSquare2.getHeight());
+
+            //truchetTileSquare.draw(batch);
+            truchetTileSquare1.draw(batch);
+            truchetTileSquare2.draw(batch);
+
+
+            oldrX=truchetTileSquare2.getX()+ truchetTileSquare.getWidth();
+            oldrY=truchetTileSquare1.getY()+ truchetTileSquare.getHeight();
+
+            //countdown2(3);
+
+            oldtilePositiony = oldtilePositiony + truchetTileSquare.getHeight();//truchetTileSquare1.getX();
+            oldtilePositionx = oldtilePositionx + truchetTileSquare.getWidth();
+
+            System.out.println (n);
+            countdown1 (n-1);
+        }
+    }
+    public void countdown2 (int n) {
+        if (n == 0) {
+            System.out.println ("Blastoff!");
+        } else {
+
+
+            //truchetTileSquare2.setPosition(truchetTileSquare2.getX(), truchetTileSquare2.getY()+truchetTileSquare2.getHeight());
+
+
+            truchetTileSquare1.draw(batch);
+            truchetTileSquare2.draw(batch);
+
+
+            System.out.println (n);
+            countdown2 (n-1);
+        }
+    }
+    public void drawIliterally(){
+        for(int i=0;i<3;i++){
+            for(int ii=0;ii<3;ii++) {
+                //    countdown1(3);
+                //    oldrX=1000;
+                //    oldrY=1500;
+
+                drawTillesToleftAndTop(posX,posY);
+            }
+        }
+    }
+    public void drawBasis(){
+
+        posX=1000;
+        posY=1000;
+
+        truchetTileSquare.setPosition(posX,posY);
+        truchetTileSquare.draw(batch);
+    }
+    public void drawTillesToleftAndTop(float posX,float posY){
+        truchetTileSquare1.setPosition(posX+truchetTileSquare.getWidth(), posY);
+        truchetTileSquare2.setPosition(posX, posY+truchetTileSquare.getHeight());
+        truchetTileSquare1.draw(batch);
+        truchetTileSquare2.draw(batch);
+
+//truchetTileSquare1.setPosition(truchetTileSquare1.getX()+truchetTileSquare1.getWidth(), truchetTileSquare1.getY());
+
+        //oldrX=truchetTileSquare2.getX()+ truchetTileSquare.getWidth();
+        //oldrY=truchetTileSquare1.getY()+ truchetTileSquare.getHeight();
+
+        //countdown2(3);
+
+       // oldtilePositiony = oldtilePositiony + truchetTileSquare.getHeight();//truchetTileSquare1.getX();
+       // oldtilePositionx = oldtilePositionx + truchetTileSquare.getWidth();
     }
     public void createRandomTillingNumbering(){
         Random r = new Random();
