@@ -106,8 +106,11 @@ public class MyGdxGame extends ApplicationAdapter {
     float oldrY;
     float oldtilePositionx;
     float oldtilePositiony;
-    float posX;
-    float posY;
+
+    float pos1X;
+    float pos1Y;
+    float pos2X;
+    float pos2Y;
     //endregion
     @Override
     public void create() {
@@ -465,10 +468,6 @@ public class MyGdxGame extends ApplicationAdapter {
         oldrX=1000;oldrY=1500;
 
         rcountdown();
-        //countdown(3);
-
-        //recFunTruchet(recursivei,recursiveii);
-        //drawGasket(1000, 1000, 243);
         batch.end();
     }
     public void recFunTruchet(int i, int ii){
@@ -560,30 +559,28 @@ public class MyGdxGame extends ApplicationAdapter {
                       }
     }
     public void rcountdown(){
-
         drawBasis();
-
-        //drX=truchetTileSquare.getX();
-        //drY=truchetTileSquare.getY();
-
-        //dtilePositionx = oldrX+truchetTileSquare.getWidth();
-        //dtilePositiony = oldrY+truchetTileSquare.getHeight();
-
-        //for(int i=0;i<3;i++){
-        //    for(int ii=0;ii<3;ii++) {
-                //    countdown1(3);
-                //    oldrX=1000;
-                //    oldrY=1500;
-
-        countdown(posX,posY,3);
-        //    }
-        //}
+        countdown(pos1X,pos1Y,pos2X,pos2Y,4);
     }
-    public void countdown (float posX, float posY, int n) {
+    public void countdown (float pos1X, float pos1Y,float pos2X, float pos2Y, int n) {
         if (n != 0) {
-            drawTillesToleftAndTop(posX,posY);
-            countdown (posX,posY,n-1);
+            Gdx.app.error("logloglog "," " + n);
+            drawTillesToleftAndTop(pos1X,pos1Y);
+            pos1X=truchetTileSquare1.getX();
+            pos1Y=truchetTileSquare1.getY();
+            drawTillesToleftAndTop(pos2X,pos2Y);
+            pos2X=truchetTileSquare2.getX();
+            pos2Y=truchetTileSquare2.getY();
+            countdown (pos1X,pos1Y,pos2X,pos2Y,n-1);
         }
+    }
+    public void drawTillesToleftAndTop(float posX,float posY){
+        truchetTileSquare1.setPosition(posX+truchetTileSquare.getWidth(), posY);
+        truchetTileSquare2.setPosition(posX, posY+truchetTileSquare.getHeight());
+        truchetTileSquare1.draw(batch);
+        truchetTileSquare2.draw(batch);
+        Gdx.app.error("logloglog ",posX + " " + posY);
+
     }
     public void countdown1 (int n) {
         if (n == 0) {
@@ -636,40 +633,26 @@ public class MyGdxGame extends ApplicationAdapter {
             countdown2 (n-1);
         }
     }
-    public void drawIliterally(){
-        for(int i=0;i<3;i++){
-            for(int ii=0;ii<3;ii++) {
-                //    countdown1(3);
+    //public void drawIliterally(){
+    //    for(int i=0;i<3;i++){
+    //        for(int ii=0;ii<3;ii++) {
+    //            //    countdown1(3);
                 //    oldrX=1000;
                 //    oldrY=1500;
 
-                drawTillesToleftAndTop(posX,posY);
-            }
-        }
-    }
+    //            drawTillesToleftAndTop(posX,posY);
+     //       }
+    //    }
+    //}
     public void drawBasis(){
 
-        posX=1000;
-        posY=1000;
+        pos1X=1000;
+        pos1Y=1000;
+        pos2X=1000;
+        pos2Y=1000;
 
-        truchetTileSquare.setPosition(posX,posY);
+        truchetTileSquare.setPosition(pos1X,pos1Y);
         truchetTileSquare.draw(batch);
-    }
-    public void drawTillesToleftAndTop(float posX,float posY){
-        truchetTileSquare1.setPosition(posX+truchetTileSquare.getWidth(), posY);
-        truchetTileSquare2.setPosition(posX, posY+truchetTileSquare.getHeight());
-        truchetTileSquare1.draw(batch);
-        truchetTileSquare2.draw(batch);
-
-//truchetTileSquare1.setPosition(truchetTileSquare1.getX()+truchetTileSquare1.getWidth(), truchetTileSquare1.getY());
-
-        //oldrX=truchetTileSquare2.getX()+ truchetTileSquare.getWidth();
-        //oldrY=truchetTileSquare1.getY()+ truchetTileSquare.getHeight();
-
-        //countdown2(3);
-
-       // oldtilePositiony = oldtilePositiony + truchetTileSquare.getHeight();//truchetTileSquare1.getX();
-       // oldtilePositionx = oldtilePositionx + truchetTileSquare.getWidth();
     }
     public void createRandomTillingNumbering(){
         Random r = new Random();
