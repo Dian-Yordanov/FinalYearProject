@@ -2,6 +2,8 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
@@ -23,6 +25,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
@@ -100,20 +103,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static int intToBeReduced1;
     public static int intToBeReduced2;
 
-    public static int recursivei;
-    public static int recursiveii;
-    public static int maxri;
-    public static int maxrii;
 
-    float oldrX;
-    float oldrY;
-    float oldtilePositionx;
-    float oldtilePositiony;
-
-    float pos1X;
-    float pos1Y;
-    float pos2X;
-    float pos2Y;
 
     public static Array<Sprite> arraySpriteX;
     //endregion
@@ -166,6 +156,7 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
         cameraMovingMethod();
+        zoomableCamera();
 
         /*Timer.schedule(new Timer.Task() {
             @Override
@@ -343,6 +334,37 @@ public class MyGdxGame extends ApplicationAdapter {
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
+    public void zoomableCamera(){
+        for (int i = 0; i < 20; i++) { // 20 is max number of touch points
+            if (Gdx.input.isTouched(i) && i==2) {
+                camera.zoom -=0.04;
+                Gdx.app.error(" ", " " + i);
+            }
+            if (Gdx.input.isTouched(i) && i==1) {
+                camera.zoom +=0.02;
+                Gdx.app.error(" ", " " + i);
+            }
+
+        }
+
+        /*if (fast) {
+            camera.zoom +=0.2;
+        } else {
+
+        }
+
+        if (fire) {
+            camera.zoom -=0.2;
+        }*/
+      /*  if (Gdx.input.isTouched()) {
+            Gdx.app.error("error"," " + Gdx.input.getX());
+            Gdx.app.error("error"," " + Gdx.input.getY());
+            camera.zoom += 0.2;
+        }
+        if (Gdx.input.isTouched()) {
+            camera.zoom += 0.2;
+        }*/
+    }
     public void cameraMovingMethod() {
 
         if (Gdx.input.justTouched()) {
@@ -392,6 +414,8 @@ public class MyGdxGame extends ApplicationAdapter {
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
 
+
+                //camera.rotateAround(camera.position,camera.position,90);
                 }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
@@ -488,14 +512,6 @@ public class MyGdxGame extends ApplicationAdapter {
 
         batch.end();
     }
-  /*  public void countdown (int n, int m) {//float pos1X, float pos1Y,float pos2X, float pos2Y,
-        if (n != 4) {
-            if (m != 4) {
-                oldSchoolDrawing(n,m);
-                countdown (n,m+1);}countdown (n+1,m);
-        }
-
-    }*/
     public void illicountdown(int n, int m){
         int nMax=n;
         for(int i=0;i<n;i++){
@@ -513,38 +529,6 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
         //drawAll();
-    }
-    public void changeCameraDinamically(int i){
-        if (Gdx.input.isTouched()) {
-             PixmapDrawingClass.spriteSetRandomRotation(arraySpriteX.get(i));
-        }
-    }
-   /* public void oldSchoolDrawing(int i, int ii){
-        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i), ((truchetTileSquare1.getHeight()) * ii));
+      }
 
-        arraySpriteX.add(truchetTileSquare1);
-        //arraySpriteX.get(i).draw(batch);
-
-        //Gdx.app.error("logloglog ",i + " " + ii);
-        //truchetTileSquare1.draw(batch);
-    }*/
-    /*public void drawAll(){
-        for (int i=0;i<arraySpriteX.size;i++) {
-            // Iterator it;
-            //     for(it = arraySpriteX.iterator(); it.hasNext();){
-
-            arraySpriteX.get(i).draw(batch);
-            //     enemy.setOrigin(500, 500);
-
-            //     }
-        }
-    }*/
-
-    public int createRandomTillingNumbering(){
-        Random r = new Random();
-        int Low = 0;
-        int High = 4;
-        doRandomRotation = r.nextInt(High-Low) + Low;
-        return doRandomRotation;
-    }
 }
