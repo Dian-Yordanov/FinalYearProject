@@ -335,21 +335,9 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
     public void zoomableCamera(){
-
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
-            /*if (Gdx.input.isTouched(i) && i==2) {
-
-
-                camera.rotate(15);
-                camera.zoom =10;
-               // Gdx.app.error(" ", " " + i);
-            }*/
             if (Gdx.input.isTouched(i) && i==1) {
-
-
                 int sumaryXii=Math.abs(Gdx.input.getX(i)-Gdx.input.getX(i-1));
-                Gdx.app.error("lalala"," " + Gdx.input.getX(i)+ " " +sumaryXi);
-                Gdx.app.error("lalala"," " + Gdx.input.getX(i-1)+ " " +sumaryXii);
 
                 if(sumaryXi>=sumaryXii && i!=2){
                     camera.zoom +=0.05;
@@ -357,31 +345,9 @@ public class MyGdxGame extends ApplicationAdapter {
                 if(sumaryXi<sumaryXii && i!=2){
                     camera.zoom -=0.05;
                 }
-
                 sumaryXi = sumaryXii;
-
-                //Gdx.app.error(" ", " " + i);
             }
-
         }
-
-        /*if (fast) {
-            camera.zoom +=0.2;
-        } else {
-
-        }
-
-        if (fire) {
-            camera.zoom -=0.2;
-        }*/
-      /*  if (Gdx.input.isTouched()) {
-            Gdx.app.error("error"," " + Gdx.input.getX());
-            Gdx.app.error("error"," " + Gdx.input.getY());
-            camera.zoom += 0.2;
-        }
-        if (Gdx.input.isTouched()) {
-            camera.zoom += 0.2;
-        }*/
     }
     public void cameraMovingMethod() {
 
