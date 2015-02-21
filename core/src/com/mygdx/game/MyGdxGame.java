@@ -104,7 +104,7 @@ public class MyGdxGame extends ApplicationAdapter {
     public static int intToBeReduced2;
 
 
-
+    int sumaryXi=0;
     public static Array<Sprite> arraySpriteX;
     //endregion
     @Override
@@ -335,14 +335,31 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
     public void zoomableCamera(){
+
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
             if (Gdx.input.isTouched(i) && i==2) {
+
+
                 camera.zoom -=0.04;
-                Gdx.app.error(" ", " " + i);
+               // Gdx.app.error(" ", " " + i);
             }
             if (Gdx.input.isTouched(i) && i==1) {
-                camera.zoom +=0.02;
-                Gdx.app.error(" ", " " + i);
+
+
+                int sumaryXii=Math.abs(Gdx.input.getX(i)-Gdx.input.getX(i-1));
+                Gdx.app.error("lalala"," " + Gdx.input.getX(i)+ " " +sumaryXi);
+                Gdx.app.error("lalala"," " + Gdx.input.getX(i-1)+ " " +sumaryXii);
+
+                if(sumaryXi>=sumaryXii){
+                    camera.zoom +=0.05;
+                }
+                if(sumaryXi<sumaryXii){
+                    camera.zoom -=0.05;
+                }
+
+                sumaryXi = sumaryXii;
+
+                //Gdx.app.error(" ", " " + i);
             }
 
         }
