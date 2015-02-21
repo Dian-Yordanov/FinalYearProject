@@ -226,10 +226,11 @@ public class MyGdxGame extends ApplicationAdapter {
         camera.position.set(1.5f * camera.viewportWidth, 1.5f * camera.viewportHeight, 0);
         camera.update();
 
-        cameraBoundaryX1= Gdx.graphics.getWidth();
-        cameraBoundaryX2= (int) (2f * Gdx.graphics.getWidth());
-        cameraBoundaryY1= (int) (2f * Gdx.graphics.getHeight());
-        cameraBoundaryY2= Gdx.graphics.getHeight();
+        //from x1 to x2 and from y1 to y2 was 1 2 2 1
+        cameraBoundaryX1= Gdx.graphics.getWidth()/2;
+        cameraBoundaryX2= (int) (3f * Gdx.graphics.getWidth());
+        cameraBoundaryY1= (int) (3f * Gdx.graphics.getHeight());
+        cameraBoundaryY2= Gdx.graphics.getHeight()/2;
 
         //camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
@@ -424,11 +425,11 @@ public class MyGdxGame extends ApplicationAdapter {
                 //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
                 try {
                     if (!doneOnce){
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                    doneOnce=true;intToBeReduced1--;intToBeReduced2--;
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                        doneOnce=true;intToBeReduced1--;intToBeReduced2--;
                     }
                     //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
@@ -475,26 +476,26 @@ public class MyGdxGame extends ApplicationAdapter {
         ii=recursiveii;
         //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
         //if(i>=9 && ii>=9) {return;}
-            try {
-                if (!doneOnce) {
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                    doneOnce = true;
-                    intToBeReduced1--;
-                    intToBeReduced2--;
-                }
-                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+        try {
+            if (!doneOnce) {
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                doneOnce = true;
+                intToBeReduced1--;
+                intToBeReduced2--;
+            }
+            //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
-              //  if (ii % 2 == 0 && i % 2 == 0) {
-                    truchetTileSquare1.setPosition(oldrX+100, oldrY);
-                    truchetTileSquare1.draw(batch);
-                    truchetTileSquare2.setPosition(oldrX, oldrY+100);
-                    truchetTileSquare2.draw(batch);
-             //   }
-                oldrX=truchetTileSquare1.getX();
-                oldrY=truchetTileSquare2.getY();
+            //  if (ii % 2 == 0 && i % 2 == 0) {
+            truchetTileSquare1.setPosition(oldrX+100, oldrY);
+            truchetTileSquare1.draw(batch);
+            truchetTileSquare2.setPosition(oldrX, oldrY+100);
+            truchetTileSquare2.draw(batch);
+            //   }
+            oldrX=truchetTileSquare1.getX();
+            oldrY=truchetTileSquare2.getY();
              /*   if (ii % 2 != 0 && i % 2 != 0) {
                     truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
                             , ((truchetTileSquare1.getHeight()) * ii));
@@ -511,52 +512,52 @@ public class MyGdxGame extends ApplicationAdapter {
                     truchetTileSquare3.draw(batch);
                 }*/
 
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
-           // Gdx.app.error("error1 " + i, " " + ii);
-            if (recursiveii < maxri) {
-                recursiveii++;
-                recFunTruchet(recursivei, recursiveii);
-            }
+        // Gdx.app.error("error1 " + i, " " + ii);
+        if (recursiveii < maxri) {
+            recursiveii++;
+            recFunTruchet(recursivei, recursiveii);
+        }
 
 
-           // Gdx.app.error("error2 " + i, " " + ii);
-            if (recursivei < maxrii) {
-                recursiveii = 0;
-                recursivei++;
-                recFunTruchet(recursivei, recursiveii);
-            }
+        // Gdx.app.error("error2 " + i, " " + ii);
+        if (recursivei < maxrii) {
+            recursiveii = 0;
+            recursivei++;
+            recFunTruchet(recursivei, recursiveii);
+        }
 
-            //if(i>0){
-            //ii=100;
-            //recFunTruchet(i-1,ii);
-            //}
+        //if(i>0){
+        //ii=100;
+        //recFunTruchet(i-1,ii);
+        //}
 
     }
     public void drawGasket(int x, int y, int side) {
-                  // draw single white square in middle
-                  int sub = side / 3; // length of sub-squares
-                  //GRect box = new GRect(x + sub, y + sub, sub - 1, sub - 1);
-                  //box.setFilled(true);
-                  //box.setColor(Color.WHITE);
-                  //add(box);
+        // draw single white square in middle
+        int sub = side / 3; // length of sub-squares
+        //GRect box = new GRect(x + sub, y + sub, sub - 1, sub - 1);
+        //box.setFilled(true);
+        //box.setColor(Color.WHITE);
+        //add(box);
 
-                truchetTileSquare2.setPosition(x*recursivei+sub+truchetTileSquare.getX(), y*recursiveii+sub+truchetTileSquare.getY());
-                truchetTileSquare2.draw(batch);
-                recursivei++;recursiveii++;
-                  if(sub >= 5) {
-                          // now draw eight sub-gaskets around the white square
-                          drawGasket(x,           y, sub);
-                          drawGasket(x + sub,     y, sub);
-                          drawGasket(x + 2 * sub, y, sub);
-                          drawGasket(x,           y + sub, sub);
-                          drawGasket(x + 2 * sub, y + sub, sub);
-                          drawGasket(x,           y + 2 * sub, sub);
-                          drawGasket(x + sub,     y + 2 * sub, sub);
-                          drawGasket(x + 2 * sub, y + 2 * sub, sub);
-                      }
+        truchetTileSquare2.setPosition(x*recursivei+sub+truchetTileSquare.getX(), y*recursiveii+sub+truchetTileSquare.getY());
+        truchetTileSquare2.draw(batch);
+        recursivei++;recursiveii++;
+        if(sub >= 5) {
+            // now draw eight sub-gaskets around the white square
+            drawGasket(x,           y, sub);
+            drawGasket(x + sub,     y, sub);
+            drawGasket(x + 2 * sub, y, sub);
+            drawGasket(x,           y + sub, sub);
+            drawGasket(x + 2 * sub, y + sub, sub);
+            drawGasket(x,           y + 2 * sub, sub);
+            drawGasket(x + sub,     y + 2 * sub, sub);
+            drawGasket(x + 2 * sub, y + 2 * sub, sub);
+        }
     }
     public void rcountdown(){
         drawBasis();
@@ -637,11 +638,11 @@ public class MyGdxGame extends ApplicationAdapter {
     //    for(int i=0;i<3;i++){
     //        for(int ii=0;ii<3;ii++) {
     //            //    countdown1(3);
-                //    oldrX=1000;
-                //    oldrY=1500;
+    //    oldrX=1000;
+    //    oldrY=1500;
 
     //            drawTillesToleftAndTop(posX,posY);
-     //       }
+    //       }
     //    }
     //}
     public void drawBasis(){
