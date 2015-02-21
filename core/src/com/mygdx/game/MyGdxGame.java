@@ -111,6 +111,8 @@ public class MyGdxGame extends ApplicationAdapter {
     float pos1Y;
     float pos2X;
     float pos2Y;
+
+    public static Array<Sprite> arraySpriteX;
     //endregion
     @Override
     public void create() {
@@ -121,6 +123,7 @@ public class MyGdxGame extends ApplicationAdapter {
         //intToBeReduced1=1;
         //intToBeReduced2=1;
         doRandomRotation=0;
+
         //doneOnce=false;
 
         //PeriodicTillingsRendering PTR = new PeriodicTillingsRendering();
@@ -374,13 +377,14 @@ public class MyGdxGame extends ApplicationAdapter {
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                    PixmapDrawingClass.spriteSetRandomRotation(arraySpriteX.get(8));
                 }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
 
-                if (camera.position.x > cameraBoundaryX1 && camera.position.y < cameraBoundaryY1 &&
-                        camera.position.x < cameraBoundaryX2 && camera.position.y > cameraBoundaryY2) {//&& camera.position.x < 3200 && camera.position.y > 0
+                if (camera.position.x >= cameraBoundaryX1 && camera.position.y <= cameraBoundaryY1 &&
+                        camera.position.x <= cameraBoundaryX2 && camera.position.y >= cameraBoundaryY2) {//&& camera.position.x < 3200 && camera.position.y > 0
                     camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
                     camera.update();
                 } else {
@@ -560,105 +564,45 @@ public class MyGdxGame extends ApplicationAdapter {
         }
     }
     public void rcountdown(){
-        drawBasis();
-        countdown(pos1X,pos1Y,pos2X,pos2Y,4);
+        //drawBasis();
+        //countdown(pos1X,pos1Y,pos2X,pos2Y,4,4);
+        arraySpriteX = new Array<Sprite>();
+        countdown(0,0);
+
+        //Gdx.app.error("logloglog ", " " + arraySpriteX.size);
+
     }
-    public void countdown (float pos1X, float pos1Y,float pos2X, float pos2Y, int n) {
-        if (n != 0) {
-            Gdx.app.error("logloglog "," " + n);
-            drawTillesToleftAndTop(pos1X,pos1Y);
-            pos1X=truchetTileSquare1.getX();
-            pos1Y=truchetTileSquare1.getY();
-            drawTillesToleftAndTop(pos2X,pos2Y);
-            pos2X=truchetTileSquare2.getX();
-            pos2Y=truchetTileSquare2.getY();
-            countdown (pos1X,pos1Y,pos2X,pos2Y,n-1);
+    public void countdown (int n, int m) {//float pos1X, float pos1Y,float pos2X, float pos2Y,
+        if (n != 4) {
+            if (m != 4) {
+                oldSchoolDrawing(n,m);
+                countdown (n,m+1);}countdown (n+1,m);
+        }
+
+    }
+    public void oldSchoolDrawing(int i, int ii){
+
+        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
+
+        arraySpriteX.add(truchetTileSquare1);
+        arraySpriteX.get(i).draw(batch);
+
+        //Gdx.app.error("logloglog ",i + " " + ii);
+        //truchetTileSquare1.draw(batch);
+    }
+    public void drawAll(){
+        for (int i=0;i<arraySpriteX.size;i++){
+
+        Gdx.app.error("logloglog2 ", " " + arraySpriteX.size + i);
+            arraySpriteX.get(i).draw(batch);
         }
     }
-    public void drawTillesToleftAndTop(float posX,float posY){
-        truchetTileSquare1.setPosition(posX+truchetTileSquare.getWidth(), posY);
-        truchetTileSquare2.setPosition(posX, posY+truchetTileSquare.getHeight());
-        truchetTileSquare1.draw(batch);
-        truchetTileSquare2.draw(batch);
-        Gdx.app.error("logloglog ",posX + " " + posY);
 
-    }
-    public void countdown1 (int n) {
-        if (n == 0) {
-            System.out.println ("Blastoff!");
-        } else {
-            //truchetTileSquare.setPosition(oldrX+oldtilePositionx,oldrY);
-
-            //truchetTileSquare1.setPosition(truchetTileSquare1.getX()+truchetTileSquare1.getWidth(), truchetTileSquare1.getY());
-
-            truchetTileSquare1.setPosition(oldtilePositionx, oldrY);
-            //truchetTileSquare1.setPosition(truchetTileSquare1.getX()+truchetTileSquare1.getWidth(), truchetTileSquare1.getY());
-            truchetTileSquare2.setPosition(oldrX, oldtilePositiony);
-
-            //truchetTileSquare2.setPosition(oldtilePositionx+oldrX, oldrY+oldtilePositiony+truchetTileSquare.getHeight());
-            //truchetTileSquare1.setPosition(oldtilePositionx+oldrX+truchetTileSquare.getWidth(), oldrY+oldtilePositiony);
-
-            //truchetTileSquare2.setPosition(truchetTileSquare2.getX(), truchetTileSquare2.getY()+truchetTileSquare2.getHeight());
-
-            //truchetTileSquare.draw(batch);
-            truchetTileSquare1.draw(batch);
-            truchetTileSquare2.draw(batch);
-
-
-            oldrX=truchetTileSquare2.getX()+ truchetTileSquare.getWidth();
-            oldrY=truchetTileSquare1.getY()+ truchetTileSquare.getHeight();
-
-            //countdown2(3);
-
-            oldtilePositiony = oldtilePositiony + truchetTileSquare.getHeight();//truchetTileSquare1.getX();
-            oldtilePositionx = oldtilePositionx + truchetTileSquare.getWidth();
-
-            System.out.println (n);
-            countdown1 (n-1);
-        }
-    }
-    public void countdown2 (int n) {
-        if (n == 0) {
-            System.out.println ("Blastoff!");
-        } else {
-
-
-            //truchetTileSquare2.setPosition(truchetTileSquare2.getX(), truchetTileSquare2.getY()+truchetTileSquare2.getHeight());
-
-
-            truchetTileSquare1.draw(batch);
-            truchetTileSquare2.draw(batch);
-
-
-            System.out.println (n);
-            countdown2 (n-1);
-        }
-    }
-    //public void drawIliterally(){
-    //    for(int i=0;i<3;i++){
-    //        for(int ii=0;ii<3;ii++) {
-    //            //    countdown1(3);
-    //    oldrX=1000;
-    //    oldrY=1500;
-
-    //            drawTillesToleftAndTop(posX,posY);
-    //       }
-    //    }
-    //}
-    public void drawBasis(){
-
-        pos1X=1000;
-        pos1Y=1000;
-        pos2X=1000;
-        pos2Y=1000;
-
-        truchetTileSquare.setPosition(pos1X,pos1Y);
-        truchetTileSquare.draw(batch);
-    }
-    public void createRandomTillingNumbering(){
+    public int createRandomTillingNumbering(){
         Random r = new Random();
         int Low = 0;
         int High = 4;
         doRandomRotation = r.nextInt(High-Low) + Low;
+        return doRandomRotation;
     }
 }
