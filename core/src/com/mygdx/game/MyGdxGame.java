@@ -337,12 +337,13 @@ public class MyGdxGame extends ApplicationAdapter {
     public void zoomableCamera(){
 
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
-            if (Gdx.input.isTouched(i) && i==2) {
+            /*if (Gdx.input.isTouched(i) && i==2) {
 
 
-                camera.zoom -=0.04;
+                camera.rotate(15);
+                camera.zoom =10;
                // Gdx.app.error(" ", " " + i);
-            }
+            }*/
             if (Gdx.input.isTouched(i) && i==1) {
 
 
@@ -350,10 +351,10 @@ public class MyGdxGame extends ApplicationAdapter {
                 Gdx.app.error("lalala"," " + Gdx.input.getX(i)+ " " +sumaryXi);
                 Gdx.app.error("lalala"," " + Gdx.input.getX(i-1)+ " " +sumaryXii);
 
-                if(sumaryXi>=sumaryXii){
+                if(sumaryXi>=sumaryXii && i!=2){
                     camera.zoom +=0.05;
                 }
-                if(sumaryXi<sumaryXii){
+                if(sumaryXi<sumaryXii && i!=2){
                     camera.zoom -=0.05;
                 }
 
