@@ -13,7 +13,7 @@ public class RecursiveTruchetTillingLauncher extends AIOLauncherNoOptions {
         MyGdxGame.intToBeReduced1=1;
         MyGdxGame.intToBeReduced2=1;
         MyGdxGame.doneOnce=false;
-        //MyGdxGame.arraySpriteX = new Array<Sprite>();
+       // MyGdxGame.arraySpriteX = new Array<Sprite>();
         //MyGdxGame.evolvingTilling = false;
     }
 }

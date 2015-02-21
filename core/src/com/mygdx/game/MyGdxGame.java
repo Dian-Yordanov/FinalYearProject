@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.PolygonRegion;
 import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
@@ -25,7 +26,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
@@ -163,6 +166,17 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
         cameraMovingMethod();
+
+        /*Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+            }
+
+        },3,1);*/
 
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
@@ -377,7 +391,7 @@ public class MyGdxGame extends ApplicationAdapter {
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                    PixmapDrawingClass.spriteSetRandomRotation(arraySpriteX.get(8));
+
                 }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
@@ -468,135 +482,63 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
-        recursivei=0;recursiveii=0;
-        maxri=20;maxrii=10;
-        oldrX=1000;oldrY=1500;
+        arraySpriteX = new Array<Sprite>();
+        //countdown(0,0);
+        illicountdown(10,10);
 
-        rcountdown();
         batch.end();
     }
-    public void recFunTruchet(int i, int ii){
-        i=recursivei;
-        ii=recursiveii;
-        //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-        //if(i>=9 && ii>=9) {return;}
-        try {
-            if (!doneOnce) {
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                doneOnce = true;
-                intToBeReduced1--;
-                intToBeReduced2--;
-            }
-            //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-
-            //  if (ii % 2 == 0 && i % 2 == 0) {
-            truchetTileSquare1.setPosition(oldrX+100, oldrY);
-            truchetTileSquare1.draw(batch);
-            truchetTileSquare2.setPosition(oldrX, oldrY+100);
-            truchetTileSquare2.draw(batch);
-            //   }
-            oldrX=truchetTileSquare1.getX();
-            oldrY=truchetTileSquare2.getY();
-             /*   if (ii % 2 != 0 && i % 2 != 0) {
-                    truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
-                            , ((truchetTileSquare1.getHeight()) * ii));
-                    truchetTileSquare1.draw(batch);
-                }
-                if (ii % 2 != 0 && i % 2 == 0) {
-                    truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
-                            , ((truchetTileSquare2.getHeight()) * ii));
-                    truchetTileSquare2.draw(batch);
-                }
-                if (ii % 2 == 0 && i % 2 != 0) {
-                    truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
-                            , ((truchetTileSquare3.getHeight()) * ii));
-                    truchetTileSquare3.draw(batch);
-                }*/
-
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
-        // Gdx.app.error("error1 " + i, " " + ii);
-        if (recursiveii < maxri) {
-            recursiveii++;
-            recFunTruchet(recursivei, recursiveii);
-        }
-
-
-        // Gdx.app.error("error2 " + i, " " + ii);
-        if (recursivei < maxrii) {
-            recursiveii = 0;
-            recursivei++;
-            recFunTruchet(recursivei, recursiveii);
-        }
-
-        //if(i>0){
-        //ii=100;
-        //recFunTruchet(i-1,ii);
-        //}
-
-    }
-    public void drawGasket(int x, int y, int side) {
-        // draw single white square in middle
-        int sub = side / 3; // length of sub-squares
-        //GRect box = new GRect(x + sub, y + sub, sub - 1, sub - 1);
-        //box.setFilled(true);
-        //box.setColor(Color.WHITE);
-        //add(box);
-
-        truchetTileSquare2.setPosition(x*recursivei+sub+truchetTileSquare.getX(), y*recursiveii+sub+truchetTileSquare.getY());
-        truchetTileSquare2.draw(batch);
-        recursivei++;recursiveii++;
-        if(sub >= 5) {
-            // now draw eight sub-gaskets around the white square
-            drawGasket(x,           y, sub);
-            drawGasket(x + sub,     y, sub);
-            drawGasket(x + 2 * sub, y, sub);
-            drawGasket(x,           y + sub, sub);
-            drawGasket(x + 2 * sub, y + sub, sub);
-            drawGasket(x,           y + 2 * sub, sub);
-            drawGasket(x + sub,     y + 2 * sub, sub);
-            drawGasket(x + 2 * sub, y + 2 * sub, sub);
-        }
-    }
-    public void rcountdown(){
-        //drawBasis();
-        //countdown(pos1X,pos1Y,pos2X,pos2Y,4,4);
-        arraySpriteX = new Array<Sprite>();
-        countdown(0,0);
-
-        //Gdx.app.error("logloglog ", " " + arraySpriteX.size);
-
-    }
-    public void countdown (int n, int m) {//float pos1X, float pos1Y,float pos2X, float pos2Y,
+  /*  public void countdown (int n, int m) {//float pos1X, float pos1Y,float pos2X, float pos2Y,
         if (n != 4) {
             if (m != 4) {
                 oldSchoolDrawing(n,m);
                 countdown (n,m+1);}countdown (n+1,m);
         }
 
-    }
-    public void oldSchoolDrawing(int i, int ii){
+    }*/
+    public void illicountdown(int n, int m){
+        int nMax=n;
+        for(int i=0;i<n;i++){
+            for(int ii=i;ii<n;ii++){
 
-        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
+                truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
+                arraySpriteX.add(truchetTileSquare1);
+                //arraySpriteX.get(i).draw(batch);
+
+
+
+                arraySpriteX.get(ii).draw(batch);
+                //changeCameraDinamically(ii);
+            }
+        }
+
+        //drawAll();
+    }
+    public void changeCameraDinamically(int i){
+        if (Gdx.input.isTouched()) {
+             PixmapDrawingClass.spriteSetRandomRotation(arraySpriteX.get(i));
+        }
+    }
+   /* public void oldSchoolDrawing(int i, int ii){
+        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i), ((truchetTileSquare1.getHeight()) * ii));
 
         arraySpriteX.add(truchetTileSquare1);
-        arraySpriteX.get(i).draw(batch);
+        //arraySpriteX.get(i).draw(batch);
 
         //Gdx.app.error("logloglog ",i + " " + ii);
         //truchetTileSquare1.draw(batch);
-    }
-    public void drawAll(){
-        for (int i=0;i<arraySpriteX.size;i++){
+    }*/
+    /*public void drawAll(){
+        for (int i=0;i<arraySpriteX.size;i++) {
+            // Iterator it;
+            //     for(it = arraySpriteX.iterator(); it.hasNext();){
 
-        Gdx.app.error("logloglog2 ", " " + arraySpriteX.size + i);
             arraySpriteX.get(i).draw(batch);
+            //     enemy.setOrigin(500, 500);
+
+            //     }
         }
-    }
+    }*/
 
     public int createRandomTillingNumbering(){
         Random r = new Random();

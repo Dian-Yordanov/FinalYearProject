@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.MyGdxGame;
 
 /**
@@ -56,7 +58,7 @@ public class AIOLauncherNoOptions extends AndroidApplication {
             case R.id.option1:
                 //MyGdxGame.evolvingTilling = false;
         //        MyGdxGame.pictureAddress = imageNameToBeSaved;
-
+        //        MyGdxGame.arraySpriteX = new Array<Sprite>();
                 goToRenderingActivity();
                 return true;
             case R.id.option2:
