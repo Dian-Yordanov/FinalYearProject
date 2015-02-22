@@ -97,6 +97,12 @@ android:layout_height="fill_parent">
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:text="Random Truchet Tilling Launcher"
+            android:id="@+id/RandomTruchetTillingLauncher"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:text="Recursive Truchet Tilling Launcher"
             android:id="@+id/RecursiveTruchetTillingLauncher"
             android:layout_gravity="center_horizontal" />

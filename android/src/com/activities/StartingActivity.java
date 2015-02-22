@@ -29,13 +29,12 @@ public class StartingActivity extends Activity {
     public static Button SnubTrihexagonalTilingLauncherButton;
     public static Button TruchetTillingLauncherButton;
     public static Button RecursiveTruchetTillingLauncherButton;
+    public static Button RandomTruchetTillingLauncherButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_activity);
-
-
 
         callClassTillingLauncher(SquareTillingLauncherButton, R.id.squareTillingLauncher
                 , "SquareTillingLauncher", "com.mygdx.game.android.SquareTillingLauncher"
@@ -69,6 +68,9 @@ public class StartingActivity extends Activity {
                 ,"data/ii_truchet_tilling.png");
         callClassTillingLauncherWithDesign(RecursiveTruchetTillingLauncherButton, R.id.RecursiveTruchetTillingLauncher
                 ,"RecursiveTruchetTillingLauncher", "com.mygdx.game.android.RecursiveTruchetTillingLauncher"
+                ,"data/ii_truchet_tilling.png");
+        callClassTillingLauncher(RandomTruchetTillingLauncherButton, R.id.RandomTruchetTillingLauncher
+                ,"RandomTruchetTillingLauncher", "com.mygdx.game.android.RandomTruchetTillingLauncher"
                 ,"data/ii_truchet_tilling.png");
     }
 
