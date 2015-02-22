@@ -500,23 +500,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     /*draws a trianglle shaped structure by drawing every row like a diagonal*/
     public void illicountdown(int n, int m){
         int nMax=n;
-        //arraySpriteX = new Array<Sprite>();
         for(int i=0;i<n;i++){
             for(int ii=i;ii<n;ii++){
 
                 truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
                 truchetTileSquare1.draw(batch);
-                //arraySpriteX.add(truchetTileSquare1);
-                //arraySpriteX.get(i).draw(batch);
-
-
-
-
-                //changeCameraDinamically(ii);
             }
         }
-
-        //drawAll();
     }
     /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
     public void countdown (int n, int m) {
@@ -541,22 +531,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             public void run() {
                 //countdown(0,0);
                 Gdx.app.error("runnable","111");
+                /*see fps*/
+                Gdx.app.error("fps","" + Gdx.graphics.getFramesPerSecond());
             }
         });
     }
-   /* new Thread(new Runnable() {
-        @Override
-        public void run() {
-            // do something important here, asynchronously to the rendering thread
-            final Result result = createResult();
-            // post a Runnable to the rendering thread that processes the result
-            Gdx.app.postRunnable(new Runnable() {
-                @Override
-                public void run() {
-                    // process the result, e.g. add it to an Array<Result> field of the ApplicationListener.
-                    results.add(result);
-                }
-            });
-        }
-    }).start();*/
 }
