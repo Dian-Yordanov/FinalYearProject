@@ -1,43 +1,23 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.VertexAttribute;
-import com.badlogic.gdx.graphics.VertexAttributes;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.PolygonRegion;
 import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
-
-import java.util.Iterator;
-import java.util.Random;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorTrianglle;
-
 public class MyGdxGame extends ApplicationAdapter implements Runnable{
     //region Constructors
     public static SpriteBatch batch;
@@ -497,8 +477,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
         batch.end();
     }
-    /*draws a trianglle shaped structure by drawing every row like a diagonal*/
     public void illicountdown(int n, int m){
+        /*draws a trianglle shaped structure by drawing every row like a diagonal*/
         int nMax=n;
         for(int i=0;i<n;i++){
             for(int ii=i;ii<n;ii++){
@@ -508,8 +488,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             }
         }
     }
-    /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
     public void countdown (int n, int m) {
+        /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
         if (n != 5) {
             if (m != 5) {
                 oldSchoolDrawing(n,m);
@@ -523,7 +503,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         truchetTileSquare1.draw(batch);
 
     }
-
     @Override
     public void run() {
         Gdx.app.postRunnable(new Runnable() {

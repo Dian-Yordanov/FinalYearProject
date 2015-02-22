@@ -2,6 +2,7 @@ package com.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,9 +35,11 @@ public class StartingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_activity);
 
+
+
         callClassTillingLauncher(SquareTillingLauncherButton, R.id.squareTillingLauncher
-                ,"SquareTillingLauncher", "com.mygdx.game.android.SquareTillingLauncher"
-                ,"data/ii_square_tilling.png");
+                , "SquareTillingLauncher", "com.mygdx.game.android.SquareTillingLauncher"
+                , "data/ii_square_tilling.png");
         callClassTillingLauncher(HexagonalTillingLauncherButton, R.id.hexagonalTillingLauncher
                 ,"HexagonalTillingLauncher", "com.mygdx.game.android.HexagonalTillingLauncher"
                 ,"data/ii_hexagonal_tilling.png");
@@ -64,7 +67,7 @@ public class StartingActivity extends Activity {
         callClassTillingLauncher(TruchetTillingLauncherButton, R.id.truchetTillingLauncher
                 ,"TruchetTillingLauncher", "com.mygdx.game.android.TruchetTillingLauncher"
                 ,"data/ii_truchet_tilling.png");
-        callClassTillingLauncher(RecursiveTruchetTillingLauncherButton, R.id.RecursiveTruchetTillingLauncher
+        callClassTillingLauncherWithDesign(RecursiveTruchetTillingLauncherButton, R.id.RecursiveTruchetTillingLauncher
                 ,"RecursiveTruchetTillingLauncher", "com.mygdx.game.android.RecursiveTruchetTillingLauncher"
                 ,"data/ii_truchet_tilling.png");
     }
@@ -110,6 +113,29 @@ public class StartingActivity extends Activity {
             }
         });
     }
-
+    public void callClassTillingLauncherWithDesign(Button buttonTobeUsed, int RidObjectToBeCalled,
+                                         final String nameOfThisLauncher, final String nameOfclassToLaunch
+            ,final String image1Name ){
+        //TriangullarTillingLauncher = (Button) findViewById(R.id.TriangullarTillingLauncher);
+        buttonTobeUsed = (Button) findViewById(RidObjectToBeCalled);
+        setDesign(buttonTobeUsed);
+        buttonTobeUsed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                LogicalClassForRenderCallingActivites.setupPatternStyle(nameOfThisLauncher);
+                MyGdxGame.imageNameToBeSavedMGG=image1Name;
+                try {
+                    Class<?> act = Class.forName(nameOfclassToLaunch);
+                    Intent i = new Intent(StartingActivity.this,act);
+                    startActivity(i);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    public void setDesign(Button buttonToBeUsed){
+        buttonToBeUsed.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
+    }
 
 }
