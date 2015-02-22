@@ -170,6 +170,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             if (patternStyle.equals("TruchetTillingLauncher")) {
                 TruchetTillingRendering();
             }
+            if (patternStyle.equals("RandomTruchetTillingLauncher")) {
+                RandomTruchetTillingRendering();
+            }
             if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
                 RecursiveTruchetRendering();
             }
@@ -220,10 +223,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         cameraBoundaryY1= (int) (3f * Gdx.graphics.getHeight());
         cameraBoundaryY2= Gdx.graphics.getHeight()/2;
 
-        //camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        //camera.position.set(camera.viewportWidth, camera.viewportHeight, 0);
-        //input = new Vector3(x1, y1, 0);
-
         camera.update();
 
     }
@@ -250,6 +249,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             manager.load(pictureAddress2, Texture.class);
         }
         if (patternStyle.equals("TruchetTillingLauncher")) {
+            manager.load(pictureAddress, Texture.class);
+        }
+        if (patternStyle.equals("RandomTruchetTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
         }
         if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
@@ -280,6 +282,20 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             SnubTrihexagonalTillingRending.setupCompositeSprites();
         }
         if (patternStyle.equals("TruchetTillingLauncher")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+
+        }
+        if (patternStyle.equals("RandomTruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
@@ -381,6 +397,15 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
                 //camera.rotateAround(camera.position,camera.position,90);
                 }
+                if (patternStyle.equals("RandomTruchetTillingLauncher")) {
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+
+
+                    //camera.rotateAround(camera.position,camera.position,90);
+                }
 
                 Gdx.app.log("somelog11", " " + x11 + " " + y11);
 
@@ -420,6 +445,55 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         }
     }
     public void TruchetTillingRendering(){
+        batch.begin();
+        for (int i = 0; i < 50; i++) {
+            for (int ii = 0; ii < 50; ii++) {
+                //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
+                //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
+                //truchetTileSquare.draw(batch);
+
+                //createRandomTillingNumbering();
+                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
+                try {
+                    if (!doneOnce){
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+                        doneOnce=true;intToBeReduced1--;intToBeReduced2--;
+                    }
+                    //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+
+                    if(ii % 2 == 0 && i  % 2 == 0 ){
+                        truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
+                                , ((truchetTileSquare.getHeight()) * ii));
+                        truchetTileSquare.draw(batch);
+                    }
+                    if(ii % 2 != 0 && i  % 2 != 0 ){
+                        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
+                                , ((truchetTileSquare1.getHeight()) * ii));
+                        truchetTileSquare1.draw(batch);
+                    }
+                    if(ii % 2 != 0 && i  % 2 == 0 ){
+                        truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
+                                , ((truchetTileSquare2.getHeight()) * ii));
+                        truchetTileSquare2.draw(batch);
+                    }
+                    if(ii % 2 == 0 && i  % 2 != 0 ){
+                        truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
+                                , ((truchetTileSquare3.getHeight()) * ii));
+                        truchetTileSquare3.draw(batch);
+                    }
+
+                }
+                catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        batch.end();
+    }
+    public void RandomTruchetTillingRendering(){
         batch.begin();
         for (int i = 0; i < 50; i++) {
             for (int ii = 0; ii < 50; ii++) {
