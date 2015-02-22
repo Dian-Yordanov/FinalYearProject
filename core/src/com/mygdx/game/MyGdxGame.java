@@ -490,29 +490,45 @@ public class MyGdxGame extends ApplicationAdapter {
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
-        arraySpriteX = new Array<Sprite>();
-        //countdown(0,0);
-        illicountdown(10,10);
+
+        countdown(0,0);
+        //illicountdown(10,10);
 
         batch.end();
     }
+    /*draws a trianglle shaped structure by drawing every row like a diagonal*/
     public void illicountdown(int n, int m){
         int nMax=n;
+        //arraySpriteX = new Array<Sprite>();
         for(int i=0;i<n;i++){
             for(int ii=i;ii<n;ii++){
 
                 truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
-                arraySpriteX.add(truchetTileSquare1);
+                truchetTileSquare1.draw(batch);
+                //arraySpriteX.add(truchetTileSquare1);
                 //arraySpriteX.get(i).draw(batch);
 
 
 
-                arraySpriteX.get(ii).draw(batch);
+
                 //changeCameraDinamically(ii);
             }
         }
 
         //drawAll();
-      }
-
+    }
+    /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
+    public void countdown (int n, int m) {//float pos1X, float pos1Y,float pos2X, float pos2Y,
+        if (n != 4) {
+            if (m != 4) {
+                oldSchoolDrawing(n,m);
+                countdown (n,m+1);
+                countdown (n+1,m);
+            }
+        }
+    }
+    public void oldSchoolDrawing(int n, int m){
+        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
+        truchetTileSquare1.draw(batch);
+    }
 }
