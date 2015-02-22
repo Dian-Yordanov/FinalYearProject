@@ -38,7 +38,7 @@ import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorTrianglle;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class MyGdxGame extends ApplicationAdapter implements Runnable{
     //region Constructors
     public static SpriteBatch batch;
     public static String patternStyle = "";
@@ -492,6 +492,7 @@ public class MyGdxGame extends ApplicationAdapter {
         batch.begin();
 
         countdown(0,0);
+        Gdx.app.postRunnable(new Thread(new MyGdxGame()));
         //illicountdown(10,10);
 
         batch.end();
@@ -518,9 +519,9 @@ public class MyGdxGame extends ApplicationAdapter {
         //drawAll();
     }
     /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
-    public void countdown (int n, int m) {//float pos1X, float pos1Y,float pos2X, float pos2Y,
-        if (n != 4) {
-            if (m != 4) {
+    public void countdown (int n, int m) {
+        if (n != 5) {
+            if (m != 5) {
                 oldSchoolDrawing(n,m);
                 countdown (n,m+1);
                 countdown (n+1,m);
@@ -530,5 +531,32 @@ public class MyGdxGame extends ApplicationAdapter {
     public void oldSchoolDrawing(int n, int m){
         truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
         truchetTileSquare1.draw(batch);
+
     }
+
+    @Override
+    public void run() {
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                //countdown(0,0);
+                Gdx.app.error("runnable","111");
+            }
+        });
+    }
+   /* new Thread(new Runnable() {
+        @Override
+        public void run() {
+            // do something important here, asynchronously to the rendering thread
+            final Result result = createResult();
+            // post a Runnable to the rendering thread that processes the result
+            Gdx.app.postRunnable(new Runnable() {
+                @Override
+                public void run() {
+                    // process the result, e.g. add it to an Array<Result> field of the ApplicationListener.
+                    results.add(result);
+                }
+            });
+        }
+    }).start();*/
 }
