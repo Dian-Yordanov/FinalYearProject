@@ -313,11 +313,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
             /*truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());*/
 
-            spriteSetRandomRotationModified(truchetTileSquare);
+            //spriteSetRandomRotationModified(truchetTileSquare);
            /* PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
@@ -402,7 +403,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                 if (patternStyle.equals("RandomTruchetTillingLauncher")) {
                     //Gdx.graphics.requestRendering();
 
-                    spriteSetRandomRotationModified(truchetTileSquare);
+                    spriteSetRandomRotationModified(truchetTileSquare,0f);
 
                     //randomTruchetTillingSquare(100);
 
@@ -496,9 +497,15 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     }
     public void RandomTruchetTillingRendering(){
         batch.begin();
-        //arraySpriteX = new Array<Sprite>();
-        randomTruchetTillingSquare(50);
-        //createContentForPredrawing(100);
+        for(int i=0;i<50;i++){
+            spriteSetRandomRotationModified(truchetTileSquare,0f);
+            for(int ii=0;ii<50;ii++){
+                //spriteSetRandomRotationModified(truchetTileSquare);
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
+                spriteSetRandomRotationModified(truchetTileSquare,90f);
+                truchetTileSquare.draw(batch);
+            }
+        }
         batch.end();
     }
     public void RecursiveTruchetRendering(){
@@ -535,16 +542,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
         //Gdx.graphics.setContinuousRendering(false);
     }
-    public void randomTruchetTillingSquare(int n){
-        for(int i=0;i<n;i++){
-            for(int ii=0;ii<n;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        //Gdx.graphics.setContinuousRendering(false);
-    }
     public void countdown (int n, int m) {
         /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
         if (n != 5) {
@@ -559,14 +556,17 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
         truchetTileSquare1.draw(batch);
     }
-    public static void spriteSetRandomRotationModified(Sprite spriteToBeRotated){
+    public static void spriteSetRandomRotationModified(Sprite spriteToBeRotated, float angleToAdd){
         Random r = new Random();
         int Low = 0;
-        int High = 4;
+        int High = 3;
         random = r.nextInt(High-Low) + Low;
-        float[] rotationDegree ={90f,180f,270f,360f};
+        float[] rotationDegree ={90f,180f,270f};
         //if(spriteToBeTinted != null)
         spriteToBeRotated.setRotation(rotationDegree[random]);
+        if(angleToAdd!=0){
+            spriteToBeRotated.rotate90(true);
+        }
         /*else
         {
             // do something else
