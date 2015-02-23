@@ -88,8 +88,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     int sumaryXi=0;
     public static Array<Sprite> arraySpriteX;
     //endregion
-    @Override
-    public void create() {
+    @Override public void create() {
         MyGdxGame.batch = new SpriteBatch();
         polyBatch = new PolygonSpriteBatch();
         polyBatch2 = new PolygonSpriteBatch();
@@ -120,8 +119,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         createContent();
         createCamera();
     }
-    @Override
-    public void render() {
+    @Override public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -192,17 +190,25 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
 
     }
-    @Override
-    public void resize(int width, int height) {
+    @Override public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
         camera.viewportHeight = Gdx.graphics.getHeight();
         //* height/width;
         camera.update();
     }
-    @Override
-    public void dispose () {
+    @Override public void dispose () {
         batch.dispose();
-
+    }
+    @Override public void run() {
+        Gdx.app.postRunnable(new Runnable() {
+            @Override
+            public void run() {
+                //countdown(0,0);
+                Gdx.app.error("runnable","111");
+                /*see fps*/
+                Gdx.app.error("fps","" + Gdx.graphics.getFramesPerSecond());
+            }
+        });
     }
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -219,7 +225,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
     }
     public void createContent() {
-        //PixmapDrawingClass PDC = new PixmapDrawingClass();
+        //region ContentCreation
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
         if (patternStyle.equals("SquareTillingLauncher")||
@@ -287,7 +293,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
 
         }
-        if (patternStyle.equals("RandomTruchetTillingLauncher")) {
+        if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
@@ -299,9 +305,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-
         }
-        if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
+        //endregion
+        if (patternStyle.equals("RandomTruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
@@ -316,6 +322,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
             createContentForPredrawing();
         }
+
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
         if (!Gdx.files.external(imageNameToBeSavedMGG1).exists()) {
@@ -487,11 +494,11 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         batch.end();
     }
     public void RandomTruchetTillingRendering(){
-
-
+        batch.begin();
+        arraySpriteX = new Array<Sprite>();
         illicountdown(100);
         //createContentForPredrawing(100);
-
+        batch.end();
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
@@ -502,24 +509,30 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
         batch.end();
     }
-
     public void createContentForPredrawing(){
         Gdx.graphics.setContinuousRendering(false);
-        Gdx.graphics.requestRendering();
+        //Gdx.graphics.requestRendering();
     }
     public void illicountdown(int n){
         /*draws a trianglle shaped structure by drawing every row like a diagonal*/
-        batch.begin();
+        //Gdx.graphics.setContinuousRendering(false);
         for(int i=0;i<n;i++){
             for(int ii=i;ii<n;ii++){
 
+                /*PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
+                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
+
                 truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
-                //arraySpriteX.add(truchetTileSquare1);
-                truchetTileSquare1.draw(batch);
+                arraySpriteX.add(truchetTileSquare1);
+                PixmapDrawingClass.spriteSetRandomRotation(arraySpriteX.get(ii));
+                arraySpriteX.get(ii).draw(batch);
+                //truchetTileSquare1.draw(batch);
             }
         }
-        batch.end();
 
+        //Gdx.graphics.setContinuousRendering(false);
     }
     public void countdown (int n, int m) {
         /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
@@ -534,18 +547,5 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     public void oldSchoolDrawing(int n, int m){
         truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
         truchetTileSquare1.draw(batch);
-
-    }
-    @Override
-    public void run() {
-        Gdx.app.postRunnable(new Runnable() {
-            @Override
-            public void run() {
-                //countdown(0,0);
-                Gdx.app.error("runnable","111");
-                /*see fps*/
-                Gdx.app.error("fps","" + Gdx.graphics.getFramesPerSecond());
-            }
-        });
     }
 }
