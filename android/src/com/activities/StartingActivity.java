@@ -33,6 +33,8 @@ public class StartingActivity extends Activity {
     public static Button RoundEdges1TTLButton;
     public static Button RoundEdges2TTLButton;
     public static Button TTLRoundEdgesRandomColorButton;
+    public static Button TriangleEdges1TTLButton;
+    public static Button TriangleEdges2TTLButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,12 @@ public class StartingActivity extends Activity {
         callClassTillingLauncher(TTLRoundEdgesRandomColorButton, R.id.TTLRoundEdgesRandomColor
                 ,"RoundEdgesRandomColorTTL", "com.mygdx.game.android.RoundEdgesRandomColorTTL"
                 ,"data/ii_truchet_tilling_round_edges_2.png");
+        callClassTillingLauncher(TriangleEdges1TTLButton, R.id.TriangleEdges1TTL
+                ,"TriangleEdges1TTL", "com.mygdx.game.android.TriangleEdges1TTL"
+                ,"data/ii_truchet_tilling_triangle_edges.png");
+        callClassTillingLauncher(TriangleEdges2TTLButton, R.id.TriangleEdges2TTL
+                ,"TriangleEdges2TTL", "com.mygdx.game.android.TriangleEdges2TTL"
+                ,"data/ii_truchet_tilling_triangle_edges.png");
     }
 
     public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,

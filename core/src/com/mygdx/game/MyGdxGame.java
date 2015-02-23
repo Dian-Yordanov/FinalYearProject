@@ -169,6 +169,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             if (patternStyle.equals("RoundEdges2TTL")) {
                 RoundEdges2TTR();
             }
+            if (patternStyle.equals("TriangleEdges1TTL")) {
+                TriangleEdges1TTR();
+            }
+            if (patternStyle.equals("TriangleEdges2TTL")) {
+                TriangleEdges2TTR();
+            }
             if (patternStyle.equals("RoundEdgesRandomColorTTL")) {
                 RoundEdgesRandomColorTTR();
             }
@@ -267,6 +273,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         if (patternStyle.equals("RoundEdges2TTL")) {
             manager.load(pictureAddress, Texture.class);
         }
+        if (patternStyle.equals("TriangleEdges1TTL")) {
+            manager.load(pictureAddress, Texture.class);
+        }
+        if (patternStyle.equals("TriangleEdges2TTL")) {
+            manager.load(pictureAddress, Texture.class);
+        }
         if (patternStyle.equals("RoundEdgesRandomColorTTL")) {
             manager.load(pictureAddress, Texture.class);
         }
@@ -342,6 +354,22 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             createContentForPredrawing();
         }
         if (patternStyle.equals("RoundEdges2TTL")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+
+            createContentForPredrawing();
+        }
+        if (patternStyle.equals("TriangleEdges1TTL")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+
+            createContentForPredrawing();
+        }
+        if (patternStyle.equals("TriangleEdges2TTL")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
@@ -546,6 +574,30 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                 truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
                 spriteSetRandomRotationModified(truchetTileSquare);
                 //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
+                truchetTileSquare.draw(batch);
+            }
+        }
+        batch.end();
+    }
+    public void TriangleEdges1TTR(){
+        batch.begin();
+        for(int i=0;i<50;i++){
+            for(int ii=0;ii<50;ii++){
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
+                spriteSetRandomRotationModified(truchetTileSquare);
+                //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
+                truchetTileSquare.draw(batch);
+            }
+        }
+        batch.end();
+    }
+    public void TriangleEdges2TTR(){
+        batch.begin();
+        for(int i=0;i<50;i++){
+            for(int ii=0;ii<50;ii++){
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
+                spriteSetRandomRotationModified(truchetTileSquare);
+                PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
                 truchetTileSquare.draw(batch);
             }
         }

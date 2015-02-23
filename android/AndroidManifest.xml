@@ -100,6 +100,18 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
         </activity>
         <activity
+            android:name=".TriangleEdges1TTL"
+            android:label="@string/app_name"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
+            android:name=".TriangleEdges2TTL"
+            android:label="@string/app_name"
+            android:screenOrientation="unspecified"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+        </activity>
+        <activity
             android:name=".RoundEdgesRandomColorTTL"
             android:label="@string/app_name"
             android:screenOrientation="unspecified"
