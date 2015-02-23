@@ -349,19 +349,14 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         }
     }
     public void cameraMovingMethod() {
-
         if (Gdx.input.justTouched()) {
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             dragOld = dragNew;
         }
-
         if (Gdx.input.isTouched()) {
-            //Gdx.app.log("somelog", " "+ " " + camera.position.x + " " +  camera.position.y + " " +
-            //        Gdx.input.getX() + " " + Gdx.input.getY());
-
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
-
             if (!dragNew.equals(dragOld)) {
+                //region cameraOnTouchModifications
                 Gdx.app.log("somelog1122", " " + dragOld.x  + " " + dragNew.x + " ");
                 float x11 = dragOld.x - dragNew.x;
                 float y11 = dragOld.y - dragNew.y;
@@ -397,21 +392,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
 
-
-                //camera.rotateAround(camera.position,camera.position,90);
                 }
+
+                //endregion
                 if (patternStyle.equals("RandomTruchetTillingLauncher")) {
-                    //Gdx.graphics.requestRendering();
-
-                    spriteSetRandomRotationModified(truchetTileSquare,0f);
-
-                    //randomTruchetTillingSquare(100);
-
-                    /*PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
-                    //camera.rotateAround(camera.position,camera.position,90);
+                    spriteSetRandomRotationModified(truchetTileSquare);
                 }
+                //region cameraBoundaries
                 if (camera.position.x >= cameraBoundaryX1 && camera.position.y <= cameraBoundaryY1 &&
                         camera.position.x <= cameraBoundaryX2 && camera.position.y >= cameraBoundaryY2) {//&& camera.position.x < 3200 && camera.position.y > 0
                     camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
@@ -443,6 +430,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                     }
                 }
                 dragOld = dragNew;
+                //endregion
             }
         }
     }
@@ -498,11 +486,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     public void RandomTruchetTillingRendering(){
         batch.begin();
         for(int i=0;i<50;i++){
-            spriteSetRandomRotationModified(truchetTileSquare,0f);
             for(int ii=0;ii<50;ii++){
-                //spriteSetRandomRotationModified(truchetTileSquare);
                 truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare,90f);
+                spriteSetRandomRotationModified(truchetTileSquare);
                 truchetTileSquare.draw(batch);
             }
         }
@@ -556,20 +542,27 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
         truchetTileSquare1.draw(batch);
     }
-    public static void spriteSetRandomRotationModified(Sprite spriteToBeRotated, float angleToAdd){
+    public static void spriteSetRandomRotationModified(Sprite spriteToBeRotated){
         Random r = new Random();
         int Low = 0;
         int High = 3;
         random = r.nextInt(High-Low) + Low;
-        float[] rotationDegree ={90f,180f,270f};
-        //if(spriteToBeTinted != null)
-        spriteToBeRotated.setRotation(rotationDegree[random]);
-        if(angleToAdd!=0){
-            spriteToBeRotated.rotate90(true);
+        switch (random) {
+            case 0:
+                spriteToBeRotated.rotate90(true);
+                break;
+            case 1:
+                spriteToBeRotated.rotate90(true);
+                spriteToBeRotated.rotate90(true);
+                break;
+            case 2:
+                spriteToBeRotated.rotate90(true);
+                spriteToBeRotated.rotate90(true);
+                spriteToBeRotated.rotate90(true);
+
+                break;
+            default:  spriteToBeRotated.rotate90(true);
+                break;
         }
-        /*else
-        {
-            // do something else
-        }*/
     }
 }
