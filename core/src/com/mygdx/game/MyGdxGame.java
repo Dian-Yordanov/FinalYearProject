@@ -16,6 +16,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
+import java.util.Random;
+
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorTrianglle;
@@ -311,14 +313,14 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            /*truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());*/
 
-            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+            spriteSetRandomRotationModified(truchetTileSquare);
+           /* PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
+            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
 
             createContentForPredrawing();
         }
@@ -398,18 +400,17 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                 //camera.rotateAround(camera.position,camera.position,90);
                 }
                 if (patternStyle.equals("RandomTruchetTillingLauncher")) {
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
+                    //Gdx.graphics.requestRendering();
+
+                    spriteSetRandomRotationModified(truchetTileSquare);
+
+                    //randomTruchetTillingSquare(100);
+
+                    /*PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
                     PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-
-
+                    PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
                     //camera.rotateAround(camera.position,camera.position,90);
                 }
-
-                Gdx.app.log("somelog11", " " + x11 + " " + y11);
-
-
                 if (camera.position.x >= cameraBoundaryX1 && camera.position.y <= cameraBoundaryY1 &&
                         camera.position.x <= cameraBoundaryX2 && camera.position.y >= cameraBoundaryY2) {//&& camera.position.x < 3200 && camera.position.y > 0
                     camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
@@ -495,8 +496,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     }
     public void RandomTruchetTillingRendering(){
         batch.begin();
-        arraySpriteX = new Array<Sprite>();
-        illicountdown(100);
+        //arraySpriteX = new Array<Sprite>();
+        randomTruchetTillingSquare(50);
         //createContentForPredrawing(100);
         batch.end();
     }
@@ -534,6 +535,16 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
         //Gdx.graphics.setContinuousRendering(false);
     }
+    public void randomTruchetTillingSquare(int n){
+        for(int i=0;i<n;i++){
+            for(int ii=0;ii<n;ii++){
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
+                spriteSetRandomRotationModified(truchetTileSquare);
+                truchetTileSquare.draw(batch);
+            }
+        }
+        //Gdx.graphics.setContinuousRendering(false);
+    }
     public void countdown (int n, int m) {
         /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
         if (n != 5) {
@@ -547,5 +558,18 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     public void oldSchoolDrawing(int n, int m){
         truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
         truchetTileSquare1.draw(batch);
+    }
+    public static void spriteSetRandomRotationModified(Sprite spriteToBeRotated){
+        Random r = new Random();
+        int Low = 0;
+        int High = 4;
+        random = r.nextInt(High-Low) + Low;
+        float[] rotationDegree ={90f,180f,270f,360f};
+        //if(spriteToBeTinted != null)
+        spriteToBeRotated.setRotation(rotationDegree[random]);
+        /*else
+        {
+            // do something else
+        }*/
     }
 }

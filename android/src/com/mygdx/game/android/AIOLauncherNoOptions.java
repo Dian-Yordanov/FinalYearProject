@@ -59,4 +59,15 @@ public class AIOLauncherNoOptions extends AndroidApplication {
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         initialize(new MyGdxGame(), config);
     }
+ /*   @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass method first
+
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+       *//* if (mCamera != null) {
+            mCamera.release()
+            mCamera = null;
+        }*//*
+    }*/
 }
