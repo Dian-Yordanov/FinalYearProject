@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
@@ -138,16 +139,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         cameraMovingMethod();
         zoomableCamera();
 
-        /*Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-            }
 
-        },3,1);*/
 
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
@@ -322,6 +314,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
 
+            createContentForPredrawing();
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -494,53 +487,11 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         batch.end();
     }
     public void RandomTruchetTillingRendering(){
-        batch.begin();
-        for (int i = 0; i < 50; i++) {
-            for (int ii = 0; ii < 50; ii++) {
-                //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
-                //truchetTileSquare.draw(batch);
 
-                //createRandomTillingNumbering();
-                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
-                try {
-                    if (!doneOnce){
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                        doneOnce=true;intToBeReduced1--;intToBeReduced2--;
-                    }
-                    //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
 
-                    if(ii % 2 == 0 && i  % 2 == 0 ){
-                        truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
-                                , ((truchetTileSquare.getHeight()) * ii));
-                        truchetTileSquare.draw(batch);
-                    }
-                    if(ii % 2 != 0 && i  % 2 != 0 ){
-                        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
-                                , ((truchetTileSquare1.getHeight()) * ii));
-                        truchetTileSquare1.draw(batch);
-                    }
-                    if(ii % 2 != 0 && i  % 2 == 0 ){
-                        truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
-                                , ((truchetTileSquare2.getHeight()) * ii));
-                        truchetTileSquare2.draw(batch);
-                    }
-                    if(ii % 2 == 0 && i  % 2 != 0 ){
-                        truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
-                                , ((truchetTileSquare3.getHeight()) * ii));
-                        truchetTileSquare3.draw(batch);
-                    }
+        illicountdown(100);
+        //createContentForPredrawing(100);
 
-                }
-                catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        batch.end();
     }
     public void RecursiveTruchetRendering(){
         batch.begin();
@@ -551,16 +502,24 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
         batch.end();
     }
-    public void illicountdown(int n, int m){
+
+    public void createContentForPredrawing(){
+        Gdx.graphics.setContinuousRendering(false);
+        Gdx.graphics.requestRendering();
+    }
+    public void illicountdown(int n){
         /*draws a trianglle shaped structure by drawing every row like a diagonal*/
-        int nMax=n;
+        batch.begin();
         for(int i=0;i<n;i++){
             for(int ii=i;ii<n;ii++){
 
                 truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
+                //arraySpriteX.add(truchetTileSquare1);
                 truchetTileSquare1.draw(batch);
             }
         }
+        batch.end();
+
     }
     public void countdown (int n, int m) {
         /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
