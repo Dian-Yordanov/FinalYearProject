@@ -100,6 +100,27 @@ android:layout_height="fill_parent">
             android:text="Random Truchet Tilling Launcher"
             android:id="@+id/RandomTruchetTillingLauncher"
             android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_vertical|center_horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Truchet Round Edges 1"
+                android:id="@+id/TTLRoundEdges1" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Truchet  Round Edges 2"
+                android:id="@+id/TTLRoundEdges2" />
+        </LinearLayout>
+
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"

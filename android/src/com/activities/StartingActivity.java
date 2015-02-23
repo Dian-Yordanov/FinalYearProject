@@ -30,6 +30,8 @@ public class StartingActivity extends Activity {
     public static Button TruchetTillingLauncherButton;
     public static Button RecursiveTruchetTillingLauncherButton;
     public static Button RandomTruchetTillingLauncherButton;
+    public static Button RoundEdges1TTLButton;
+    public static Button RoundEdges2TTLButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,12 @@ public class StartingActivity extends Activity {
         callClassTillingLauncher(RandomTruchetTillingLauncherButton, R.id.RandomTruchetTillingLauncher
                 ,"RandomTruchetTillingLauncher", "com.mygdx.game.android.RandomTruchetTillingLauncher"
                 ,"data/ii_truchet_tilling.png");
+        callClassTillingLauncher(RoundEdges1TTLButton, R.id.TTLRoundEdges1
+                ,"RoundEdges1TTL", "com.mygdx.game.android.RoundEdges1TTL"
+                ,"data/ii_truchet_tilling_round_edges.png");
+        callClassTillingLauncher(RoundEdges2TTLButton, R.id.TTLRoundEdges2
+                ,"RoundEdges2TTL", "com.mygdx.game.android.RoundEdges2TTL"
+                ,"data/ii_truchet_tilling_round_edges_2.png");
     }
 
     public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,

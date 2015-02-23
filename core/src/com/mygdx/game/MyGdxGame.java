@@ -139,8 +139,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         cameraMovingMethod();
         zoomableCamera();
 
-
-
         if(optionSelected){evolvingTilling = false;}
         if(!evolvingTilling) {
             if (patternStyle.equals("SquareTillingLauncher") ||
@@ -164,6 +162,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             }
             if (patternStyle.equals("RandomTruchetTillingLauncher")) {
                 RandomTruchetTillingRendering();
+            }
+            if (patternStyle.equals("RoundEdges1TTL")) {
+                RoundEdges1TTR();
+            }
+            if (patternStyle.equals("RoundEdges2TTL")) {
+                RoundEdges2TTR();
             }
             if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
                 RecursiveTruchetRendering();
@@ -254,6 +258,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         if (patternStyle.equals("RandomTruchetTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
         }
+        if (patternStyle.equals("RoundEdges1TTL")) {
+            manager.load(pictureAddress, Texture.class);
+        }
+        if (patternStyle.equals("RoundEdges2TTL")) {
+            manager.load(pictureAddress, Texture.class);
+        }
         if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
         }
@@ -314,14 +324,22 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
-            /*truchetTileSquare1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());*/
 
-            //spriteSetRandomRotationModified(truchetTileSquare);
-           /* PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-            PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
+            createContentForPredrawing();
+        }
+        if (patternStyle.equals("RoundEdges1TTL")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+
+            createContentForPredrawing();
+        }
+        if (patternStyle.equals("RoundEdges2TTL")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+
+            truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
 
             createContentForPredrawing();
         }
@@ -484,6 +502,28 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         batch.end();
     }
     public void RandomTruchetTillingRendering(){
+        batch.begin();
+        for(int i=0;i<50;i++){
+            for(int ii=0;ii<50;ii++){
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
+                spriteSetRandomRotationModified(truchetTileSquare);
+                truchetTileSquare.draw(batch);
+            }
+        }
+        batch.end();
+    }
+    public void RoundEdges1TTR(){
+        batch.begin();
+        for(int i=0;i<50;i++){
+            for(int ii=0;ii<50;ii++){
+                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
+                spriteSetRandomRotationModified(truchetTileSquare);
+                truchetTileSquare.draw(batch);
+            }
+        }
+        batch.end();
+    }
+    public void RoundEdges2TTR(){
         batch.begin();
         for(int i=0;i<50;i++){
             for(int ii=0;ii<50;ii++){
