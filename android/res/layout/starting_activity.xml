@@ -155,6 +155,33 @@ android:layout_height="fill_parent">
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="20dp"
+            android:id="@+id/spaceView23"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="————— Penrose tilling —————"
+            android:textSize="18dp"
+            android:id="@+id/textView21"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
+            android:id="@+id/spaceView41"
+            android:layout_gravity="center_horizontal" />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Penrose Tiling"
+            android:id="@+id/PenroseTilling"
+            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="20dp"
             android:id="@+id/spaceView2"
             android:layout_gravity="center_horizontal" />
         <TextView
