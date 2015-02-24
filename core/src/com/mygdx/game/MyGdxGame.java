@@ -21,7 +21,7 @@ import java.util.Random;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorTrianglle;
-public class MyGdxGame extends ApplicationAdapter implements Runnable{
+public class MyGdxGame extends ApplicationAdapter implements Runnable {
     //region Constructors
     public static SpriteBatch batch;
     public static String patternStyle = "";
@@ -47,21 +47,20 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     //public static Sprite groupSpriteSTT;
 
     private OrthographicCamera camera;
-    int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200
-            , cameraBoundaryY1 = 8000, cameraBoundaryY2 =0;
+    int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200, cameraBoundaryY1 = 8000, cameraBoundaryY2 = 0;
     Vector2 dragOld, dragNew;
     public static boolean evolvingTilling;
-    public static boolean optionSelected=false;
+    public static boolean optionSelected = false;
 
     //ShapeRenderer shapeRenderer;
 
     public static Texture texture;
     public static Texture textureSmall;
 
-    public static  Pixmap pixmap;
-    public static  Pixmap pixmapSmall;
+    public static Pixmap pixmap;
+    public static Pixmap pixmapSmall;
 
-    public static  Pixmap pixmapTrianglle;
+    public static Pixmap pixmapTrianglle;
     static Texture textureSolidTrinaglle;
 
     static PolygonSprite polyTrinaglle;
@@ -87,8 +86,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
     public static int intToBeReduced2;
 
 
-    int sumaryXi=0;
+    int sumaryXi = 0;
     public static Array<Sprite> arraySpriteX;
+
     //endregion
     @Override public void create() {
         MyGdxGame.batch = new SpriteBatch();
@@ -97,7 +97,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
 
         //intToBeReduced1=1;
         //intToBeReduced2=1;
-        doRandomRotation=0;
+        doRandomRotation = 0;
 
         //doneOnce=false;
 
@@ -131,16 +131,17 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             polyBatch.setProjectionMatrix(camera.combined);
             polyBatch2.setProjectionMatrix(camera.combined);
             batch.setProjectionMatrix(camera.combined);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
         cameraMovingMethod();
         zoomableCamera();
 
-        if(optionSelected){evolvingTilling = false;}
-        if(!evolvingTilling) {
+        if (optionSelected) {
+            evolvingTilling = false;
+        }
+        if (!evolvingTilling) {
             if (patternStyle.equals("SquareTillingLauncher") ||
                     patternStyle.equals("SquareTillingLauncher2") ||
                     patternStyle.equals("SquareTillingLauncher3")) {
@@ -158,34 +159,34 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                 SnubTrihexagonalTillingRending.SnubTrihexagonaltillingLauncher();
             }
             if (patternStyle.equals("TruchetTillingLauncher")) {
-                TruchetTillingRendering();
+                TruchetTillings.TruchetTillingRendering();
             }
             if (patternStyle.equals("RandomTruchetTillingLauncher")) {
-                RandomTruchetTillingRendering();
+                TruchetTillings.RandomTruchetTillingRendering();
             }
             if (patternStyle.equals("RoundEdges1TTL")) {
-                RoundEdges1TTR();
+                TruchetTillings.RoundEdges1TTR();
             }
             if (patternStyle.equals("RoundEdges2TTL")) {
-                RoundEdges2TTR();
+                TruchetTillings.RoundEdges2TTR();
             }
             if (patternStyle.equals("TriangleEdges1TTL")) {
-                TriangleEdges1TTR();
+                TruchetTillings.TriangleEdges1TTR();
             }
             if (patternStyle.equals("TriangleEdges2TTL")) {
-                TriangleEdges2TTR();
+                TruchetTillings.TriangleEdges2TTR();
             }
             if (patternStyle.equals("RoundEdgesRandomColorTTL")) {
-                RoundEdgesRandomColorTTR();
+                TruchetTillings.RoundEdgesRandomColorTTR();
             }
             if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
-                RecursiveTruchetRendering();
+                TruchetTillings.RecursiveTruchetRendering();
             }
-            optionSelected=false;
-            evolvingTilling=false;
+            optionSelected = false;
+            evolvingTilling = false;
         }
 
-        if(evolvingTilling){
+        if (evolvingTilling) {
             if (patternStyle.equals("SquareTillingLauncher")) {
                 PixmapDrawingClass.PixmapDrawRectangles();
             }
@@ -211,7 +212,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         //* height/width;
         camera.update();
     }
-    @Override public void dispose () {
+    @Override public void dispose() {
         batch.dispose();
     }
     @Override public void run() {
@@ -219,9 +220,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             @Override
             public void run() {
                 //countdown(0,0);
-                Gdx.app.error("runnable","111");
+                Gdx.app.error("runnable", "111");
                 /*see fps*/
-                Gdx.app.error("fps","" + Gdx.graphics.getFramesPerSecond());
+                Gdx.app.error("fps", "" + Gdx.graphics.getFramesPerSecond());
             }
         });
     }
@@ -231,10 +232,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         camera.update();
 
         //from x1 to x2 and from y1 to y2 was 1 2 2 1
-        cameraBoundaryX1= Gdx.graphics.getWidth()/2;
-        cameraBoundaryX2= (int) (3f * Gdx.graphics.getWidth());
-        cameraBoundaryY1= (int) (3f * Gdx.graphics.getHeight());
-        cameraBoundaryY2= Gdx.graphics.getHeight()/2;
+        cameraBoundaryX1 = Gdx.graphics.getWidth() / 2;
+        cameraBoundaryX2 = (int) (3f * Gdx.graphics.getWidth());
+        cameraBoundaryY1 = (int) (3f * Gdx.graphics.getHeight());
+        cameraBoundaryY2 = Gdx.graphics.getHeight() / 2;
 
         camera.update();
 
@@ -243,7 +244,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
         //region ContentCreation
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
-        if (patternStyle.equals("SquareTillingLauncher")||
+        if (patternStyle.equals("SquareTillingLauncher") ||
                 patternStyle.equals("SquareTillingLauncher2") ||
                 patternStyle.equals("SquareTillingLauncher3")) {
             manager.load(pictureAddress, Texture.class);
@@ -286,7 +287,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             manager.load(pictureAddress, Texture.class);
         }
         manager.finishLoading();
-        if (patternStyle.equals("SquareTillingLauncher")||
+        if (patternStyle.equals("SquareTillingLauncher") ||
                 patternStyle.equals("SquareTillingLauncher2") ||
                 patternStyle.equals("SquareTillingLauncher3")) {
             square1Img = manager.get(pictureAddress, Texture.class);
@@ -295,7 +296,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                 patternStyle.equals("EvolvingHexagonalTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
         }
-        if (patternStyle.equals("TriangullarTillingLauncher")||
+        if (patternStyle.equals("TriangullarTillingLauncher") ||
                 patternStyle.equals("EvolvingTriangullarTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             square2Img = manager.get(pictureAddress2, Texture.class);
@@ -341,49 +342,49 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
 
-            createContentForPredrawing();
+            TruchetTillings.createContentForPredrawing();
         }
         if (patternStyle.equals("RoundEdges1TTL")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
 
-            createContentForPredrawing();
+            TruchetTillings.createContentForPredrawing();
         }
         if (patternStyle.equals("RoundEdges2TTL")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
 
-            createContentForPredrawing();
+            TruchetTillings.createContentForPredrawing();
         }
         if (patternStyle.equals("TriangleEdges1TTL")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
 
-            createContentForPredrawing();
+            TruchetTillings.createContentForPredrawing();
         }
         if (patternStyle.equals("TriangleEdges2TTL")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
 
-            createContentForPredrawing();
+            TruchetTillings.createContentForPredrawing();
         }
         if (patternStyle.equals("RoundEdgesRandomColorTTL")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            truchetTileSquare.setOrigin(truchetTileSquare.getWidth()/2, truchetTileSquare.getHeight()/2);
+            truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
 
-            createContentForPredrawing();
+            TruchetTillings.createContentForPredrawing();
         }
 
 
@@ -394,16 +395,16 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
-    public void zoomableCamera(){
+    public void zoomableCamera() {
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
-            if (Gdx.input.isTouched(i) && i==1) {
-                int sumaryXii=Math.abs(Gdx.input.getX(i)-Gdx.input.getX(i-1));
+            if (Gdx.input.isTouched(i) && i == 1) {
+                int sumaryXii = Math.abs(Gdx.input.getX(i) - Gdx.input.getX(i - 1));
 
-                if(sumaryXi>=sumaryXii && i!=2){
-                    camera.zoom +=0.05;
+                if (sumaryXi >= sumaryXii && i != 2) {
+                    camera.zoom += 0.05;
                 }
-                if(sumaryXi<sumaryXii && i!=2){
-                    camera.zoom -=0.05;
+                if (sumaryXi < sumaryXii && i != 2) {
+                    camera.zoom -= 0.05;
                 }
                 sumaryXi = sumaryXii;
             }
@@ -418,11 +419,11 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             if (!dragNew.equals(dragOld)) {
                 //region cameraOnTouchModifications
-                Gdx.app.log("somelog1122", " " + dragOld.x  + " " + dragNew.x + " ");
+                Gdx.app.log("somelog1122", " " + dragOld.x + " " + dragNew.x + " ");
                 float x11 = dragOld.x - dragNew.x;
                 float y11 = dragOld.y - dragNew.y;
 
-                if (patternStyle.equals("SquareTillingLauncher")||
+                if (patternStyle.equals("SquareTillingLauncher") ||
                         patternStyle.equals("SquareTillingLauncher2") ||
                         patternStyle.equals("SquareTillingLauncher3")) {
                     spriteForDynamicDrawing = dinamicallyChangeColor();
@@ -465,7 +466,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                     camera.translate(dragOld.x - dragNew.x, dragNew.y - dragOld.y);
                     camera.update();
                 } else {
-                    if (camera.position.x < cameraBoundaryX1 ) {
+                    if (camera.position.x < cameraBoundaryX1) {
                         if (x11 > 0) {//&& camera.position.x < -1600
                             camera.translate(dragOld.x - dragNew.x, 0);
                             camera.update();
@@ -483,7 +484,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                             camera.update();
                         }
                     }
-                    if (camera.position.y < cameraBoundaryY2 ) {
+                    if (camera.position.y < cameraBoundaryY2) {
                         if (y11 < 0) {//&& camera.position.x < -1600
                             camera.translate(0, dragNew.y - dragOld.y);
                             camera.update();
@@ -493,197 +494,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable{
                 dragOld = dragNew;
                 //endregion
             }
-        }
-    }
-    public void TruchetTillingRendering(){
-        batch.begin();
-        for (int i = 0; i < 50; i++) {
-            for (int ii = 0; ii < 50; ii++) {
-                //truchetTileSquare.setPosition(((truchetTileSquare.getWidth() + 5) * i) - Gdx.graphics.getWidth()
-                //        , ((truchetTileSquare.getHeight() + 5) * ii) - Gdx.graphics.getHeight());
-                //truchetTileSquare.draw(batch);
-
-                //createRandomTillingNumbering();
-                //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquareTintedColor.get(0));
-                try {
-                    if (!doneOnce){
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                        PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
-                        doneOnce=true;intToBeReduced1--;intToBeReduced2--;
-                    }
-                    //PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-
-                    if(ii % 2 == 0 && i  % 2 == 0 ){
-                        truchetTileSquare.setPosition(((truchetTileSquare.getWidth()) * i)
-                                , ((truchetTileSquare.getHeight()) * ii));
-                        truchetTileSquare.draw(batch);
-                    }
-                    if(ii % 2 != 0 && i  % 2 != 0 ){
-                        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth()) * i)
-                                , ((truchetTileSquare1.getHeight()) * ii));
-                        truchetTileSquare1.draw(batch);
-                    }
-                    if(ii % 2 != 0 && i  % 2 == 0 ){
-                        truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
-                                , ((truchetTileSquare2.getHeight()) * ii));
-                        truchetTileSquare2.draw(batch);
-                    }
-                    if(ii % 2 == 0 && i  % 2 != 0 ){
-                        truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
-                                , ((truchetTileSquare3.getHeight()) * ii));
-                        truchetTileSquare3.draw(batch);
-                    }
-
-                }
-                catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        batch.end();
-    }
-    public void RandomTruchetTillingRendering(){
-        batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        batch.end();
-    }
-    public void RoundEdges1TTR(){
-        batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        batch.end();
-    }
-    public void RoundEdges2TTR(){
-        batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        batch.end();
-    }
-    public void TriangleEdges1TTR(){
-        batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        batch.end();
-    }
-    public void TriangleEdges2TTR(){
-        batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        batch.end();
-    }
-    public void RoundEdgesRandomColorTTR(){
-        batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
-                truchetTileSquare.setPosition(((truchetTileSquare.getWidth())*i),((truchetTileSquare.getHeight())*ii));
-                spriteSetRandomRotationModified(truchetTileSquare);
-                PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                truchetTileSquare.draw(batch);
-            }
-        }
-        batch.end();
-    }
-    public void RecursiveTruchetRendering(){
-        batch.begin();
-
-        countdown(0,0);
-        Gdx.app.postRunnable(new Thread(new MyGdxGame()));
-        //illicountdown(10,10);
-
-        batch.end();
-    }
-    public void createContentForPredrawing(){
-        Gdx.graphics.setContinuousRendering(false);
-        //Gdx.graphics.requestRendering();
-    }
-    public void illicountdown(int n){
-        /*draws a trianglle shaped structure by drawing every row like a diagonal*/
-        //Gdx.graphics.setContinuousRendering(false);
-        for(int i=0;i<n;i++){
-            for(int ii=i;ii<n;ii++){
-
-                /*PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare1);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
-                PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);*/
-
-                truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*i),((truchetTileSquare1.getHeight())*ii));
-                arraySpriteX.add(truchetTileSquare1);
-                PixmapDrawingClass.spriteSetRandomRotation(arraySpriteX.get(ii));
-                arraySpriteX.get(ii).draw(batch);
-                //truchetTileSquare1.draw(batch);
-            }
-        }
-
-        //Gdx.graphics.setContinuousRendering(false);
-    }
-    public void countdown (int n, int m) {
-        /*draws a rectangle shaped structure by drawing every element from either the right or the bot of the one behind it and doing that recursivelly*/
-        if (n != 5) {
-            if (m != 5) {
-                oldSchoolDrawing(n,m);
-                countdown (n,m+1);
-                countdown (n+1,m);
-            }
-        }
-    }
-    public void oldSchoolDrawing(int n, int m){
-        truchetTileSquare1.setPosition(((truchetTileSquare1.getWidth())*n),((truchetTileSquare1.getHeight())*m));
-        truchetTileSquare1.draw(batch);
-    }
-    public static void spriteSetRandomRotationModified(Sprite spriteToBeRotated){
-        Random r = new Random();
-        int Low = 0;
-        int High = 3;
-        random = r.nextInt(High-Low) + Low;
-        switch (random) {
-            case 0:
-                spriteToBeRotated.rotate90(true);
-                break;
-            case 1:
-                spriteToBeRotated.rotate90(true);
-                spriteToBeRotated.rotate90(true);
-                break;
-            case 2:
-                spriteToBeRotated.rotate90(true);
-                spriteToBeRotated.rotate90(true);
-                spriteToBeRotated.rotate90(true);
-
-                break;
-            default:  spriteToBeRotated.rotate90(true);
-                break;
         }
     }
 }
