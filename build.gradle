@@ -51,6 +51,11 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "android"
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
 
     configurations { natives }
 
