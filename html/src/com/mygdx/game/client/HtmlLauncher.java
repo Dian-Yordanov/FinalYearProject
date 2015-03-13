@@ -1,3 +1,4 @@
+/*
 package com.mygdx.game.client;
 
 import com.badlogic.gdx.ApplicationListener;
@@ -16,4 +17,4 @@ public class HtmlLauncher extends GwtApplication {
         public ApplicationListener getApplicationListener () {
                 return new MyGdxGame();
         }
-}
+}*/
