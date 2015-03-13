@@ -1,2 +1,1 @@
-include ':mylibrary'
-include 'desktop', 'android', 'ios', 'html', 'core'
+include 'desktop', 'android', 'ios', 'html', 'core', 'mylibrary'
