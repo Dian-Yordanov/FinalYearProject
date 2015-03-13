@@ -87,7 +87,36 @@ project(":ios") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-ios"
     }
 }
+/*task myJar(type: Jar)
 
+artifacts {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    archives myJar
+}*/
+repositories {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    flatDir {
+        name "fileRepo"
+        dirs "repo"
+    }
+}
+
+uploadArchives {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    repositories {
+        add project.repositories.fileRepo
+        ivy {
+            credentials {
+                username "DianYordanov"
+                password "pppp0000"
+            }
+            url "http://https://oss.sonatype.org/content/repositories/com.xyan.finalyearproject"
+        }
+    }
+}
 /*
 project(":html") {
     apply plugin: "gwt"
@@ -120,3 +149,5 @@ def isReleaseBuild() {
 tasks.eclipse.doLast {
     delete ".project"
 }
+apply plugin: 'java'
+apply plugin: 'java'
