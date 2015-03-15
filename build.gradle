@@ -173,7 +173,7 @@ def getRepositoryUsername() {
 def getRepositoryPassword() {
     return hasProperty('nexusPassword') ? nexusPassword : ""
 }
-
+group = 'com.Xynnect'
 afterEvaluate { project ->
     uploadArchives {
         repositories {
@@ -181,6 +181,7 @@ afterEvaluate { project ->
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
                 pom.artifactId = POM_ARTIFACT_ID
+
 
                 repository(url: sonatypeRepositoryUrl) {
                     authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
@@ -222,7 +223,7 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
-/*    task androidJavadocs(type: Javadoc) {
+    /*task androidJavadocs(type: Javadoc) {
         source = android.allJava
         classpath += project.files(android.join(File.pathSeparator))
     }
@@ -236,14 +237,31 @@ afterEvaluate { project ->
     task androidSourcesJar(type: Jar) {
         classifier = 'sources'
         //basename = artifact_id
-        from android.sourceSets.main.allSource
+        from android.allSource
     }
 
     artifacts {
         //archives packageReleaseJar
         archives androidSourcesJar
         archives androidJavadocsJar
+
     }*/
+
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
 }
 /*
 apply plugin: 'java'
