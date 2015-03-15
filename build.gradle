@@ -173,7 +173,7 @@ def getRepositoryUsername() {
 def getRepositoryPassword() {
     return hasProperty('nexusPassword') ? nexusPassword : ""
 }
-group = 'com.Xynnect'
+group = 'com.xynnect'
 afterEvaluate { project ->
     uploadArchives {
         repositories {
