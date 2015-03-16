@@ -551,7 +551,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public static void createTypeATile(int i, int ii){
         penroseTile1.setOrigin(0,0);
-        penroseTile2.setOrigin(0,0);
+
 
         /*GeometryFactory fact = new GeometryFactory();
         LinearRing linear = new GeometryFactory().createLinearRing();
@@ -574,8 +574,15 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
        // penroseTile1.setBounds(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000,penroseTile2.getWidth(),penroseTile2.getHeight());
        // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
         //penroseTile1.setSize(penroseTile2.getHeight(),penroseTile2.getWidth());
-        penroseTile1.setRotation(108);
 
+        penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
+                penroseTile1.getY()-penroseTile2.getHeight()/2);
+
+        penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
+        penroseTile2.setRotation(-126);
+
+        //penroseTile2.setRotation(18);//162-144=
+        //penroseTile2.setRotation();
 
 
         diagonalScallingTypeA(penroseTile1,penroseTile2);
