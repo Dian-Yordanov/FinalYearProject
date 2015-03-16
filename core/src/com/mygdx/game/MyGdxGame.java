@@ -290,6 +290,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         }
         if (patternStyle.equals("PenroseTilling")) {
             manager.load(pictureAddress, Texture.class);
+            manager.load(pictureAddress2, Texture.class);
         }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher") ||
@@ -344,10 +345,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         }
         if (patternStyle.equals("PenroseTilling")) {
             square1Img = manager.get(pictureAddress, Texture.class);
-            //square2Img = manager.get(pictureAddress, Texture.class);
+            square2Img = manager.get(pictureAddress2, Texture.class);
 
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            penroseTile2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         }
         //endregion
         if (patternStyle.equals("RandomTruchetTillingLauncher")) {
@@ -519,9 +520,27 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         batch.begin();
         for(int i=0;i<50;i++){
             for(int ii=0;ii<50;ii++){
-                penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
-                //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                penroseTile1.draw(batch);
+
+                if(ii % 2 == 0 && i  % 2 == 0 ){
+                    penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
+                    //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
+                    penroseTile1.draw(batch);
+                }
+                if(ii % 2 != 0 && i  % 2 != 0 ){
+                    penroseTile2.setPosition(((penroseTile2.getWidth())*i),((penroseTile2.getHeight())*ii));
+                    //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
+                    penroseTile2.draw(batch);
+                }
+               /* if(ii % 2 != 0 && i  % 2 == 0 ){
+                    truchetTileSquare2.setPosition(((truchetTileSquare2.getWidth()) * i)
+                            , ((truchetTileSquare2.getHeight()) * ii));
+                    truchetTileSquare2.draw(batch);
+                }
+                if(ii % 2 == 0 && i  % 2 != 0 ){
+                    truchetTileSquare3.setPosition(((truchetTileSquare3.getWidth()) * i)
+                            , ((truchetTileSquare3.getHeight()) * ii));
+                    truchetTileSquare3.draw(batch);
+                }*/
             }
         }
         batch.end();
