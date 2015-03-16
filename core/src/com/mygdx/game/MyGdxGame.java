@@ -1,4 +1,5 @@
 package com.mygdx.game;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
@@ -531,8 +532,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         for(int i=0;i<1;i++){
             for(int ii=0;ii<1;ii++){
 
-                createBlueTile(i,ii);
-
+                createTypeATile(i, ii);
+                //createTypeBTile(i,ii);
                /* if(ii % 2 == 0 && i  % 2 == 0 ){
                     penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
                     //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
@@ -548,9 +549,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         }
         batch.end();
     }
-    public static void createBlueTile(int i, int ii){
+    public static void createTypeATile(int i, int ii){
         penroseTile1.setOrigin(0,0);
         penroseTile2.setOrigin(0,0);
+
+        /*GeometryFactory fact = new GeometryFactory();
+        LinearRing linear = new GeometryFactory().createLinearRing();
+        Polygon poly = new Polygon(linear, null, fact);*/
 
         penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
         penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
@@ -564,30 +569,101 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
        //penroseTile1.setScale(penroseTile2.getWidth(),penroseTile2.getHeight());
        // penroseTile1.setScale((float) 0.5);
 
-        diagonalScalling(penroseTile1,penroseTile2);
+
 
        // penroseTile1.setBounds(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000,penroseTile2.getWidth(),penroseTile2.getHeight());
        // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
         //penroseTile1.setSize(penroseTile2.getHeight(),penroseTile2.getWidth());
         penroseTile1.setRotation(108);
-        penroseTile1.translate(penroseTile2.getWidth(),0);
+
+
+
+        diagonalScallingTypeA(penroseTile1,penroseTile2);
+        //penroseTile1.setOrigin(penroseTile2.getWidth(),penroseTile1.getHeight());
+
+        double goldenRatio = (1 + Math.sqrt(5))/2;
+        penroseTile1.translate((float) 0,0);
+
+        //penroseTile2.setRotation(-108);
+
 
         penroseTile2.draw(batch);
         penroseTile1.draw(batch);
 
     }
-    public static void diagonalScalling(Sprite sp1, Sprite sp2){
+    public static void createTypeBTile(int i, int ii){
+        penroseTile1.setOrigin(0,0);
+        penroseTile2.setOrigin(0,0);
+
+        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1500,((penroseTile1.getHeight())*ii)+1500);
+        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+1500,((penroseTile2.getHeight())*ii)+1500);
+
+
+        //penroseTile1.setScale(penroseTile2.getWidth()/penroseTile1.getWidth(),penroseTile2.getHeight()/penroseTile1.getHeight());
+        //the above just gives the same tile but rotated
+
+        // penroseTile1.setRotation(108);
+
+        //penroseTile1.setScale(penroseTile2.getWidth(),penroseTile2.getHeight());
+        // penroseTile1.setScale((float) 0.5);
+
+        diagonalScallingTypeB(penroseTile1, penroseTile2);
+
+        // penroseTile1.setBounds(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000,penroseTile2.getWidth(),penroseTile2.getHeight());
+        // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
+        //penroseTile1.setSize(penroseTile2.getHeight(),penroseTile2.getWidth());
+        //penroseTile1.setRotation(108);
+        penroseTile1.translate(penroseTile2.getWidth(),0);
+
+
+
+        penroseTile2.setRotation(-108);
+
+        penroseTile2.draw(batch);
+
+        //penroseTile2.setPosition(((penroseTile2.getWidth())*i)+1550,((penroseTile2.getHeight())*ii)+1550);
+        //penroseTile2.draw(batch);
+        penroseTile1.draw(batch);
+    }
+    public static void diagonalScallingTypeA(Sprite sp1, Sprite sp2){
+
+        double goldenRatio = (1 + Math.sqrt(5))/2;
+
         double dia1 = Math.sqrt(sp1.getWidth()*sp1.getWidth() +sp1.getHeight()*sp1.getHeight());
         double dia2 = Math.sqrt(sp2.getWidth()*sp2.getWidth() +sp2.getHeight()*sp2.getHeight());
 
-        xyengine.logGdx("dial1 " + dia1);
+        double side1 = Math.sqrt(sp1.getWidth() / 2 * sp1.getWidth() / 2 + sp1.getHeight() * sp1.getHeight());
+        double side2 = Math.sqrt(sp2.getWidth() / 2 * sp2.getWidth() / 2 + sp2.getHeight()* sp2.getHeight());
+        /*xyengine.logGdx("dial1 " + dia1);
         xyengine.logGdx("dial2 " + dia2);
-        xyengine.logGdx("dia3 " + dia2/dia1);
+        xyengine.logGdx("dia3 " + dia2/dia1);*/
 
         /*dia1=Math.round(dia1);
         dia2=Math.round(dia2);*/
 
-        sp1.setScale((float) ((dia2/dia1)-0.065));
+        //-0.065
+
+        //sp2.setScale((float) (dia1/dia2));
+        //sp2.setScale((float) (goldenRatio));
+        //sp1.setScale((float) (goldenRatio));
+
+
+        //sp2.setScale((float) side1);
+    }
+    public static void diagonalScallingTypeB(Sprite sp1, Sprite sp2){
+        double dia1 = Math.sqrt(sp1.getWidth()*sp1.getWidth() +sp1.getHeight()*sp1.getHeight());
+        double dia2 = Math.sqrt(sp2.getWidth()*sp2.getWidth() +sp2.getHeight()*sp2.getHeight());
+
+        /*xyengine.logGdx("dial1 " + dia1);
+        xyengine.logGdx("dial2 " + dia2);
+        xyengine.logGdx("dia3 " + dia2/dia1);*/
+
+        /*dia1=Math.round(dia1);
+        dia2=Math.round(dia2);*/
+
+        //-0.065
+
+        //sp1.setScale((float) ((dia2/dia1)));
     }
 
 }
