@@ -54,4 +54,22 @@ public static void logGdx(String stringToBeLogged){
     public static void logGdx(String logParameter,int stringToBeLogged){
         Gdx.app.error(logParameter,"" + stringToBeLogged);
     }
+    public static void logGdx(float stringToBeLogged){
+        Gdx.app.error("xyengineLogging","" + stringToBeLogged);
+    }
+    public static void logGdx(double stringToBeLogged){
+        Gdx.app.error("xyengineLogging","" + stringToBeLogged);
+    }
+    public static void logGdx(boolean stringToBeLogged){
+        Gdx.app.error("xyengineLogging","" + stringToBeLogged);
+    }
+    public static void logGdx(String logParameter,float stringToBeLogged){
+        Gdx.app.error(logParameter,"" + stringToBeLogged);
+    }
+    public static void logGdx(String logParameter,double stringToBeLogged){
+        Gdx.app.error(logParameter,"" + stringToBeLogged);
+    }
+    public static void logGdx(String logParameter,boolean stringToBeLogged){
+        Gdx.app.error(logParameter,"" + stringToBeLogged);
+    }
 }
