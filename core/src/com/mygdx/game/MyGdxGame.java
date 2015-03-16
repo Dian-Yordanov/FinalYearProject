@@ -580,11 +580,14 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         double dia1 = Math.sqrt(sp1.getWidth()*sp1.getWidth() +sp1.getHeight()*sp1.getHeight());
         double dia2 = Math.sqrt(sp2.getWidth()*sp2.getWidth() +sp2.getHeight()*sp2.getHeight());
 
-        xyengine.logGdx("dial1" + dia1);
-        xyengine.logGdx("dial2" +
-                "" + dia2);
+        xyengine.logGdx("dial1 " + dia1);
+        xyengine.logGdx("dial2 " + dia2);
+        xyengine.logGdx("dia3 " + dia2/dia1);
 
-        sp1.setScale((float) (dia2/dia1));
+        /*dia1=Math.round(dia1);
+        dia2=Math.round(dia2);*/
+
+        sp1.setScale((float) ((dia2/dia1)-0.065));
     }
 
 }
