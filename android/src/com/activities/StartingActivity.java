@@ -90,7 +90,7 @@ public class StartingActivity extends Activity {
                 ,"data/ii_truchet_tilling_triangle_edges.png");
         callClassTillingLauncher(PenroseTillingButton, R.id.PenroseTilling
                 ,"PenroseTilling", "com.mygdx.game.android.PenroseTillingLauncher"
-                ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
+                ,"data/108pstriangle.png","data/ps36angle.png");
     }
 
     public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,

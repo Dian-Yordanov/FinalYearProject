@@ -104,7 +104,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         checkIfFileExists(imageNameToBeSavedMGG);
         if (patternStyle.equals("TriangullarTillingLauncher") ||
-                patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
+                patternStyle.equals("SnubTrihexagonalTilingLauncher") ||
+                patternStyle.equals("PenroseTilling")) {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
