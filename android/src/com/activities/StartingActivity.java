@@ -158,6 +158,4 @@ public class StartingActivity extends Activity {
     public void setDesign(Button buttonToBeUsed){
         buttonToBeUsed.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
     }
-
-
 }

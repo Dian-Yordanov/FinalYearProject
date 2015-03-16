@@ -547,6 +547,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                             , ((truchetTileSquare3.getHeight()) * ii));
                     truchetTileSquare3.draw(batch);
                 }*/
+                xyengine.logGdx("hello");
             }
         }
         batch.end();
