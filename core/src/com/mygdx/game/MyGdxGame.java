@@ -79,6 +79,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
     public static Sprite penroseTile1;
     public static Sprite penroseTile2;
+    public static Sprite penroseTile3;
 
     int doRandomRotation;
     public static boolean doneOnce;
@@ -405,6 +406,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         if (patternStyle.equals("PenroseTilling")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            penroseTile3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             //penroseTile1.setOrigin(0,0);
             square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
@@ -532,8 +534,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         for(int i=0;i<1;i++){
             for(int ii=0;ii<1;ii++){
 
-                createTypeATile(i, ii);
-                //createTypeBTile(i,ii);
+                createTypeATile(i,ii);
+                createTypeBTile(i,ii);
+
+
                /* if(ii % 2 == 0 && i  % 2 == 0 ){
                     penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
                     //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
@@ -552,28 +556,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static void createTypeATile(int i, int ii){
         penroseTile1.setOrigin(0,0);
 
-
-        /*GeometryFactory fact = new GeometryFactory();
-        LinearRing linear = new GeometryFactory().createLinearRing();
-        Polygon poly = new Polygon(linear, null, fact);*/
-
         penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
         penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
-
-
-        //penroseTile1.setScale(penroseTile2.getWidth()/penroseTile1.getWidth(),penroseTile2.getHeight()/penroseTile1.getHeight());
-        //the above just gives the same tile but rotated
-
-       // penroseTile1.setRotation(108);
-
-       //penroseTile1.setScale(penroseTile2.getWidth(),penroseTile2.getHeight());
-       // penroseTile1.setScale((float) 0.5);
-
-
-
-       // penroseTile1.setBounds(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000,penroseTile2.getWidth(),penroseTile2.getHeight());
-       // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
-        //penroseTile1.setSize(penroseTile2.getHeight(),penroseTile2.getWidth());
 
         penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
                 penroseTile1.getY()-penroseTile2.getHeight()/2);
@@ -581,18 +565,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
         penroseTile2.setRotation(-126);
 
-        //penroseTile2.setRotation(18);//162-144=
-        //penroseTile2.setRotation();
-
-
-        diagonalScallingTypeA(penroseTile1,penroseTile2);
-        //penroseTile1.setOrigin(penroseTile2.getWidth(),penroseTile1.getHeight());
-
-        double goldenRatio = (1 + Math.sqrt(5))/2;
-        penroseTile1.translate((float) 0,0);
-
-        //penroseTile2.setRotation(-108);
-
+        //diagonalScallingTypeA(penroseTile1,penroseTile2);
 
         penroseTile2.draw(batch);
         penroseTile1.draw(batch);
@@ -600,37 +573,44 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public static void createTypeBTile(int i, int ii){
         penroseTile1.setOrigin(0,0);
-        penroseTile2.setOrigin(0,0);
 
-        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1500,((penroseTile1.getHeight())*ii)+1500);
-        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+1500,((penroseTile2.getHeight())*ii)+1500);
+        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1000,((penroseTile1.getHeight())*ii)+1000);
+        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
 
+        penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
+                penroseTile1.getY()-penroseTile2.getHeight()/2);
 
-        //penroseTile1.setScale(penroseTile2.getWidth()/penroseTile1.getWidth(),penroseTile2.getHeight()/penroseTile1.getHeight());
-        //the above just gives the same tile but rotated
+        penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
+        penroseTile2.setRotation(-126);
 
-        // penroseTile1.setRotation(108);
-
-        //penroseTile1.setScale(penroseTile2.getWidth(),penroseTile2.getHeight());
-        // penroseTile1.setScale((float) 0.5);
-
-        diagonalScallingTypeB(penroseTile1, penroseTile2);
-
-        // penroseTile1.setBounds(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000,penroseTile2.getWidth(),penroseTile2.getHeight());
-        // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
-        //penroseTile1.setSize(penroseTile2.getHeight(),penroseTile2.getWidth());
-        //penroseTile1.setRotation(108);
-        penroseTile1.translate(penroseTile2.getWidth(),0);
-
-
-
-        penroseTile2.setRotation(-108);
+        //diagonalScallingTypeA(penroseTile1,penroseTile2);
 
         penroseTile2.draw(batch);
-
-        //penroseTile2.setPosition(((penroseTile2.getWidth())*i)+1550,((penroseTile2.getHeight())*ii)+1550);
-        //penroseTile2.draw(batch);
         penroseTile1.draw(batch);
+
+        penroseTile3.setOrigin(0,0);
+        penroseTile3.setPosition(penroseTile1.getX(),penroseTile1.getY());
+        penroseTile3.setRotation(180);
+        penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight());
+        penroseTile3.setPosition(penroseTile1.getX()-penroseTile1.getWidth()/2,penroseTile1.getY()-penroseTile1.getHeight());
+        penroseTile3.rotate(36);
+        //penroseTile3.rotate(180);
+        //penroseTile3.rotate(144);
+       /* penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
+        penroseTile3.rotate(180);
+        penroseTile3.setOrigin(penroseTile3.getWidth()/2,0);
+        penroseTile3.setPosition(penroseTile1.getX()-penroseTile3.getWidth()/2,penroseTile1.getY()+penroseTile3.getHeight());
+        penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
+        penroseTile3.rotate(36);*/
+
+        /*penroseTile3.setOrigin(0,0);
+        penroseTile3.setRotation(144);*/
+        //penroseTile3.setFlip();
+        /*penroseTile3.translate(penroseTile3.getWidth(),0);
+        penroseTile3.setFlip(false,true);*/
+
+        penroseTile3.draw(batch);
+
     }
     public static void diagonalScallingTypeA(Sprite sp1, Sprite sp2){
 
