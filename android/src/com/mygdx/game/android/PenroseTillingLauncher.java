@@ -5,13 +5,14 @@ import com.mygdx.game.MyGdxGame;
 /**
  * Created by XelnectMobileUser on 2/24/2015.
  */
-public class PenroseTillingLauncher  extends AIOLauncherNoOptions {
+public class PenroseTillingLauncher extends AIOLauncherNoOptionsPenrose {
     public PenroseTillingLauncher(){
-        AIOLauncherNoOptions.imageNameToBeSaved = "data/ii_truchet_tilling_round_edges_2.png";
+        AIOLauncherNoOptionsPenrose.imageNameToBeSaved = "data/ii_truchet_tilling.png";
+        AIOLauncherNoOptionsPenrose.imageNameToBeSaved2 = "data/ii_truchet_tilling.png";
         MyGdxGame.intToBeReduced1=1;
         MyGdxGame.intToBeReduced2=1;
         MyGdxGame.doneOnce=false;
-
+        // MyGdxGame.arraySpriteX = new Array<Sprite>();
         //MyGdxGame.evolvingTilling = false;
     }
 }

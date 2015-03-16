@@ -14,9 +14,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
-
-import java.util.Random;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
@@ -79,6 +76,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static Sprite truchetTileSquare2;
     public static Sprite truchetTileSquare3;
 
+    public static Sprite penroseTile1;
+    public static Sprite penroseTile2;
 
     int doRandomRotation;
     public static boolean doneOnce;
@@ -181,6 +180,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
             if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
                 TruchetTillings.RecursiveTruchetRendering();
+            }
+            if (patternStyle.equals("PenroseTilling")) {
+                penroseTillingRendering();
             }
             optionSelected = false;
             evolvingTilling = false;
@@ -286,6 +288,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         if (patternStyle.equals("RecursiveTruchetTillingLauncher")) {
             manager.load(pictureAddress, Texture.class);
         }
+        if (patternStyle.equals("PenroseTilling")) {
+            manager.load(pictureAddress, Texture.class);
+        }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher") ||
                 patternStyle.equals("SquareTillingLauncher2") ||
@@ -337,6 +342,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare2);
             PixmapDrawingClass.spriteSetRandomRotation(truchetTileSquare3);
         }
+        if (patternStyle.equals("PenroseTilling")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+            //square2Img = manager.get(pictureAddress, Texture.class);
+
+            penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            penroseTile2 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+        }
         //endregion
         if (patternStyle.equals("RandomTruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
@@ -383,6 +395,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
             truchetTileSquare = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             truchetTileSquare.setOrigin(truchetTileSquare.getWidth() / 2, truchetTileSquare.getHeight() / 2);
+
+            TruchetTillings.createContentForPredrawing();
+        }
+        if (patternStyle.equals("PenroseTilling")) {
+            square1Img = manager.get(pictureAddress, Texture.class);
+            penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            penroseTile1.setOrigin(penroseTile1.getWidth() / 2, penroseTile1.getHeight() / 2);
 
             TruchetTillings.createContentForPredrawing();
         }
@@ -495,5 +514,16 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 //endregion
             }
         }
+    }
+    public void penroseTillingRendering(){
+        batch.begin();
+        for(int i=0;i<50;i++){
+            for(int ii=0;ii<50;ii++){
+                penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
+                //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
+                penroseTile1.draw(batch);
+            }
+        }
+        batch.end();
     }
 }

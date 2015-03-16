@@ -4,17 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.dian.androidclasses.LogicalClassForRenderCallingActivites;
 import com.mygdx.game.MyGdxGame;
-import com.mygdx.game.android.EvolvingSquareTillingLauncher;
-import com.mygdx.game.android.HexagonalTillingLauncher;
-import com.mygdx.game.android.SquareTillingLauncher;
 import com.mygdx.game.android.R;
-import com.mygdx.game.android.TriangullarTillingLauncher;
 
 public class StartingActivity extends Activity {
 
@@ -95,7 +90,7 @@ public class StartingActivity extends Activity {
                 ,"data/ii_truchet_tilling_triangle_edges.png");
         callClassTillingLauncher(PenroseTillingButton, R.id.PenroseTilling
                 ,"PenroseTilling", "com.mygdx.game.android.PenroseTillingLauncher"
-                ,"data/ii_truchet_tilling_triangle_edges.png");
+                ,"data/ii_triangular_tilling.png","data/ii_triangular_tilling_2.png");
     }
 
     public void callClassTillingLauncher(Button buttonTobeUsed, int RidObjectToBeCalled,
@@ -163,5 +158,6 @@ public class StartingActivity extends Activity {
     public void setDesign(Button buttonToBeUsed){
         buttonToBeUsed.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
     }
+
 
 }
