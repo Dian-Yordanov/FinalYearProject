@@ -351,7 +351,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
         }*/
-        //endregion
+
         if (patternStyle.equals("RandomTruchetTillingLauncher")) {
             square1Img = manager.get(pictureAddress, Texture.class);
 
@@ -400,13 +400,14 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
             TruchetTillings.createContentForPredrawing();
         }
+        //endregion
         if (patternStyle.equals("PenroseTilling")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            penroseTile1.setOrigin(0,0);
+            //penroseTile1.setOrigin(0,0);
             square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-            penroseTile2.setOrigin(0,0);
+            //penroseTile2.setOrigin(0,0);
 
             TruchetTillings.createContentForPredrawing();
         }
@@ -527,19 +528,15 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public void penroseTillingRendering(){
         batch.begin();
-        for(int i=0;i<50;i++){
-            for(int ii=0;ii<50;ii++){
+        for(int i=0;i<30;i++){
+            for(int ii=0;ii<30;ii++){
 
-                penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
-                penroseTile1.setRotation(144);
-                penroseTile2.setPosition(((penroseTile2.getWidth())*i),((penroseTile2.getHeight())*ii));
-
-                penroseTile1.draw(batch);
-                penroseTile2.draw(batch);
+                createBlueTile(i,ii);
 
                /* if(ii % 2 == 0 && i  % 2 == 0 ){
                     penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
                     //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
+
                     penroseTile1.draw(batch);
                 }
                 if(ii % 2 != 0 && i  % 2 != 0 ){
@@ -550,5 +547,29 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
         batch.end();
+    }
+    public static void createBlueTile(int i, int ii){
+        penroseTile1.setOrigin(0,0);
+        penroseTile2.setOrigin(0,0);
+        penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
+
+
+        penroseTile2.setPosition(((penroseTile2.getWidth()) * i), ((penroseTile2.getHeight()) * ii));
+
+        penroseTile2.draw(batch);
+       // penroseTile1.setScale(Scale.scale(penroseTile2.getWidth(),penroseTile2.getHeight()));
+        //penroseTile1.setScale((float) 0.5);
+       // penroseTile1.setBounds(penroseTile1.getWidth()*i,penroseTile1.getHeight()*ii,penroseTile2.getWidth(),penroseTile2.getHeight());
+       // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
+        penroseTile1.setSize(penroseTile2.getWidth(),penroseTile2.getHeight());
+        penroseTile1.setRotation(108);
+        penroseTile1.draw(batch);
+    }
+    public static Sprite createScaledSprite(Texture texture,float scaleWidth,float scaleHeight) {
+        Sprite sprite = new Sprite(texture);
+        sprite.getTexture().setFilter(Texture.TextureFilter.Linear,
+                Texture.TextureFilter.Linear);
+        sprite.setSize(scaleWidth,scaleHeight);
+        return sprite;
     }
 }
