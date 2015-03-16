@@ -555,20 +555,32 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
         penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
 
-        penroseTile2.draw(batch);
-       // penroseTile1.setScale(Scale.scale(penroseTile2.getWidth(),penroseTile2.getHeight()));
-        //penroseTile1.setScale((float) 0.5);
-       // penroseTile1.setBounds(penroseTile1.getWidth()*i,penroseTile1.getHeight()*ii,penroseTile2.getWidth(),penroseTile2.getHeight());
+
+        //penroseTile1.setScale(penroseTile2.getWidth()/penroseTile1.getWidth(),penroseTile2.getHeight()/penroseTile1.getHeight());
+        //the above just gives the same tile but rotated
+
+       // penroseTile1.setRotation(108);
+
+       //penroseTile1.setScale(penroseTile2.getWidth(),penroseTile2.getHeight());
+       // penroseTile1.setScale((float) 0.5);
+
+        diagonalScalling(penroseTile1,penroseTile2);
+
+       // penroseTile1.setBounds(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000,penroseTile2.getWidth(),penroseTile2.getHeight());
        // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
-       // penroseTile1.setSize(penroseTile2.getWidth(),penroseTile2.getHeight());
+        //penroseTile1.setSize(penroseTile2.getHeight(),penroseTile2.getWidth());
         penroseTile1.setRotation(108);
+        penroseTile1.translate(penroseTile2.getWidth(),0);
+
+        penroseTile2.draw(batch);
         penroseTile1.draw(batch);
+
     }
-    public static Sprite createScaledSprite(Texture texture,float scaleWidth,float scaleHeight) {
-        Sprite sprite = new Sprite(texture);
-        sprite.getTexture().setFilter(Texture.TextureFilter.Linear,
-                Texture.TextureFilter.Linear);
-        sprite.setSize(scaleWidth,scaleHeight);
-        return sprite;
+    public static void diagonalScalling(Sprite sp1, Sprite sp2){
+        double dia1 = Math.sqrt(sp1.getWidth()*sp1.getWidth() +sp1.getHeight()*sp1.getHeight());
+        double dia2 = Math.sqrt(sp2.getWidth()*sp2.getWidth() +sp2.getHeight()*sp2.getHeight());
+
+        sp1.setScale((float) (dia2/dia1));
     }
+
 }
