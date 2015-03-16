@@ -84,8 +84,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static int intToBeReduced1;
     public static int intToBeReduced2;
 
-
-    int sumaryXi = 0;
+    float cameraZoomLevel =0;
+    public static int sumaryXi = 0;
     public static Array<Sprite> arraySpriteX;
 
     //endregion
@@ -420,12 +420,17 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
             if (Gdx.input.isTouched(i) && i == 1) {
                 int sumaryXii = Math.abs(Gdx.input.getX(i) - Gdx.input.getX(i - 1));
+                Gdx.app.log("sss","" +cameraZoomLevel);
 
-                if (sumaryXi >= sumaryXii && i != 2) {
-                    camera.zoom += 0.05;
-                }
-                if (sumaryXi < sumaryXii && i != 2) {
-                    camera.zoom -= 0.05;
+                    if (sumaryXi >= sumaryXii && i != 2) {
+                        camera.zoom += 0.05;
+                        cameraZoomLevel += 0.05;
+                    }
+                if(cameraZoomLevel>-0.40) {
+                    if (sumaryXi < sumaryXii && i != 2) {
+                        camera.zoom -= 0.05;
+                        cameraZoomLevel -= 0.05;
+                    }
                 }
                 sumaryXi = sumaryXii;
             }
