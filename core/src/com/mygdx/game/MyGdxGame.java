@@ -528,8 +528,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public void penroseTillingRendering(){
         batch.begin();
-        for(int i=0;i<30;i++){
-            for(int ii=0;ii<30;ii++){
+        for(int i=0;i<1;i++){
+            for(int ii=0;ii<1;ii++){
 
                 createBlueTile(i,ii);
 
@@ -551,17 +551,16 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static void createBlueTile(int i, int ii){
         penroseTile1.setOrigin(0,0);
         penroseTile2.setOrigin(0,0);
-        penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
 
-
-        penroseTile2.setPosition(((penroseTile2.getWidth()) * i), ((penroseTile2.getHeight()) * ii));
+        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
+        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
 
         penroseTile2.draw(batch);
        // penroseTile1.setScale(Scale.scale(penroseTile2.getWidth(),penroseTile2.getHeight()));
         //penroseTile1.setScale((float) 0.5);
        // penroseTile1.setBounds(penroseTile1.getWidth()*i,penroseTile1.getHeight()*ii,penroseTile2.getWidth(),penroseTile2.getHeight());
        // createScaledSprite(penroseTile1,penroseTile2.getWidth(),penroseTile2.getHeight());
-        penroseTile1.setSize(penroseTile2.getWidth(),penroseTile2.getHeight());
+       // penroseTile1.setSize(penroseTile2.getWidth(),penroseTile2.getHeight());
         penroseTile1.setRotation(108);
         penroseTile1.draw(batch);
     }
