@@ -14,7 +14,10 @@ import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
@@ -90,6 +93,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static int sumaryXi = 0;
     public static Array<Sprite> arraySpriteX;
 
+    public static Stage stage;
+    public static Group group;
+
     //endregion
     @Override public void create() {
         MyGdxGame.batch = new SpriteBatch();
@@ -122,6 +128,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         createContent();
         createCamera();
+
+        stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
+        group = new Group();
+        stage.addActor(group);
+
+
+
     }
     @Override public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -139,6 +152,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         cameraMovingMethod();
         zoomableCamera();
+
 
         if (optionSelected) {
             evolvingTilling = false;
@@ -538,6 +552,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 createTypeBTile(i,ii);
 
 
+
                /* if(ii % 2 == 0 && i  % 2 == 0 ){
                     penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
                     //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
@@ -610,6 +625,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile3.setFlip(false,true);*/
 
         penroseTile3.draw(batch);
+
 
     }
     public static void diagonalScallingTypeA(Sprite sp1, Sprite sp2){
