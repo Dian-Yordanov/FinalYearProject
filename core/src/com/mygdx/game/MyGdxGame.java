@@ -17,7 +17,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColorPoly;
@@ -47,7 +46,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
     //public static Sprite groupSpriteSTT;
 
-    private OrthographicCamera camera;
+    private static OrthographicCamera camera;
     int cameraBoundaryX1 = -1600, cameraBoundaryX2 = 3200, cameraBoundaryY1 = 8000, cameraBoundaryY2 = 0;
     Vector2 dragOld, dragNew;
     public static boolean evolvingTilling;
@@ -128,13 +127,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         createContent();
         createCamera();
-
-        stage = new Stage(new StretchViewport(camera.viewportWidth, camera.viewportHeight));
-        group = new Group();
-        stage.addActor(group);
-
-
-
+      /*  createStage();*/
     }
     @Override public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -426,6 +419,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             //penroseTile2.setOrigin(0,0);
 
+           /* createStage(manager);*/
+
             TruchetTillings.createContentForPredrawing();
         }
 
@@ -544,13 +539,17 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         }
     }
     public void penroseTillingRendering(){
+
         batch.begin();
         for(int i=0;i<1;i++){
             for(int ii=0;ii<1;ii++){
 
+
+
                 createTypeATile(i,ii);
                 createTypeBTile(i,ii);
 
+                //stage.draw();
 
 
                /* if(ii % 2 == 0 && i  % 2 == 0 ){
@@ -567,6 +566,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
         batch.end();
+       /* stage.draw();*/
     }
     public static void createTypeATile(int i, int ii){
         penroseTile1.setOrigin(0,0);
@@ -590,7 +590,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile1.setOrigin(0,0);
 
         penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1000,((penroseTile1.getHeight())*ii)+1000);
-        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
+        //penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
 
         penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
                 penroseTile1.getY()-penroseTile2.getHeight()/2);
@@ -668,5 +668,40 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         //sp1.setScale((float) ((dia2/dia1)));
     }
+    /*public static void createStage(AssetManager manager){
+        stage = new Stage(new StretchViewport(camera.viewportWidth,camera.viewportHeight));
+        group = new Group();
+        stage.addActor(group);
+
+
+        AssetManager manager1;
+        manager1 = new AssetManager(new ExternalFileHandleResolver());
+        manager1.load(pictureAddress, Texture.class);
+        Texture text = manager.get(pictureAddress, Texture.class);
+
+
+        final Texture region = new Texture(text.getTextureData());
+        Image img = new Image(text);
+        Image img2 = new Image(region);
+        Image img3 = new Image(square1Img);
+
+        *//*img2.setColor(new Color(1, 0, 0, 1));
+        img3.setColor(new Color(0, 0, 1, 1));*//*
+
+
+        group.addActor(img2);
+        group.addActor(img3);
+        group.addActor(img2);
+       // group.addActor(img);
+
+        // Images are positioned relative to the group...
+
+        img.setPosition(0,0);
+       *//* img2.setPosition(img.getWidth()/2, 0);
+        img3.setPosition(-img.getWidth()/2, 0);*//*
+        // Group is positioned relative to the stage...
+        group.setPosition(2000,2000);
+        group.setOrigin(img.getWidth()/2,img.getHeight()/2);
+    }*/
 
 }
