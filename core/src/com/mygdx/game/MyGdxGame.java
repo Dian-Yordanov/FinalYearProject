@@ -582,8 +582,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         //diagonalScallingTypeA(penroseTile1,penroseTile2);
 
-        penroseTile2.draw(batch);
-        penroseTile1.draw(batch);
+       /* penroseTile2.draw(batch);
+        penroseTile1.draw(batch);*/
+        CompositeSprite compositeSprite = new CompositeSprite();
+        compositeSprite.addComponentSprite(penroseTile1);
+        compositeSprite.addComponentSprite(penroseTile2);
+        compositeSprite.draw(batch);
+        //compositeSprite.addComponentSprite(compositeSprite);
 
     }
     public static void createTypeBTile(int i, int ii){
