@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
@@ -45,6 +46,7 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
         group = new Group();
         stage.addActor(group);
 
+
         // Create images and add them to the group.
         final Texture region = new Texture(Gdx.files.internal("data/108pstriangle.png"));
         final Texture region2 = new Texture(Gdx.files.internal("data/ps36angle.png"));
@@ -62,24 +64,34 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
 
         // Images are positioned relative to the group...
 
-        img.setPosition(0, 0);
-        img2.setPosition(img.getWidth() / 2, 0);
-        img3.setPosition(-img.getWidth() / 2, 0);
+        img.setPosition(2000, 2000);
+        img2.setPosition(2200,2200);
+        img3.setPosition(2400,2400);
         // Group is positioned relative to the stage...
         group.setPosition(WIDTH / 2 - img.getWidth() / 2,
                 HEIGHT / 2 - img.getHeight() / 2);
         group.setOrigin(img.getWidth() / 2, img.getHeight() / 2);
 
+        Container wrapper = new Container(group);
+        wrapper.setTransform(true);
+        wrapper.setOrigin(wrapper.getPrefWidth() / 2, wrapper.getPrefHeight() / 2);
+        wrapper.setRotation(45);
+        wrapper.setScaleX(1.5f);
+        stage.addActor(wrapper);
     }
 
     @Override
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
         cameraMovingMethod();
         zoomableCamera();
         //stage.act(Gdx.graphics.getDeltaTime());
+
+        //group.rotateBy(45);
+        //group.setRotation(45);
         stage.draw();
 
         /*if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
