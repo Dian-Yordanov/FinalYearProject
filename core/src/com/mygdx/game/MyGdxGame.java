@@ -264,7 +264,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
     }
 
-    public void createContent() {
+    public void createContent() c{
         //region ContentCreation
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
@@ -563,7 +563,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
                 createTypeATile(i, ii,2000,2000);
                 createTypeBTile(i, ii,1500,1500);
-
+//test
                 /*createCompositeSprite();
 
                 createTypeATile(i,ii,Math.round(compositeSprite.getX()),Math.round(compositeSprite.getY()));
