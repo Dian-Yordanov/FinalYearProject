@@ -88,7 +88,7 @@ public class StartingActivity extends Activity {
         callClassTillingLauncher(TriangleEdges2TTLButton, R.id.TriangleEdges2TTL
                 ,"TriangleEdges2TTL", "com.mygdx.game.android.TriangleEdges2TTL"
                 ,"data/ii_truchet_tilling_triangle_edges.png");
-        callClassTillingLauncher(PenroseTillingButton, R.id.PenroseTilling
+        callClassTillingLauncherPenrose(PenroseTillingButton, R.id.PenroseTilling
                 ,"PenroseTilling", "com.mygdx.game.android.PenroseTillingLauncher"
                 ,"data/108pstriangle.png","data/ps36angle.png");
     }
@@ -124,6 +124,27 @@ public class StartingActivity extends Activity {
                 LogicalClassForRenderCallingActivites.setupPatternStyle(nameOfThisLauncher);
                 MyGdxGame.imageNameToBeSavedMGG=image1Name;
                 MyGdxGame.imageNameToBeSavedMGG2=image2Name;
+                try {
+                    Class<?> act = Class.forName(nameOfclassToLaunch);
+                    Intent i = new Intent(StartingActivity.this,act);
+                    startActivity(i);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    public void callClassTillingLauncherPenrose(Button buttonTobeUsed, int RidObjectToBeCalled,
+                                         final String nameOfThisLauncher, final String nameOfclassToLaunch
+            ,final String image1Name,final String image2Name ){
+        //TriangullarTillingLauncher = (Button) findViewById(R.id.TriangullarTillingLauncher);
+        buttonTobeUsed = (Button) findViewById(RidObjectToBeCalled);
+        buttonTobeUsed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                LogicalClassForRenderCallingActivites.setupPatternStyle(nameOfThisLauncher);
+               /* MyGdxGame.imageNameToBeSavedMGG=image1Name;
+                MyGdxGame.imageNameToBeSavedMGG2=image2Name;*/
                 try {
                     Class<?> act = Class.forName(nameOfclassToLaunch);
                     Intent i = new Intent(StartingActivity.this,act);

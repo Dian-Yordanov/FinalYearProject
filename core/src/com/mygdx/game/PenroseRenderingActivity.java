@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,7 +41,7 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
         Image img2 = new Image(region);
         Image img3 = new Image(region);
 
-        img2.setColor(new Color(1, 0, 0, 1));
+        img2.setColor(new Color(0, 1, 0, 1));
         img3.setColor(new Color(0, 0, 1, 1));
 
 
@@ -64,17 +63,17 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.act(Gdx.graphics.getDeltaTime());
+        //stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        /*if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             group.rotateBy(rotSpeed);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             group.rotateBy(-rotSpeed);
-        }
+        }*/
     }
 }
