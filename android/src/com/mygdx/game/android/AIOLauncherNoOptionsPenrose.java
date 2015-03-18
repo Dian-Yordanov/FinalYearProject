@@ -1,11 +1,8 @@
 package com.mygdx.game.android;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.mygdx.game.PenroseRenderingActivity;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by XelnectMobileUser on 3/16/2015.
@@ -18,11 +15,11 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //MyGdxGame.pictureAddress = imageNameToBeSaved;
-        //MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
+        MyGdxGame.pictureAddress = imageNameToBeSaved;
+        MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
         goToRenderingActivity();
     }
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.option1:
@@ -49,5 +46,5 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
         menuItem3.setTitle("");
         menuItem3.setVisible(false);
         return true;
-    }
+    }*/
 }
