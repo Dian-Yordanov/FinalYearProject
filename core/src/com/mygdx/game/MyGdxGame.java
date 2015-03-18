@@ -13,8 +13,6 @@ import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -90,7 +88,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static int intToBeReduced1;
     public static int intToBeReduced2;
 
-    float cameraZoomLevel =0;
+    float cameraZoomLevel = 0;
     public static int sumaryXi = 0;
     public static Array<Sprite> arraySpriteX;
 
@@ -98,7 +96,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static Group group;
 
     //endregion
-    @Override public void create() {
+    @Override
+    public void create() {
         MyGdxGame.batch = new SpriteBatch();
         polyBatch = new PolygonSpriteBatch();
         polyBatch2 = new PolygonSpriteBatch();
@@ -107,7 +106,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         //intToBeReduced2=1;
         doRandomRotation = 0;
 
-        doneOnce=false;
+        doneOnce = false;
 
         //PeriodicTillingsRendering PTR = new PeriodicTillingsRendering();
 
@@ -131,7 +130,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         createCamera();
       /*  createStage();*/
     }
-    @Override public void render() {
+
+    @Override
+    public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
@@ -220,16 +221,22 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
 
     }
-    @Override public void resize(int width, int height) {
+
+    @Override
+    public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
         camera.viewportHeight = Gdx.graphics.getHeight();
         //* height/width;
         camera.update();
     }
-    @Override public void dispose() {
+
+    @Override
+    public void dispose() {
         batch.dispose();
     }
-    @Override public void run() {
+
+    @Override
+    public void run() {
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {
@@ -240,6 +247,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         });
     }
+
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(1.5f * camera.viewportWidth, 1.5f * camera.viewportHeight, 0);
@@ -254,6 +262,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         camera.update();
 
     }
+
     public void createContent() {
         //region ContentCreation
         AssetManager manager;
@@ -428,23 +437,25 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
 
     }
+
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
         if (!Gdx.files.external(imageNameToBeSavedMGG1).exists()) {
             FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG1);
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
+
     public void zoomableCamera() {
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
             if (Gdx.input.isTouched(i) && i == 1) {
                 int sumaryXii = Math.abs(Gdx.input.getX(i) - Gdx.input.getX(i - 1));
-                Gdx.app.log("sss","" +cameraZoomLevel);
+                Gdx.app.log("sss", "" + cameraZoomLevel);
 
-                    if (sumaryXi >= sumaryXii && i != 2) {
-                        camera.zoom += 0.05;
-                        cameraZoomLevel += 0.05;
-                    }
-                if(cameraZoomLevel>-0.40) {
+                if (sumaryXi >= sumaryXii && i != 2) {
+                    camera.zoom += 0.05;
+                    cameraZoomLevel += 0.05;
+                }
+                if (cameraZoomLevel > -0.40) {
                     if (sumaryXi < sumaryXii && i != 2) {
                         camera.zoom -= 0.05;
                         cameraZoomLevel -= 0.05;
@@ -454,6 +465,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
     }
+
     public void cameraMovingMethod() {
         if (Gdx.input.justTouched()) {
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -540,6 +552,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
     }
+
     public void penroseTillingRendering() {
 
         batch.begin();
@@ -547,261 +560,97 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             for (int ii = 0; ii < 1; ii++) {
 
 
-                createTypeATile(i, ii);
-                createTypeBTile(i, ii);
+                createTypeATile(i, ii,2000,2000);
+                createTypeBTile(i, ii,1500,1500);
 
-                //stage.draw();
+                /*createCompositeSprite();
+
+                createTypeATile(i,ii,Math.round(compositeSprite.getX()),Math.round(compositeSprite.getY()));
+
+                */
+
+                //createCompositeSprite();
 
 
-               /* if(ii % 2 == 0 && i  % 2 == 0 ){
-                    penroseTile1.setPosition(((penroseTile1.getWidth())*i),((penroseTile1.getHeight())*ii));
-                    //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-
-                    penroseTile1.draw(batch);
-                }
-                if(ii % 2 != 0 && i  % 2 != 0 ){
-                    penroseTile2.setPosition(((penroseTile2.getWidth())*i),((penroseTile2.getHeight())*ii));
-                    //PixmapDrawingClass.spriteSetRandomColor(truchetTileSquare);
-                    penroseTile2.draw(batch);
-                }*/
             }
         }
         batch.end();
 
     }
 
-       /* stage.draw();*/
 
+    public static void createTypeATile(int i, int ii,int posX,int posY) {
+        penroseTile1.setOrigin(0, 0);
 
-    public void createTypeATile(int i, int ii){
-        penroseTile1.setOrigin(0,0);
+        penroseTile1.setPosition(((penroseTile1.getWidth()) * i) + posX, ((penroseTile1.getHeight()) * ii) + posY);
+        penroseTile2.setPosition(((penroseTile2.getWidth()) * i) + posX, ((penroseTile2.getHeight()) * ii) + posY);
 
-        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
-        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
+        penroseTile2.setPosition(penroseTile1.getX() - penroseTile2.getWidth(),
+                penroseTile1.getY() - penroseTile2.getHeight() / 2);
 
-        penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
-                penroseTile1.getY()-penroseTile2.getHeight()/2);
-
-        penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
+        penroseTile2.setOrigin(penroseTile2.getWidth(), penroseTile2.getHeight() / 2);
         penroseTile2.setRotation(-126);
+        penroseTile2.draw(batch);
+        penroseTile1.draw(batch);
+    }
 
-        //diagonalScallingTypeA(penroseTile1,penroseTile2);
+    public static void createTypeBTile(int i, int ii,int posX,int posY) {
+        createTypeATile(i,ii,posX,posY);
 
-       /* penroseTile2.draw(batch);
-        penroseTile1.draw(batch);*/
+        penroseTile3.setOrigin(0, 0);
+        penroseTile3.setPosition(penroseTile1.getX(), penroseTile1.getY());
+        penroseTile3.setRotation(180);
+        penroseTile3.setOrigin(penroseTile3.getWidth() / 2, penroseTile3.getHeight());
+        penroseTile3.setPosition(penroseTile1.getX() - penroseTile1.getWidth() / 2, penroseTile1.getY() - penroseTile1.getHeight());
+        penroseTile3.rotate(36);
+        penroseTile3.draw(batch);
+
+
+    }
+    public static void diagonalScallingTypeA(Sprite sp1, Sprite sp2) {
+
+        double goldenRatio = (1 + Math.sqrt(5)) / 2;
+
+        double dia1 = Math.sqrt(sp1.getWidth() * sp1.getWidth() + sp1.getHeight() * sp1.getHeight());
+        double dia2 = Math.sqrt(sp2.getWidth() * sp2.getWidth() + sp2.getHeight() * sp2.getHeight());
+
+        double side1 = Math.sqrt(sp1.getWidth() / 2 * sp1.getWidth() / 2 + sp1.getHeight() * sp1.getHeight());
+        double side2 = Math.sqrt(sp2.getWidth() / 2 * sp2.getWidth() / 2 + sp2.getHeight() * sp2.getHeight());
+    }
+    public static void diagonalScallingTypeB(Sprite sp1, Sprite sp2) {
+        double dia1 = Math.sqrt(sp1.getWidth() * sp1.getWidth() + sp1.getHeight() * sp1.getHeight());
+        double dia2 = Math.sqrt(sp2.getWidth() * sp2.getWidth() + sp2.getHeight() * sp2.getHeight());
+    }
+    public static void createCompositeSprite() {
         CompositeSprite compositeSprite = new CompositeSprite();
         compositeSprite.addComponentSprite(penroseTile1);
         compositeSprite.addComponentSprite(penroseTile2);
+        compositeSprite.addComponentSprite(penroseTile3);
 
         compositeSprite.draw(batch);
+        CompositeSprite compositeSprite1 = new CompositeSprite();
+
+        compositeSprite1.componentSprites.addAll(compositeSprite.componentSprites);
+        //compositeSprite.addComponentSprite(penroseTile1);
+        //compositeSprite.addComponentSprite(penroseTile2);
 
         /*compositeSprite.addComponentSprite(penroseTile1);
         compositeSprite.addComponentSprite(penroseTile2);*/
 
         for (Sprite sprite : compositeSprite.componentSprites) {
-           sprite.translate(0, 400);
+            sprite.translate(0, 400);
+            //compositeSprite.addComponentSprite(sprite);
+        }
+
+        //compositeSprite.addComponentSprite(penroseTile1);
+
+        compositeSprite1.draw(batch);
+
+        for (Sprite sprite : compositeSprite.componentSprites) {
+            sprite.translate(400, 0);
         }
 
 
-        compositeSprite.draw(batch);
-        //xyengine.logGdx(compositeSprite.componentSprites.size);
-        //compositeSprite.draw(batch);
-        //Gdx.graphics.setContinuousRendering(false);
-
-        //compositeSprite.addComponentSprite(compositeSprite.componentSprites);
-        //for (Sprite sprite : compositeSprite.componentSprites) {
-
-
-       /* for (int iii=1;iii<compositeSprite.componentSprites.size;iii++) {
-            //if (!doneOnce){
-                xyengine.logGdx(compositeSprite.componentSprites.size);
-
-            if(iii<5)compositeSprite.addComponentSprite(compositeSprite.componentSprites.get(iii-1));
-            //if(iii==1)doneOnce=true;}
-        }
-        //compositeSprite.addComponentSprite()
-
-
-
-
-        xyengine.logGdx(compositeSprite.componentSprites.size);
-        //for(int iiii=0;iiii<compositeSprite.componentSprites.size;iiii++) {
-        //    xyengine.logGdx(iiii);
-            compositeSprite.componentSprites.get(1).translate(0, 0);
-            compositeSprite.componentSprites.get(0).translate(0, 0);
-            compositeSprite.componentSprites.get(3).translate(0, 400);
-            compositeSprite.componentSprites.get(2).translate(0, 400);
-
-        //}
-
-        //}
-        compositeSprite.draw(batch);*/
-        //compositeSprite.addComponentSprite(compositeSprite.componentSprites.get(1));
-
-        //compositeSprite.addComponentSprite(compositeSprite);
-        /*Sprite sprite2 = compositeSprite.generateSpriteFromBufferContents(Math.round(penroseTile1.getX())
-                ,Math.round(penroseTile1.getY()),Math.round(penroseTile1.getWidth()),Math.round(penroseTile2.getHeight()));
-        sprite2.rotate(90);
-        sprite2.draw(batch);*/
-       // Sprite sprite1 = compositeSprite.componentSprites.get(1).getTexture();
-       // compositeSprite.componentSprites.get(1);
-       // sprite1.draw(batch);
-
-    }
-    public static void createTypeBTile(int i, int ii){
-        penroseTile1.setOrigin(0,0);
-
-        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1000,((penroseTile1.getHeight())*ii)+1000);
-        //penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
-
-        penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
-                penroseTile1.getY()-penroseTile2.getHeight()/2);
-
-        penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
-        penroseTile2.setRotation(-126);
-
-        //diagonalScallingTypeA(penroseTile1,penroseTile2);
-
-        penroseTile2.draw(batch);
-        penroseTile1.draw(batch);
-
-        penroseTile3.setOrigin(0,0);
-        penroseTile3.setPosition(penroseTile1.getX(),penroseTile1.getY());
-        penroseTile3.setRotation(180);
-        penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight());
-        penroseTile3.setPosition(penroseTile1.getX()-penroseTile1.getWidth()/2,penroseTile1.getY()-penroseTile1.getHeight());
-        penroseTile3.rotate(36);
-        //penroseTile3.rotate(180);
-        //penroseTile3.rotate(144);
-       /* penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
-        penroseTile3.rotate(180);
-        penroseTile3.setOrigin(penroseTile3.getWidth()/2,0);
-        penroseTile3.setPosition(penroseTile1.getX()-penroseTile3.getWidth()/2,penroseTile1.getY()+penroseTile3.getHeight());
-        penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
-        penroseTile3.rotate(36);*/
-
-        /*penroseTile3.setOrigin(0,0);
-        penroseTile3.setRotation(144);*/
-        //penroseTile3.setFlip();
-        /*penroseTile3.translate(penroseTile3.getWidth(),0);
-        penroseTile3.setFlip(false,true);*/
-
-        penroseTile3.draw(batch);
-
-
-    }
-    public static void diagonalScallingTypeA(Sprite sp1, Sprite sp2){
-
-        double goldenRatio = (1 + Math.sqrt(5))/2;
-
-        double dia1 = Math.sqrt(sp1.getWidth()*sp1.getWidth() +sp1.getHeight()*sp1.getHeight());
-        double dia2 = Math.sqrt(sp2.getWidth()*sp2.getWidth() +sp2.getHeight()*sp2.getHeight());
-
-        double side1 = Math.sqrt(sp1.getWidth() / 2 * sp1.getWidth() / 2 + sp1.getHeight() * sp1.getHeight());
-        double side2 = Math.sqrt(sp2.getWidth() / 2 * sp2.getWidth() / 2 + sp2.getHeight()* sp2.getHeight());
-        /*xyengine.logGdx("dial1 " + dia1);
-        xyengine.logGdx("dial2 " + dia2);
-        xyengine.logGdx("dia3 " + dia2/dia1);*/
-
-        /*dia1=Math.round(dia1);
-        dia2=Math.round(dia2);*/
-
-        //-0.065
-
-        //sp2.setScale((float) (dia1/dia2));
-        //sp2.setScale((float) (goldenRatio));
-        //sp1.setScale((float) (goldenRatio));
-
-
-        //sp2.setScale((float) side1);
-    }
-    public static void diagonalScallingTypeB(Sprite sp1, Sprite sp2){
-        double dia1 = Math.sqrt(sp1.getWidth()*sp1.getWidth() +sp1.getHeight()*sp1.getHeight());
-        double dia2 = Math.sqrt(sp2.getWidth()*sp2.getWidth() +sp2.getHeight()*sp2.getHeight());
-
-        /*xyengine.logGdx("dial1 " + dia1);
-        xyengine.logGdx("dial2 " + dia2);
-        xyengine.logGdx("dia3 " + dia2/dia1);*/
-
-        /*dia1=Math.round(dia1);
-        dia2=Math.round(dia2);*/
-
-        //-0.065
-
-        //sp1.setScale((float) ((dia2/dia1)));
-    }
-    /*public static void createStage(AssetManager manager){
-        stage = new Stage(new StretchViewport(camera.viewportWidth,camera.viewportHeight));
-        group = new Group();
-        stage.addActor(group);
-
-
-        AssetManager manager1;
-        manager1 = new AssetManager(new ExternalFileHandleResolver());
-        manager1.load(pictureAddress, Texture.class);
-        Texture text = manager.get(pictureAddress, Texture.class);
-
-
-        final Texture region = new Texture(text.getTextureData());
-        Image img = new Image(text);
-        Image img2 = new Image(region);
-        Image img3 = new Image(square1Img);
-
-        *//*img2.setColor(new Color(1, 0, 0, 1));
-        img3.setColor(new Color(0, 0, 1, 1));*//*
-
-
-        group.addActor(img2);
-        group.addActor(img3);
-        group.addActor(img2);
-       // group.addActor(img);
-
-        // Images are positioned relative to the group...
-
-        img.setPosition(0,0);
-       *//* img2.setPosition(img.getWidth()/2, 0);
-        img3.setPosition(-img.getWidth()/2, 0);*//*
-        // Group is positioned relative to the stage...
-        group.setPosition(2000,2000);
-        group.setOrigin(img.getWidth()/2,img.getHeight()/2);
-    }*/
-
-/*}*/
-
-
-    public void render(SpriteBatch spriteBatch)
-    {
-        float m_fboScaler = 1.5f;
-        boolean m_fboEnabled = true;
-        FrameBuffer m_fbo = null;
-        TextureRegion m_fboRegion = null;
-        int width = Gdx.graphics.getWidth();
-        int height = Gdx.graphics.getHeight();
-
-        if(m_fboEnabled)      // enable or disable the supersampling
-        {
-            if(m_fbo == null)
-            {
-                // m_fboScaler increase or decrease the antialiasing quality
-
-                m_fbo = new FrameBuffer(Pixmap.Format.RGB565, (int)(width * m_fboScaler), (int)(height * m_fboScaler), false);
-                m_fboRegion = new TextureRegion(m_fbo.getColorBufferTexture());
-                m_fboRegion.flip(false, true);
-            }
-
-            m_fbo.begin();
-        }
-
-        // this is the main render function
-        this.render();
-
-        if(m_fbo != null)
-        {
-            m_fbo.end();
-
-            spriteBatch.begin();
-            spriteBatch.draw(m_fboRegion, 0, 0, width, height);
-            spriteBatch.end();
-        }
+        compositeSprite1.draw(batch);
     }
 }
