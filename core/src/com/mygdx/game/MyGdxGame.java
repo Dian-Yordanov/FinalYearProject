@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -90,10 +89,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     float cameraZoomLevel = 0;
     public static int sumaryXi = 0;
     public static Array<Sprite> arraySpriteX;
-
     public static Texture foreground;
     public static Sprite penroseTile4;
-
     //endregion
     @Override
     public void create() {
@@ -129,7 +126,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         createCamera();
       /*  createStage();*/
     }
-
     @Override
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -220,7 +216,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
 
     }
-
     @Override
     public void resize(int width, int height) {
         camera.viewportWidth = Gdx.graphics.getWidth();
@@ -228,12 +223,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         //* height/width;
         camera.update();
     }
-
     @Override
     public void dispose() {
         batch.dispose();
     }
-
     @Override
     public void run() {
         Gdx.app.postRunnable(new Runnable() {
@@ -246,7 +239,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         });
     }
-
     public void createCamera() {
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(1.5f * camera.viewportWidth, 1.5f * camera.viewportHeight, 0);
@@ -261,7 +253,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         camera.update();
 
     }
-
     public void createContent() {
         //region ContentCreation
         AssetManager manager;
@@ -424,26 +415,17 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             square1Img = manager.get(pictureAddress, Texture.class);
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             penroseTile3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            //penroseTile1.setOrigin(0,0);
             square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-            //penroseTile2.setOrigin(0,0);
-
-           /* createStage(manager);*/
-
             TruchetTillings.createContentForPredrawing();
         }
-
-
     }
-
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
         if (!Gdx.files.external(imageNameToBeSavedMGG1).exists()) {
             FileHandle from = Gdx.files.internal(imageNameToBeSavedMGG1);
             from.copyTo(Gdx.files.external(imageNameToBeSavedMGG1));
         }
     }
-
     public void zoomableCamera() {
         for (int i = 0; i < 20; i++) { // 20 is max number of touch points
             if (Gdx.input.isTouched(i) && i == 1) {
@@ -464,7 +446,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
     }
-
     public void cameraMovingMethod() {
         if (Gdx.input.justTouched()) {
             dragNew = new Vector2(Gdx.input.getX(), Gdx.input.getY());
@@ -551,7 +532,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
     }
-
     public void penroseTillingRendering() {
 
         batch.begin();
@@ -560,24 +540,14 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
 
                 createTypeATile(i, ii,2000,2000);
-                createTypeBTile(i, ii,1500,1500);
+                createTypeBTile(i, ii, 1500, 1500);
                 createPixmapFromSprite();
                 penroseTile4.setPosition(2000,2500);
                 penroseTile4.draw(batch);
-//test
-                /*createCompositeSprite();
-
-                createTypeATile(i,ii,Math.round(compositeSprite.getX()),Math.round(compositeSprite.getY()));
-
-                */
-
-                //createCompositeSprite();
-
 
             }
         }
         batch.end();
-
     }
 
 
@@ -595,7 +565,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile2.draw(batch);
         penroseTile1.draw(batch);
     }
-
     public static void createTypeBTile(int i, int ii,int posX,int posY) {
         createTypeATile(i,ii,posX,posY);
 
@@ -656,19 +625,28 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         compositeSprite1.draw(batch);
     }
     public static void createPixmapFromSprite(){
-    Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
+    /*Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
 
 // Cut a rectangle of alpha value 0
-    mask.setBlending(Pixmap.Blending.None);
+    *//*mask.setBlending(Pixmap.Blending.None);
     mask.setColor(new Color(0f, 0f, 0f, 0f));
-    mask.fillRectangle(0, 0, 32, 32);
+    mask.fillRectangle(0, 0, 32, 32);*/
 
     Pixmap fg = new Pixmap(Gdx.files.internal(pictureAddress));
-    fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+    Pixmap fg1 = new Pixmap(Gdx.files.internal(pictureAddress2));
+        fg1.drawPixmap(fg,0,0);
+        fg1.drawPixmap(fg1,fg1.getWidth(),fg1.getHeight());
+        //fg1.fill();
+    /*fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+    fg1.drawPixmap(mask, fg.getWidth(), fg.getHeight());
     mask.setBlending(Pixmap.Blending.SourceOver);
-
+*/
      foreground = new Texture(fg);
-     penroseTile4 = new Sprite(foreground, foreground.getWidth(), foreground.getHeight());
+        Texture fgg = new Texture(fg1);
+     //penroseTile4 = new Sprite(foreground, foreground.getWidth(), foreground.getHeight());
+        penroseTile4 = new Sprite(fgg,fgg.getWidth(),fgg.getHeight());
+
     //Texture background = new Texture("background.png");
 }
+
 }
