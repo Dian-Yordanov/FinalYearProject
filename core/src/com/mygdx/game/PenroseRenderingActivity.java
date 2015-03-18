@@ -58,6 +58,7 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
         img3.setColor(new Color(0, 0, 1, 1));
 
 
+
         group.addActor(img2);
         group.addActor(img3);
         group.addActor(img);
@@ -78,6 +79,13 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
         wrapper.setRotation(45);
         wrapper.setScaleX(1.5f);
         stage.addActor(wrapper);
+        Container wrapper1 = new Container(wrapper);
+        wrapper1.setTransform(true);
+
+        wrapper1.setOrigin(wrapper1.getPrefWidth() / 2, wrapper1.getPrefHeight() / 2);
+        wrapper1.setRotation(45);
+        //wrapper1.addActor(wrapper);
+        stage.addActor(wrapper1);
     }
 
     @Override
@@ -92,7 +100,7 @@ public class PenroseRenderingActivity extends ApplicationAdapter {
 
         //group.rotateBy(45);
         //group.setRotation(45);
-        stage.draw();
+        //stage.draw();
 
         /*if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             group.rotateBy(rotSpeed);
