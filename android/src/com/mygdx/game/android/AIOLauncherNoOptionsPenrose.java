@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.PenroseRenderingActivity;
 
 /**
  * Created by XelnectMobileUser on 3/16/2015.
@@ -19,6 +20,6 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
         MyGdxGame.pictureAddress = imageNameToBeSaved;
         MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        initialize(new MyGdxGame(), config);
+        initialize(new PenroseRenderingActivity(), config);
     }
 }
