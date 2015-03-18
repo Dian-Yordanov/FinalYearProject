@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -105,7 +107,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         //intToBeReduced2=1;
         doRandomRotation = 0;
 
-        //doneOnce=false;
+        doneOnce=false;
 
         //PeriodicTillingsRendering PTR = new PeriodicTillingsRendering();
 
@@ -538,16 +540,15 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
     }
-    public void penroseTillingRendering(){
+    public void penroseTillingRendering() {
 
         batch.begin();
-        for(int i=0;i<1;i++){
-            for(int ii=0;ii<1;ii++){
+        for (int i = 0; i < 1; i++) {
+            for (int ii = 0; ii < 1; ii++) {
 
 
-
-                createTypeATile(i,ii);
-                createTypeBTile(i,ii);
+                createTypeATile(i, ii);
+                createTypeBTile(i, ii);
 
                 //stage.draw();
 
@@ -566,9 +567,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             }
         }
         batch.end();
-       /* stage.draw();*/
+
     }
-    public static void createTypeATile(int i, int ii){
+
+       /* stage.draw();*/
+
+
+    public void createTypeATile(int i, int ii){
         penroseTile1.setOrigin(0,0);
 
         penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
@@ -587,8 +592,60 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         CompositeSprite compositeSprite = new CompositeSprite();
         compositeSprite.addComponentSprite(penroseTile1);
         compositeSprite.addComponentSprite(penroseTile2);
+
         compositeSprite.draw(batch);
+
+        /*compositeSprite.addComponentSprite(penroseTile1);
+        compositeSprite.addComponentSprite(penroseTile2);*/
+
+        for (Sprite sprite : compositeSprite.componentSprites) {
+           sprite.translate(0, 400);
+        }
+
+
+        compositeSprite.draw(batch);
+        //xyengine.logGdx(compositeSprite.componentSprites.size);
+        //compositeSprite.draw(batch);
+        //Gdx.graphics.setContinuousRendering(false);
+
+        //compositeSprite.addComponentSprite(compositeSprite.componentSprites);
+        //for (Sprite sprite : compositeSprite.componentSprites) {
+
+
+       /* for (int iii=1;iii<compositeSprite.componentSprites.size;iii++) {
+            //if (!doneOnce){
+                xyengine.logGdx(compositeSprite.componentSprites.size);
+
+            if(iii<5)compositeSprite.addComponentSprite(compositeSprite.componentSprites.get(iii-1));
+            //if(iii==1)doneOnce=true;}
+        }
+        //compositeSprite.addComponentSprite()
+
+
+
+
+        xyengine.logGdx(compositeSprite.componentSprites.size);
+        //for(int iiii=0;iiii<compositeSprite.componentSprites.size;iiii++) {
+        //    xyengine.logGdx(iiii);
+            compositeSprite.componentSprites.get(1).translate(0, 0);
+            compositeSprite.componentSprites.get(0).translate(0, 0);
+            compositeSprite.componentSprites.get(3).translate(0, 400);
+            compositeSprite.componentSprites.get(2).translate(0, 400);
+
+        //}
+
+        //}
+        compositeSprite.draw(batch);*/
+        //compositeSprite.addComponentSprite(compositeSprite.componentSprites.get(1));
+
         //compositeSprite.addComponentSprite(compositeSprite);
+        /*Sprite sprite2 = compositeSprite.generateSpriteFromBufferContents(Math.round(penroseTile1.getX())
+                ,Math.round(penroseTile1.getY()),Math.round(penroseTile1.getWidth()),Math.round(penroseTile2.getHeight()));
+        sprite2.rotate(90);
+        sprite2.draw(batch);*/
+       // Sprite sprite1 = compositeSprite.componentSprites.get(1).getTexture();
+       // compositeSprite.componentSprites.get(1);
+       // sprite1.draw(batch);
 
     }
     public static void createTypeBTile(int i, int ii){
@@ -709,4 +766,42 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         group.setOrigin(img.getWidth()/2,img.getHeight()/2);
     }*/
 
+/*}*/
+
+
+    public void render(SpriteBatch spriteBatch)
+    {
+        float m_fboScaler = 1.5f;
+        boolean m_fboEnabled = true;
+        FrameBuffer m_fbo = null;
+        TextureRegion m_fboRegion = null;
+        int width = Gdx.graphics.getWidth();
+        int height = Gdx.graphics.getHeight();
+
+        if(m_fboEnabled)      // enable or disable the supersampling
+        {
+            if(m_fbo == null)
+            {
+                // m_fboScaler increase or decrease the antialiasing quality
+
+                m_fbo = new FrameBuffer(Pixmap.Format.RGB565, (int)(width * m_fboScaler), (int)(height * m_fboScaler), false);
+                m_fboRegion = new TextureRegion(m_fbo.getColorBufferTexture());
+                m_fboRegion.flip(false, true);
+            }
+
+            m_fbo.begin();
+        }
+
+        // this is the main render function
+        this.render();
+
+        if(m_fbo != null)
+        {
+            m_fbo.end();
+
+            spriteBatch.begin();
+            spriteBatch.draw(m_fboRegion, 0, 0, width, height);
+            spriteBatch.end();
+        }
+    }
 }
