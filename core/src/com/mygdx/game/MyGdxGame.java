@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.ExternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -14,9 +15,6 @@ import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.utils.Array;
 
 import static com.mygdx.game.PixmapDrawingClass.dinamicallyChangeColor;
@@ -93,8 +91,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static int sumaryXi = 0;
     public static Array<Sprite> arraySpriteX;
 
-    public static Stage stage;
-    public static Group group;
+    public static Texture foreground;
+    public static Sprite penroseTile4;
 
     //endregion
     @Override
@@ -264,7 +262,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
     }
 
-    public void createContent() c{
+    public void createContent() {
         //region ContentCreation
         AssetManager manager;
         manager = new AssetManager(new ExternalFileHandleResolver());
@@ -563,6 +561,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
                 createTypeATile(i, ii,2000,2000);
                 createTypeBTile(i, ii,1500,1500);
+                createPixmapFromSprite();
+                penroseTile4.setPosition(2000,2500);
+                penroseTile4.draw(batch);
 //test
                 /*createCompositeSprite();
 
@@ -654,4 +655,20 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         compositeSprite1.draw(batch);
     }
+    public static void createPixmapFromSprite(){
+    Pixmap mask = new Pixmap(128, 128, Pixmap.Format.Alpha);
+
+// Cut a rectangle of alpha value 0
+    mask.setBlending(Pixmap.Blending.None);
+    mask.setColor(new Color(0f, 0f, 0f, 0f));
+    mask.fillRectangle(0, 0, 32, 32);
+
+    Pixmap fg = new Pixmap(Gdx.files.internal(pictureAddress));
+    fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
+    mask.setBlending(Pixmap.Blending.SourceOver);
+
+     foreground = new Texture(fg);
+     penroseTile4 = new Sprite(foreground, foreground.getWidth(), foreground.getHeight());
+    //Texture background = new Texture("background.png");
+}
 }
