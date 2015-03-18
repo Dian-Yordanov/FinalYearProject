@@ -31,10 +31,7 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void goToRenderingActivity(){
-        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        initialize(new PenroseRenderingActivity(), config);
-    }
+
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem menuItem1 = menu.findItem(R.id.option1);
         menuItem1.setTitle("");
@@ -47,4 +44,8 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
         menuItem3.setVisible(false);
         return true;
     }*/
+   /*public void goToRenderingActivity1(){
+       AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+       initialize(new PenroseRenderingActivity(), config);
+   }*/
 }

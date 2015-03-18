@@ -25,7 +25,7 @@ public class Background extends Table {
     TextureAtlas atlas;
     NinePatch ninePatch;
     Sprite color;
-    Image bevel;
+    Sprite bevel;
     Image border;
     Image combinedBackground;
 
@@ -41,14 +41,19 @@ public class Background extends Table {
 
     private void initBackground() {
         // BACKGROUND COLOR
-        Texture texture = new Texture("white.png");
+        Texture texture = new Texture(Gdx.files.internal("data/108pstriangle.png"));
         TextureRegion whitePixel = new TextureRegion(texture);
         color = new Sprite(whitePixel);
         color.setSize(width, height);
         color.setColor(backgroundColor);
+        Texture texture1 = new Texture(Gdx.files.internal("data/ps36angle.png"));
+        TextureRegion whitePixel1 = new TextureRegion(texture1);
+        bevel = new Sprite(whitePixel1);
+        bevel.setSize(width, height);
+        bevel.setColor(backgroundColor);
 
         // BEVEL
-        atlas = new TextureAtlas(Gdx.files.internal("background.atlas"));
+        /*atlas = new TextureAtlas(Gdx.files.internal("background.atlas"));
         ninePatch = atlas.createPatch("background");
         bevel = new Image(ninePatch);
         bevel.setSize(width - 2, height - 2);
@@ -58,7 +63,7 @@ public class Background extends Table {
         atlas = new TextureAtlas(Gdx.files.internal("border.atlas"));
         ninePatch = atlas.createPatch("border");
         border = new Image(ninePatch);
-        border.setSize(width, height);
+        border.setSize(width, height);*/
 
         // MERGE
         mergeBackground();
@@ -78,7 +83,7 @@ public class Background extends Table {
 
         color.draw(batch);
         bevel.draw(batch, 0.3f);
-        border.draw(batch, 1f);
+        /*border.draw(batch, 1f);*/
 
         batch.end();
         buffer.end();

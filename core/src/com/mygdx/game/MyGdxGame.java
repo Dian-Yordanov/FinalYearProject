@@ -41,7 +41,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static Sprite spriteForDynamicDrawingHexagon;
     public static Sprite spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
     public static Sprite spriteSTTCornerTriangles;
-
+    public static Background bg;
     //public static Sprite groupSpriteSTT;
 
     private static OrthographicCamera camera;
@@ -418,6 +418,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             TruchetTillings.createContentForPredrawing();
+            bg = new Background(800,800);
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -542,9 +543,11 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 createTypeATile(i, ii,2000,2000);
                 createTypeBTile(i, ii, 1500, 1500);
                 createPixmapFromSprite();
+
                 penroseTile4.setPosition(2000,2500);
                 penroseTile4.draw(batch);
 
+bg.draw(batch,1);
             }
         }
         batch.end();
@@ -634,7 +637,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
     Pixmap fg = new Pixmap(Gdx.files.internal(pictureAddress));
     Pixmap fg1 = new Pixmap(Gdx.files.internal(pictureAddress2));
-        fg1.drawPixmap(fg,0,0);
+        fg1.drawPixmap(fg, 0, 0);
         fg1.drawPixmap(fg1,fg1.getWidth(),fg1.getHeight());
         //fg1.fill();
     /*fg.drawPixmap(mask, fg.getWidth(), fg.getHeight());
