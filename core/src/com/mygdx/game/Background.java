@@ -45,12 +45,12 @@ public class Background extends Table {
         TextureRegion whitePixel = new TextureRegion(texture);
         color = new Sprite(whitePixel);
         color.setSize(width, height);
-        color.setColor(backgroundColor);
+        //color.setColor(backgroundColor);
         Texture texture1 = new Texture(Gdx.files.internal("data/ps36angle.png"));
         TextureRegion whitePixel1 = new TextureRegion(texture1);
         bevel = new Sprite(whitePixel1);
         bevel.setSize(width, height);
-        bevel.setColor(backgroundColor);
+        //bevel.setColor(backgroundColor);
 
         // BEVEL
         /*atlas = new TextureAtlas(Gdx.files.internal("background.atlas"));
@@ -66,23 +66,26 @@ public class Background extends Table {
         border.setSize(width, height);*/
 
         // MERGE
-        mergeBackground();
+        mergeBackground(color,bevel);
     }
 
-    public void mergeBackground() {
+    public void mergeBackground(Sprite sprite1, Sprite sprite2) {
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
         Batch batch = new SpriteBatch();
 
         buffer.begin();
         batch.enableBlending();
-        Gdx.gl.glBlendFuncSeparate(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        /*Gdx.gl.glBlendFuncSeparate(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
         Gdx.gl.glClearColor(1, 0, 1, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);*/
 
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         batch.begin();
 
-        color.draw(batch);
-        bevel.draw(batch, 0.3f);
+        sprite1.draw(batch,1f);
+        sprite2.draw(batch,1f);
         /*border.draw(batch, 1f);*/
 
         batch.end();
