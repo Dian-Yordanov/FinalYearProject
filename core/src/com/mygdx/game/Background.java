@@ -28,6 +28,7 @@ public class Background extends Table {
     Sprite bevel;
     Image border;
     Image combinedBackground;
+    Sprite combinedSprite;
 
     private final float rgbMax = 255;
     Color backgroundColor = new Color(86 / rgbMax, 86 / rgbMax, 86 / rgbMax, 1);
@@ -94,14 +95,16 @@ public class Background extends Table {
         TextureRegion combinedTexture = new TextureRegion(buffer.getColorBufferTexture());
         combinedTexture.flip(false, true);
 
-        combinedBackground = new Image(combinedTexture);
+        //combinedBackground = new Image(combinedTexture);
+        combinedSprite = new Sprite(combinedTexture);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         applyTransform(batch, computeTransform());
 
-        combinedBackground.draw(batch, parentAlpha);
+        //combinedBackground.draw(batch, parentAlpha);
+        combinedSprite.draw(batch);
 
         resetTransform(batch);
 

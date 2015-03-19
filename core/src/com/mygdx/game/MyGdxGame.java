@@ -9,10 +9,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.PolygonSprite;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -91,6 +94,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static Array<Sprite> arraySpriteX;
     public static Texture foreground;
     public static Sprite penroseTile4;
+    public static Sprite combinedSprite;
     //endregion
     @Override
     public void create() {
@@ -418,7 +422,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             TruchetTillings.createContentForPredrawing();
-            bg = new Background(800,800);
+            /*bg = new Background(800,800);*/
+            mergeSprites(penroseTile1,penroseTile2);
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
@@ -547,7 +552,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 penroseTile4.setPosition(2000,2500);
                 penroseTile4.draw(batch);
 
-bg.draw(batch,1);
+
+                 /*bg.draw(batch,1);
+                mergeSprites(penroseTile1,penroseTile2);*/
+                combinedSprite.draw(batch);
             }
         }
         batch.end();
@@ -651,5 +659,44 @@ bg.draw(batch,1);
 
     //Texture background = new Texture("background.png");
 }
+    public void mergeSprites(Sprite sprite1, Sprite sprite2) {
+        FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
+        Batch batch = new SpriteBatch();
 
+        buffer.begin();
+        batch.enableBlending();
+        /*Gdx.gl.glBlendFuncSeparate(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA, GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        Gdx.gl.glClearColor(1, 0, 1, 0);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);*/
+
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        batch.begin();
+
+        sprite1.draw(batch,1f);
+        sprite2.draw(batch,1f);
+        /*border.draw(batch, 1f);*/
+
+        batch.end();
+        buffer.end();
+
+        TextureRegion combinedTexture = new TextureRegion(buffer.getColorBufferTexture());
+        combinedTexture.flip(false, true);
+
+        //combinedBackground = new Image(combinedTexture);
+        combinedSprite = new Sprite(combinedTexture);
+    }
+
+    /*@Override
+    public void draw(Batch batch, float parentAlpha) {
+        applyTransform(batch, computeTransform());
+
+        //combinedBackground.draw(batch, parentAlpha);
+        combinedSprite.draw(batch);
+
+        resetTransform(batch);
+
+        super.draw(batch, parentAlpha);
+    }*/
 }
