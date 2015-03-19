@@ -580,6 +580,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public static void createTypeBTile(int posX,int posY, Batch batch) {//int i, int ii,
         /*createTypeATile(posX,posY,batch);//i,ii,*/
+
+        //remove this and make it with tile combination
         penroseTile2.setPosition(penroseTile1.getX() - penroseTile2.getWidth(),
                 penroseTile1.getY() - penroseTile2.getHeight() / 2);
 
@@ -587,6 +589,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile2.setRotation(-126);
         penroseTile2.draw(batch,1f);
         penroseTile1.draw(batch,1f);
+        //
 
         penroseTile3.setOrigin(0, 0);
         penroseTile3.setPosition(penroseTile1.getX(), penroseTile1.getY());
