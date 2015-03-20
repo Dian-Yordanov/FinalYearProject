@@ -44,7 +44,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static Sprite spriteForDynamicDrawingHexagon;
     public static Sprite spriteFortintingSnubTrihexagonalTillingsMiddleTriangle;
     public static Sprite spriteSTTCornerTriangles;
-    public static Background bg;
+    //public static Background bg;
     //public static Sprite groupSpriteSTT;
 
     private static OrthographicCamera camera;
@@ -96,6 +96,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     public static Sprite penroseTile4;
     public static Sprite combinedSprite;
     public static Array<Sprite> penroseSprites = new Array<Sprite>();
+    public static int globalInt=0;
     //endregion
     @Override
     public void create() {
@@ -619,8 +620,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public static void createTheSpritesPositionAndRotation(Sprite sprite1,Sprite sprite2,Batch batch){
         /*createTypeATile(2000,2000,batch);*/
-        penroseSprites.get(0).draw(batch,1f);
-        penroseSprites.get(1).draw(batch,1f);
+        penroseSprites.get(globalInt).draw(batch,1f);
+        penroseSprites.get(globalInt+1).draw(batch,1f);
         /*penroseTile2.draw(batch,1f);
         penroseTile1.draw(batch,1f);
         penroseTile3.draw(batch,1f);*/
@@ -629,6 +630,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         createTypeATile(2000,2000,batch);
         combinedSprite = mergeSprites(penroseTile1,penroseTile2);
         penroseSprites.add(combinedSprite);
+
+        //globalInt+=2;
 
         createTypeBTile(2000,2000,batch);
         combinedSprite = mergeSprites(penroseTile3,penroseSprites.get(0));
