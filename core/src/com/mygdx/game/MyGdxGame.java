@@ -430,8 +430,8 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             penroseTile21 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             TruchetTillings.createContentForPredrawing();
             /*bg = new Background(800,800);*/
-            penroseSprites.addAll(penroseTile1, penroseTile2, penroseTile3);
-            createThePenroseTiles();
+            //penroseSprites.addAll(penroseTile1, penroseTile2, penroseTile3);//may want to use again later
+            //createThePenroseTiles();
         }
     }
     public void checkIfFileExists(String imageNameToBeSavedMGG1) {
