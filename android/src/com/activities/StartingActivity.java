@@ -37,6 +37,21 @@ public class StartingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starting_activity);
 
+
+        /*PenroseTillingButton, R.id.PenroseTilling
+                ,"PenroseTilling", "com.mygdx.game.android.PenroseTillingLauncher"
+                ,"data/108pstriangle.png","data/ps36angle.png");*/
+        LogicalClassForRenderCallingActivites.setupPatternStyle("PenroseTilling");
+        MyGdxGame.imageNameToBeSavedMGG="data/108pstriangle.png";
+        MyGdxGame.imageNameToBeSavedMGG2="data/ps36angle.png";
+        try {
+            Class<?> act = Class.forName( "com.mygdx.game.android.PenroseTillingLauncher");
+            Intent i = new Intent(StartingActivity.this,act);
+            startActivity(i);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         callClassTillingLauncher(SquareTillingLauncherButton, R.id.squareTillingLauncher
                 , "SquareTillingLauncher", "com.mygdx.game.android.SquareTillingLauncher"
                 , "data/ii_square_tilling.png");
