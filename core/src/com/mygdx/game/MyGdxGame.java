@@ -634,6 +634,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 , penroseTile21.getY() + penroseTile21.getHeight());
         penroseSprites.get(2).rotate(36);
 
+        penroseSprites.get(2).setOrigin(0,0);
+        penroseSprites.get(2).translate(450,200);
+        penroseSprites.get(3).translate(400,0);
+        /*penroseSprites.get(2).setOrigin(0,0);
+        penroseSprites.get(3).setPosition(penroseSprites.get(2).getX(),penroseSprites.get(2).getY());
+        penroseSprites.get(3).setPosition(penroseSprites.get(3).getX(),penroseSprites.get(3).getY());*/
+
        /* penroseSprites.get(2).setPosition(
                 penroseSprites.get(1).getX() - penroseSprites.get(2).getWidth(),
                 penroseSprites.get(1).getY() - penroseSprites.get(2).getHeight() / 2);
@@ -791,8 +798,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         sprite3.setPosition(100,0);*/
         //sprite2.setPosition(100,0);
 
-        sprite1.draw(batch,1f);
+
         //sprite2.draw(batch,1f);
+        sprite1.draw(batch,1f);
         sprite3.draw(batch,1f);
         //}
 
