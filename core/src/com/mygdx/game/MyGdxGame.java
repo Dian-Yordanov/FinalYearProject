@@ -574,6 +574,13 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 penroseSprites.add(penroseTile3);
                 createTypeBTileOld(3000,2000);
                 createTypeATileOld(2000,2000);
+                //penroseSprites.add(penroseTile3);
+                createTypeBTileOld(3000,3000);
+                createTypeATileOld(2000,3000);
+
+
+
+
                 //mergeSpritesIntoTypeFromArray();
             }
         }
