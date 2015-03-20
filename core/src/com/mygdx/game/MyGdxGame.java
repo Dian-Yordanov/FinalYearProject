@@ -551,42 +551,11 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         for (int i = 0; i < 1; i++) {
             for (int ii = 0; ii < 1; ii++) {
 
-
-
-                //createPixmapFromSprite();
-
-                /*penroseTile4.setPosition(2000,2500);
-                penroseTile4.draw(batch);*/
-
-
-                 /*bg.draw(batch,1);
-                mergeSprites(penroseTile1,penroseTile2);*/
-                /*penroseSprites.get(0).setPosition(1000,1000);
-                penroseSprites.get(0).draw(batch);
-                penroseSprites.get(1).setPosition(1000,1500);
-                penroseSprites.get(1).draw(batch);*/
-
-                /*penroseSprites.get(2).setPosition(1000,2000);
-                penroseSprites.get(2).draw(batch);*/
-
-                //penroseSprites.get(3).setPosition(1000,2000);
-                //penroseSprites.get(3).draw(batch);
-               /* penroseSprites.get(4).setPosition(1000,2000);
-                penroseSprites.get(4).draw(batch);*/
-              /*  penroseSprites.get(4).setPosition(1000,2000);
-                penroseSprites.get(4).draw(batch);
-                penroseSprites.get(5).setPosition(1000,2000);
-                penroseSprites.get(5).draw(batch);*/
-
                 penroseSprites.get(3).setPosition(1000, 2000);
                 penroseSprites.get(3).draw(batch);
 
                 penroseSprites.get(4).setPosition(2000, 2000);
                 penroseSprites.get(4).draw(batch);
-
-                /*penroseSprites.get(4).setPosition(2000,2000);
-                penroseSprites.get(4).draw(batch);*/
-
 
             }
         }
@@ -597,43 +566,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 penroseSprites.get(globalInt).getX() - penroseSprites.get(globalInt + 1).getWidth(),
                 penroseSprites.get(globalInt).getY() - penroseSprites.get(globalInt + 1).getHeight() / 2);
 
-       /* penroseSprites.get(globalInt+1).setOrigin(penroseSprites.get(globalInt + 1).getWidth()
-                , penroseSprites.get(globalInt + 1).getHeight() / 2);*/
+        penroseSprites.get(globalInt+1).setOrigin(penroseSprites.get(globalInt + 1).getWidth()
+                , penroseSprites.get(globalInt + 1).getHeight() / 2);
         penroseSprites.get(globalInt+1).setRotation(-126);
 
-        /*penroseSprites.get(globalInt+1).setCenter(
-                penroseSprites.get(globalInt+1).getWidth()/2,penroseSprites.get(globalInt+1).getHeight()/2);
-        penroseSprites.get(globalInt).setCenter(
-                penroseSprites.get(globalInt).getWidth()/2,penroseSprites.get(globalInt).getHeight()/2);*/
-
-
-       /* penroseTile2.draw(batch,1f);
-        penroseTile1.draw(batch,1f);*/
     }
     public static void createTypeBTile() {//int i, int ii, //int posX,int posY, Batch batch
-        /*createTypeATile(posX,posY,batch);//i,ii,*/
-
-        //remove this and make it with tile combination
-        /*penroseTile21.setPosition(
-                penroseTile1.getX() - penroseTile21.getWidth(),
-                penroseTile1.getY() - penroseTile21.getHeight() / 2);
-
-        penroseTile21.setOrigin(penroseTile21.getWidth(),
-                penroseTile21.getHeight() / 2);
-        penroseTile21.setRotation(-126);*/
-
-
-        /*penroseTile2.draw(batch,1f);
-        penroseTile1.draw(batch,1f);*/
-        //
-
-       /* penroseSprites.get(globalInt+1).setOrigin(0, 0);
-        penroseSprites.get(globalInt+1).setPosition(penroseSprites.get(globalInt).getX(), penroseSprites.get(globalInt).getY());
-        penroseSprites.get(globalInt+1).setRotation(180);
-        penroseSprites.get(globalInt+1).setOrigin(penroseSprites.get(globalInt+1).getWidth() / 2, penroseSprites.get(globalInt+1).getHeight());
-        penroseSprites.get(globalInt+1).setPosition(penroseSprites.get(globalInt).getX() + penroseSprites.get(globalInt).getWidth() / 2
-                , penroseSprites.get(globalInt).getY() + penroseSprites.get(globalInt).getHeight());
-        penroseSprites.get(globalInt+1).rotate(36);*/
 
         penroseSprites.get(2).setOrigin(0, 0);
         penroseSprites.get(2).setPosition(penroseTile21.getX(), penroseTile21.getY());
@@ -643,42 +581,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 , penroseTile21.getY() + penroseTile21.getHeight());
         penroseSprites.get(2).rotate(36);
 
-        /*penroseSprites.get(2).setOrigin(0,0);
-        penroseSprites.get(2).translate(450,200);
-        penroseSprites.get(3).translate(400,0);*/
-        /*penroseSprites.get(2).setOrigin(0,0);
-        penroseSprites.get(3).setPosition(penroseSprites.get(2).getX(),penroseSprites.get(2).getY());
-        penroseSprites.get(3).setPosition(penroseSprites.get(3).getX(),penroseSprites.get(3).getY());*/
-
-       /* penroseSprites.get(2).setPosition(
-                penroseSprites.get(1).getX() - penroseSprites.get(2).getWidth(),
-                penroseSprites.get(1).getY() - penroseSprites.get(2).getHeight() / 2);
-
-        penroseSprites.get(2).setOrigin(penroseSprites.get(2).getWidth()
-                , penroseSprites.get(2).getHeight() / 2);*/
-
-        //penroseSprites.get(1).setRotation(22);
-
         penroseSprites.get(2).setOrigin(penroseSprites.get(2).getWidth()/2,penroseSprites.get(2).getHeight() / 2);
-
-        //penroseSprites.get(2).setRotation(36);
-        /*penroseSprites.get(4).setRotation(-126);
-        penroseSprites.get(5).setRotation(-126);*/
-
-       // penroseTile3.draw(batch,1f);
-        //penroseSprites.get(globalInt).rotate(36);
-
-        //xyengine.logGdx(globalInt);
-        //penroseSprites.get(globalInt).rotate(50);
-        //penroseSprites.get(globalInt).setPosition(penroseSprites.get(globalInt+1).getX()+100
-        //        , penroseSprites.get(globalInt+1).getY()+100);
-
-        //penroseSprites.get(globalInt).translate(0,100);
-
-        /*penroseSprites.get(globalInt).rotate(50);
-        penroseSprites.get(globalInt+1).rotate(50);*/
-
-        //penroseSprites.get(globalInt+1).translate(0,100);
     }
     public static Sprite mergeSprites(Sprite sprite1,Sprite sprite2) {
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
@@ -708,37 +611,16 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         sprite2.draw(batch, 1f);
     }
     public static void createThePenroseTiles(){
-        //xyengine.logGdx(globalInt);
-        //createTypeATile();
-        //createTypeBTile();
 
-        //2000,2000,batch
         createTypeATile();
         combinedSprite = mergeSpritesIntoTypeA(penroseSprites.get(0),penroseSprites.get(1));
+        combinedSprite.setOrigin(combinedSprite.getWidth()/2,combinedSprite.getHeight()/2);
         penroseSprites.add(combinedSprite);
+
         createTypeBTile();
-        //penroseSprites.get(2).setPosition(penroseSprites.get(3).getX()+100,penroseSprites.get(3).getY());
-        //penroseSprites.get(3).setPosition(penroseSprites.get(2).getX(),penroseSprites.get(2).getY());
-        combinedSprite = mergeSpritesIntoTypeB(combinedSprite,penroseSprites.get(2));//penroseSprites.get(globalInt),penroseSprites.get(globalInt+1)
+        combinedSprite = mergeSpritesIntoTypeB(combinedSprite,penroseSprites.get(2));
         penroseSprites.add(combinedSprite);
 
-       /* globalInt=penroseSprites.size-2;
-        *//*penroseSprites.addAll(penroseSprites.get(0),penroseSprites.get(1));*//*
-
-         //2000,2000,batch
-        combinedSprite = mergeSprites(penroseSprites.get(2),combinedSprite);//penroseSprites.get(globalInt),penroseSprites.get(globalInt+1)
-        penroseSprites.add(combinedSprite);*/
-
-        //xyengine.logGdx(globalInt);
-        /*createTypeBTile(); //2000,2500,batch
-        combinedSprite = mergeSprites();//penroseSprites.get(globalInt),penroseSprites.get(globalInt+1)
-        penroseSprites.add(combinedSprite);*/
-
-       /* penroseSprites.addAll(penroseTile1, penroseTile2);penroseSprites.addAll(penroseTile1, penroseTile2);
-        mergeSprites(penroseSprites.get(0),penroseSprites.get(1));
-        Sprite combinedSpriteForArray = combinedSprite;
-        penroseSprites.add(combinedSpriteForArray);
-        createTypeBTile(1500, 1500,batch);*/
     }
     public static Sprite mergeSpritesIntoTypeA(Sprite sprite1,Sprite sprite2) {
         FrameBuffer buffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
@@ -752,14 +634,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         batch.begin();
 
-        //createTheSpritesPositionAndRotation(sprite1,sprite2,batch);
-        //public static void createTheSpritesPositionAndRotation(Sprite sprite1,Sprite sprite2,Batch batch){
-        /*sprite2.setPosition(
-                sprite1.getX() - sprite2.getWidth(),
-                sprite1.getY() - sprite2.getHeight() / 2);
-
-        sprite2.setOrigin(sprite2.getWidth(), sprite2.getHeight() / 2);
-        sprite2.setRotation(-126);*/
         sprite1.draw(batch,1f);
         sprite2.draw(batch,1f);
         //}
@@ -784,50 +658,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         batch.begin();
-
-        //createTheSpritesPositionAndRotation(sprite1,sprite2,batch);
-        //public static void createTheSpritesPositionAndRotation(Sprite sprite1,Sprite sprite2,Batch batch){
-
-        /*sprite2.setPosition(
-                sprite1.getX() - sprite2.getWidth(),
-                sprite1.getY() - sprite2.getHeight() / 2);
-
-        sprite2.setOrigin(sprite2.getWidth(), sprite2.getHeight() / 2);
-        sprite2.setRotation(-126);*/
-
-
-        /*sprite2.setOrigin(0, 0);
-        sprite2.setPosition(sprite1.getX(), sprite1.getY());
-        sprite2.setRotation(180);
-        sprite2.setOrigin(sprite2.getWidth() / 2, sprite2.getHeight());
-        sprite2.setPosition(sprite1.getX() + sprite1.getWidth() / 2
-                , sprite1.getY() + sprite1.getHeight());
-        sprite2.rotate(36);*/
-
-        //sprite1.setOrigin(0,0);
-        //sprite2.setOrigin(0,0);
-
-       /* sprite1.setPosition(0,0);
-        sprite2.setPosition(sprite1.getX(),sprite1.getY());
-        //sprite2.setPosition(100,0);*/
-
-
-       /* sprite1.setOrigin(0, 0);
-        sprite2.setOrigin(0, 0);*/
-
-        /*sprite2.setPosition(
-                sprite1.getX() - sprite2.getWidth(),
-                sprite1.getY() - sprite2.getHeight() / 2);
-
-        sprite2.setOrigin(sprite2.getWidth(), sprite2.getHeight() / 2);
-        sprite2.setRotation(-126);
-        sprite1.draw(batch,1f);
-        sprite2.draw(batch,1f);*/
-
-        //sprite2.draw(batch,1f);
-        //sprite1.flip(false,true);
-
-
 
         sprite1.draw(batch,1f);
         sprite2.draw(batch,1f);
