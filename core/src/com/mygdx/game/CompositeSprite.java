@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
  */
 public class CompositeSprite {
 
-    Array<Sprite> componentSprites;
+    public static Array<Sprite> componentSprites;
 
     public CompositeSprite() {
         componentSprites = new Array<Sprite>();
@@ -25,7 +25,7 @@ public class CompositeSprite {
         for(int i=0;i<componentSprites1.size;i++){
             //componentSprites.add(componentSprites1.get(0));
             //componentSprites.add(componentSprites1.get(1));
-            xyengine.logGdx(componentSprites.size);
+            //xyengine.logGdx(componentSprites.size);
             componentSprites.add(componentSprites1.get(i));
         }
 
