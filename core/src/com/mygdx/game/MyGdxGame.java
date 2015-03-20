@@ -551,15 +551,68 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         for (int i = 0; i < 1; i++) {
             for (int ii = 0; ii < 1; ii++) {
 
-                penroseSprites.get(3).setPosition(1000, 2000);
+                /*penroseSprites.get(3).setPosition(1000, 2000);
                 penroseSprites.get(3).draw(batch);
 
                 penroseSprites.get(4).setPosition(2000, 2000);
-                penroseSprites.get(4).draw(batch);
+                penroseSprites.get(4).draw(batch);*/
 
+                /*createTypeATile();
+                penroseSprites.get(0).draw(batch);
+                penroseSprites.get(1).draw(batch);
+                createTypeBTile();
+                penroseSprites.get(0).draw(batch);
+                penroseSprites.get(1).draw(batch);
+                penroseSprites.get(2).draw(batch);*/
+                createTypeATileOld(1,1);
+                createTypeBTileOld(1,1);
             }
         }
         batch.end();
+    }
+    public static void createTypeATileOld(int i, int ii){
+        penroseTile1.setOrigin(0,0);
+        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
+        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
+        penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
+                penroseTile1.getY()-penroseTile2.getHeight()/2);
+        penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
+        penroseTile2.setRotation(-126);
+//diagonalScallingTypeA(penroseTile1,penroseTile2);
+        penroseTile2.draw(batch);
+        penroseTile1.draw(batch);
+    }
+    public static void createTypeBTileOld(int i, int ii){
+        penroseTile1.setOrigin(0,0);
+        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1000,((penroseTile1.getHeight())*ii)+1000);
+        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
+        penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
+                penroseTile1.getY()-penroseTile2.getHeight()/2);
+        penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
+        penroseTile2.setRotation(-126);
+//diagonalScallingTypeA(penroseTile1,penroseTile2);
+        penroseTile2.draw(batch);
+        penroseTile1.draw(batch);
+        penroseTile3.setOrigin(0,0);
+        penroseTile3.setPosition(penroseTile1.getX(),penroseTile1.getY());
+        penroseTile3.setRotation(180);
+        penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight());
+        penroseTile3.setPosition(penroseTile1.getX()-penroseTile1.getWidth()/2,penroseTile1.getY()-penroseTile1.getHeight());
+        penroseTile3.rotate(36);
+//penroseTile3.rotate(180);
+//penroseTile3.rotate(144);
+/* penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
+penroseTile3.rotate(180);
+penroseTile3.setOrigin(penroseTile3.getWidth()/2,0);
+penroseTile3.setPosition(penroseTile1.getX()-penroseTile3.getWidth()/2,penroseTile1.getY()+penroseTile3.getHeight());
+penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
+penroseTile3.rotate(36);*/
+/*penroseTile3.setOrigin(0,0);
+penroseTile3.setRotation(144);*/
+//penroseTile3.setFlip();
+/*penroseTile3.translate(penroseTile3.getWidth(),0);
+penroseTile3.setFlip(false,true);*/
+        penroseTile3.draw(batch);
     }
     public static void createTypeATile() {//int i, int ii, //int posX,int posY, Batch batch
         penroseSprites.get(globalInt+1).setPosition(
@@ -573,12 +626,12 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
     }
     public static void createTypeBTile() {//int i, int ii, //int posX,int posY, Batch batch
 
-        //penroseSprites.get(2).setOrigin(0, 0);
-        //penroseSprites.get(2).setPosition(penroseTile21.getX(), penroseTile21.getY());
+        penroseSprites.get(2).setOrigin(0, 0);
+        penroseSprites.get(2).setPosition(penroseTile21.getX(), penroseTile21.getY());
         penroseSprites.get(2).setRotation(180);
-        //penroseSprites.get(2).setOrigin(penroseSprites.get(2).getWidth() / 2, penroseSprites.get(2).getHeight());
-        /*penroseSprites.get(2).setPosition(penroseTile21.getX() + penroseTile21.getWidth() / 2
-                , penroseTile21.getY() + penroseTile21.getHeight());*/
+        penroseSprites.get(2).setOrigin(penroseSprites.get(2).getWidth() / 2, penroseSprites.get(2).getHeight());
+        penroseSprites.get(2).setPosition(penroseTile21.getX() + penroseTile21.getWidth() / 2
+                , penroseTile21.getY() + penroseTile21.getHeight());
         penroseSprites.get(2).rotate(36);
 
         //penroseSprites.get(2).setOrigin(penroseSprites.get(2).getWidth()/2,penroseSprites.get(2).getHeight() / 2);
