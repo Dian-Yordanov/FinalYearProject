@@ -564,33 +564,30 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 penroseSprites.get(0).draw(batch);
                 penroseSprites.get(1).draw(batch);
                 penroseSprites.get(2).draw(batch);*/
-                createTypeATileOld(1,1);
-                createTypeBTileOld(1,1);
+                penroseTile1.setPosition(2000, 2000);
+                penroseTile2.setPosition(2000, 2000);
+
+                createTypeATileOld();
+                createTypeBTileOld();
+
             }
         }
         batch.end();
     }
-    public static void createTypeATileOld(int i, int ii){
-        penroseTile1.setOrigin(0,0);
-        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+2000,((penroseTile1.getHeight())*ii)+2000);
-        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
+    public static void createTypeATileOld(){
         penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
                 penroseTile1.getY()-penroseTile2.getHeight()/2);
         penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
         penroseTile2.setRotation(-126);
-//diagonalScallingTypeA(penroseTile1,penroseTile2);
         penroseTile2.draw(batch);
         penroseTile1.draw(batch);
     }
-    public static void createTypeBTileOld(int i, int ii){
-        penroseTile1.setOrigin(0,0);
-        penroseTile1.setPosition(((penroseTile1.getWidth())*i)+1000,((penroseTile1.getHeight())*ii)+1000);
-        penroseTile2.setPosition(((penroseTile2.getWidth())*i)+2000,((penroseTile2.getHeight())*ii)+2000);
+    public static void createTypeBTileOld(){
+        penroseTile1.setPosition(((penroseTile1.getWidth()))+1000,((penroseTile1.getHeight()))+1000);
         penroseTile2.setPosition(penroseTile1.getX()-penroseTile2.getWidth(),
                 penroseTile1.getY()-penroseTile2.getHeight()/2);
         penroseTile2.setOrigin(penroseTile2.getWidth(),penroseTile2.getHeight()/2);
         penroseTile2.setRotation(-126);
-//diagonalScallingTypeA(penroseTile1,penroseTile2);
         penroseTile2.draw(batch);
         penroseTile1.draw(batch);
         penroseTile3.setOrigin(0,0);
@@ -599,19 +596,6 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight());
         penroseTile3.setPosition(penroseTile1.getX()-penroseTile1.getWidth()/2,penroseTile1.getY()-penroseTile1.getHeight());
         penroseTile3.rotate(36);
-//penroseTile3.rotate(180);
-//penroseTile3.rotate(144);
-/* penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
-penroseTile3.rotate(180);
-penroseTile3.setOrigin(penroseTile3.getWidth()/2,0);
-penroseTile3.setPosition(penroseTile1.getX()-penroseTile3.getWidth()/2,penroseTile1.getY()+penroseTile3.getHeight());
-penroseTile3.setOrigin(penroseTile3.getWidth()/2,penroseTile3.getHeight()/2);
-penroseTile3.rotate(36);*/
-/*penroseTile3.setOrigin(0,0);
-penroseTile3.setRotation(144);*/
-//penroseTile3.setFlip();
-/*penroseTile3.translate(penroseTile3.getWidth(),0);
-penroseTile3.setFlip(false,true);*/
         penroseTile3.draw(batch);
     }
     public static void createTypeATile() {//int i, int ii, //int posX,int posY, Batch batch
