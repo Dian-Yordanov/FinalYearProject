@@ -605,6 +605,16 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         penroseTile3.rotate(36);
 
         draw(batch);
+        /*if(!doneOnce) {
+            penroseTile1.setOrigin(penroseTile3.getX(), penroseTile3.getY());
+            penroseTile2.setOrigin(penroseTile3.getX(), penroseTile3.getY());
+            //penroseTile3.setOrigin(penroseTile1.getOriginX(), penroseTile1.getOriginY());
+            penroseTile3.rotate(0);
+            penroseTile2.rotate(45);
+            penroseTile1.rotate(45);
+        doneOnce=true;
+        }
+        draw(batch);*/
     }
     public static void createTypeATile() {//int i, int ii, //int posX,int posY, Batch batch
         penroseSprites.get(globalInt+1).setPosition(
