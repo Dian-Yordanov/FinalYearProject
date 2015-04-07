@@ -20,7 +20,7 @@ public class downloadPicture {
         out.close();
         in.close();
         byte[] response = out.toByteArray();
-        FileOutputStream fos = new FileOutputStream("/home/zyan/IdeaProjects/Rectangle_.png");
+        FileOutputStream fos = new FileOutputStream("/sdcard/data/penrose.png");
         fos.write(response);
         fos.close();
         //commit
