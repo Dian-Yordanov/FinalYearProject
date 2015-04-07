@@ -7,8 +7,8 @@ import java.net.URL;
  * Created by zyan on 06/04/15.
  */
 public class downloadPicture {
-    public downloadPicture() throws IOException {
-        URL url = new URL("http://upload.wikimedia.org/wikipedia/commons/c/cc/Rectangle_.png");
+    public downloadPicture(String message) throws IOException {
+        URL url = new URL(message);
         InputStream in = new BufferedInputStream(url.openStream());
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buf = new byte[1024];

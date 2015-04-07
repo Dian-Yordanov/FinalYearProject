@@ -1,14 +1,18 @@
-package com.dian.androidclasses;
+package com.mygdx.game.android;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
+import com.dian.androidclasses.downloadPicture;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,6 +31,11 @@ public class IncomingSms extends BroadcastReceiver {
     public String pastSMSText;
 
     public void onReceive(Context context, Intent intent) {
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
             Bundle bundle = intent.getExtras();           //---get the SMS message passed in---
@@ -48,7 +57,11 @@ public class IncomingSms extends BroadcastReceiver {
                    new LongOperation(){
                        @Override public void onPostExecute(String result)
                        {
-                           doStuffWithIncomingSMS(result);
+                           try {
+                               doStuffWithIncomingSMS(result);
+                           } catch (IOException e) {
+                               e.printStackTrace();
+                           }
                        }
                    }.execute(msgBody);
 
@@ -94,9 +107,8 @@ public class IncomingSms extends BroadcastReceiver {
 
         }
     }*/
-    public void doStuffWithIncomingSMS(String msgBody1){
-            /*MainActivity.updateView(MainActivity.timeView, "Message recieved on: " + getCurrentTime());
-            MainActivity.updateView(MainActivity.smsView, msgBody1);*/
+    public void doStuffWithIncomingSMS(String msgBody1) throws IOException {
+            new downloadPicture(msgBody1);
     }
     public String getCurrentTime(){
         Calendar cal = Calendar.getInstance();
