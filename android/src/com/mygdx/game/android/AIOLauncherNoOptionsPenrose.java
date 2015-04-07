@@ -18,7 +18,7 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
 
         MyGdxGame.pictureAddress = imageNameToBeSaved;
         //MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
-        Toast.makeText(getApplicationContext(), "Sample Text", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Local Penrose tiling shown", Toast.LENGTH_LONG).show();
         goToRenderingActivity();
     }
    /* @Override

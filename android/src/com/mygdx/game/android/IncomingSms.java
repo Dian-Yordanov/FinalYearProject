@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.dian.androidclasses.downloadPicture;
 
@@ -108,6 +109,7 @@ public class IncomingSms extends BroadcastReceiver {
         }
     }*/
     public void doStuffWithIncomingSMS(String msgBody1) throws IOException {
+            Toast.makeText(MyApplication.getAppContext(), "Url of picture received, attempting to update...", Toast.LENGTH_LONG).show();
             new downloadPicture(msgBody1);
     }
     public String getCurrentTime(){

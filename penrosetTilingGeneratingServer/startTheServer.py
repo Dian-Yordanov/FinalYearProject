@@ -27,6 +27,6 @@ def run(interval, command):
             print e
 
 if __name__=="__main__":
-    interval = 5
+    interval = 20
     command = r"python penroseServer.py"
     run(interval, command)
