@@ -117,8 +117,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
         checkIfFileExists(imageNameToBeSavedMGG);
         if (patternStyle.equals("TriangullarTillingLauncher") ||
-                patternStyle.equals("SnubTrihexagonalTilingLauncher") ||
-                patternStyle.equals("PenroseTilling")) {
+                patternStyle.equals("SnubTrihexagonalTilingLauncher")) {
             checkIfFileExists(imageNameToBeSavedMGG2);
         }
 
@@ -310,7 +309,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         }
         if (patternStyle.equals("PenroseTilling")) {
             manager.load(pictureAddress, Texture.class);
-            manager.load(pictureAddress2, Texture.class);
+            //manager.load(pictureAddress2, Texture.class);
         }
         manager.finishLoading();
         if (patternStyle.equals("SquareTillingLauncher") ||
@@ -425,9 +424,9 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             penroseTile11 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
             penroseTile3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            square2Img = manager.get(pictureAddress2, Texture.class);
+            /*square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
-            penroseTile21 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
+            penroseTile21 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());*/
             TruchetTillings.createContentForPredrawing();
             /*bg = new Background(800,800);*/
             //penroseSprites.addAll(penroseTile1, penroseTile2, penroseTile3);//may want to use again later
@@ -568,7 +567,7 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
 
                 //CompositeSprite compositeSpriteObject = new CompositeSprite();
 
-                penroseSprites.add(penroseTile1);
+               /* penroseSprites.add(penroseTile1);
                 penroseSprites.add(penroseTile2);
                 createTypeATileOld(2000,2000);
                 penroseSprites.add(penroseTile3);
@@ -576,9 +575,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 createTypeATileOld(2000,2000);
                 //penroseSprites.add(penroseTile3);
                 createTypeBTileOld(3000,3000);
-                createTypeATileOld(2000,3000);
-
-
+                createTypeATileOld(2000,3000);*/
+                penroseTile1.setPosition(2000, 2000);
+                penroseTile11.setPosition(0, 0);
+                penroseTile1.draw(batch);
 
 
                 //mergeSpritesIntoTypeFromArray();

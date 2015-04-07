@@ -9,14 +9,14 @@ import com.mygdx.game.MyGdxGame;
  */
 public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
     public static String imageNameToBeSaved;
-    public static String imageNameToBeSaved2;
+    ///public static String imageNameToBeSaved2;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         MyGdxGame.pictureAddress = imageNameToBeSaved;
-        MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
+        //MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
         goToRenderingActivity();
     }
    /* @Override
