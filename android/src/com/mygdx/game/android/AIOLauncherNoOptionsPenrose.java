@@ -1,6 +1,7 @@
 package com.mygdx.game.android;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.mygdx.game.MyGdxGame;
 
@@ -17,6 +18,7 @@ public class AIOLauncherNoOptionsPenrose extends AIOLauncherNoOptions {
 
         MyGdxGame.pictureAddress = imageNameToBeSaved;
         //MyGdxGame.pictureAddress2 = imageNameToBeSaved2;
+        Toast.makeText(getApplicationContext(), "Sample Text", Toast.LENGTH_LONG).show();
         goToRenderingActivity();
     }
    /* @Override

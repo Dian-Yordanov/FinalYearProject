@@ -422,8 +422,10 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
         if (patternStyle.equals("PenroseTilling")) {
             square1Img = manager.get(pictureAddress, Texture.class);
             penroseTile1 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            penroseTile11 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
-            penroseTile3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+
+            penroseTile1.scale(2);
+            /*penroseTile11 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());
+            penroseTile3 = new Sprite(square1Img, square1Img.getWidth(), square1Img.getHeight());*/
             /*square2Img = manager.get(pictureAddress2, Texture.class);
             penroseTile2 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());
             penroseTile21 = new Sprite(square2Img, square2Img.getWidth(), square2Img.getHeight());*/
@@ -576,8 +578,14 @@ public class MyGdxGame extends ApplicationAdapter implements Runnable {
                 //penroseSprites.add(penroseTile3);
                 createTypeBTileOld(3000,3000);
                 createTypeATileOld(2000,3000);*/
-                penroseTile1.setPosition(2000, 2000);
-                penroseTile11.setPosition(0, 0);
+                /*penroseTile1.setPosition(camera.position.x+camera.viewportWidth/2,
+                        camera.position.y+camera.viewportHeight/2);*/
+
+                /*penroseTile11.setPosition(0, 0);*/
+                if(!doneOnce) {
+                    penroseTile1.setPosition(camera.position.x, camera.position.y);
+                doneOnce=true;
+                }
                 penroseTile1.draw(batch);
 
 
